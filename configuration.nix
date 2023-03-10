@@ -59,8 +59,7 @@ in
       extraConfig = {
         github.user = "TomaSajt";
         init.defaultBranch = "main";
-        credential.helper = "cache";
-        # credential.helper = "${pkgs.gitAndTools.gitFull}/bin/git-credential-libsecret";
+        credential.helper = "${pkgs.gitAndTools.gitFull}/bin/git-credential-libsecret";
       };
     };
     programs.neovim = {
