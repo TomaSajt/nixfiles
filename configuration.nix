@@ -34,7 +34,8 @@ in
       ntfs3g       # NTFS Filesystem Support
       libusb
       ripgrep      # telescope.nvim support for grep
-
+      xclip        # Clipboard support (for synced neovim clipboard)
+      
       # Fonts
       (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ];})
 
@@ -74,6 +75,9 @@ in
         nvim-treesitter
         nvim-web-devicons
       ];
+      extraConfig = ''
+        set clipboard+=unnamedplus
+      '';
     };
   };
 
