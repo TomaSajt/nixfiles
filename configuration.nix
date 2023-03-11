@@ -12,6 +12,16 @@ in
     (import "${home-manager}/nixos")
   ];
 
+  nixpkgs.overlays = [
+    (
+      self: super:
+      {
+        quark-goldleaf = super.callPackage ./custom/quark-goldleaf/default.nix {};
+      }
+    )
+  ];
+
+
   home-manager.users.toma = {
     # Required version field
     home.stateVersion = "22.11";
@@ -34,6 +44,7 @@ in
       # Utils
       gh           # GitHub CLI
       gparted      # Partition Management
+      quark-goldleaf
 
       # Support
       ntfs3g       # NTFS Filesystem Support
@@ -196,6 +207,7 @@ in
   users.users.toma = {
     isNormalUser = true;
     description = "Toma";
+    uid = 1000;
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
