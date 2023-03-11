@@ -1,2 +1,2 @@
 ln -f ./configuration.nix /etc/nixos/configuration.nix
-ln -f ./hardware-configuration.nix /etc/nixos/hardware-configuration.nix
+ln -f ./hardware/desktop.nix /etc/nixos/hardware-configuration.nix

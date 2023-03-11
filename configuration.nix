@@ -29,6 +29,7 @@ in
       
       # User stuff
       firefox      # Browser
+      discord      
 
       # Utils
       gh           # GitHub CLI
@@ -89,6 +90,11 @@ in
   nix = {
     package = pkgs.nixFlakes;
     extraOptions = lib.optionalString (config.nix.package == pkgs.nixFlakes) "experimental-features = nix-command flakes";
+    gc = {
+      automatic = true;
+      randomizedDelaySec = "14m";
+      options = "--delete-older-than 10d";
+    };
   };
 
 
@@ -108,7 +114,7 @@ in
       efiSysMountPoint = "/boot/efi";
     };
     grub = {
-      #configurationLimit = 10;
+      configurationLimit = 10;
       theme = pkgs.nixos-grub2-theme;
     };
     systemd-boot.enable = true;
@@ -127,6 +133,7 @@ in
 
   # Set your time zone.
   time.timeZone = "Europe/Budapest";
+  time.hardwareClockInLocalTime = true;
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
