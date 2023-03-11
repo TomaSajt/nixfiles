@@ -17,7 +17,13 @@ in
     home.stateVersion = "22.11";
     
     home.username = "toma";
-    programs.bash.enable = true;
+
+    programs.bash = {
+      enable = true;
+      initExtra = ''
+        export EDITOR="nvim"
+      '';
+    };
 
     fonts.fontconfig.enable = true;
 
@@ -39,7 +45,10 @@ in
       (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ];})
 
       ### Languages ###
-      
+
+      # C/C++
+      gcc
+
       # NodeJS
       nodejs            
       nodePackages.pnpm
@@ -64,6 +73,7 @@ in
     };
     programs.neovim = {
       enable = true;
+      defaultEditor = true;
       plugins = with pkgs.vimPlugins; [
         yankring
         vim-nix
@@ -75,7 +85,8 @@ in
         nvim-web-devicons
       ];
       extraConfig = ''
-        set clipboard+=unnamedplus      -- Clipboard sync with os (using xclip)
+        set number
+        set clipboard+=unnamedplus     " Clipboard sync with os (using xclip)
       '';
     };
   };
@@ -87,6 +98,7 @@ in
 
 
   services.udev.extraRules = ''
+    # Nintendo Switch (for Goldleaf+Quark connection)
     SUBSYSTEM=="usb", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="3000", MODE="0666"
   '';
 
@@ -94,10 +106,19 @@ in
   services.xserver.exportConfiguration = true;
 
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
+  # Bootloader
+  boot.loader = {
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot/efi";
+    };
+    grub = {
+      #configurationLimit = 10;
+      theme = pkgs.nixos-grub2-theme;
+    };
+    systemd-boot.enable = true;
+  };
+ 
 
   networking.hostName = "toma-nixos-desktop"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
