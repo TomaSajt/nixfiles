@@ -25,8 +25,6 @@ in
       '';
     };
 
-    fonts.fontconfig.enable = true;
-
     home.packages = with pkgs; [
       
       # User stuff
@@ -41,9 +39,6 @@ in
       ripgrep      # telescope.nvim support for grep
       xclip        # Clipboard support (for synced neovim clipboard)
       
-      # Fonts
-      (nerdfonts.override { fonts = [ "FiraCode" "DroidSansMono" ];})
-
       ### Languages ###
 
       # C/C++
@@ -75,7 +70,6 @@ in
       enable = true;
       defaultEditor = true;
       plugins = with pkgs.vimPlugins; [
-        yankring
         vim-nix
         plenary-nvim
         telescope-nvim
@@ -85,8 +79,9 @@ in
         nvim-web-devicons
       ];
       extraConfig = ''
-        set number
-        set clipboard+=unnamedplus     " Clipboard sync with os (using xclip)
+        set number                          " Line numbers
+        set clipboard+=unnamedplus          " Clipboard sync with os (using xclip)
+        hi NormalFloat ctermfg=LightGrey    " Set telescope background color
       '';
     };
   };
