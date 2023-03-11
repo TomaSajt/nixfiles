@@ -32,7 +32,6 @@ in
 
       # Support
       ntfs3g       # NTFS Filesystem Support
-      libusb
       ripgrep      # telescope.nvim support for grep
       xclip        # Clipboard support (for synced neovim clipboard)
       
@@ -76,7 +75,7 @@ in
         nvim-web-devicons
       ];
       extraConfig = ''
-        set clipboard+=unnamedplus
+        set clipboard+=unnamedplus      -- Clipboard sync with os (using xclip)
       '';
     };
   };
