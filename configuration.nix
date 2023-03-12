@@ -21,6 +21,12 @@ in
     )
   ];
 
+  users.users.toma = {
+    isNormalUser = true;
+    description = "Toma";
+    uid = 1000;
+    extraGroups = [ "networkmanager" "wheel" ];
+  };
 
   home-manager.users.toma = {
     # Required version field
@@ -38,18 +44,18 @@ in
     home.packages = with pkgs; [
       
       # User stuff
-      firefox      # Browser
-      discord      
+      firefox          # Browser
+      discord          # Online Chat
 
       # Utils
-      gh           # GitHub CLI
-      gparted      # Partition Management
-      quark-goldleaf
+      gh               # GitHub CLI
+      gparted          # Partition Management
+      quark-goldleaf   # Nintendo Switch File Transfer Client
 
       # Support
-      ntfs3g       # NTFS Filesystem Support
-      ripgrep      # telescope.nvim support for grep
-      xclip        # Clipboard support (for synced neovim clipboard)
+      ntfs3g           # NTFS Filesystem Support
+      ripgrep          # telescope.nvim support for grep
+      xclip            # Clipboard support (for synced neovim clipboard)
       
       ### Languages ###
 
@@ -78,6 +84,7 @@ in
         credential.helper = "${pkgs.gitAndTools.gitFull}/bin/git-credential-libsecret";
       };
     };
+
     programs.neovim = {
       enable = true;
       defaultEditor = true;
@@ -108,15 +115,10 @@ in
     };
   };
 
-
   services.udev.extraRules = ''
     # Nintendo Switch (for Goldleaf+Quark connection)
     SUBSYSTEM=="usb", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="3000", MODE="0666"
   '';
-
-  # Not used currently
-  services.xserver.exportConfiguration = true;
-
 
   # Bootloader
   boot.loader = {
@@ -130,10 +132,8 @@ in
     };
     systemd-boot.enable = true;
   };
- 
 
-  networking.hostName = "toma-nixos-desktop"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.hostName = "toma-nixos-desktop";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -201,21 +201,16 @@ in
     #media-session.enable = true;
   };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  # services.xserver.libinput.enable = true;
-
-  users.users.toma = {
-    isNormalUser = true;
-    description = "Toma";
-    uid = 1000;
-    extraGroups = [ "networkmanager" "wheel" ];
+  # Enable touchpad support (with natural scrolling)
+  services.xserver.libinput = {
+    enable = true;
+    touchpad.naturalScrolling = true;
   };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
+  # List packages installed in system profile.
   environment.systemPackages = [ ];
 
   # Some programs need SUID wrappers, can be configured further or are
