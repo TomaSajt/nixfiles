@@ -103,10 +103,15 @@ in
 
         coc-json
         coc-tsserver
-        coc-svelte
         coc-python
-        coc-tailwindcss
         coc-rust-analyzer
+        coc-sh
+        coc-html
+        coc-css
+        coc-yaml
+        coc-toml
+        coc-emmet
+
       ];
       coc.enable = true;
       coc.settings = lib.importJSON ./coc-settings.json;
