@@ -71,6 +71,9 @@ in
 
       # Java
       jdk
+
+      # Rust
+      rustup
     ];
 
     programs.git = {
@@ -96,12 +99,18 @@ in
         telescope-file-browser-nvim
         nvim-treesitter
         nvim-web-devicons
+        vim-monokai
+
+        coc-json
+        coc-tsserver
+        coc-svelte
+        coc-python
+        coc-tailwindcss
+        coc-rust-analyzer
       ];
-      extraConfig = ''
-        set number                          " Line numbers
-        set clipboard+=unnamedplus          " Clipboard sync with os (using xclip)
-        hi NormalFloat ctermfg=LightGrey    " Set telescope background color
-      '';
+      coc.enable = true;
+      coc.settings = lib.importJSON ./coc-settings.json;
+      extraConfig = builtins.readFile ./init.vim;
     };
   };
 
