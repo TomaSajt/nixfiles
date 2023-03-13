@@ -8,17 +8,8 @@ let
 in
 {
   imports = [
-    ./hardware-configuration.nix
+    ./custom/overlay.nix
     (import "${home-manager}/nixos")
-  ];
-
-  nixpkgs.overlays = [
-    (
-      self: super:
-      {
-        quark-goldleaf = super.callPackage ./custom/quark-goldleaf/default.nix {};
-      }
-    )
   ];
 
   users.users.toma = {
@@ -146,8 +137,6 @@ in
     };
     systemd-boot.enable = true;
   };
-
-  networking.hostName = "toma-nixos-desktop";
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";

@@ -1,5 +1,4 @@
-please use
+Run the following command to make a soft-link to this folder
 ```sh
-ln -s /absolute/path/to/this/folder/configuration.nix /etc/nixos/configuration.nix
-ln -s /absolute/path/to/this/folder/hardware/your_machine.nix /absolute/path/to/this/folder/hardware-configuration.nix
+ln -s /absolute/path/to/this/folder/machines/machine_name.nix /etc/nixos/configuration.nix
 ```
