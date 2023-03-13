@@ -67,6 +67,25 @@ in
       rustup
     ];
 
+    services.polybar = {
+      enable = true;
+      package = pkgs.polybar.override {
+        alsaSupport = true;
+        githubSupport = true;
+        mpdSupport = true;
+        pulseSupport = true;
+      };
+      settings = import ./polybar/settings.nix;
+      script = ''
+        polybar top &
+      '';
+    };
+
+    systemd.user.services.polybar = {
+      Install.WantedBy = [ "graphical-session.target" ];
+    };
+
+
     programs.git = {
       enable = true;
       package = pkgs.gitFull;
@@ -79,6 +98,7 @@ in
       };
     };
 
+    
     programs.neovim = {
       enable = true;
       defaultEditor = true;
@@ -105,8 +125,8 @@ in
 
       ];
       coc.enable = true;
-      coc.settings = lib.importJSON ./coc-settings.json;
-      extraConfig = builtins.readFile ./init.vim;
+      coc.settings = lib.importJSON ./neovim/coc-settings.json;
+      extraConfig = builtins.readFile ./neovim/init.vim;
     };
   };
 
