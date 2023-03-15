@@ -38,6 +38,7 @@ in
       firefox          # Browser
       discord          # Online Chat
       libreoffice      # Office Tools
+      obsidian         # Note-taking
 
       # Utils
       gh               # GitHub CLI
@@ -78,9 +79,7 @@ in
         pulseSupport = true;
       };
       settings = import ./polybar/settings.nix;
-      script = ''
-        polybar top &
-      '';
+      script = "polybar top &";
     };
 
     systemd.user.services.polybar = {
