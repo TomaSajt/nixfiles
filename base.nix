@@ -37,11 +37,13 @@ in
       # User stuff
       firefox          # Browser
       discord          # Online Chat
+      libreoffice      # Office Tools
 
       # Utils
       gh               # GitHub CLI
       gparted          # Partition Management
       quark-goldleaf   # Nintendo Switch File Transfer Client
+      zip unzip
 
       # Support
       ntfs3g           # NTFS Filesystem Support
