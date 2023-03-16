@@ -1,3 +1,20 @@
+--------
+
+
+vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>')
+vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<cr>')
+vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>')
+vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>')
+vim.cmd("colorscheme monokai")
+vim.cmd("hi NormalFloat ctermfg=LightGrey")
+vim.opt.number = true                     -- Line numbers
+vim.opt.signcolumn = "yes"                -- Always have space beforce line numbers for special markers
+vim.opt.shiftwidth = 4                    -- Tab-space count
+vim.opt.clipboard:append("unnamedplus") -- Clipboard sync with os (using xclip)
+
+--------
+
+
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
 local opts = { noremap=true, silent=true }
@@ -46,3 +63,9 @@ for _, lsp in ipairs(servers) do
 	flags = lsp_flags,
     }
 end
+
+lspconfig.omnisharp.setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+    cmd = { "OmniSharp" },
+}

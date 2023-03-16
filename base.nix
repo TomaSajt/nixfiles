@@ -110,7 +110,6 @@ in
         vim-monokai
         nvim-lspconfig
       ];
-      extraConfig = builtins.readFile ./neovim/init.vim;
       extraLuaConfig = builtins.readFile ./neovim/init.lua;
     };
   };
