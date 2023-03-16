@@ -22,7 +22,7 @@ in
   home-manager.users.toma = {
     # Required version field
     home.stateVersion = "22.11";
-    
+
     home.username = "toma";
 
     programs.bash = {
@@ -33,49 +33,45 @@ in
     };
 
     home.packages = with pkgs; [
-      
-      # User stuff
-      firefox          # Browser
-      discord          # Online Chat
-      libreoffice      # Office Tools
-      obsidian         # Note-taking
 
-      # Utils
-      gh               # GitHub CLI
-      gparted          # Partition Management
-      quark-goldleaf   # Nintendo Switch File Transfer Client
-      zip unzip
+      ### User stuff ###
+      firefox # Browser
+      discord # Online Chat
+      libreoffice # Office Tools
+      obsidian # Note-taking
+      prismlauncher # Minecraft launcher
 
-      # Support
-      ntfs3g           # NTFS Filesystem Support
-      ripgrep          # telescope.nvim support for grep
-      xclip            # Clipboard support (for synced neovim clipboard)
-      
+      ### Utils ###
+      gh # GitHub CLI
+      gparted # Partition Management
+      quark-goldleaf # Nintendo Switch File Transfer Client
+      zip # Zip compression utils
+      unzip 
+
+      ### Support ###
+      ntfs3g # NTFS Filesystem Support
+      ripgrep # telescope.nvim support for grep
+      xclip # Clipboard support (for synced neovim clipboard)
+
       ### Languages ###
-
-      # C/C++
-      gcc
-
-      # NodeJS
-      nodejs            
-      nodePackages.pnpm
-
-      # C#
-      dotnet-sdk
-
-      # Java
-      jdk
-
-      # Rust
-      rustup
+      gcc # C/C++
+      ccls # C/C++ Language Server
+      nodejs # NodeJS
+      nodePackages.pnpm # Node Package Manager
+      nodePackages.typescript-language-server # NodeJS Language Server
+      dotnet-sdk # C#
+      omnisharp-roslyn # C# Language Server
+      jdk # Java
+      rustup # Rust
+      rust-analyzer # Rust Language Server
+      python # Python
+      nodePackages.pyright # Python Language Server
+      rnix-lsp # Nix Language Server
     ];
 
     services.polybar = {
       enable = true;
       package = pkgs.polybar.override {
-        alsaSupport = true;
-        githubSupport = true;
-        mpdSupport = true;
         pulseSupport = true;
       };
       settings = import ./polybar/settings.nix;
@@ -99,7 +95,7 @@ in
       };
     };
 
-    
+
     programs.neovim = {
       enable = true;
       defaultEditor = true;
@@ -112,22 +108,10 @@ in
         nvim-treesitter
         nvim-web-devicons
         vim-monokai
-
-        coc-json
-        coc-tsserver
-        coc-python
-        coc-rust-analyzer
-        coc-sh
-        coc-html
-        coc-css
-        coc-yaml
-        coc-toml
-        coc-emmet
-
+        nvim-lspconfig
       ];
-      coc.enable = true;
-      coc.settings = lib.importJSON ./neovim/coc-settings.json;
       extraConfig = builtins.readFile ./neovim/init.vim;
+      extraLuaConfig = builtins.readFile ./neovim/init.lua;
     };
   };
 
@@ -159,10 +143,6 @@ in
     systemd-boot.enable = true;
   };
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -191,7 +171,7 @@ in
   # Enable the KDE Plasma Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
- 
+
   # Because some kind of race condition
   systemd.services.display-manager.wants = [ "systemd-user-sessions.service" "multi-user.target" "network-online.target" ];
   systemd.services.display-manager.after = [ "systemd-user-sessions.service" "multi-user.target" "network-online.target" ];
