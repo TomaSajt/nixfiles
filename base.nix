@@ -41,7 +41,6 @@ in
       discord # Online Chat
       libreoffice # Office Tools
       obsidian # Note-taking
-      prismlauncher # Minecraft launcher
 
       ### Utils ###
       gh # GitHub CLI
