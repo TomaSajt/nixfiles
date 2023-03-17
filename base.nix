@@ -29,6 +29,8 @@ in
       enable = true;
       initExtra = ''
         export EDITOR="nvim"
+        alias snrs="sudo nixos-rebuild switch"
+        alias ll="ls -la"
       '';
     };
 
@@ -46,7 +48,7 @@ in
       gparted # Partition Management
       quark-goldleaf # Nintendo Switch File Transfer Client
       zip # Zip compression utils
-      unzip 
+      unzip
 
       ### Support ###
       ntfs3g # NTFS Filesystem Support
@@ -99,7 +101,8 @@ in
 
     programs.neovim = {
       enable = true;
-      defaultEditor = true;
+      defaultEditor = true; # Doesn't actually work, because home.sessionVariables is broken for some reason
+      vimAlias = true;
       plugins = with pkgs.vimPlugins; [
         vim-nix
         plenary-nvim
@@ -117,7 +120,7 @@ in
 
   nix = {
     package = pkgs.nixFlakes;
-    extraOptions = lib.optionalString (config.nix.package == pkgs.nixFlakes) "experimental-features = nix-command flakes";
+    extraOptions = lib.optionalString (config.nix.package == pkgs.nixFlakes) "experimental-features = nix-command flakes"; # This config is currently not using flakes (I think), so idk why I put this here
     gc = {
       automatic = true;
       randomizedDelaySec = "14m";
@@ -136,9 +139,9 @@ in
       canTouchEfiVariables = true;
       efiSysMountPoint = "/boot/efi";
     };
+    # This doesn't seem to work :/
     grub = {
-      configurationLimit = 10;
-      theme = pkgs.nixos-grub2-theme;
+      theme = pkgs.nixos-grub-theme;
     };
     systemd-boot.enable = true;
   };
@@ -151,35 +154,39 @@ in
   time.hardwareClockInLocalTime = true;
 
   # Select internationalisation properties.
-  i18n.defaultLocale = "en_US.UTF-8";
-
-  i18n.extraLocaleSettings = {
-    LC_ADDRESS = "hu_HU.UTF-8";
-    LC_IDENTIFICATION = "hu_HU.UTF-8";
-    LC_MEASUREMENT = "hu_HU.UTF-8";
-    LC_MONETARY = "hu_HU.UTF-8";
-    LC_NAME = "hu_HU.UTF-8";
-    LC_NUMERIC = "hu_HU.UTF-8";
-    LC_PAPER = "hu_HU.UTF-8";
-    LC_TELEPHONE = "hu_HU.UTF-8";
-    LC_TIME = "hu_HU.UTF-8";
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings =
+      let HU = "hu_HU.UTF-8";
+      in
+      {
+        LC_ADDRESS = HU;
+        LC_IDENTIFICATION = HU;
+        LC_MEASUREMENT = HU;
+        LC_MONETARY = HU;
+        LC_NAME = HU;
+        LC_NUMERIC = HU;
+        LC_PAPER = HU;
+        LC_TELEPHONE = HU;
+        LC_TIME = HU;
+      };
   };
 
   # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
-
-  # Because some kind of race condition
-  systemd.services.display-manager.wants = [ "systemd-user-sessions.service" "multi-user.target" "network-online.target" ];
-  systemd.services.display-manager.after = [ "systemd-user-sessions.service" "multi-user.target" "network-online.target" ];
-
-  # Configure keymap in X11
   services.xserver = {
+    enable = true;
+    # Enable the KDE Plasma Desktop Environment.
+    displayManager.sddm.enable = true;
+    desktopManager.plasma5.enable = true;
     layout = "hu";
     xkbVariant = "";
+  };
+
+  # For some reason, the default login prompt loads too quickly and display-manager can't start
+  # This is fixed by waiting for some other services to load before starting
+  systemd.services.display-manager = {
+    wants = [ "systemd-user-sessions.service" "multi-user.target" "network-online.target" ];
+    after = [ "systemd-user-sessions.service" "multi-user.target" "network-online.target" ];
   };
 
   # Configure console keymap
@@ -197,12 +204,6 @@ in
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
   };
 
   # Enable touchpad support (with natural scrolling)
@@ -216,19 +217,6 @@ in
 
   # List packages installed in system profile.
   environment.systemPackages = [ ];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
