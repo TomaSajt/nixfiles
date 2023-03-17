@@ -91,6 +91,7 @@ in
       extraConfig = {
         github.user = "TomaSajt";
         init.defaultBranch = "main";
+        push.autoSetupRemote = true;
         credential.helper = "${pkgs.gitAndTools.gitFull}/bin/git-credential-libsecret";
       };
     };

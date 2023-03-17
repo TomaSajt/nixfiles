@@ -14,6 +14,14 @@ vim.opt.clipboard:append("unnamedplus") -- Clipboard sync with os (using xclip)
 
 --------
 
+vim.diagnostic.config({
+  virtual_text = true,
+  signs = true,
+  update_in_insert = true,
+  underline = true,
+  severity_sort = false,
+  float = true,
+})
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -49,23 +57,16 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
-local lsp_flags = {
-  -- This is the default in Nvim 0.7+
-  debounce_text_changes = 150,
-}
-
 local servers = { 'pyright', 'tsserver', 'ccls', 'rnix', 'rust_analyzer' }
 local lspconfig = require('lspconfig')
 
 for _, lsp in ipairs(servers) do
     lspconfig[lsp].setup{
         on_attach = on_attach,
-	flags = lsp_flags,
     }
 end
 
 lspconfig.omnisharp.setup{
     on_attach = on_attach,
-    flags = lsp_flags,
     cmd = { "OmniSharp" },
 }
