@@ -142,6 +142,8 @@ in
         (pkgs.unstable.vimPlugins.nvim-lspconfig)
         rust-tools-nvim
 
+        nvim-autopairs
+
         nvim-cmp
         cmp-nvim-lsp
         cmp-vsnip
