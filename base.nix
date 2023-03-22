@@ -12,16 +12,7 @@ in
   ];
 
   nixpkgs.overlays = [
-    (self: super:
-      {
-        quark-goldleaf = super.callPackage ./custom/quark-goldleaf/default.nix { };
-        nixos-grub-theme = super.callPackage ./custom/nixos-grub-theme/default.nix { };
-        vimPlugins = super.vimPlugins // {
-          mason-lspconfig-nvim = (import ./custom/mason-lspconfig-nvim/default.nix) { };
-          mason-nvim = (import ./custom/mason-nvim/default.nix) { };
-        };
-      }
-    )
+    (import ./custom/overlay.nix)
   ];
 
   users.users.toma = {
