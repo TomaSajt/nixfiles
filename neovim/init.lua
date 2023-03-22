@@ -15,12 +15,13 @@ vim.opt.clipboard:append("unnamedplus")   -- Clipboard sync with os (using xclip
 
 --------
 
+vim.lsp.set_log_level("debug")
+
+--------
+
 vim.diagnostic.config({
   virtual_text = true,
-  signs = true,
   update_in_insert = true,
-  underline = true,
-  severity_sort = false,
   float = true,
 })
 
@@ -58,17 +59,48 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
 end
 
-local servers = { 'pyright', 'tsserver', 'ccls', 'rnix', 'rust_analyzer' }
-
+local cmp = require('cmp')
 local lspconfig = require('lspconfig')
+local mason = require('mason')
+local mason_lspconfig = require('mason-lspconfig')
 
-for _, lsp in ipairs(servers) do
-    lspconfig[lsp].setup{
-        on_attach = on_attach,
+cmp.setup {
+    snippet = {
+	expand = function(args)
+	    vim.fn["vsnip#anonymous"](args.body)
+	end,
+    },
+    mapping = cmp.mapping.preset.insert({
+	['<C-b>'] = cmp.mapping.scroll_docs(-4),
+	['<C-f>'] = cmp.mapping.scroll_docs(4),
+	['<C-Space>'] = cmp.mapping.complete(),
+	['<C-e>'] = cmp.mapping.abort(),
+	['<CR>'] = cmp.mapping.confirm({ select = true }),
+    }),
+    sources = {
+	{ name = 'nvim_lsp' },
+	{ name = 'vsnip' },
     }
-end
-
-lspconfig.omnisharp.setup{
-    on_attach = on_attach,
-    cmd = { "OmniSharp" },
 }
+
+mason.setup()
+
+mason_lspconfig.setup {
+    ensure_installed = { 'rust_analyzer', 'rnix', 'tsserver', 'pyright', 'clangd', 'lua_ls' },
+}
+
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+mason_lspconfig.setup_handlers({
+    function (server_name)
+	lspconfig[server_name].setup {
+	    on_attach = on_attach,
+	    capabilities = capabilities
+	}
+    end
+})
+
+-- lspconfig.omnisharp.setup{
+--    on_attach = on_attach,
+--    cmd = { "OmniSharp" },
+-- }

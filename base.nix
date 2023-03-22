@@ -9,6 +9,7 @@ in
 {
   imports = [
     "${home-manager}/nixos"
+    ./channels.nix
   ];
 
   nixpkgs.overlays = [
@@ -51,6 +52,8 @@ in
       quark-goldleaf # Nintendo Switch File Transfer Client
       zip # Zip compression utils
       unzip
+      wget
+      file
 
       ### Support ###
       ntfs3g # NTFS Filesystem Support
@@ -59,19 +62,15 @@ in
 
       ### Languages ###
       gcc # C/C++
-      ccls # C/C++ Language Server
+      clang-tools # Only used to get the clangd language server for neovim
       nodejs # NodeJS
       nodePackages.pnpm # Node Package Manager
-      nodePackages.typescript-language-server # NodeJS Language Server
       dotnet-sdk # C#
-      omnisharp-roslyn # C# Language Server
+      #omnisharp-roslyn # C# Language Server
       jdk # Java
       rustup # Rust
-      rust-analyzer # Rust Language Server
       python # Python
-      nodePackages.pyright # Python Language Server
-      rnix-lsp # Nix Language Server
-      sumneko-lua-language-server # Lua Lanuage Server
+      lua # Lua
     ];
 
     services.polybar = {
@@ -108,17 +107,24 @@ in
       vimAlias = true;
       plugins = with pkgs.vimPlugins; [
         vim-nix
+
         plenary-nvim
         telescope-nvim
         telescope-fzf-native-nvim
         telescope-file-browser-nvim
+
         nvim-treesitter
         nvim-web-devicons
         vim-monokai
-        nvim-lspconfig
-        nvim-cmp
-        mason-lspconfig-nvim
+
+        (pkgs.unstable.vimPlugins.nvim-lspconfig)
         mason-nvim
+        mason-lspconfig-nvim
+
+        nvim-cmp
+        cmp-nvim-lsp
+        cmp-vsnip
+        vim-vsnip
       ];
       extraLuaConfig = builtins.readFile ./neovim/init.lua;
     };
