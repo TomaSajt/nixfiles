@@ -13,16 +13,13 @@ vim.opt.signcolumn = "yes"                -- Always have space beforce line numb
 vim.opt.shiftwidth = 4                    -- Tab-space count
 vim.opt.clipboard:append("unnamedplus")   -- Clipboard sync with os (using xclip)
 
---------
-
-vim.lsp.set_log_level("debug")
-
---------
+-- vim.lsp.set_log_level("debug")
 
 vim.diagnostic.config({
   virtual_text = true,
   update_in_insert = true,
   float = true,
+  severity_sort = true,
 })
 
 -- Mappings.
@@ -35,7 +32,7 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -61,8 +58,6 @@ end
 
 local cmp = require('cmp')
 local lspconfig = require('lspconfig')
-local mason = require('mason')
-local mason_lspconfig = require('mason-lspconfig')
 
 cmp.setup {
     snippet = {
@@ -83,24 +78,46 @@ cmp.setup {
     }
 }
 
-mason.setup()
-
-mason_lspconfig.setup {
-    ensure_installed = { 'rust_analyzer', 'rnix', 'tsserver', 'pyright', 'clangd', 'lua_ls' },
-}
-
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-mason_lspconfig.setup_handlers({
-    function (server_name)
-	lspconfig[server_name].setup {
-	    on_attach = on_attach,
-	    capabilities = capabilities
+lspconfig.omnisharp.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+    cmd = { "OmniSharp" },
+}
+
+lspconfig.lua_ls.setup{
+    on_attach = on_attach,
+    capabilities = capabilities,
+    settings = {
+	Lua = {
+	    diagnostics = {
+		globals = {'vim'},
+	    }
 	}
-    end
+    }
+}
+
+local rt = require("rust-tools")
+rt.setup({
+  server = {
+    on_attach = function(_, bufnr)
+      -- Hover actions
+      vim.keymap.set("n", "<C-space>", rt.hover_actions.hover_actions, { buffer = bufnr })
+      -- Code action groups
+      vim.keymap.set("n", "<Leader>a", rt.code_action_group.code_action_group, { buffer = bufnr })
+    end,
+    capabilities = capabilities,
+  },
 })
 
--- lspconfig.omnisharp.setup{
---    on_attach = on_attach,
---    cmd = { "OmniSharp" },
--- }
+
+
+local other_servers = { 'rnix', 'tsserver', 'pyright', 'ccls' }
+
+for _, lsp in ipairs(other_servers) do
+    lspconfig[lsp].setup{
+        on_attach = on_attach,
+	capabilities = capabilities,
+    }
+end

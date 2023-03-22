@@ -60,17 +60,39 @@ in
       ripgrep # telescope.nvim support for grep
       xclip # Clipboard support (for synced neovim clipboard)
 
+
       ### Languages ###
-      gcc # C/C++
-      clang-tools # Only used to get the clangd language server for neovim
-      nodejs # NodeJS
-      nodePackages.pnpm # Node Package Manager
-      dotnet-sdk # C#
-      #omnisharp-roslyn # C# Language Server
-      jdk # Java
-      rustup # Rust
-      python # Python
-      lua # Lua
+      
+      # C/C++
+      gcc
+      ccls
+
+      # NodeJS
+      nodejs
+      nodePackages.pnpm # npm alternative
+      nodePackages.typescript-language-server
+      
+      # Dotnet - C#/F#
+      dotnet-sdk
+      omnisharp-roslyn # Language Server
+
+      # Java
+      jdk
+
+      # Rust
+      rustup
+      rust-analyzer
+
+      # Python
+      python
+      nodePackages.pyright
+
+      # Lua
+      lua
+      (pkgs.unstable.lua-language-server)
+
+      # Nix
+      rnix-lsp
     ];
 
     services.polybar = {
@@ -116,10 +138,9 @@ in
         nvim-treesitter
         nvim-web-devicons
         vim-monokai
-
+        
         (pkgs.unstable.vimPlugins.nvim-lspconfig)
-        mason-nvim
-        mason-lspconfig-nvim
+        rust-tools-nvim
 
         nvim-cmp
         cmp-nvim-lsp
