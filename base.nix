@@ -8,8 +8,20 @@ let
 in
 {
   imports = [
-    ./custom/overlay.nix
-    (import "${home-manager}/nixos")
+    "${home-manager}/nixos"
+  ];
+
+  nixpkgs.overlays = [
+    (self: super:
+      {
+        quark-goldleaf = super.callPackage ./custom/quark-goldleaf/default.nix { };
+        nixos-grub-theme = super.callPackage ./custom/nixos-grub-theme/default.nix { };
+        vimPlugins = super.vimPlugins // {
+          mason-lspconfig-nvim = (import ./custom/mason-lspconfig-nvim/default.nix) { };
+          mason-nvim = (import ./custom/mason-nvim/default.nix) { };
+        };
+      }
+    )
   ];
 
   users.users.toma = {
@@ -68,6 +80,7 @@ in
       python # Python
       nodePackages.pyright # Python Language Server
       rnix-lsp # Nix Language Server
+      sumneko-lua-language-server # Lua Lanuage Server
     ];
 
     services.polybar = {
@@ -112,6 +125,9 @@ in
         nvim-web-devicons
         vim-monokai
         nvim-lspconfig
+        nvim-cmp
+        mason-lspconfig-nvim
+        mason-nvim
       ];
       extraLuaConfig = builtins.readFile ./neovim/init.lua;
     };
@@ -179,6 +195,12 @@ in
     desktopManager.plasma5.enable = true;
     layout = "hu";
     xkbVariant = "";
+
+    # Enable touchpad support (with natural scrolling)
+    libinput = {
+      enable = true;
+      touchpad.naturalScrolling = true;
+    };
   };
 
   # For some reason, the default login prompt loads too quickly and display-manager can't start
@@ -205,11 +227,6 @@ in
     pulse.enable = true;
   };
 
-  # Enable touchpad support (with natural scrolling)
-  services.xserver.libinput = {
-    enable = true;
-    touchpad.naturalScrolling = true;
-  };
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;

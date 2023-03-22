@@ -7,10 +7,11 @@ vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>')
 vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>')
 vim.cmd("colorscheme monokai")
 vim.cmd("hi NormalFloat ctermfg=LightGrey")
+vim.opt.ruler = true                      -- Cursor position
 vim.opt.number = true                     -- Line numbers
 vim.opt.signcolumn = "yes"                -- Always have space beforce line numbers for special markers
 vim.opt.shiftwidth = 4                    -- Tab-space count
-vim.opt.clipboard:append("unnamedplus") -- Clipboard sync with os (using xclip)
+vim.opt.clipboard:append("unnamedplus")   -- Clipboard sync with os (using xclip)
 
 --------
 
@@ -58,6 +59,7 @@ local on_attach = function(client, bufnr)
 end
 
 local servers = { 'pyright', 'tsserver', 'ccls', 'rnix', 'rust_analyzer' }
+
 local lspconfig = require('lspconfig')
 
 for _, lsp in ipairs(servers) do
