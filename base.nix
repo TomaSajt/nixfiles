@@ -54,11 +54,14 @@ in
       unzip
       wget
       file
+      steam-run
+      qdirstat
 
       ### Support ###
       ntfs3g # NTFS Filesystem Support
       ripgrep # telescope.nvim support for grep
       xclip # Clipboard support (for synced neovim clipboard)
+      dconf
 
 
       ### Languages ###
@@ -211,7 +214,10 @@ in
   services.xserver = {
     enable = true;
     # Enable the KDE Plasma Desktop Environment.
-    displayManager.sddm.enable = true;
+    displayManager.sddm = {
+      enable = true;
+      autoNumlock = true;
+    };
     desktopManager.plasma5.enable = true;
     layout = "hu";
     xkbVariant = "";
