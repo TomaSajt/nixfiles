@@ -42,6 +42,7 @@ in
 
       ### User stuff ###
       firefox # Browser
+      chromium
       discord # Online Chat
       libreoffice # Office Tools
       obsidian # Note-taking
