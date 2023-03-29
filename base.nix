@@ -7,18 +7,19 @@ let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
   # fixed stable point in case something breaks on master
   # home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/cf662b6c98a0da81e06066fff0ecf9cbd4627727.tar.gz";
+
+  unstableTarball =
+    fetchTarball
+      https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
 in
 {
   imports = [
     "${home-manager}/nixos"
-    ./channels.nix
     ./neovim
     ./polybar
+    ./vscode
   ];
 
-  nixpkgs.overlays = [
-    (import ./custom/overlay.nix)
-  ];
 
   users.users.toma = {
     isNormalUser = true;
@@ -27,11 +28,92 @@ in
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
-  home-manager.users.toma = {
-    # Required version field
-    home.stateVersion = "22.11";
+  home-manager.users.toma = { pkgs, ... }: {
 
-    home.username = "toma";
+    nixpkgs = {
+      overlays = [
+        (import ./custom/overlay.nix)
+      ];
+      config = {
+        allowUnfree = true;
+        packageOverrides = pkgs: {
+          unstable = import unstableTarball {
+            config = config.nixpkgs.config;
+          };
+        };
+      };
+    };
+
+    home = {
+      username = "toma";
+      packages = with pkgs; [
+
+        ### User stuff ###
+        firefox # Browser
+        chromium
+        discord # Online Chat - UNSAFE
+        libreoffice # Office Tools
+        obsidian # Note-taking - UNSAFE
+
+
+        jetbrains.rider
+
+        ### Utils ###
+        gh # GitHub CLI
+        gparted # Partition Management
+        quark-goldleaf # Nintendo Switch File Transfer Client
+        zip # Zip compression utils
+        unzip
+        wget
+        file
+        qdirstat
+
+        ### Support ###
+        ntfs3g # NTFS Filesystem Support
+        ripgrep # telescope.nvim support for grep
+        xclip # Clipboard support (for synced neovim clipboard)
+        dconf # Fixed some warinings when I was trying out Unity. idk if this is really needed
+
+
+        ### Languages ###
+
+        # C/C++
+        gcc
+        ccls
+
+        # NodeJS
+        nodejs
+        nodePackages.pnpm # npm alternative
+        nodePackages.typescript-language-server
+
+        # Dotnet - C#/F#
+        dotnet-sdk
+        omnisharp-roslyn # Language Server
+
+        # Java
+        jdk
+
+        # Rust
+        rustup
+        rust-analyzer
+
+        # Python
+        python
+        nodePackages.pyright
+
+        # Lua
+        lua
+        (pkgs.unstable.lua-language-server)
+
+        # Nix
+        rnix-lsp
+
+
+        # Svelte
+        nodePackages.svelte-language-server
+      ];
+      stateVersion = "22.11";
+    };
 
     programs.bash = {
       enable = true;
@@ -43,70 +125,6 @@ in
         export EDITOR="nvim"
       '';
     };
-
-    home.packages = with pkgs; [
-
-      ### User stuff ###
-      firefox # Browser
-      chromium
-      discord # Online Chat
-      libreoffice # Office Tools
-      obsidian # Note-taking
-
-      ### Utils ###
-      gh # GitHub CLI
-      gparted # Partition Management
-      quark-goldleaf # Nintendo Switch File Transfer Client
-      zip # Zip compression utils
-      unzip
-      wget
-      file
-      qdirstat
-
-      ### Support ###
-      ntfs3g # NTFS Filesystem Support
-      ripgrep # telescope.nvim support for grep
-      xclip # Clipboard support (for synced neovim clipboard)
-      dconf # Fixed some warinings when I was trying out Unity. idk if this is really needed
-
-
-      ### Languages ###
-
-      # C/C++
-      gcc
-      ccls
-
-      # NodeJS
-      nodejs
-      nodePackages.pnpm # npm alternative
-      nodePackages.typescript-language-server
-
-      # Dotnet - C#/F#
-      dotnet-sdk
-      omnisharp-roslyn # Language Server
-
-      # Java
-      jdk
-
-      # Rust
-      rustup
-      rust-analyzer
-
-      # Python
-      python
-      nodePackages.pyright
-
-      # Lua
-      lua
-      (pkgs.unstable.lua-language-server)
-
-      # Nix
-      rnix-lsp
-
-
-      # Svelte
-      nodePackages.svelte-language-server
-    ];
 
 
     programs.git = {
@@ -220,10 +238,6 @@ in
     alsa.support32Bit = true;
     pulse.enable = true;
   };
-
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile.
   environment.systemPackages = [ ];

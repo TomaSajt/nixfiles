@@ -1,6 +1,6 @@
 { pkgs, ... }:
 {
-  home-manager.users.toma = {
+  home-manager.users.toma = { pkgs, ... }: {
     programs.neovim = {
       enable = true;
       defaultEditor = true; # Doesn't actually work, because home.sessionVariables is broken for some reason
