@@ -57,6 +57,7 @@ in
 
 
         jetbrains.rider
+        jetbrains.idea-community
 
         ### Utils ###
         gh # GitHub CLI

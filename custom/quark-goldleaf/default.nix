@@ -1,14 +1,5 @@
-
-let
-  pkgs = import <nixpkgs> {};
-in
-{ stdenv ? pkgs.stdenv
-, fetchurl ? pkgs.fetchurl
-, makeWrapper ? pkgs.makeWrapper
-, jre ? pkgs.jre
-, lib ? pkgs.lib
-}:
-
+{ pkgs }:
+with pkgs;
 stdenv.mkDerivation rec {
   name = "quark-goldleaf";
   version = "0.5";

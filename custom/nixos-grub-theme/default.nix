@@ -1,9 +1,5 @@
-let
-  pkgs = import <nixpkgs>;
-in
-{ stdenv ? pkgs.stdenv
-, fetchFromGithub ? pkgs.fetchFromGithub
-}:
+{ pkgs }:
+with pkgs;
 stdenv.mkDerivation {
   pname = "distro-grub-themes";
   version = "3.1";
