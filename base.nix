@@ -131,7 +131,7 @@ in
       enable = true;
       package = pkgs.gitFull;
       userName = "Toma";
-      userEmail = "***REMOVED***";
+      userEmail = "62384384+TomaSajt@users.noreply.github.com";
       extraConfig = {
         github.user = "TomaSajt";
         init.defaultBranch = "main";
