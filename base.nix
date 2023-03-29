@@ -71,7 +71,7 @@ in
 
 
       ### Languages ###
-      
+
       # C/C++
       gcc
       ccls
@@ -80,7 +80,7 @@ in
       nodejs
       nodePackages.pnpm # npm alternative
       nodePackages.typescript-language-server
-      
+
       # Dotnet - C#/F#
       dotnet-sdk
       omnisharp-roslyn # Language Server
@@ -102,6 +102,10 @@ in
 
       # Nix
       rnix-lsp
+
+
+      # Svelte
+      nodePackages.svelte-language-server
     ];
 
 
@@ -115,6 +119,7 @@ in
         init.defaultBranch = "main";
         push.autoSetupRemote = true;
         credential.helper = "${pkgs.gitAndTools.gitFull}/bin/git-credential-libsecret";
+        pull.ff = "only";
       };
     };
   };
