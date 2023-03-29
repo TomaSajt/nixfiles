@@ -5,6 +5,8 @@
 { config, pkgs, lib, ... }:
 let
   home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
+  # fixed stable point in case something breaks on master
+  # home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/cf662b6c98a0da81e06066fff0ecf9cbd4627727.tar.gz";
 in
 {
   imports = [
@@ -55,14 +57,13 @@ in
       unzip
       wget
       file
-      steam-run
       qdirstat
 
       ### Support ###
       ntfs3g # NTFS Filesystem Support
       ripgrep # telescope.nvim support for grep
       xclip # Clipboard support (for synced neovim clipboard)
-      dconf
+      dconf # Fixed some warinings when I was trying out Unity. idk if this is really needed
 
 
       ### Languages ###
@@ -153,7 +154,7 @@ in
         cmp-vsnip
         vim-vsnip
       ];
-      extraLuaConfig = builtins.readFile ./neovim/init.lua;
+      # extraLuaConfig = builtins.readFile ./neovim/init.lua;
     };
   };
 
