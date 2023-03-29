@@ -12,6 +12,8 @@ in
   imports = [
     "${home-manager}/nixos"
     ./channels.nix
+    ./neovim
+    ./polybar
   ];
 
   nixpkgs.overlays = [
@@ -33,10 +35,12 @@ in
 
     programs.bash = {
       enable = true;
+      shellAliases = {
+        snrs = "sudo nixos-rebuild switch";
+        ll = "ls -la";
+      };
       initExtra = ''
         export EDITOR="nvim"
-        alias snrs="sudo nixos-rebuild switch"
-        alias ll="ls -la"
       '';
     };
 
@@ -100,19 +104,6 @@ in
       rnix-lsp
     ];
 
-    services.polybar = {
-      enable = true;
-      package = pkgs.polybar.override {
-        pulseSupport = true;
-      };
-      settings = import ./polybar/settings.nix;
-      script = "polybar top &";
-    };
-
-    systemd.user.services.polybar = {
-      Install.WantedBy = [ "graphical-session.target" ];
-    };
-
 
     programs.git = {
       enable = true;
@@ -125,36 +116,6 @@ in
         push.autoSetupRemote = true;
         credential.helper = "${pkgs.gitAndTools.gitFull}/bin/git-credential-libsecret";
       };
-    };
-
-
-    programs.neovim = {
-      enable = true;
-      defaultEditor = true; # Doesn't actually work, because home.sessionVariables is broken for some reason
-      vimAlias = true;
-      plugins = with pkgs.vimPlugins; [
-        vim-nix
-
-        plenary-nvim
-        telescope-nvim
-        telescope-fzf-native-nvim
-        telescope-file-browser-nvim
-
-        nvim-treesitter
-        nvim-web-devicons
-        vim-monokai
-        
-        (pkgs.unstable.vimPlugins.nvim-lspconfig)
-        rust-tools-nvim
-
-        nvim-autopairs
-
-        nvim-cmp
-        cmp-nvim-lsp
-        cmp-vsnip
-        vim-vsnip
-      ];
-      # extraLuaConfig = builtins.readFile ./neovim/init.lua;
     };
   };
 
