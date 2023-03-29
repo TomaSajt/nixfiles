@@ -32,7 +32,7 @@ in
 
     nixpkgs = {
       overlays = [
-        (import ./custom/overlay.nix)
+        (import ./overlay)
       ];
       config = {
         allowUnfree = true;
