@@ -1,5 +1,4 @@
-{ pkgs }:
-with pkgs;
+{ stdenv, makeWrapper, lib, fetchurl, jre, ... }:
 stdenv.mkDerivation rec {
   name = "quark-goldleaf";
   version = "0.5";

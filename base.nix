@@ -99,7 +99,7 @@ in
         rust-analyzer
 
         # Python
-        python
+        python311
         nodePackages.pyright
 
         # Lua
@@ -121,6 +121,7 @@ in
       shellAliases = {
         snrs = "sudo nixos-rebuild switch";
         ll = "ls -la";
+        code = "codium";
       };
       initExtra = ''
         export EDITOR="nvim"
@@ -163,10 +164,6 @@ in
     efi = {
       canTouchEfiVariables = true;
       efiSysMountPoint = "/boot/efi";
-    };
-    # This doesn't seem to work :/
-    grub = {
-      theme = pkgs.nixos-grub-theme;
     };
     systemd-boot.enable = true;
   };

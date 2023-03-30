@@ -4,7 +4,7 @@
   home-manager.users.toma = { pkgs, ... }: {
     programs.vscode = {
       enable = true;
-      package = pkgs.vscodium-fhs;
+      package = pkgs.vscodium;
       extensions = with pkgs.vscode-extensions; [
         svelte.svelte-vscode
         pkief.material-icon-theme
@@ -14,6 +14,7 @@
         batisteo.vscode-django
         SPGoding.datapack-language-server
         arcensoth.language-mcfunction
+        arrterian.nix-env-selector
       ];
     };
   };
