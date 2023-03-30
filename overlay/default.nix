@@ -1,5 +1,5 @@
-newPkgs: pkgs:
+self: super:
 {
-  quark-goldleaf = import ./quark-goldleaf pkgs;
-  vscode-extensions = pkgs.vscode-extensions // import ./vscode-extensions pkgs;
+  quark-goldleaf = super.callPackage ./quark-goldleaf { };
+  vscode-extensions = super.vscode-extensions // import ./vscode-extensions super;
 }
