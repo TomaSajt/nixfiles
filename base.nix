@@ -4,13 +4,8 @@
 
 { config, pkgs, lib, ... }:
 let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/master.tar.gz";
-  # fixed stable point in case something breaks on master
-  # home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/cf662b6c98a0da81e06066fff0ecf9cbd4627727.tar.gz";
-
-  unstableTarball =
-    fetchTarball
-      https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz;
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/cf662b6c98a0da81e06066fff0ecf9cbd4627727.tar.gz";
+  unstableTarball = builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
 in
 {
   imports = [
@@ -145,8 +140,8 @@ in
   };
 
   nix = {
-    package = pkgs.nixFlakes;
-    extraOptions = lib.optionalString (config.nix.package == pkgs.nixFlakes) "experimental-features = nix-command flakes"; # This config is currently not using flakes (I think), so idk why I put this here
+    # package = pkgs.nixFlakes;
+    # extraOptions = lib.optionalString (config.nix.package == pkgs.nixFlakes) "experimental-features = nix-command flakes"; # This config is currently not using flakes (I think), so idk why I put this here
     gc = {
       automatic = true;
       randomizedDelaySec = "14m";
