@@ -1,15 +1,15 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, lib, ... }:
+{ home-manager, nixpkgs-unstable, config, pkgs, lib, ... }:
 let
-  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/cf662b6c98a0da81e06066fff0ecf9cbd4627727.tar.gz";
-  unstableTarball = builtins.fetchTarball "https://github.com/NixOS/nixpkgs/archive/nixos-unstable.tar.gz";
+  home-manager-tarball = builtins.fetchTarball {
+    url = "https://github.com/nix-community/home-manager/archive/cf662b6c98a0da81e06066fff0ecf9cbd4627727.tar.gz";
+    sha256 = "1wny246zvw0pjp1wky53826mvx0ykm7p6vk3j57bdq8hxp1frn2l";
+  };
 in
 {
+
   imports = [
-    "${home-manager}/nixos"
+    #home-manager.nixosModules.default
+    "${home-manager-tarball}/nixos"
     ./neovim
     ./polybar
     ./vscode
@@ -23,21 +23,10 @@ in
     extraGroups = [ "networkmanager" "wheel" ];
   };
 
-  home-manager.users.toma = { pkgs, ... }: {
 
-    nixpkgs = {
-      overlays = [
-        (import ./overlay)
-      ];
-      config = {
-        allowUnfree = true;
-        packageOverrides = pkgs: {
-          unstable = import unstableTarball {
-            config = config.nixpkgs.config;
-          };
-        };
-      };
-    };
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+  home-manager.users.toma = { pkgs, ... }: {
 
     home = {
       username = "toma";
@@ -140,8 +129,8 @@ in
   };
 
   nix = {
-    # package = pkgs.nixFlakes;
-    # extraOptions = lib.optionalString (config.nix.package == pkgs.nixFlakes) "experimental-features = nix-command flakes"; # This config is currently not using flakes (I think), so idk why I put this here
+    package = pkgs.nixFlakes;
+    extraOptions = "experimental-features = nix-command flakes";
     gc = {
       automatic = true;
       randomizedDelaySec = "14m";
