@@ -6,7 +6,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@attrs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -24,26 +24,20 @@
       };
     in
     {
-
       nixosConfigurations.toma-nixos-desktop = nixpkgs.lib.nixosSystem {
         inherit system;
+        specialArgs = attrs;
         modules = [
-          {
-            nixpkgs.pkgs = pkgs;
-          }
+          { nixpkgs.pkgs = pkgs; }
           ./hosts/desktop
-          home-manager.nixosModules.default
         ];
       };
       nixosConfigurations.toma-nixos-thinkpad-school = nixpkgs.lib.nixosSystem {
         inherit system;
+        specialArgs = attrs;
         modules = [
-          {
-            nixpkgs.pkgs = pkgs;
-          }
+          { nixpkgs.pkgs = pkgs; }
           ./hosts/thinkpad-school
-          home-manager.nixosModules.default
-          { }
         ];
       };
     };
