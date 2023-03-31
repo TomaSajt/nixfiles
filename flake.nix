@@ -7,33 +7,44 @@
   };
 
   outputs = { self, nixpkgs, nixpkgs-unstable, ... }:
-  let
-    system = "x86_64-linux";
-    pkgs = import nixpkgs {
-      inherit system;
-      config.allowUnfree = true;
-      overlays = [
-        (final: prev: { unstable = pkgs'; })
-        (import ./overlay)
-      ];
-    };
-    pkgs' = import nixpkgs-unstable {
-      inherit system;
-      config.allowUnfree = true;
-    };
-  in
-  {
-    
-    nixosConfigurations.toma-nixos-desktop = nixpkgs.lib.nixosSystem {
-      inherit system;
-      modules =
-        [
-          {
-            nixpkgs.pkgs = pkgs;
-          }
-          ./machines/desktop.nix
+    let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs {
+        inherit system;
+        config.allowUnfree = true;
+        overlays = [
+          (final: prev: { unstable = pkgs'; })
+          (import ./overlay)
         ];
-    };
+      };
+      pkgs' = import nixpkgs-unstable {
+        inherit system;
+        config.allowUnfree = true;
+      };
+    in
+    {
 
-  };
+      nixosConfigurations.toma-nixos-desktop = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules =
+          [
+            {
+              nixpkgs.pkgs = pkgs;
+            }
+            ./hosts/desktop
+          ];
+      };
+      nixosConfigurations.toma-nixos-thinkpad-school = nixpkgs.lib.nixosSystem {
+        inherit system;
+        modules =
+          [
+            {
+              nixpkgs.pkgs = pkgs;
+            }
+            ./hosts/thinkpad-school
+          ];
+      };
+
+
+    };
 }
