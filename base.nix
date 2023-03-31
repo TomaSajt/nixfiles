@@ -1,15 +1,7 @@
-{ home-manager, nixpkgs-unstable, config, pkgs, lib, ... }:
-let
-  home-manager-tarball = builtins.fetchTarball {
-    url = "https://github.com/nix-community/home-manager/archive/cf662b6c98a0da81e06066fff0ecf9cbd4627727.tar.gz";
-    sha256 = "1wny246zvw0pjp1wky53826mvx0ykm7p6vk3j57bdq8hxp1frn2l";
-  };
-in
+{ config, pkgs, lib, ... }:
 {
 
   imports = [
-    #home-manager.nixosModules.default
-    "${home-manager-tarball}/nixos"
     ./neovim
     ./polybar
     ./vscode
