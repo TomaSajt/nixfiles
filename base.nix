@@ -3,9 +3,6 @@
 
   imports = [
     home-manager.nixosModule
-    ./neovim
-    ./polybar
-    ./vscode
   ];
 
 
@@ -20,7 +17,7 @@
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
-    users.toma.imports = [ ./home.nix ];
+    users.toma.imports = [ ./home ];
   };
 
   nix = {

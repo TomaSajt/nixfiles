@@ -1,4 +1,11 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
+  imports = [
+    ./vscode
+    ./neovim
+    ./polybar
+  ];
+
   home = {
     username = "toma";
     packages = with pkgs; [
