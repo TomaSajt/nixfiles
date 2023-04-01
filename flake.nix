@@ -6,7 +6,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, ... }:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, ... }:
     let
       system = "x86_64-linux";
 
@@ -24,15 +24,18 @@
         ];
       };
 
-      mkHost = path: nixpkgs.lib.nixosSystem {
+      mkHost = path: with nixpkgs.lib; nixosSystem {
         inherit system;
         specialArgs = { inherit inputs system; };
         modules = [
-          { nixpkgs.pkgs = pkgs; }
+          {
+            nixpkgs.pkgs = pkgs;
+            networking.hostName = mkDefault "toma-nixos-${(removeSuffix ".nix" (baseNameOf path))}";
+          }
+          ./. # default.nix
           path
         ];
       };
-
     in
     {
       nixosConfigurations = {
