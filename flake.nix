@@ -6,9 +6,10 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@attrs:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, home-manager, ... }:
     let
       system = "x86_64-linux";
+
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
@@ -22,23 +23,21 @@
           (import ./overlay)
         ];
       };
-    in
-    {
-      nixosConfigurations.toma-nixos-desktop = nixpkgs.lib.nixosSystem {
+
+      mkHost = path: nixpkgs.lib.nixosSystem {
         inherit system;
-        specialArgs = attrs;
+        specialArgs = { inherit inputs system; };
         modules = [
           { nixpkgs.pkgs = pkgs; }
-          ./hosts/desktop
+          path
         ];
       };
-      nixosConfigurations.toma-nixos-thinkpad-school = nixpkgs.lib.nixosSystem {
-        inherit system;
-        specialArgs = attrs;
-        modules = [
-          { nixpkgs.pkgs = pkgs; }
-          ./hosts/thinkpad-school
-        ];
+
+    in
+    {
+      nixosConfigurations = {
+        toma-nixos-desktop = mkHost ./hosts/desktop;
+        toma-nixos-thinkpad-school = mkHost ./hosts/thinkpad-school;
       };
     };
 }

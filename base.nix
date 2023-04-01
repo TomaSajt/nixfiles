@@ -1,8 +1,8 @@
-{ home-manager, config, pkgs, lib, ... }:
+{ inputs, config, pkgs, lib, ... }:
 {
 
   imports = [
-    home-manager.nixosModule
+    inputs.home-manager.nixosModule
   ];
 
 
@@ -37,6 +37,9 @@
 
   # Bootloader
   boot.loader = {
+    grub = {
+      theme = pkgs.nixos-grub2-theme;
+    };
     efi = {
       canTouchEfiVariables = true;
       efiSysMountPoint = "/boot/efi";
@@ -47,11 +50,12 @@
   # Enable networking
   networking.networkmanager.enable = true;
 
-  # Set your time zone.
-  time.timeZone = "Europe/Budapest";
-  time.hardwareClockInLocalTime = true;
+  time = {
+    timeZone = "Europe/Budapest";
+    # For Windows and Linux to have synced time
+    hardwareClockInLocalTime = true;
+  };
 
-  # Select internationalisation properties.
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings =
@@ -70,14 +74,15 @@
       };
   };
 
-  # Enable the X11 windowing system.
   services.xserver = {
+
     enable = true;
-    # Enable the KDE Plasma Desktop Environment.
+
     displayManager.sddm = {
       enable = true;
       autoNumlock = true;
     };
+
     desktopManager.plasma5.enable = true;
     layout = "hu";
     xkbVariant = "";
@@ -89,7 +94,8 @@
     };
   };
 
-  # For some reason, the default login prompt loads too quickly and display-manager can't start
+  # For some reason, the default login prompt loads too quickly
+  # and display-manager doesn't start (???)
   # This is fixed by waiting for some other services to load before starting
   systemd.services.display-manager = {
     wants = [ "systemd-user-sessions.service" "multi-user.target" "network-online.target" ];
@@ -122,7 +128,5 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.11"; # Did you read the comment?
+  system.stateVersion = "22.11";
 }
