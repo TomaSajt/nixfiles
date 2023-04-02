@@ -14,8 +14,8 @@
       firefox # Browser
       chromium
       discord # Online Chat - UNSAFE
-      libreoffice # Office Tools
       obsidian # Note-taking - UNSAFE
+      gimp # Image editing
 
 
       jetbrains.rider
