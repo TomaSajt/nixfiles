@@ -1,39 +1,52 @@
 {
   inputs = {
-    nixpkgs.url = "nixpkgs/nixos-22.11";
-    nixpkgs-unstable.url = "nixpkgs/nixpkgs-unstable";
-    home-manager.url = "github:rycee/home-manager/master";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    home-manager = {
+      url = "github:rycee/home-manager/master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, ... }:
+  outputs = inputs:
     let
       system = "x86_64-linux";
 
-      pkgs = import nixpkgs {
+      pkgs = import inputs.nixpkgs {
         inherit system;
         config.allowUnfree = true;
         overlays = [
-          (final: prev: {
-            unstable = import nixpkgs-unstable {
-              inherit system;
-              config.allowUnfree = true;
-            };
-          })
+          unstableOverlay
           (import ./overlay)
         ];
       };
 
-      mkHost = path: with nixpkgs.lib; nixosSystem {
+      unstableOverlay = final: prev: {
+        unstable = import inputs.nixpkgs-unstable {
+          inherit system;
+          config.allowUnfree = true;
+        };
+      };
+
+      specialArgs = { inherit inputs system; };
+
+      mkHost = path: with inputs.nixpkgs.lib; nixosSystem {
         inherit system;
-        specialArgs = { inherit inputs system; };
+        inherit specialArgs;
         modules = [
+          path
+          ./. # default.nix
+          inputs.home-manager.nixosModules.home-manager
           {
             nixpkgs.pkgs = pkgs;
             networking.hostName = mkDefault "toma-nixos-${(removeSuffix ".nix" (baseNameOf path))}";
+            home-manager = {
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              extraSpecialArgs = specialArgs;
+              users.toma.imports = [ ./home ];
+            };
           }
-          ./. # default.nix
-          path
         ];
       };
     in

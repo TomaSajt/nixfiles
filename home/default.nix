@@ -37,6 +37,8 @@
       xclip # Clipboard support (for synced neovim clipboard)
       dconf # Fixed some warinings when I was trying out Unity. idk if this is really needed
 
+      jetbrains-mono-nerdfont
+
 
       ### Languages ###
 
@@ -57,8 +59,8 @@
       jdk
 
       # Rust
-      rustup
-      rust-analyzer
+      #rustup
+      #rust-analyzer
 
       # Python
       python311
@@ -85,9 +87,6 @@
       ll = "ls -la";
       code = "codium";
     };
-    initExtra = ''
-      export EDITOR="nvim"
-    '';
   };
 
 
@@ -100,7 +99,7 @@
       github.user = "TomaSajt";
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
-      credential.helper = "${pkgs.gitAndTools.gitFull}/bin/git-credential-libsecret";
+      credential.helper = "${pkgs.gitFull}/bin/git-credential-libsecret";
       pull.ff = "only";
     };
   };

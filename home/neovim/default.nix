@@ -1,9 +1,11 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 {
+
+  xdg.configFile."nvim/lua/config".source = ./config;
+
   programs.neovim = {
     enable = true;
-    defaultEditor = true; # Doesn't actually work, because home.sessionVariables is broken for some reason
-    vimAlias = true;
+
     plugins = with pkgs.vimPlugins; [
       vim-nix
 
@@ -12,12 +14,16 @@
       telescope-fzf-native-nvim
       telescope-file-browser-nvim
 
+      nvim-tree-lua # file tree
+
       nvim-treesitter
       nvim-web-devicons
       vim-monokai
 
+      indent-blankline-nvim
+
       (pkgs.unstable.vimPlugins.nvim-lspconfig)
-      rust-tools-nvim
+      (pkgs.unstable.vimPlugins.rust-tools-nvim)
 
       nvim-autopairs
 
@@ -26,6 +32,23 @@
       cmp-vsnip
       vim-vsnip
     ];
-    extraLuaConfig = builtins.readFile ./init.lua;
+
+    vimAlias = true;
+    viAlias = true;
+    vimdiffAlias = true;
+
+    extraLuaConfig = ''
+      require "config.main"
+    '';
+  };
+
+
+  programs.bash = {
+    shellAliases = {
+      nv = "nvim";
+    };
+    initExtra = lib.mkAfter ''
+      export EDITOR="nvim"
+    '';
   };
 }

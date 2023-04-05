@@ -1,23 +1,10 @@
 { inputs, config, pkgs, lib, ... }:
 {
-
-  imports = [
-    inputs.home-manager.nixosModule
-  ];
-
-
   users.users.toma = {
     isNormalUser = true;
     description = "Toma";
     uid = 1000;
     extraGroups = [ "networkmanager" "wheel" ];
-  };
-
-
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users.toma.imports = [ ./home ];
   };
 
   nix = {
