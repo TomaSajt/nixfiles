@@ -58,10 +58,6 @@
       # Java
       jdk
 
-      # Rust
-      #rustup
-      #rust-analyzer
-
       # Python
       python311
       nodePackages.pyright
@@ -72,7 +68,6 @@
 
       # Nix
       rnix-lsp
-
 
       # Svelte
       nodePackages.svelte-language-server
