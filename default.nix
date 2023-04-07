@@ -1,5 +1,16 @@
-{ inputs, config, pkgs, lib, ... }:
+{ inputs, pkgs, ... }:
 {
+
+  imports = [
+    inputs.home-manager.nixosModules.home-manager
+  ];
+
+  home-manager = {
+    useGlobalPkgs = true;
+    useUserPackages = true;
+    users.toma.imports = [ ./home ];
+  };
+
   users.users.toma = {
     isNormalUser = true;
     description = "Toma";
@@ -119,7 +130,12 @@
   };
 
   # List packages installed in system profile.
-  environment.systemPackages = [ ];
+  environment.systemPackages = with pkgs; [
+    git
+    vim
+    wget
+    unzip
+  ];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
