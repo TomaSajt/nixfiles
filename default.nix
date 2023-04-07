@@ -8,12 +8,24 @@
   };
 
   nix = {
+    # Enables flakes
     package = pkgs.nixFlakes;
-    extraOptions = "experimental-features = nix-command flakes";
+    extraOptions =
+      let
+        emptyRegisty = builtins.toFile "empty-flake-registry.json" ''{"flakes":[],"version":2}'';
+      in
+      # Enables experimental features and clears the registy to avoid most impurities
+      ''
+        experimental-features = nix-command flakes
+        flake-registry = ${emptyRegisty};
+      '';
+    # adds the system's current nixpkgs to the registry so that you can
+    # run for example `nix run nixpkgs#firefox` without reinstalling
+    registry.nixpkgs.flake = inputs.nixpkgs;
     gc = {
       automatic = true;
       randomizedDelaySec = "14m";
-      options = "--delete-older-than 10d";
+      options = "--delete-older-than 3d";
     };
   };
 
