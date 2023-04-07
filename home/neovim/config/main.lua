@@ -1,7 +1,3 @@
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
-
 
 vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>')
 vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<cr>')
@@ -19,8 +15,6 @@ vim.opt.colorcolumn = "100"             -- Vertical bar to signal optimal line l
 vim.opt.shiftwidth = 4                  -- Tab-space count
 vim.opt.clipboard:append("unnamedplus") -- Clipboard sync with os (using xclip)
 
-require("config.filetree")
-
 require("config.statusline")
 vim.cmd("set statusline=%!v:lua.MyStatusLine()")
 
@@ -34,4 +28,3 @@ require("indent_blankline").setup {
 
 require("config.lspconfig")
 
-require("nvim-tree").setup {}

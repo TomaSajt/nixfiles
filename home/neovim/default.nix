@@ -14,8 +14,6 @@
       telescope-fzf-native-nvim
       telescope-file-browser-nvim
 
-      nvim-tree-lua # file tree
-
       nvim-treesitter
       nvim-web-devicons
       vim-monokai
