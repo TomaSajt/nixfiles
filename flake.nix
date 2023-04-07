@@ -2,6 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+
     home-manager = {
       url = "github:rycee/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -28,23 +29,28 @@
         };
       };
 
-      specialArgs = { inherit inputs system; };
+
+      specialArgs = {
+        inherit inputs system;
+      };
 
       mkHost = path: with inputs.nixpkgs.lib; nixosSystem {
         inherit system;
         inherit specialArgs;
         modules = [
-          path
-          ./. # default.nix
           inputs.home-manager.nixosModules.home-manager
           {
+            imports = [
+              path # per-host system config
+              ./. # global system config
+            ];
             nixpkgs.pkgs = pkgs;
             networking.hostName = mkDefault "toma-nixos-${(removeSuffix ".nix" (baseNameOf path))}";
             home-manager = {
               useGlobalPkgs = true;
               useUserPackages = true;
               extraSpecialArgs = specialArgs;
-              users.toma.imports = [ ./home ];
+              users.toma.imports = [ ./home ]; # global home config
             };
           }
         ];

@@ -12,7 +12,6 @@
 
       ### User stuff ###
       firefox # Browser
-      chromium
       discord # Online Chat - UNSAFE
       obsidian # Note-taking - UNSAFE
       gimp # Image editing
@@ -42,10 +41,6 @@
 
       ### Languages ###
 
-      # C/C++
-      gcc
-      ccls
-
       # NodeJS
       nodejs
       nodePackages.pnpm # npm alternative
@@ -54,9 +49,6 @@
       # Dotnet - C#/F#
       dotnet-sdk
       omnisharp-roslyn # Language Server
-
-      # Java
-      jdk
 
       # Python
       python311
@@ -68,9 +60,6 @@
 
       # Nix
       rnix-lsp
-
-      # Svelte
-      nodePackages.svelte-language-server
     ];
     stateVersion = "22.11";
   };
