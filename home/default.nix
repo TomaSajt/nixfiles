@@ -90,6 +90,14 @@
     package = pkgs.gitFull;
     userName = "Toma";
     userEmail = "62384384+TomaSajt@users.noreply.github.com";
+    aliases = {
+      co = "checkout";
+      br = "branch";
+      ci = "commit";
+      st = "status";
+      last = "log -1 HEAD";
+      uncommit = "reset --soft HEAD~";
+    };
     extraConfig = {
       github.user = "TomaSajt";
       init.defaultBranch = "main";
@@ -97,5 +105,6 @@
       credential.helper = "${pkgs.gitFull}/bin/git-credential-libsecret";
       pull.ff = "only";
     };
+
   };
 }
