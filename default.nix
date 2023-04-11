@@ -37,11 +37,12 @@
       # Enables experimental features and clears the registy to avoid most impurities
       ''
         experimental-features = nix-command flakes
-        flake-registry = ${emptyRegisty};
+        flake-registry = ${emptyRegisty}
       '';
-    # adds the system's current nixpkgs to the registry so that you can
-    # run for example `nix run nixpkgs#firefox` without reinstalling
-    registry.nixpkgs.flake = inputs.nixpkgs;
+    registry = {
+      self.flake = inputs.self;
+      nixpkgs.flake = inputs.nixpkgs;
+    };
     gc = {
       automatic = true;
       randomizedDelaySec = "14m";
