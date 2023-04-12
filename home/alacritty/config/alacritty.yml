@@ -1,0 +1,16 @@
+
+# Configuration for Alacritty, the GPU enhanced terminal emulator.
+
+import:
+  - ~/.config/alacritty/theme.yml
+
+font:
+  normal:
+    # Font family
+    family: monospace
+
+  # Point size
+  size: 11.0
+
+  # Use built-in font for box drawing characters.
+  builtin_box_drawing: true

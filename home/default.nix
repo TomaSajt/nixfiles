@@ -1,26 +1,24 @@
 { pkgs, ... }:
 {
   imports = [
+    # Desktop
+    ./i3
+    ./alacritty
+    ./polybar
+
+    # Editors
     ./vscode
     ./neovim
-    #./polybar
+
+    # Other
+    ./git
+    ./bash
   ];
-
-  xsession.windowManager.i3 = {
-    enable = true;
-    package = pkgs.unstable.i3;
-    config = {
-      modifier = "Mod4";
-      terminal = "alacritty";
-    };
-  };
-
-  programs.alacritty = {
-    enable = true;
-  };
+ 
 
   home = {
     username = "toma";
+    stateVersion = "22.11";
     packages = with pkgs; [
 
       ### User stuff ###
@@ -34,7 +32,6 @@
       jetbrains.idea-community
 
       ### Utils ###
-      gh # GitHub CLI
       gparted # Partition Management
       quark-goldleaf # Nintendo Switch File Transfer Client
       zip # Zip compression utils
@@ -47,10 +44,8 @@
       ntfs3g # NTFS Filesystem Support
       ripgrep # telescope.nvim support for grep
       xclip # Clipboard support (for synced neovim clipboard)
-      dconf # Fixed some warinings when I was trying out Unity. idk if this is really needed
 
       jetbrains-mono-nerdfont
-
 
       ### Languages ###
 
@@ -74,43 +69,5 @@
       # Nix
       rnix-lsp
     ];
-    stateVersion = "22.11";
-  };
-
-  programs.bash = {
-    enable = true;
-    shellAliases = {
-      snrs = "sudo nixos-rebuild switch";
-      ll = "ls -la";
-      code = "codium";
-    };
-  };
-
-
-  programs.git = {
-    enable = true;
-    package = pkgs.gitFull;
-    userName = "Toma";
-    userEmail = "62384384+TomaSajt@users.noreply.github.com";
-    aliases = {
-      co = "checkout";
-      br = "branch";
-      ci = "commit";
-      st = "status";
-      last = "log -1 HEAD";
-      uncommit = "reset --soft HEAD~";
-    };
-    extraConfig = {
-      github.user = "TomaSajt";
-      init.defaultBranch = "main";
-      push.autoSetupRemote = true;
-      credential.helper = "${pkgs.gitFull}/bin/git-credential-libsecret";
-      pull.ff = "only";
-    };
-
-  };
-
-  programs.yt-dlp = {
-    enable = true;
   };
 }
