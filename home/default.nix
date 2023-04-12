@@ -45,8 +45,6 @@
       ripgrep # telescope.nvim support for grep
       xclip # Clipboard support (for synced neovim clipboard)
 
-      jetbrains-mono-nerdfont
-
       ### Languages ###
 
       # NodeJS

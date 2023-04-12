@@ -5,6 +5,19 @@
     inputs.home-manager.nixosModules.home-manager
   ];
 
+  fonts = {
+    fontDir.enable = true;
+    fontconfig.defaultFonts = {
+      serif = [ "Noto Serif" ];
+      sansSerif = [ "Noto Sans" ];
+      monospace = [ "JetBrainsMono Nerd Font" ];
+    };
+    fonts = with pkgs; [
+      noto-fonts
+      jetbrains-mono-nerdfont
+    ];
+  };
+
   home-manager = {
     useGlobalPkgs = true;
     useUserPackages = true;
