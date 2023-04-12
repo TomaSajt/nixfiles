@@ -4,10 +4,13 @@
     # Desktop
     ./i3
     ./rofi
-    ./alacritty
     ./polybar
+    ./gtk
 
-    # Editors
+    # Terminal
+    ./alacritty
+
+    # Editor
     ./vscode
     ./neovim
 

@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   programs.rofi = {
     enable = true;
-    pass.enable = true;
+    theme = "android_notification";
+    plugins = with pkgs; [ rofi-calc ];
   };
 }
