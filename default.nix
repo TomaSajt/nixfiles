@@ -90,16 +90,33 @@
       };
   };
 
+  programs.nm-applet.enable = true;
+
+  # Some config support or something
+  programs.dconf.enable = true;
+
+  # links /libexec from derivations to /run/current-system/sw 
+  environment.pathsToLink = [ "/libexec" ];
+
   services.xserver = {
 
     enable = true;
 
-    displayManager.sddm = {
+    windowManager.i3 = {
       enable = true;
-      autoNumlock = true;
+      package = pkgs.unstable.i3;
+      extraPackages = with pkgs.unstable; [
+        dmenu
+        i3status
+        i3lock
+        i3blocks
+      ];
     };
 
-    desktopManager.plasma5.enable = true;
+    desktopManager.xterm.enable = false;
+
+    displayManager.defaultSession = "none+i3";
+
     layout = "hu";
     xkbVariant = "";
 
