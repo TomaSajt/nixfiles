@@ -59,57 +59,18 @@
     };
   };
 
-  services.udev.extraRules = ''
-    # Nintendo Switch (for Goldleaf+Quark connection)
-    SUBSYSTEM=="usb", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="3000", MODE="0666"
-  '';
-
-  # Bootloader
-  boot.loader = {
-    grub = {
-      theme = pkgs.nixos-grub2-theme;
-    };
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot/efi";
-    };
-    systemd-boot.enable = true;
-  };
 
   # Enable networking
   networking.networkmanager.enable = true;
-
-  time = {
-    timeZone = "Europe/Budapest";
-    # For Windows and Linux to have synced time
-    hardwareClockInLocalTime = true;
-  };
-
-  i18n = {
-    defaultLocale = "en_US.UTF-8";
-    extraLocaleSettings =
-      let HU = "hu_HU.UTF-8";
-      in
-      {
-        LC_ADDRESS = HU;
-        LC_IDENTIFICATION = HU;
-        LC_MEASUREMENT = HU;
-        LC_MONETARY = HU;
-        LC_NAME = HU;
-        LC_NUMERIC = HU;
-        LC_PAPER = HU;
-        LC_TELEPHONE = HU;
-        LC_TIME = HU;
-      };
-  };
-
-  programs.nm-applet.enable = true;
 
   # Some config support or something
   programs.dconf.enable = true;
 
   # links /libexec from derivations to /run/current-system/sw 
   environment.pathsToLink = [ "/libexec" ];
+
+  # Configure console keymap
+  console.keyMap = "hu101";
 
   services.xserver = {
 
@@ -140,16 +101,16 @@
     };
   };
 
-  # For some reason, the default login prompt loads too quickly
-  # and display-manager doesn't start (???)
-  # This is fixed by waiting for some other services to load before starting
-  systemd.services.display-manager = {
-    wants = [ "systemd-user-sessions.service" "multi-user.target" "network-online.target" ];
-    after = [ "systemd-user-sessions.service" "multi-user.target" "network-online.target" ];
-  };
 
-  # Configure console keymap
-  console.keyMap = "hu101";
+
+
+  # List packages installed in system profile.
+  environment.systemPackages = with pkgs; [
+    git
+    vim
+    wget
+    unzip
+  ];
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
@@ -165,19 +126,46 @@
     pulse.enable = true;
   };
 
-  # List packages installed in system profile.
-  environment.systemPackages = with pkgs; [
-    git
-    vim
-    wget
-    unzip
-  ];
+  services.udev.extraRules = ''
+    # Nintendo Switch (for Goldleaf+Quark connection)
+    SUBSYSTEM=="usb", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="3000", MODE="0666"
+  '';
 
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  # Bootloader
+  boot.loader = {
+    grub = {
+      theme = pkgs.nixos-grub2-theme;
+    };
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot/efi";
+    };
+    systemd-boot.enable = true;
+  };
+
+  time = {
+    timeZone = "Europe/Budapest";
+    # For Windows and Linux to have synced time
+    hardwareClockInLocalTime = true;
+  };
+
+  i18n = {
+    defaultLocale = "en_US.UTF-8";
+    extraLocaleSettings =
+      let HU = "hu_HU.UTF-8";
+      in
+      {
+        LC_ADDRESS = HU;
+        LC_IDENTIFICATION = HU;
+        LC_MEASUREMENT = HU;
+        LC_MONETARY = HU;
+        LC_NAME = HU;
+        LC_NUMERIC = HU;
+        LC_PAPER = HU;
+        LC_TELEPHONE = HU;
+        LC_TIME = HU;
+      };
+  };
 
   system.stateVersion = "22.11";
 }
