@@ -5,6 +5,11 @@
     config = {
       modifier = "Mod4";
       terminal = "alacritty";
+      menu = "--no-startup-id rofi -show drun";
     };
+    extraConfig = ''
+      for_window [class="lxqt-openssh-askpass"] floating enable
+    '';
+
   };
 }

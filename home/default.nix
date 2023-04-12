@@ -3,6 +3,7 @@
   imports = [
     # Desktop
     ./i3
+    ./rofi
     ./alacritty
     ./polybar
 

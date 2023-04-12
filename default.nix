@@ -59,12 +59,16 @@
     };
   };
 
+  # Secrets
+  services.gnome.gnome-keyring.enable = true;
 
   # Enable networking
   networking.networkmanager.enable = true;
 
   # Some config support or something
   programs.dconf.enable = true;
+
+  programs.ssh.askPassword = "${pkgs.lxqt.lxqt-openssh-askpass}/bin/lxqt-openssh-askpass";
 
   # links /libexec from derivations to /run/current-system/sw 
   environment.pathsToLink = [ "/libexec" ];
@@ -80,7 +84,6 @@
       enable = true;
       package = pkgs.unstable.i3;
       extraPackages = with pkgs.unstable; [
-        dmenu
         i3status
         i3lock
         i3blocks
