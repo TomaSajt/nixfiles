@@ -19,11 +19,16 @@
       keybindings =
         let
           mod = "Mod4";
+          alacritty = "${config.programs.alacritty.package}/bin/alacritty";
+          rofi = "${config.programs.rofi.package}/bin/rofi";
+          amixer = "amixer";
+          playerctl = "${config.services.playerctld.package}/bin/playerctl";
+          xbacklight = "${pkgs.xorg.xbacklight}/bin/xbacklight";
         in
         {
-          "${mod}+Return" = "exec alacritty";
+          "${mod}+Return" = "exec ${alacritty}";
           "${mod}+Shift+q" = "kill";
-          "${mod}+d" = "exec --no-startup-id \"rofi -show combi -combi-modes 'window,run,drun' -modes combi\"";
+          "${mod}+d" = "exec --no-startup-id \"${rofi} -show combi -combi-modes 'window,run,drun' -modes combi\"";
 
           "${mod}+Left" = "focus left";
           "${mod}+Down" = "focus down";
@@ -78,6 +83,21 @@
           "${mod}+Shift+e" = "exec i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' 'i3-msg exit'";
 
           "${mod}+r" = "mode resize";
+
+          "XF86AudioMute" = "exec ${amixer} sset Master toggle";
+          "XF86AudioRaiseVolume" = "exec ${amixer} sset Master 5%+";
+          "XF86AudioLowerVolume" = "exec ${amixer} sset Master 5%-";
+          "${mod}+XF86AudioRaiseVolume" = "exec ${amixer} sset Master 1%+";
+          "${mod}+XF86AudioLowerVolume" = "exec ${amixer} sset Master 1%-";
+
+          "XF86AudioPlay" = "exec ${playerctl} play";
+          "XF86AudioStop" = "exec ${playerctl} pause";
+          "XF86AudioPause" = "exec ${playerctl} play-pause";
+          "XF86AudioNext" = "exec ${playerctl} next";
+          "XF86AudioPrev" = "exec ${playerctl} previous";
+
+          "XF86MonBrightnessUp" = "exec ${xbacklight} -inc 20";
+          "XF86MonBrightnessDown" = "exec ${xbacklight} -dec 20";
         };
       bars = [
         {
@@ -145,4 +165,5 @@
   };
   services.network-manager-applet.enable = true;
   services.picom.enable = true;
+  services.playerctld.enable = true;
 }
