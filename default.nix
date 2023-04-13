@@ -52,6 +52,9 @@
         experimental-features = nix-command flakes
         flake-registry = ${emptyRegisty}
       '';
+    registry = {
+      nixpkgs.flake = inputs.nixpkgs;
+    };
     gc = {
       automatic = true;
       randomizedDelaySec = "14m";
