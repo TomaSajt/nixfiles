@@ -62,8 +62,9 @@
     };
   };
 
-  # Secrets
+  # Secrets management or something
   services.gnome.gnome-keyring.enable = true;
+  programs.seahorse.enable = true;
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -71,30 +72,18 @@
   # Some config support or something
   programs.dconf.enable = true;
 
-  programs.ssh.askPassword = "${pkgs.lxqt.lxqt-openssh-askpass}/bin/lxqt-openssh-askpass";
-
-  # links /libexec from derivations to /run/current-system/sw 
-  environment.pathsToLink = [ "/libexec" ];
-
   # Configure console keymap
   console.keyMap = "hu101";
 
   services.xserver = {
-
     enable = true;
-
     windowManager.i3 = {
       enable = true;
       package = pkgs.unstable.i3;
     };
-
-    desktopManager.xterm.enable = false;
-
     displayManager.defaultSession = "none+i3";
-
     layout = "hu";
     xkbVariant = "";
-
     # Enable touchpad support (with natural scrolling)
     libinput = {
       enable = true;

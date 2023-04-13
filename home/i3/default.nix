@@ -146,7 +146,6 @@
       ];
       floating = {
         criteria = [
-          { class = "lxqt-openssh-askpass"; }
           { class = "Pavucontrol"; }
         ];
       };
