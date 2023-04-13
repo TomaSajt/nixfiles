@@ -31,14 +31,25 @@
           }
           {
             block = "sound";
-            format = " $icon $output_name $volume.eng(w:2) ";
+            format = " $icon $output_name {$volume.eng(w:2) |}";
             mappings = {
               "alsa_output.pci-0000_00_1f.3.analog-stereo" = "";
+              "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp__sink" = "";
             };
             click = [
               {
                 button = "left";
                 cmd = "${pkgs.pavucontrol}/bin/pavucontrol --tab=3";
+              }
+            ];
+          }
+          {
+            block = "net";
+            format = " $icon {$signal_strength $ssid $frequency|Wired connection} - $device ";
+            click = [
+              {
+                button = "left";
+                cmd = "${pkgs.networkmanagerapplet}/bin/nm-connection-editor";
               }
             ];
           }
