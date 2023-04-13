@@ -91,16 +91,19 @@
     };
   };
 
-
-
+  programs.xss-lock = {
+    enable = true;
+    lockerCommand = "${pkgs.i3lock-fancy}/bin/i3lock-fancy";
+  };
 
   # List packages installed in system profile.
-  environment.systemPackages = with pkgs; [
-    git
-    vim
-    wget
-    unzip
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      git
+      vim
+      wget
+      unzip
+    ];
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
