@@ -3,6 +3,7 @@
 
   imports = [
     inputs.home-manager.nixosModules.home-manager
+    ./package-debug.nix
   ];
 
   fonts = {
@@ -82,6 +83,7 @@
       package = pkgs.unstable.i3;
     };
     displayManager.defaultSession = "none+i3";
+    excludePackages = [ pkgs.xterm ];
     layout = "hu";
     xkbVariant = "";
     # Enable touchpad support (with natural scrolling)
@@ -91,19 +93,13 @@
     };
   };
 
-  programs.xss-lock = {
-    enable = true;
-    lockerCommand = "${pkgs.i3lock-fancy}/bin/i3lock-fancy";
-  };
-
   # List packages installed in system profile.
-  environment.systemPackages = with pkgs;
-    [
-      git
-      vim
-      wget
-      unzip
-    ];
+  environment.systemPackages = with pkgs;[
+    git
+    vim
+    wget
+    unzip
+  ];
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

@@ -5,6 +5,7 @@
     ./i3
     ./rofi
     ./gtk
+    ./feh-bg
 
     # Terminal
     ./alacritty
