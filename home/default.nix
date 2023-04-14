@@ -4,7 +4,6 @@
     # Desktop
     ./i3
     ./rofi
-    ./polybar
     ./gtk
 
     # Terminal
