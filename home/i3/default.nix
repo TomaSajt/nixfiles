@@ -12,6 +12,7 @@ in
   imports = [ ./status.nix ];
 
   services.network-manager-applet.enable = true;
+  services.pasystray.enable = true;
   services.picom.enable = true;
   services.playerctld.enable = true;
   xsession.numlock.enable = true;
