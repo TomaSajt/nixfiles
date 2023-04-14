@@ -15,6 +15,7 @@ mount /dev/disk/by-label/nixos /mnt
 # if this is a new host, you are going to have to do some extra setup
 
 # mount the other disks, like /boot/efi and others
+mkdir -p /mnt/boot/efi
 mount /dev/<something> /mnt/boot/efi
 
 # after this you will need to create the new host's directory inside the git repo
