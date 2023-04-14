@@ -29,8 +29,6 @@ rm ./hosts/<hostname>/configuration.nix
 # add newly made files to git (because flakes can't see them otherwise)
 git add .
 
-cd /mnt/etc/nixfiles
-
 # Install system
 nixos-install --root /mnt --flake .#<hostname>
 
@@ -53,7 +51,11 @@ passwd toma
 # you are basically done, you just need to log into the user account
 
 # maybe move /etc/nixfiles
-mv /etc/nixfiles ~
+sudo mv /etc/nixfiles ~
+
+# setup xrandr (for system tray to show up properly)
+xrandr --listmonitors
+xrandr --output <monitorname> --primary
 
 # set up soft-link, so you can do nixos-rebuild without specifying the path
 sudo ln -s ~/nixfiles/flake.nix /etc/nixos/flake.nix
