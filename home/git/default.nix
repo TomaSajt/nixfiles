@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, config, ... }: {
   programs.git = {
     enable = true;
     package = pkgs.gitFull;
@@ -16,7 +16,7 @@
       github.user = "TomaSajt";
       init.defaultBranch = "main";
       push.autoSetupRemote = true;
-      credential.helper = "${pkgs.gitFull}/bin/git-credential-libsecret";
+      credential.helper = "${config.programs.git.package}/bin/git-credential-libsecret";
       pull.ff = "only";
     };
   };
