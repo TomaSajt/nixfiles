@@ -6,5 +6,8 @@
       ll = "ls -la";
       code = "codium";
     };
+    initExtra = ''
+      export PS1="\[\033[1;32m\]\w \$ \[\033[0m\]"
+    '';
   };
 }

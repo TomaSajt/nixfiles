@@ -19,6 +19,7 @@
             block = "memory";
             format = " $icon $mem_used_percents.eng(w:2) ";
             format_alt = " $icon $swap_used_percents.eng(w:2) ";
+            interval = 1;
           }
           {
             block = "cpu";
@@ -52,6 +53,11 @@
                 cmd = "${pkgs.networkmanagerapplet}/bin/nm-connection-editor";
               }
             ];
+          }
+          {
+            block = "battery";
+            format = " $icon $percentage ";
+            interval = 5;
           }
           {
             block = "time";

@@ -1,7 +1,7 @@
 { pkgs, config, ... }: {
-
   imports = [ ./status.nix ];
 
+  xsession.numlock.enable = true;
   xsession.windowManager.i3 = {
     enable = true;
     package = pkgs.unstable.i3;
@@ -20,7 +20,7 @@
         let
           mod = "Mod4";
           alacritty = "${config.programs.alacritty.package}/bin/alacritty";
-          rofi = "${config.programs.rofi.package}/bin/rofi";
+          rofi = "${config.programs.rofi.finalPackage}/bin/rofi";
           amixer = "amixer";
           playerctl = "${config.services.playerctld.package}/bin/playerctl";
           xbacklight = "${pkgs.acpilight}/bin/xbacklight";
@@ -77,6 +77,9 @@
           "${mod}+Shift+7" = "move container to workspace number 7";
           "${mod}+Shift+8" = "move container to workspace number 8";
           "${mod}+Shift+9" = "move container to workspace number 9";
+
+          "${mod}+mod2+KP_1" = "exec firefox";
+          "${mod}+mod2+KP_2" = "exec --no-startup-id ${rofi} -show calc -modi calc -no-show-match -no-sort";
 
           "${mod}+Shift+c" = "reload";
           "${mod}+Shift+r" = "restart";
