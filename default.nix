@@ -86,7 +86,6 @@
       package = pkgs.unstable.i3;
     };
     displayManager.defaultSession = "none+i3";
-    excludePackages = [ pkgs.xterm ];
     layout = "hu";
     xkbVariant = "";
     # Enable touchpad support (with natural scrolling)
