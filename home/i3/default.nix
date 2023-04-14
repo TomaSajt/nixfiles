@@ -23,7 +23,7 @@
           rofi = "${config.programs.rofi.package}/bin/rofi";
           amixer = "amixer";
           playerctl = "${config.services.playerctld.package}/bin/playerctl";
-          xbacklight = "${pkgs.xorg.xbacklight}/bin/xbacklight";
+          xbacklight = "${pkgs.acpilight}/bin/xbacklight";
         in
         {
           "${mod}+Return" = "exec ${alacritty}";
@@ -96,8 +96,8 @@
           "XF86AudioNext" = "exec ${playerctl} next";
           "XF86AudioPrev" = "exec ${playerctl} previous";
 
-          "XF86MonBrightnessUp" = "exec ${xbacklight} -inc 20";
-          "XF86MonBrightnessDown" = "exec ${xbacklight} -dec 20";
+          "XF86MonBrightnessUp" = "exec ${xbacklight} -inc 10";
+          "XF86MonBrightnessDown" = "exec ${xbacklight} -dec 10";
         };
       bars = [
         {

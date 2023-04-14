@@ -47,6 +47,7 @@
       ntfs3g # NTFS Filesystem Support
       ripgrep # telescope.nvim support for grep
       xclip # Clipboard support (for synced neovim clipboard)
+      acpilight
 
       ### Languages ###
 
