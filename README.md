@@ -50,8 +50,9 @@ passwd toma
 
 # you are basically done, you just need to log into the user account
 
-# maybe move /etc/nixfiles
+# move nixfiles from /etc to ~
 sudo mv /etc/nixfiles ~
+sudo chown -R toma:users ~/nixfiles
 
 # setup xrandr (for system tray to show up properly)
 xrandr --listmonitors
