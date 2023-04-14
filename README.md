@@ -1,20 +1,35 @@
 ### Install a profile
 ```sh
-# Enter root shell
+# Enter root shell and use repo as working directory
 sudo su -
+cd <this-directory>
 ```
 
 ```sh
-# Mount the stuff you need
+# Mount the root of the main fs
 # Example:
 mount /dev/disk/by-label/nixos /mnt
-mkdir -p /mnt/boot/efi
-mount /dev/disk/by-uuid/<some_uuid_here> /mnt/boot/efi
+```
+
+```sh
+# if this is a new host, you are going to have to do some extra setup
+
+# mount the other disks, like /boot/efi and others
+mount /dev/<something> /mnt/boot/efi
+
+# after this you will need to create the new host's directory inside the git repo
+mkdir ./hosts/<hostname>
+
+# copy one of the other hosts's base config (or you can make a new one)
+cp ./hosts/<some-other-hostname>/default.nix ./hosts/<hostname>/default.nix
+
+# generate the host's hardware config (this contains info about mounted disks)
+nixos-generate-config --root /mnt --dir ./hosts/<hostname>/hardware-configuration.nix
 ```
 
 ```sh
 # Install system
-nixos-install --root /mnt --flake <path_to_this_directory>#<some_host_name_here>
+nixos-install --root /mnt --flake .#<hostname>
 ```
 you will get prompted to input the root password
 

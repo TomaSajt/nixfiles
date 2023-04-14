@@ -37,10 +37,6 @@
       obsidian # Note-taking - UNSAFE
       gimp # Image editing
 
-
-      jetbrains.rider
-      jetbrains.idea-community
-
       ### Utils ###
       gparted # Partition Management
       quark-goldleaf # Nintendo Switch File Transfer Client
