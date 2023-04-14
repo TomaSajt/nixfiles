@@ -2,8 +2,12 @@
   programs.git = {
     enable = true;
     package = pkgs.gitFull;
-    userName = "Toma";
+    userName = "TomaSajt";
     userEmail = "62384384+TomaSajt@users.noreply.github.com";
+    signing = {
+      key = "F011163C050122A1";
+      signByDefault = true;
+    };
     aliases = {
       co = "checkout";
       br = "branch";

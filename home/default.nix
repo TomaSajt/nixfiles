@@ -16,6 +16,7 @@
 
     # Other
     ./git
+    ./gpg
     ./bash
   ];
  
