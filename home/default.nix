@@ -19,7 +19,12 @@
     ./gpg
     ./bash
   ];
- 
+
+  services.udiskie = {
+    enable = true;
+    tray = "always";
+  };
+
 
   home = {
     username = "toma";

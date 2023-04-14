@@ -76,6 +76,9 @@
   # Configure console keymap
   console.keyMap = "hu101";
 
+  # Needed for udiskie to work (in home-manager configs)
+  services.udisks2.enable = true;
+
   services.xserver = {
     enable = true;
     windowManager.i3 = {
