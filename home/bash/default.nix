@@ -6,9 +6,10 @@
       ll = "ls -la";
       code = "codium";
       sdn = "shutdown now";
+      nv = "nvim";
     };
-    initExtra = ''
-      export PS1="\[\033[1;32m\]\w \$ \[\033[0m\]"
-    '';
+    sessionVariables = {
+      PS1=''\[\033[1;32m\]\w \$ \[\033[0m\]'';
+    };
   };
 }

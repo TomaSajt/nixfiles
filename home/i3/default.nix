@@ -16,6 +16,12 @@ in
   services.picom.enable = true;
   services.playerctld.enable = true;
   xsession.numlock.enable = true;
+  xsession.enable = true;
+
+  services.udiskie = {
+    enable = true;
+    tray = "always";
+  };
 
   services.screen-locker = {
     enable = true;

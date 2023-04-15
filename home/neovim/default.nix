@@ -35,18 +35,10 @@
     viAlias = true;
     vimdiffAlias = true;
 
+    defaultEditor = true;
+
     extraLuaConfig = ''
       require "config.main"
-    '';
-  };
-
-
-  programs.bash = {
-    shellAliases = {
-      nv = "nvim";
-    };
-    initExtra = lib.mkAfter ''
-      export EDITOR="nvim"
     '';
   };
 }
