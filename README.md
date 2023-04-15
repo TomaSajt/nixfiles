@@ -96,12 +96,12 @@ sudo chown -R toma:users ~/nixfiles
 ```
 
 ```sh
-# setup xrandr (for system tray to show up properly)
-xrandr --listmonitors
-xrandr --output <monitorname> --primary
-```
-
-```sh
 # set up soft-link, so you can do nixos-rebuild without specifying the path
 sudo ln -s ~/nixfiles/flake.nix /etc/nixos/flake.nix
 ```
+
+you can edit the per-host config at `./hosts/<hostname>/default.nix`
+
+you're probably going to want to setup xrandr in there
+
+

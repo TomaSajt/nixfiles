@@ -52,6 +52,7 @@
       ''
         experimental-features = nix-command flakes
         flake-registry = ${emptyRegisty}
+        warn-dirty = false
       '';
     registry = {
       nixpkgs.flake = inputs.nixpkgs;

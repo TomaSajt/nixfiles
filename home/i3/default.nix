@@ -28,6 +28,9 @@ in
   xsession.windowManager.i3 = {
     enable = true;
     package = osConfig.services.xserver.windowManager.i3.package;
+    extraConfig = ''
+      exec_always dbus-update-activation-environment --all
+    '';
     config = {
       fonts = {
         names = [ "monospace" ];
