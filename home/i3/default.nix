@@ -29,6 +29,7 @@ in
     enable = true;
     package = osConfig.services.xserver.windowManager.i3.package;
     extraConfig = ''
+      # this is required for gnome-keyring/libsecret/seahorse to work
       exec_always dbus-update-activation-environment --all
     '';
     config = {
