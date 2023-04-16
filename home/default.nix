@@ -5,9 +5,11 @@
     ./i3
     ./feh-bg
     ./rofi.nix
-    ./gtk.nix
+
+    ./autorandr.nix
 
     ./user-dirs.nix
+    ./gtk.nix
 
     # Terminal
     ./alacritty
