@@ -3,24 +3,24 @@
   imports = [
     # Desktop
     ./i3
-    ./rofi
-    ./gtk
     ./feh-bg
+    ./rofi.nix
+    ./gtk.nix
 
     ./user-dirs.nix
 
     # Terminal
     ./alacritty
-    ./bash
+    ./bash.nix
 
     # Editor
     ./vscode
     ./neovim
 
     # Other
-    ./git
     ./gpg
-    ./firefox
+    ./git.nix
+    ./firefox.nix
   ];
 
 
