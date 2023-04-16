@@ -5,9 +5,10 @@ let
   alacritty = "${config.programs.alacritty.package}/bin/alacritty";
   rofi = "${config.programs.rofi.finalPackage}/bin/rofi";
   firefox = "${config.programs.firefox.package}/bin/firefox";
-  amixer = "${pkgs.alsa-utils}/bin/amixer";
   playerctl = "${config.services.playerctld.package}/bin/playerctl";
   xbacklight = "${pkgs.acpilight}/bin/xbacklight";
+  pactl = "${pkgs.pulseaudio}/bin/pactl";
+
 in
 {
   imports = [ ./status.nix ];
@@ -112,11 +113,11 @@ in
 
         "${mod}+r" = "mode resize";
 
-        "XF86AudioMute" = "exec ${amixer} sset Master toggle";
-        "XF86AudioRaiseVolume" = "exec ${amixer} sset Master 5%+";
-        "XF86AudioLowerVolume" = "exec ${amixer} sset Master 5%-";
-        "${mod}+XF86AudioRaiseVolume" = "exec ${amixer} sset Master 1%+";
-        "${mod}+XF86AudioLowerVolume" = "exec ${amixer} sset Master 1%-";
+        "XF86AudioMute" = "exec ${pactl} set-sink-mute @DEFAULT_SINK@ toggle";
+        "XF86AudioRaiseVolume" = "exec ${pactl} set-sink-volume @DEFAULT_SINK@ +5%";
+        "XF86AudioLowerVolume" = "exec ${pactl} set-sink-volume @DEFAULT_SINK@ -5%";
+        "${mod}+XF86AudioRaiseVolume" = "exec ${pactl} set-sink-volume @DEFAULT_SINK@ +1%";
+        "${mod}+XF86AudioLowerVolume" = "exec ${pactl} set-sink-volume @DEFAULT_SINK@ -1%";
 
         "XF86AudioPlay" = "exec ${playerctl} play";
         "XF86AudioStop" = "exec ${playerctl} pause";
