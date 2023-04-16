@@ -35,6 +35,7 @@
       discord # Online Chat - UNSAFE
       obsidian # Note-taking - UNSAFE
       gimp # Image editing
+      unstable.ani-cli
 
       ### Utils ###
       gparted # Partition Management
