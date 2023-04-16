@@ -14,6 +14,7 @@
     # Terminal
     ./alacritty
     ./bash.nix
+    ./readline.nix
 
     # Editor
     ./vscode
