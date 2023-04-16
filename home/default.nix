@@ -7,8 +7,11 @@
     ./gtk
     ./feh-bg
 
+    ./user-dirs.nix
+
     # Terminal
     ./alacritty
+    ./bash
 
     # Editor
     ./vscode
@@ -17,7 +20,7 @@
     # Other
     ./git
     ./gpg
-    ./bash
+    ./firefox
   ];
 
 
@@ -27,7 +30,6 @@
     packages = with pkgs; [
 
       ### User stuff ###
-      firefox # Browser
       discord # Online Chat - UNSAFE
       obsidian # Note-taking - UNSAFE
       gimp # Image editing
@@ -45,7 +47,6 @@
       ntfs3g # NTFS Filesystem Support
       ripgrep # telescope.nvim support for grep
       xclip # Clipboard support (for synced neovim clipboard)
-      acpilight
 
       ### Languages ###
 

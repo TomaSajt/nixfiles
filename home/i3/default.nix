@@ -4,6 +4,7 @@ let
   i3lock-fancy = "${pkgs.i3lock-fancy}/bin/i3lock-fancy";
   alacritty = "${config.programs.alacritty.package}/bin/alacritty";
   rofi = "${config.programs.rofi.finalPackage}/bin/rofi";
+  firefox = "${config.programs.firefox.package}/bin/firefox";
   amixer = "${pkgs.alsa-utils}/bin/amixer";
   playerctl = "${config.services.playerctld.package}/bin/playerctl";
   xbacklight = "${pkgs.acpilight}/bin/xbacklight";
@@ -102,7 +103,7 @@ in
         "${mod}+Shift+8" = "move container to workspace number 8";
         "${mod}+Shift+9" = "move container to workspace number 9";
 
-        "${mod}+mod2+KP_1" = "exec firefox";
+        "${mod}+mod2+KP_1" = "exec ${firefox}";
         "${mod}+mod2+KP_2" = "exec --no-startup-id ${rofi} -show calc -modi calc -no-show-match -no-sort";
 
         "${mod}+Shift+c" = "reload";

@@ -1,8 +1,9 @@
 { inputs, pkgs, ... }:
 {
 
+  system.stateVersion = "22.11";
+
   imports = [
-    inputs.home-manager.nixosModules.home-manager
     ./package-debug.nix
   ];
 
@@ -19,18 +20,13 @@
     ];
   };
 
-  home-manager = {
-    useGlobalPkgs = true;
-    useUserPackages = true;
-    users.toma.imports = [ ./home ];
-  };
-
   users.users.toma = {
     isNormalUser = true;
     description = "Toma";
     uid = 1000;
     extraGroups = [ "networkmanager" "wheel" "transmission" ];
   };
+
 
   nix = {
     settings = {
@@ -64,21 +60,13 @@
     };
   };
 
-  # Secrets management or something
-  services.gnome.gnome-keyring.enable = true;
-  programs.seahorse.enable = true;
-
-  # Enable networking
-  networking.networkmanager.enable = true;
-
-  # Some config support or something
-  programs.dconf.enable = true;
-
-  # Configure console keymap
-  console.keyMap = "hu101";
-
-  # Needed for udiskie to work (in home-manager configs)
-  services.udisks2.enable = true;
+  # List packages installed in system profile.
+  environment.systemPackages = with pkgs;[
+    git
+    vim
+    wget
+    unzip
+  ];
 
   services.xserver = {
     enable = true;
@@ -96,17 +84,24 @@
     };
   };
 
-  # List packages installed in system profile.
-  environment.systemPackages = with pkgs;[
-    git
-    vim
-    wget
-    unzip
-  ];
+  # Secrets management or something
+  services.gnome.gnome-keyring.enable = true;
+  programs.seahorse.enable = true;
+
+  # Enable networking
+  networking.networkmanager.enable = true;
+
+  # Some config support or something
+  programs.dconf.enable = true;
+
+  # Some kind of accessibility thingy, makes a waring go away
+  services.gnome.at-spi2-core.enable = true;
+
+  # Needed for udiskie to work (in home-manager configs)
+  services.udisks2.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
 
   # Enable sound with pipewire.
   sound.enable = true;
@@ -126,24 +121,9 @@
     ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
   '';
 
-  # Bootloader
-  boot.loader = {
-    grub = {
-      theme = pkgs.nixos-grub2-theme;
-    };
-    efi = {
-      canTouchEfiVariables = true;
-      efiSysMountPoint = "/boot/efi";
-    };
-    systemd-boot.enable = true;
-  };
 
-  time = {
-    timeZone = "Europe/Budapest";
-    # For Windows and Linux to have synced time
-    hardwareClockInLocalTime = true;
-  };
-
+  # Locale stuff
+  console.keyMap = "hu101";
   i18n = {
     defaultLocale = "en_US.UTF-8";
     extraLocaleSettings =
@@ -161,6 +141,27 @@
         LC_TIME = HU;
       };
   };
+  time = {
+    timeZone = "Europe/Budapest";
+    # For Windows and Linux to have synced time
+    hardwareClockInLocalTime = true;
+  };
 
-  system.stateVersion = "22.11";
+
+  # Bootloader
+  boot.loader = {
+    grub = {
+      theme = pkgs.nixos-grub2-theme;
+    };
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot/efi";
+    };
+    systemd-boot.enable = true;
+  };
+
+
+
+
+
 }

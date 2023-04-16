@@ -1,7 +1,8 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-22.11";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = github:NixOS/nixpkgs/nixos-22.11;
+    nixpkgs-unstable.url = github:NixOS/nixpkgs/nixpkgs-unstable;
+    nur.url = github:nix-community/NUR;
 
     home-manager = {
       url = "github:rycee/home-manager/master";
@@ -18,6 +19,7 @@
         config.allowUnfree = true;
         overlays = [
           unstableOverlay
+          inputs.nur.overlay
           (import ./overlay)
         ];
       };
@@ -38,14 +40,20 @@
         inherit system;
         inherit specialArgs;
         modules = [
+          path # per-host system config
+          ./. # global system config
+          inputs.nur.nixosModules.nur
+          inputs.home-manager.nixosModules.home-manager
+          # Extra setup
           {
-            imports = [
-              path # per-host system config
-              ./. # global system config
-            ];
             networking.hostName = lib.mkDefault (builtins.baseNameOf path);
             nixpkgs.pkgs = pkgs;
-            home-manager.extraSpecialArgs = specialArgs;
+            home-manager = {
+              extraSpecialArgs = specialArgs;
+              useGlobalPkgs = true;
+              useUserPackages = true;
+              users.toma.imports = [ ./home ];
+            };
           }
         ];
       };
