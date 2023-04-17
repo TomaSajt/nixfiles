@@ -14,6 +14,11 @@
       arcensoth.language-mcfunction
       arrterian.nix-env-selector
     ];
+    userSettings = {
+      "emmet.includeLanguages" = {
+        "django-html" = "html";
+      };
+    };
   };
 }
 
