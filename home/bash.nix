@@ -9,8 +9,8 @@
       sdn = "shutdown now";
       nv = "nvim";
     };
-    sessionVariables = {
-      PS1 = ''\[\033[1;32m\]\w \$ \[\033[0m\]'';
-    };
+    initExtra = ''
+      export PS1="\[\033[1;32m\]\w \$ \[\033[0m\]"
+    '';
   };
 }
