@@ -24,7 +24,12 @@
     isNormalUser = true;
     description = "Toma";
     uid = 1000;
-    extraGroups = [ "networkmanager" "wheel" "transmission" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "transmission"
+      "docker"
+    ];
   };
 
 
@@ -102,6 +107,9 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
+
+  # Enable Docker
+  virtualization.docker.enable = true;
 
   # Enable sound with pipewire.
   sound.enable = true;
