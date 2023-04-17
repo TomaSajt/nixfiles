@@ -5,6 +5,7 @@ let
   alacritty = "${config.programs.alacritty.package}/bin/alacritty";
   rofi = "${config.programs.rofi.finalPackage}/bin/rofi";
   firefox = "${config.programs.firefox.package}/bin/firefox";
+  firefoxDir = "${config.home.homeDirectory}/.mozilla/firefox";
   playerctl = "${config.services.playerctld.package}/bin/playerctl";
   xbacklight = "${pkgs.acpilight}/bin/xbacklight";
   pactl = "${pkgs.pulseaudio}/bin/pactl";
@@ -104,8 +105,10 @@ in
         "${mod}+Shift+8" = "move container to workspace number 8";
         "${mod}+Shift+9" = "move container to workspace number 9";
 
-        "${mod}+mod2+KP_1" = "exec ${firefox}";
-        "${mod}+mod2+KP_2" = "exec --no-startup-id ${rofi} -show calc -modi calc -no-show-match -no-sort";
+        # mod2+KP_N are the numpad keys
+        "${mod}+mod2+KP_1" = "exec ${firefox} --profile ${firefoxDir}/main" ;
+        "${mod}+mod2+KP_2" = "exec ${firefox} --profile ${firefoxDir}/school" ;
+        "${mod}+mod2+KP_3" = "exec --no-startup-id ${rofi} -show calc -modi calc -no-show-match -no-sort";
 
         "${mod}+Shift+c" = "reload";
         "${mod}+Shift+r" = "restart";
