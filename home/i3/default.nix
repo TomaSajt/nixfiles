@@ -1,7 +1,6 @@
 { pkgs, config, osConfig, ... }:
 let
   mod = "Mod4";
-  i3lock-fancy = "${pkgs.i3lock-fancy}/bin/i3lock-fancy";
   alacritty = "${config.programs.alacritty.package}/bin/alacritty";
   rofi = "${config.programs.rofi.finalPackage}/bin/rofi";
   firefox = "${config.programs.firefox.package}/bin/firefox";
@@ -24,14 +23,6 @@ in
   services.udiskie = {
     enable = true;
     tray = "always";
-  };
-
-  services.screen-locker = {
-    enable = true;
-    lockCmd = "${i3lock-fancy}";
-    xss-lock = {
-      screensaverCycle = 300;
-    };
   };
 
   xsession.windowManager.i3 = {
@@ -106,8 +97,8 @@ in
         "${mod}+Shift+9" = "move container to workspace number 9";
 
         # mod2+KP_N are the numpad keys
-        "${mod}+mod2+KP_1" = "exec ${firefox} --profile ${firefoxDir}/main" ;
-        "${mod}+mod2+KP_2" = "exec ${firefox} --profile ${firefoxDir}/school" ;
+        "${mod}+mod2+KP_1" = "exec ${firefox} --profile ${firefoxDir}/main";
+        "${mod}+mod2+KP_2" = "exec ${firefox} --profile ${firefoxDir}/school";
         "${mod}+mod2+KP_3" = "exec --no-startup-id ${rofi} -show calc -modi calc -no-show-match -no-sort";
 
         "${mod}+Shift+c" = "reload";

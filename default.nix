@@ -109,7 +109,10 @@
   services.printing.enable = true;
 
   # Enable Docker
-  virtualization.docker.enable = true;
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
+  };
 
   # Enable sound with pipewire.
   sound.enable = true;

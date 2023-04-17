@@ -3,6 +3,7 @@
   imports = [
     # Desktop
     ./i3
+    ./xidlehook.nix
     ./feh-bg
     ./rofi.nix
 
