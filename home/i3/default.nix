@@ -11,19 +11,10 @@ let
 
 in
 {
-  imports = [ ./status.nix ];
+  imports = [ ./extras.nix ./status.nix ];
 
-  services.network-manager-applet.enable = true;
-  services.pasystray.enable = true;
-  services.picom.enable = true;
-  services.playerctld.enable = true;
-  xsession.numlock.enable = true;
   xsession.enable = true;
-
-  services.udiskie = {
-    enable = true;
-    tray = "always";
-  };
+  xsession.numlock.enable = true;
 
   xsession.windowManager.i3 = {
     enable = true;
@@ -33,6 +24,8 @@ in
       exec_always dbus-update-activation-environment --all
     '';
     config = {
+      modifier = mod;
+      workspaceAutoBackAndForth = true;
       fonts = {
         names = [ "monospace" ];
         style = "Bold";
@@ -122,6 +115,17 @@ in
         "XF86MonBrightnessUp" = "exec ${xbacklight} -inc 10";
         "XF86MonBrightnessDown" = "exec ${xbacklight} -dec 10";
       };
+      modes = {
+        resize = {
+          "${mod}+r" = "mode default";
+          "Escape" = "mode default";
+          "Return" = "mode default";
+          "Up" = "resize shrink height 10 px or 10 ppt";
+          "Right" = "resize grow width 10 px or 10 ppt";
+          "Down" = "resize grow height 10 px or 10 ppt";
+          "Left" = "resize shrink width 10 px or 10 ppt";
+        };
+      };
       bars = [
         {
           mode = "dock";
@@ -182,7 +186,6 @@ in
           }
         ];
       };
-
     };
   };
 }
