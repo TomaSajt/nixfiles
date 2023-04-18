@@ -38,8 +38,6 @@ vim.opt.colorcolumn = "80"
 require('config.telescope')
 require('config.treesitter')
 require('config.harpoon')
-require('config.undotree')
-require('config.fugitive')
 require('config.lsp')
 require('config.keymap')
 
