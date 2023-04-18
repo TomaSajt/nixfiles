@@ -5,8 +5,8 @@
     documents = "${config.home.homeDirectory}/documents";
     download = "${config.home.homeDirectory}/downloads";
     pictures = "${config.home.homeDirectory}/images";
-    videos = "${config.home.homeDirectory}/videos";
-    desktop = null;
+    desktop = "${config.home.homeDirectory}/desktop";
+    videos = null;
     music = null;
     publicShare = null;
     templates = null;

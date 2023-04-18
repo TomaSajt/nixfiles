@@ -28,7 +28,6 @@
       "networkmanager"
       "wheel"
       "transmission"
-      "docker"
     ];
   };
 
@@ -107,12 +106,6 @@
 
   # Enable CUPS to print documents.
   services.printing.enable = true;
-
-  # Enable Docker
-  virtualisation.docker.rootless = {
-    enable = true;
-    setSocketVariable = true;
-  };
 
   # Enable sound with pipewire.
   sound.enable = true;
