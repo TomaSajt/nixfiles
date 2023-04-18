@@ -34,10 +34,11 @@
     packages = with pkgs; [
 
       ### User stuff ###
-      discord # Online Chat - UNSAFE
-      obsidian # Note-taking - UNSAFE
+      discord # Online Chat - UNFREE
+      obsidian # Note-taking - UNFREE
       gimp # Image editing
-      unstable.ani-cli
+      unstable.osu-lazer # Rythm moment - UNFREE
+      unstable.ani-cli # Anime moment
 
       ### Utils ###
       gparted # Partition Management

@@ -4,7 +4,6 @@
     shellAliases = {
       snrs = "sudo nixos-rebuild switch";
       ls = "ls --group-directories-first --color=auto";
-      ll = "ls -la";
       code = "codium";
       sdn = "shutdown now";
       nv = "nvim";
