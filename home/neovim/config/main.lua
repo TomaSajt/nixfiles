@@ -1,19 +1,48 @@
+vim.g.mapleader = " "
 
-vim.keymap.set('n', '<leader>ff', '<cmd>Telescope find_files<cr>')
-vim.keymap.set('n', '<leader>fg', '<cmd>Telescope live_grep<cr>')
-vim.keymap.set('n', '<leader>fb', '<cmd>Telescope buffers<cr>')
-vim.keymap.set('n', '<leader>fh', '<cmd>Telescope help_tags<cr>')
+vim.cmd.colorscheme("monokai")
 
+-- Allow background transparency
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
-vim.cmd("colorscheme monokai")
-vim.cmd("hi NormalFloat ctermfg=LightGrey")
-
-vim.opt.number = true                   -- Hybrid line numbers
+-- Hybrid line numbers
+vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.signcolumn = "yes"              -- Always have space before line numbers for markers
-vim.opt.colorcolumn = "100"             -- Vertical bar to signal optimal line length
-vim.opt.shiftwidth = 4                  -- Tab-space count
-vim.opt.clipboard:append("unnamedplus") -- Clipboard sync with os (using xclip)
+
+-- Always have space before line numbers for markers
+vim.opt.signcolumn = "yes"
+
+-- Sync clipboard with os (using xclip)
+vim.opt.clipboard:append("unnamedplus")
+
+-- Tab settings
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.expandtab = true
+
+
+vim.opt.wrap = false
+
+vim.opt.hlsearch = false
+vim.opt.incsearch = true
+
+vim.opt.scrolloff = 8
+
+vim.opt.updatetime = 50
+
+vim.opt.colorcolumn = "80"
+
+
+require('config.telescope')
+require('config.treesitter')
+require('config.harpoon')
+require('config.undotree')
+require('config.fugitive')
+require('config.lsp')
+require('config.keymap')
+
 
 require("config.statusline")
 vim.cmd("set statusline=%!v:lua.MyStatusLine()")
@@ -21,10 +50,7 @@ vim.cmd("set statusline=%!v:lua.MyStatusLine()")
 require("nvim-autopairs").setup {}
 
 require("indent_blankline").setup {
-	space_char_blankline = " ",
-	show_current_context = true,
-	show_current_context_start = true,
+    space_char_blankline = " ",
+    show_current_context = true,
+    show_current_context_start = true,
 }
-
-require("config.lspconfig")
-

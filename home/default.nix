@@ -58,7 +58,6 @@
       # NodeJS
       nodejs
       nodePackages.pnpm # npm alternative
-      nodePackages.typescript-language-server
 
       # Dotnet - C#/F#
       dotnet-sdk
@@ -66,14 +65,11 @@
 
       # Python
       python311
-      nodePackages.pyright
 
       # Lua
       lua
-      (pkgs.unstable.lua-language-server)
 
       # Nix
-      rnix-lsp
     ];
   };
 }
