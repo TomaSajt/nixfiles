@@ -1,6 +1,7 @@
 vim.g.mapleader = " "
 
 vim.cmd.colorscheme("monokai")
+vim.lsp.set_log_level("debug")
 
 -- Allow background transparency
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })

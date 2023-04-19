@@ -2,7 +2,7 @@
 {
 
   xdg.configFile."nvim/lua/config".source = ./config;
-  
+
   home.packages = with pkgs; [
     unstable.lua-language-server
     rust-analyzer
@@ -12,6 +12,7 @@
     nodePackages_latest.typescript-language-server
     nodePackages_latest.pyright
     nodePackages_latest.svelte-language-server
+    nodePackages_latest.vscode-langservers-extracted
   ];
 
   programs.neovim = {
