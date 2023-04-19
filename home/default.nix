@@ -61,16 +61,11 @@
       nodePackages.pnpm # npm alternative
 
       # Dotnet - C#/F#
-      dotnet-sdk
-      omnisharp-roslyn # Language Server
+      unstable.dotnet-sdk
 
       # Python
       python311
 
-      # Lua
-      lua
-
-      # Nix
     ];
   };
 }
