@@ -22,12 +22,18 @@
     plugins = with pkgs.vimPlugins; [
       vim-nix
 
+      nvim-web-devicons
+      vim-monokai
+
+      indent-blankline-nvim
+
+      nvim-autopairs
+
       plenary-nvim
       telescope-nvim
       telescope-fzf-native-nvim
       telescope-file-browser-nvim
 
-      nvim-treesitter.withAllGrammars
       harpoon
       undotree
       vim-fugitive
@@ -42,13 +48,9 @@
       luasnip
       pkgs.unstable.vimPlugins.lsp-zero-nvim
 
-      nvim-web-devicons
-      vim-monokai
-
-      indent-blankline-nvim
-
-      nvim-autopairs
-
+      (pkgs.unstable.vimPlugins.nvim-treesitter.withPlugins
+        (import ./treesitter-grammars.nix)
+      )
 
     ];
 

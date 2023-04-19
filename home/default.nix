@@ -53,8 +53,12 @@
       ntfs3g # NTFS Filesystem Support
       ripgrep # telescope.nvim support for grep
       xclip # Clipboard support (for synced neovim clipboard)
+      fd # `find` alternative (used for neovim)
 
       ### Languages ###
+
+      # C++
+      gcc
 
       # NodeJS
       nodejs
