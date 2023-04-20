@@ -8,6 +8,7 @@ let
   playerctl = "${config.services.playerctld.package}/bin/playerctl";
   xbacklight = "${pkgs.acpilight}/bin/xbacklight";
   pactl = "${pkgs.pulseaudio}/bin/pactl";
+  i3status-rs = "${config.programs.i3status-rust.package}/bin/i3status-rs";
 
 in
 {
@@ -134,7 +135,7 @@ in
           position = "top";
           workspaceButtons = true;
           workspaceNumbers = true;
-          statusCommand = "i3status-rs ${config.xdg.configHome}/i3status-rust/config-default.toml";
+          statusCommand = "${i3status-rs} ${config.xdg.configHome}/i3status-rust/config-default.toml";
           fonts = {
             names = [ "monospace" ];
             size = 11.0;
