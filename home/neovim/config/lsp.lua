@@ -1,20 +1,23 @@
+vim.diagnostic.config({ virtual_text = false })
+
 local lsp = require('lsp-zero').preset({
     float_border = 'rounded',
     call_servers = 'global',
     configure_diagnostics = true,
     setup_servers_on_start = false,
-    set_lsp_keymaps = {
-        preserve_mappings = false,
-        omit = {},
-    },
     manage_nvim_cmp = {
         set_sources = 'recommended',
         set_basic_mappings = true,
-        set_extra_mappings = false,
+        set_extra_mappings = true,
         use_luasnip = true,
         set_format = true,
         documentation_window = true,
     },
+})
+
+
+lsp.default_keymaps({
+    preserve_mappings = false
 })
 
 lsp.on_attach(function(_, bufnr)
