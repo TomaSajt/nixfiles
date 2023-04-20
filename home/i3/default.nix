@@ -20,23 +20,9 @@ in
   xsession.windowManager.i3 = {
     enable = true;
     package = osConfig.services.xserver.windowManager.i3.package;
-    extraConfig = ''
-      # this is required for gnome-keyring/libsecret/seahorse to work
-      exec_always dbus-update-activation-environment --all
-    '';
     config = {
       modifier = mod;
       workspaceAutoBackAndForth = true;
-      fonts = {
-        names = [ "monospace" ];
-        style = "Bold";
-        size = 11.0;
-      };
-      gaps = {
-        outer = 5;
-        inner = 20;
-        smartGaps = true;
-      };
       keybindings = {
         "${mod}+Return" = "exec ${alacritty}";
         "${mod}+Shift+q" = "kill";
@@ -128,6 +114,24 @@ in
           "Left" = "resize shrink width 10 px or 10 ppt";
         };
       };
+      fonts = {
+        names = [ "monospace" ];
+        style = "Bold";
+        size = 11.0;
+      };
+      gaps = {
+        outer = 5;
+        inner = 20;
+        smartGaps = true;
+      };
+      startup = [
+        # this is required for gnome-keyring/libsecret/seahorse to work
+        {
+          command = "dbus-update-activation-environment --all";
+          always = true;
+          notification = false;
+        }
+      ];
       bars = [
         {
           mode = "dock";
@@ -182,9 +186,7 @@ in
         commands = [
           {
             command = "resize set 500 500";
-            criteria = {
-              class = "Pavucontrol";
-            };
+            criteria = { class = "Pavucontrol"; };
           }
         ];
       };
