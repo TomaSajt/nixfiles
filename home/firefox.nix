@@ -50,6 +50,7 @@
             ublock-origin
             bitwarden
             darkreader
+            sponsorblock
           ];
           settings = {
             # Don't show warning when viewing about:config
