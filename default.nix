@@ -91,6 +91,7 @@
   # Secrets management or something
   services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true;
+  services.xserver.updateDbusEnvironment = true;
 
   # Enable networking
   networking.networkmanager.enable = true;
@@ -128,23 +129,26 @@
 
   # Locale stuff
   console.keyMap = "hu101";
-  i18n = {
-    defaultLocale = "en_US.UTF-8";
-    extraLocaleSettings =
-      let HU = "hu_HU.UTF-8";
-      in
-      {
-        LC_ADDRESS = HU;
-        LC_IDENTIFICATION = HU;
-        LC_MEASUREMENT = HU;
-        LC_MONETARY = HU;
-        LC_NAME = HU;
-        LC_NUMERIC = HU;
-        LC_PAPER = HU;
-        LC_TELEPHONE = HU;
-        LC_TIME = HU;
-      };
-  };
+  i18n =
+    let
+      HU = "hu_HU.UTF-8";
+      EN = "en_US.UTF-8";
+    in
+    {
+      defaultLocale = EN;
+      extraLocaleSettings =
+        {
+          LC_NUMERIC = EN;
+          LC_ADDRESS = HU;
+          LC_IDENTIFICATION = HU;
+          LC_MEASUREMENT = HU;
+          LC_MONETARY = HU;
+          LC_NAME = HU;
+          LC_PAPER = HU;
+          LC_TELEPHONE = HU;
+          LC_TIME = HU;
+        };
+    };
   time = {
     timeZone = "Europe/Budapest";
     # For Windows and Linux to have synced time

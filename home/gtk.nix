@@ -17,6 +17,7 @@
     };
     gtk3.extraConfig = {
       gtk-application-prefer-dark-theme = 1;
+      gtk-cursor-theme-size = 0;
     };
   };
 }

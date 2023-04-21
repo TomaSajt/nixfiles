@@ -24,7 +24,7 @@ in
       modifier = mod;
       workspaceAutoBackAndForth = true;
       keybindings = {
-        "${mod}+Return" = "exec ${alacritty}";
+        "${mod}+Return" = "exec --no-startup-id ${alacritty}";
         "${mod}+Shift+q" = "kill";
         "${mod}+d" = "exec --no-startup-id \"${rofi} -show combi -combi-modes 'window,run,drun' -modes combi\"";
 
@@ -124,14 +124,6 @@ in
         inner = 20;
         smartGaps = true;
       };
-      startup = [
-        # this is required for gnome-keyring/libsecret/seahorse to work
-        {
-          command = "dbus-update-activation-environment --all";
-          always = true;
-          notification = false;
-        }
-      ];
       bars = [
         {
           mode = "dock";
@@ -177,19 +169,12 @@ in
           };
         }
       ];
-      floating = {
-        criteria = [
-          { class = "Pavucontrol"; }
-        ];
-      };
-      window = {
-        commands = [
-          {
-            command = "resize set 500 500";
-            criteria = { class = "Pavucontrol"; };
-          }
-        ];
-      };
+      focus.followMouse = false;
+      floating.criteria = [{ class = "Pavucontrol"; }];
+      window.commands = [{
+        command = "resize set 500 500";
+        criteria = { class = "Pavucontrol"; };
+      }];
     };
   };
 }
