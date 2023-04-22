@@ -31,10 +31,8 @@
 
   home-manager.users.toma = {
     home.packages = with pkgs; [
-      (lutris.override {
-        extraPkgs = pkgs: [
-        ];
-      })
+      heroic
+      steam
     ];
   };
 }

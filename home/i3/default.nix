@@ -22,7 +22,6 @@ in
     package = osConfig.services.xserver.windowManager.i3.package;
     config = {
       modifier = mod;
-      workspaceAutoBackAndForth = true;
       keybindings = {
         "${mod}+Return" = "exec --no-startup-id ${alacritty}";
         "${mod}+Shift+q" = "kill";
