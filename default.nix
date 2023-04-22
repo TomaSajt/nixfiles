@@ -91,7 +91,6 @@
   # Secrets management or something
   services.gnome.gnome-keyring.enable = true;
   programs.seahorse.enable = true;
-  services.xserver.updateDbusEnvironment = true;
 
   # Enable networking
   networking.networkmanager.enable = true;

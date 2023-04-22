@@ -123,6 +123,14 @@ in
         inner = 20;
         smartGaps = true;
       };
+      startup = [
+        # this is required for gnome-keyring/libsecret/seahorse to work
+        {
+          command = "dbus-update-activation-environment --all";
+          always = true;
+          notification = false;
+        }
+      ];
       bars = [
         {
           mode = "dock";
