@@ -177,7 +177,10 @@ in
         }
       ];
       focus.followMouse = false;
-      floating.criteria = [{ class = "Pavucontrol"; }];
+      floating = {
+        criteria = [{ class = "Pavucontrol"; }];
+        modifier = "Mod1";
+      };
       window.commands = [{
         command = "resize set 500 500";
         criteria = { class = "Pavucontrol"; };

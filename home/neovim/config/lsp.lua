@@ -42,8 +42,10 @@ local lspconfig = require('lspconfig')
 
 lspconfig.lua_ls.setup(lsp.defaults.nvim_workspace())
 
+local pid = vim.fn.getpid()
+
 lspconfig.omnisharp.setup {
-    cmd = { "OmniSharp" },
+    cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(pid) },
     organize_imports_on_format = false,
     enable_import_completion = false,
 }

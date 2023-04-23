@@ -41,7 +41,7 @@
         discord # Online Chat - UNFREE
         obsidian # Note-taking - UNFREE
         gimp # Image editing
-        unstable.osu-lazer # Rythm moment - UNFREE
+        unstable.osu-lazer-bin # Rythm moment - UNFREE
         unstable.ani-cli # Anime moment
 
         ### Utils ###
@@ -70,7 +70,7 @@
         nodePackages.pnpm # npm alternative
 
         # Dotnet - C#/F#
-        unstable.dotnet-sdk
+        dotnet-sdk
 
         # Python
         python311
