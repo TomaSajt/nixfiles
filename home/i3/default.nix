@@ -3,12 +3,14 @@ let
   mod = "Mod4";
   alacritty = "${config.programs.alacritty.package}/bin/alacritty";
   rofi = "${config.programs.rofi.finalPackage}/bin/rofi";
+  rofimoji = "${pkgs.rofimoji}/bin/rofimoji";
   firefox = "${config.programs.firefox.package}/bin/firefox";
-  firefoxDir = "${config.home.homeDirectory}/.mozilla/firefox";
+  firefox-dir = "${config.home.homeDirectory}/.mozilla/firefox";
   playerctl = "${config.services.playerctld.package}/bin/playerctl";
   xbacklight = "${pkgs.acpilight}/bin/xbacklight";
   pactl = "${pkgs.pulseaudio}/bin/pactl";
   i3status-rs = "${config.programs.i3status-rust.package}/bin/i3status-rs";
+  i3status-rs-dir = "${config.xdg.configHome}/i3status-rust";
   gnome-screenshot = "${pkgs.gnome.gnome-screenshot}/bin/gnome-screenshot";
 in
 {
@@ -25,7 +27,9 @@ in
       keybindings = {
         "${mod}+Return" = "exec --no-startup-id ${alacritty}";
         "${mod}+Shift+q" = "kill";
+
         "${mod}+d" = "exec --no-startup-id \"${rofi} -show combi -combi-modes 'window,run,drun' -modes combi\"";
+        "${mod}+period" = "exec --no-startup-id ${rofimoji}";
 
         "${mod}+Left" = "focus left";
         "${mod}+Down" = "focus down";
@@ -77,8 +81,8 @@ in
         "${mod}+Shift+9" = "move container to workspace number 9";
 
         # mod2+KP_N are the numpad keys
-        "${mod}+mod2+KP_1" = "exec ${firefox} --profile ${firefoxDir}/main";
-        "${mod}+mod2+KP_2" = "exec ${firefox} --profile ${firefoxDir}/school";
+        "${mod}+mod2+KP_1" = "exec ${firefox} --profile ${firefox-dir}/main";
+        "${mod}+mod2+KP_2" = "exec ${firefox} --profile ${firefox-dir}/school";
         "${mod}+mod2+KP_3" = "exec --no-startup-id ${rofi} -show calc -modi calc -no-show-match -no-sort";
 
         "${mod}+Shift+c" = "reload";
@@ -101,8 +105,10 @@ in
 
         "XF86MonBrightnessUp" = "exec ${xbacklight} -inc 10";
         "XF86MonBrightnessDown" = "exec ${xbacklight} -dec 10";
+
         "Print" = "exec ${gnome-screenshot} -i";
         "${mod}+Print" = "exec ${gnome-screenshot} -a";
+
       };
       modes = {
         resize = {
@@ -140,7 +146,7 @@ in
           position = "top";
           workspaceButtons = true;
           workspaceNumbers = true;
-          statusCommand = "${i3status-rs} ${config.xdg.configHome}/i3status-rust/config-default.toml";
+          statusCommand = "${i3status-rs} ${i3status-rs-dir}/config-default.toml";
           fonts = {
             names = [ "monospace" ];
             size = 11.0;
