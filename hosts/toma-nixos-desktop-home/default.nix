@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
   imports = [
     ./hardware-configuration.nix
   ];
@@ -30,9 +30,12 @@
   services.xserver.videoDrivers = [ "nvidia" ];
 
   home-manager.users.toma = {
+    # Turn off the default screen-tearing fix
+    services.picom.vSync = lib.mkForce false;
     home.packages = with pkgs; [
       heroic
       steam
     ];
+
   };
 }

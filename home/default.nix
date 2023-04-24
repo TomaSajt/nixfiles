@@ -3,13 +3,13 @@
   imports = [
     # Desktop
     ./i3
+    ./picom.nix
+    ./autorandr.nix
     ./xidlehook.nix
+
     ./feh-bg
     ./rofi.nix
 
-    ./autorandr.nix
-
-    ./user-dirs.nix
     ./gtk.nix
 
     # Terminal
@@ -25,6 +25,7 @@
     ./gpg
     ./git.nix
     ./firefox.nix
+    ./user-dirs.nix
   ];
 
 
