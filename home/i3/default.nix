@@ -9,7 +9,7 @@ let
   xbacklight = "${pkgs.acpilight}/bin/xbacklight";
   pactl = "${pkgs.pulseaudio}/bin/pactl";
   i3status-rs = "${config.programs.i3status-rust.package}/bin/i3status-rs";
-
+  gnome-screenshot = "${pkgs.gnome.gnome-screenshot}/bin/gnome-screenshot";
 in
 {
   imports = [ ./extras.nix ./status.nix ];
@@ -101,6 +101,8 @@ in
 
         "XF86MonBrightnessUp" = "exec ${xbacklight} -inc 10";
         "XF86MonBrightnessDown" = "exec ${xbacklight} -dec 10";
+        "Print" = "exec ${gnome-screenshot} -i";
+        "${mod}+Print" = "exec ${gnome-screenshot} -a";
       };
       modes = {
         resize = {
