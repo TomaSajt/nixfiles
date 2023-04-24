@@ -8,7 +8,6 @@
 
   # Compositor (for transparency)
   services.picom.enable = true;
-  services.picom.vSync = true;
 
   # For the player keys to properly work (maybe)
   services.playerctld.enable = true;
