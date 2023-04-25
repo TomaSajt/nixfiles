@@ -81,11 +81,6 @@
     displayManager.defaultSession = "none+i3";
     layout = "hu";
     xkbVariant = "";
-    # Enable touchpad support (with natural scrolling)
-    libinput = {
-      enable = true;
-      touchpad.naturalScrolling = true;
-    };
   };
 
   # Secrets management or something
@@ -166,9 +161,4 @@
     };
     systemd-boot.enable = true;
   };
-
-
-
-
-
 }

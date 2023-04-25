@@ -58,6 +58,9 @@ in
         "${mod}+Shift+minus" = "move scratchpad";
         "${mod}+minus" = "scratchpad show";
 
+        "${mod}+Tab" = "workspace next";
+        "${mod}+Shift+Tab" = "workspace prev";
+
         "${mod}+0" = "workspace number 0";
         "${mod}+1" = "workspace number 1";
         "${mod}+2" = "workspace number 2";
