@@ -8,8 +8,4 @@
     enable = true;
     touchpad.naturalScrolling = true;
   };
-
-  home-manager.users.toma = {
-    services.picom.vSync = true;
-  };
 }
