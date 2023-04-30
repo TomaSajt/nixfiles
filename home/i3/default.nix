@@ -189,7 +189,10 @@ in
       ];
       focus.followMouse = false;
       floating = {
-        criteria = [{ class = "Pavucontrol"; }];
+        criteria = [
+          { title = "Steam - Update News"; }
+          { class = "Pavucontrol"; }
+        ];
         modifier = "Mod1";
       };
       window.commands = [{
