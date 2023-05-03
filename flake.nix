@@ -8,6 +8,11 @@
       url = "github:rycee/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    fenix = {
+      url = "github:nix-community/fenix";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   outputs = inputs:
@@ -27,6 +32,9 @@
         unstable = import inputs.nixpkgs-unstable {
           inherit system;
           config.allowUnfree = true;
+          overlays = [
+            inputs.fenix.overlays.default
+          ];
         };
       };
 

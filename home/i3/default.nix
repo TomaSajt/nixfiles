@@ -94,23 +94,23 @@ in
 
         "${mod}+r" = "mode resize";
 
-        "XF86AudioMute" = "exec ${pactl} set-sink-mute @DEFAULT_SINK@ toggle";
-        "XF86AudioRaiseVolume" = "exec ${pactl} set-sink-volume @DEFAULT_SINK@ +5%";
-        "XF86AudioLowerVolume" = "exec ${pactl} set-sink-volume @DEFAULT_SINK@ -5%";
-        "${mod}+XF86AudioRaiseVolume" = "exec ${pactl} set-sink-volume @DEFAULT_SINK@ +1%";
-        "${mod}+XF86AudioLowerVolume" = "exec ${pactl} set-sink-volume @DEFAULT_SINK@ -1%";
+        "XF86AudioMute" = "exec --no-startup-id ${pactl} set-sink-mute @DEFAULT_SINK@ toggle";
+        "XF86AudioRaiseVolume" = "exec --no-startup-id ${pactl} set-sink-volume @DEFAULT_SINK@ +5%";
+        "XF86AudioLowerVolume" = "exec --no-startup-id ${pactl} set-sink-volume @DEFAULT_SINK@ -5%";
+        "${mod}+XF86AudioRaiseVolume" = "exec --no-startup-id ${pactl} set-sink-volume @DEFAULT_SINK@ +1%";
+        "${mod}+XF86AudioLowerVolume" = "exec --no-startup-id ${pactl} set-sink-volume @DEFAULT_SINK@ -1%";
 
-        "XF86AudioPlay" = "exec ${playerctl} play";
-        "XF86AudioStop" = "exec ${playerctl} pause";
-        "XF86AudioPause" = "exec ${playerctl} play-pause";
-        "XF86AudioNext" = "exec ${playerctl} next";
-        "XF86AudioPrev" = "exec ${playerctl} previous";
+        "XF86AudioPlay" = "exec --no-startup-id ${playerctl} play";
 
-        "XF86MonBrightnessUp" = "exec ${xbacklight} -inc 10";
-        "XF86MonBrightnessDown" = "exec ${xbacklight} -dec 10";
+        "XF86AudioStop" = "exec --no-startup-id ${playerctl} pause";
+        "XF86AudioPause" = "exec --no-startup-id ${playerctl} play-pause";
+        "XF86AudioNext" = "exec --no-startup-id ${playerctl} next";
+        "XF86AudioPrev" = "exec --no-startup-id ${playerctl} previous";
 
-        "Print" = "exec ${gnome-screenshot} -i";
-        "${mod}+Print" = "exec ${gnome-screenshot} -a";
+        "XF86MonBrightnessUp" = "exec --no-startup-id ${xbacklight} -inc 10";
+        "XF86MonBrightnessDown" = "exec --no-startup-id ${xbacklight} -dec 10";
+
+        "${mod}+Print" = "exec ${gnome-screenshot} -i";
 
       };
       modes = {
@@ -193,7 +193,6 @@ in
           { title = "Steam - Update News"; }
           { class = "Pavucontrol"; }
         ];
-        modifier = "Mod1";
       };
       window.commands = [{
         command = "resize set 500 500";

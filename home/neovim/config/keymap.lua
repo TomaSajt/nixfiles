@@ -2,6 +2,10 @@
 -- Open netrw
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
+-- When indenting keep the selection
+vim.keymap.set("v", "<", "<gv")
+vim.keymap.set("v", ">", ">gv")
+
 -- Move lines in visual mode up and down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
