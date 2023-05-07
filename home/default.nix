@@ -7,6 +7,8 @@
     ./autorandr.nix
     ./xidlehook.nix
 
+    ./polybar
+
     ./feh-bg
     ./rofi.nix
 
