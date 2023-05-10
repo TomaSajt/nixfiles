@@ -3,7 +3,7 @@
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
-    extensions = with pkgs.vscode-extensions; [
+    extensions = with pkgs.unstable.vscode-extensions; [
       svelte.svelte-vscode
       pkief.material-icon-theme
       ms-vscode.cpptools
@@ -14,11 +14,15 @@
       arcensoth.language-mcfunction
       arrterian.nix-env-selector
     ];
-    userSettings = {
+    /*
+      userSettings = {
       "emmet.includeLanguages" = {
-        "django-html" = "html";
+      "django-html" = "html";
       };
-    };
+      "svelte.enable-ts-plugin" = true;
+      "git.autofetch" = true;
+      };
+    */
   };
 }
 

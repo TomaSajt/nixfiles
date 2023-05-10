@@ -2,9 +2,7 @@
 {
   services.polybar = {
     enable = true;
-    package = pkgs.polybar.override {
-      pulseSupport = true;
-    };
+    package = pkgs.unstable.polybarFull;
     settings = import ./settings.nix;
     script = "polybar top &";
   };

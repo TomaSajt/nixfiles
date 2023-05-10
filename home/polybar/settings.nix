@@ -36,8 +36,8 @@ rec {
     font = [ "Monospace:style=Regular:size=10;2" ];
 
     modules = {
-      left = "xworkspaces xwindow";
-      right = "filesystem pulseaudio xkeyboard memory cpu wlan eth date";
+      left = /*xworkspaces xwindow*/ "i3";
+      right = "battery filesystem pulseaudio xkeyboard memory cpu wlan eth date";
     };
 
     cursor = {
@@ -67,6 +67,61 @@ rec {
       empty-padding = 1;
     };
   };
+
+  "module/i3" = {
+    type = "internal/i3";
+
+    strip-wsnumbers = false;
+
+    index-sort = false;
+
+    enable-click = true;
+
+    enable-scroll = true;
+
+    wrapping-scroll = true;
+
+    reverse-scroll = false;
+
+    fuzzy-match = true;
+
+    ws-icon-default = "";
+
+    format = "<label-state> <label-mode>";
+
+    format-padding = 1;
+
+    label-separator = "|";
+    label-separator-padding = 2;
+    label-separator-foreground = "#ffb52a";
+  };
+
+  "module/battery" = {
+    type = "internal/battery";
+    full-at = 100;
+    low-at = 10;
+    battery = "BAT0";
+    poll-interval = 5;
+
+    time-format = "%-Hh %-Mm";
+    format = {
+      charging = "<animation-charging> <label-charging>";
+      discharging = "<ramp-capacity> <label-discharging>";
+    };
+
+    label = {
+      charging = "%percentage%% (%time%)";
+      discharging = "%percentage%% (%time%)";
+      full = "Fully charged";
+      low = "BATTERY LOW %percentage%%";
+    };
+
+    ramp-capacity = [ " " " " " " " " " " ];
+
+    animation-charging = [ " " " " " " " " " " ];
+    animation-charging-framerate = 750;
+  };
+
   "module/xwindow" = {
     type = "internal/xwindow";
     label = "%title:0:60:...%";
@@ -77,7 +132,7 @@ rec {
     interval = 25;
     mount = [ "/" ];
     label = {
-      mounted = "%{F#F0C674}%mountpoint%%{F-} %percentage_used%%";
+      mounted = "%{F${colors.primary}}%mountpoint%%{F-} %percentage_used%%";
       unmounted = "%mountpoint% not mounted";
       unmounted-foreground = colors.disabled;
     };

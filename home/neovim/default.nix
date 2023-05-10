@@ -18,8 +18,9 @@
 
   programs.neovim = {
     enable = true;
+    package = pkgs.unstable.neovim-unwrapped;
 
-    plugins = with pkgs.vimPlugins; [
+    plugins = with pkgs.unstable.vimPlugins; [
       vim-nix
 
       nvim-web-devicons
@@ -38,7 +39,7 @@
       undotree
       vim-fugitive
 
-      pkgs.unstable.vimPlugins.nvim-lspconfig
+      nvim-lspconfig
       nvim-cmp
       cmp-buffer
       cmp-path
@@ -46,9 +47,9 @@
       cmp-nvim-lsp
       cmp-nvim-lua
       luasnip
-      pkgs.unstable.vimPlugins.lsp-zero-nvim
+      lsp-zero-nvim
 
-      (pkgs.unstable.vimPlugins.nvim-treesitter.withPlugins
+      (nvim-treesitter.withPlugins
         (import ./treesitter-grammars.nix)
       )
 
