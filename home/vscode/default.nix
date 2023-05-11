@@ -13,6 +13,7 @@
       SPGoding.datapack-language-server
       arcensoth.language-mcfunction
       arrterian.nix-env-selector
+      bradlc.vscode-tailwindcss
     ];
     /*
       userSettings = {

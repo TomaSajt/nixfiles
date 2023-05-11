@@ -7,6 +7,7 @@ rec {
     secondary = "#8ABEB7";
     alert = "#A54242";
     disabled = "#707880";
+    transparent = "#00000000";
   };
   "bar/top" = {
     width = "100%";
@@ -20,7 +21,7 @@ rec {
 
     border = {
       size = "4pt";
-      color = "#00000000";
+      color = colors.transparent;
     };
 
     padding = {
@@ -36,9 +37,11 @@ rec {
     font = [ "Monospace:style=Regular:size=10;2" ];
 
     modules = {
-      left = /*xworkspaces xwindow*/ "i3";
+      left = "xworkspaces xwindow i3";
       right = "battery filesystem pulseaudio xkeyboard memory cpu wlan eth date";
     };
+
+    tray-position = "right";
 
     cursor = {
       click = "pointer";
@@ -47,6 +50,7 @@ rec {
 
     enable-ipc = true;
   };
+
   "module/xworkspaces" = {
     type = "internal/xworkspaces";
     label = {
@@ -85,7 +89,7 @@ rec {
 
     fuzzy-match = true;
 
-    ws-icon-default = "";
+    ws-icon-default = "WS";
 
     format = "<label-state> <label-mode>";
 

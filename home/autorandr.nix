@@ -17,6 +17,20 @@
           };
         };
       };
+      "thinkpad-school" = {
+        fingerprint = {
+          "eDP-1" = "00ffffffffffff000daee715000000002c1e0104a52213780228659759548e271e505400000001010101010101010101010101010101363680a0703820403020350058c110000018000000fe004e3135364843412d4541420a20000000fe00434d4e0a202020202020202020000000fe004e3135364843412d4541420a20004e";
+        };
+        config = {
+          "eDP-1" = {
+            enable = true;
+            primary = true;
+            crtc = 0;
+            position = "0x0";
+            mode = "1920x1080";
+          };
+        };
+      };
     };
     hooks.postswitch = {
       "notify-i3" = "${pkgs.i3}/bin/i3-msg restart";

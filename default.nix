@@ -60,7 +60,7 @@
     gc = {
       automatic = true;
       randomizedDelaySec = "14m";
-      options = "--delete-older-than 3d";
+      options = "--delete-older-than 5d";
     };
   };
 
