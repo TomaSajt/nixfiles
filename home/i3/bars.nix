@@ -110,7 +110,7 @@ in
           }
           {
             block = "battery";
-            format = " $icon $percentage ($time)";
+            format = "{ $icon $percentage ($time) |}";
             interval = 5;
           }
           {
