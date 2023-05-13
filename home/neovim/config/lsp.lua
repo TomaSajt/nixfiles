@@ -1,6 +1,6 @@
 vim.diagnostic.config({ virtual_text = false })
-
-local lsp = require('lsp-zero').preset({
+local lspzero = require('lsp-zero')
+local lsp = lspzero.preset({
     float_border = 'rounded',
     call_servers = 'global',
     configure_diagnostics = true,
@@ -28,6 +28,7 @@ end)
 -- You'll need to list the servers installed in your system
 lsp.setup_servers({
     'rnix',
+    'hls',
     'tsserver',
     'eslint',
     'pyright',
@@ -51,10 +52,14 @@ lspconfig.omnisharp.setup {
 }
 
 local cmp = require('cmp')
+local cmp_action = lspzero.cmp_action()
 
 cmp.setup({
     mapping = {
         ['<CR>'] = cmp.mapping.confirm({ select = false }),
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-f>'] = cmp_action.luasnip_jump_forward(),
+        ['<C-b>'] = cmp_action.luasnip_jump_backward(),
     }
 })
 

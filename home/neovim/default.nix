@@ -5,6 +5,7 @@
 
   home.packages = with pkgs; [
     unstable.lua-language-server
+    haskell-language-server
     omnisharp-roslyn
     rust-analyzer
     rnix-lsp

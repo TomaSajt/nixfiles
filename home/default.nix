@@ -73,7 +73,7 @@
         nodePackages.pnpm # npm alternative
 
         # Dotnet - C#/F#
-        dotnet-sdk
+        unstable.dotnet-sdk_8
 
         # Python
         python311
