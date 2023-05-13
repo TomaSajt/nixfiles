@@ -12,11 +12,12 @@
     fontconfig.defaultFonts = {
       serif = [ "Noto Serif" ];
       sansSerif = [ "Noto Sans" ];
-      monospace = [ "JetBrainsMono Nerd Font" ];
+      monospace = [ "Hack" ];
     };
     fonts = with pkgs; [
       noto-fonts
       jetbrains-mono-nerdfont
+      hack-font
     ];
   };
 

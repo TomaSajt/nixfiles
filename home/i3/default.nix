@@ -9,12 +9,10 @@ let
   playerctl = "${config.services.playerctld.package}/bin/playerctl";
   xbacklight = "${pkgs.acpilight}/bin/xbacklight";
   pactl = "${pkgs.pulseaudio}/bin/pactl";
-  i3status-rs = "${config.programs.i3status-rust.package}/bin/i3status-rs";
-  i3status-rs-dir = "${config.xdg.configHome}/i3status-rust";
   gnome-screenshot = "${pkgs.gnome.gnome-screenshot}/bin/gnome-screenshot";
 in
 {
-  imports = [ ./extras.nix /*./status.nix*/ ];
+  imports = [ ./extras.nix ./bars.nix ];
 
   xsession.enable = true;
   xsession.numlock.enable = true;
@@ -142,54 +140,6 @@ in
           notification = false;
         }
       ];
-      bars = [ ];
-      /*
-        bars = [
-        {
-        mode = "dock";
-        hiddenState = "hide";
-        position = "top";
-        workspaceButtons = true;
-        workspaceNumbers = true;
-        statusCommand = "${i3status-rs} ${i3status-rs-dir}/config-default.toml";
-        fonts = {
-        names = [ "monospace" ];
-        size = 11.0;
-        };
-        trayOutput = "primary";
-        colors = {
-        background = "#000000";
-        statusline = "#ffffff";
-        separator = "#666666";
-        focusedWorkspace = {
-        border = "#4c7899";
-        background = "#285577";
-        text = "#ffffff";
-        };
-        activeWorkspace = {
-        border = "#333333";
-        background = "#5f676a";
-        text = "#ffffff";
-        };
-        inactiveWorkspace = {
-        border = "#333333";
-        background = "#222222";
-        text = "#888888";
-        };
-        urgentWorkspace = {
-        border = "#2f343a";
-        background = "#900000";
-        text = "#ffffff";
-        };
-        bindingMode = {
-        border = "#2f343a";
-        background = "#900000";
-        text = "#ffffff";
-        };
-        };
-        }
-        ];
-      */
       focus.followMouse = false;
       floating = {
         criteria = [
