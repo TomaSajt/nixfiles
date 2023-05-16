@@ -100,7 +100,7 @@ in
           }
           {
             block = "net";
-            format = " $icon {$signal_strength $ssid $frequency|Wired connection} - $device ";
+            format = " $icon  {$signal_strength $ssid $frequency|Wired connection} - $device ";
             click = [
               {
                 button = "left";
@@ -110,7 +110,7 @@ in
           }
           {
             block = "battery";
-            format = "{ $icon $percentage ($time) |}";
+            format = "{ $icon  $percentage ($time) |}";
             interval = 5;
           }
           {
