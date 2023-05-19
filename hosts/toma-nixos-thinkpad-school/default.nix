@@ -23,6 +23,6 @@
   };
 
   home-manager.users.toma = {
-    home.packages = with pkgs; [ steam ];
+    home.packages = with pkgs; [ steam obs-studio ];
   };
 }

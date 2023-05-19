@@ -68,10 +68,10 @@
 
         # NodeJS
         nodejs
-        nodePackages.pnpm # npm alternative
+        unstable.nodePackages_latest.pnpm # npm alternative
 
         # Dotnet - C#/F#
-        unstable.dotnet-sdk_8
+        dotnet-sdk
 
         # Python
         python311

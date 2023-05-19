@@ -128,8 +128,8 @@ in
         size = 11.0;
       };
       gaps = {
-        outer = 5;
-        inner = 20;
+        outer = 0;
+        inner = 5;
         smartGaps = true;
       };
       startup = [
