@@ -15,15 +15,19 @@
       arrterian.nix-env-selector
       bradlc.vscode-tailwindcss
     ];
+
     /*
-      userSettings = {
+    userSettings = {
       "emmet.includeLanguages" = {
-      "django-html" = "html";
+        "django-html" = "html";
       };
       "svelte.enable-ts-plugin" = true;
       "git.autofetch" = true;
-      };
+
+      "workbench.iconTheme" = "material-icon-theme";
+    };
     */
+
   };
 }
 
