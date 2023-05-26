@@ -76,6 +76,9 @@
         # Python
         python311
 
+        #APL
+        dyalog-apl #UNFREE
+
       ];
   };
 }

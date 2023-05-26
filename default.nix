@@ -79,8 +79,9 @@
       package = pkgs.unstable.i3;
     };
     displayManager.defaultSession = "none+i3";
-    layout = "hu";
-    xkbVariant = "";
+    layout = "hu,apl";
+    xkbVariant = "dyalog";
+    xkbOptions = "caps:none,grp:lswitch";
   };
 
   # Secrets management or something
