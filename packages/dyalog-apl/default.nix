@@ -66,6 +66,7 @@ stdenv.mkDerivation
     chmod -R g-w $out/share
 
     ln -s $out/share/mapl $out/bin/mapl
+    ln -s $out/share/dyalog $out/bin/dyalog
   '';
 
   meta = with lib; {
