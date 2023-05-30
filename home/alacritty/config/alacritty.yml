@@ -8,5 +8,5 @@ window:
 font:
   normal:
     family: monospace
-  size: 14.0
+  size: 10.0
   builtin_box_drawing: true

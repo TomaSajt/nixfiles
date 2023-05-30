@@ -11,6 +11,7 @@
     ./rofi.nix
 
     ./gtk.nix
+    ./xdg.nix
 
     # Terminal
     ./alacritty
@@ -44,6 +45,10 @@
         gimp # Image editing
         unstable.osu-lazer-bin # Rythm moment - UNFREE
         unstable.ani-cli # Anime moment
+
+        unstable.mpv
+
+        xfce.thunar
 
         ### Utils ###
         lxappearance # Look at themes (just don't switch them)
