@@ -36,4 +36,12 @@
         license = licenses.mit;
       };
     };
+  antfu.unocss = vscode-utils.buildVscodeMarketplaceExtension {
+    mktplcRef = {
+      name = "unocss";
+      publisher = "antfu";
+      version = "0.52.5";
+      sha256 = "sha256-NU0yv/+bwPcUpNaZICENEnraNDvJiAkBELeOgoMlBtc=";
+    };
+  };
 }

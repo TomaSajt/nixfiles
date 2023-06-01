@@ -3,7 +3,7 @@
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium;
-    extensions = with pkgs.unstable.vscode-extensions; [
+    extensions = with pkgs.vscode-extensions; [
       svelte.svelte-vscode
       pkief.material-icon-theme
       ms-vscode.cpptools
@@ -14,9 +14,8 @@
       arcensoth.language-mcfunction
       arrterian.nix-env-selector
       bradlc.vscode-tailwindcss
+      antfu.unocss
     ];
-
-
 
     userSettings = {
       "workbench.iconTheme" = "material-icon-theme";
