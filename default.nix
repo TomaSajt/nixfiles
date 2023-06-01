@@ -74,14 +74,11 @@
 
   services.xserver = {
     enable = true;
-    windowManager.i3 = {
-      enable = true;
-      package = pkgs.unstable.i3;
-    };
+    windowManager.i3.enable = true;
     displayManager.defaultSession = "none+i3";
     layout = "hu,apl";
     xkbVariant = "dyalog";
-    xkbOptions = "caps:none,grp:lswitch";
+    xkbOptions = "grp:caps_switch";
   };
 
   # Secrets management or something

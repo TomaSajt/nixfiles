@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = github:NixOS/nixpkgs/nixos-22.11;
+    nixpkgs.url = github:NixOS/nixpkgs/nixos-23.05;
     nixpkgs-unstable.url = github:NixOS/nixpkgs/nixpkgs-unstable;
     nur.url = github:nix-community/NUR;
 
@@ -33,6 +33,7 @@
           inherit system;
           config.allowUnfree = true;
           overlays = [
+            inputs.nur.overlay
             inputs.fenix.overlays.default
             (import ./overlay)
           ];

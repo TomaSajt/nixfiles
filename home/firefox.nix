@@ -36,15 +36,25 @@
               "Nix Packages" = {
                 urls = [{ template = "https://search.nixos.org/packages?query={searchTerms}"; }];
                 icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-                definedAliases = [ "@pkgs" ];
+                definedAliases = [ "@p"];
+              };
+              "NixOS Options" = {
+                urls = [{ template = "https://search.nixos.org/options?query={searchTerms}"; }];
+                icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+                definedAliases = [ "@o" ];
+              };
+              "Home Manager Options" = {
+                urls = [{ template = "https://mipmip.github.io/home-manager-option-search/?{searchTerms}"; }];
+                icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+                definedAliases = [ "@hm" ];
               };
               "Google".metaData.alias = "@g";
-              "Wikipedia (en)".metaData.alias = "@wiki";
+              "Wikipedia (en)".metaData.alias = "@w";
               "Amazon.com".metaData.hidden = true;
               "Bing".metaData.hidden = true;
               "eBay".metaData.hidden = true;
             };
-            order = [ "DuckDuckGo" "Google" "Nix Packages" "Wikipedia (en)" ];
+            order = [ "DuckDuckGo" "Google" "Nix Packages" "NixOS Options" "Home Manager Options" "Wikipedia (en)" ];
           };
           extensions = with pkgs.nur.repos.rycee.firefox-addons; [
             ublock-origin

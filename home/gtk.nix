@@ -4,7 +4,7 @@
     theme = {
       # it says light, but it's actually dark
       name = "Catppuccin-Latte-Compact-Blue-Light";
-      package = pkgs.unstable.catppuccin-gtk.override {
+      package = pkgs.catppuccin-gtk.override {
         accents = [ "blue" ];
         size = "compact";
         tweaks = [ "rimless" /*"black"*/ ];

@@ -4,7 +4,7 @@
   xdg.configFile."nvim/lua/config".source = ./config;
 
   home.packages = with pkgs; [
-    unstable.lua-language-server
+    lua-language-server
     haskell-language-server
     omnisharp-roslyn
     rust-analyzer
@@ -19,9 +19,9 @@
 
   programs.neovim = {
     enable = true;
-    package = pkgs.unstable.neovim-unwrapped;
+    package = pkgs.neovim-unwrapped;
 
-    plugins = with pkgs.unstable.vimPlugins; [
+    plugins = with pkgs.vimPlugins; [
       vim-nix
 
       nvim-web-devicons

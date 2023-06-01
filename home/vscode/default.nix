@@ -16,17 +16,22 @@
       bradlc.vscode-tailwindcss
     ];
 
-    /*
+
+
     userSettings = {
+      "workbench.iconTheme" = "material-icon-theme";
+
+      "git.autofetch" = true;
+      "git.enableSmartCommit" = true;
+      "git.confirmSync" = false;
+
       "emmet.includeLanguages" = {
         "django-html" = "html";
       };
-      "svelte.enable-ts-plugin" = true;
-      "git.autofetch" = true;
 
-      "workbench.iconTheme" = "material-icon-theme";
+      "typescript.updateImportsOnFileMove.enabled" = "always";
+      "svelte.enable-ts-plugin" = true;
     };
-    */
 
   };
 }

@@ -43,10 +43,10 @@
         discord # Online Chat - UNFREE
         obsidian # Note-taking - UNFREE
         gimp # Image editing
-        unstable.osu-lazer-bin # Rythm moment - UNFREE
-        unstable.ani-cli # Anime moment
+        osu-lazer-bin # Rythm moment - UNFREE
+        ani-cli # Anime moment
 
-        unstable.mpv
+        mpv
 
         xfce.thunar
 
@@ -73,7 +73,7 @@
 
         # NodeJS
         nodejs
-        unstable.nodePackages_latest.pnpm # npm alternative
+        nodePackages_latest.pnpm # npm alternative
 
         # Dotnet - C#/F#
         dotnet-sdk
