@@ -36,7 +36,7 @@
       commonOverlays = [
         inputs.nur.overlay
         inputs.dyalog-nixos.overlay
-        (import ./overlay)
+        (import ./packages/overlay.nix)
       ];
 
       unstableOverlay = final: prev: {

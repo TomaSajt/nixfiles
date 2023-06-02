@@ -4,7 +4,7 @@
   system.stateVersion = "22.11";
 
   imports = [
-    ./package-debug.nix
+    ./debug-installed.nix
   ];
 
   fonts = {
@@ -16,7 +16,7 @@
     };
     fonts = with pkgs; [
       noto-fonts
-      jetbrains-mono-nerdfont
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     ];
   };
 
