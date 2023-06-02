@@ -80,6 +80,7 @@
     xkbVariant = "dyalog";
     xkbOptions = "grp:caps_switch";
   };
+  console.useXkbConfig = true;
 
   # Secrets management or something
   services.gnome.gnome-keyring.enable = true;
@@ -120,7 +121,6 @@
 
 
   # Locale stuff
-  console.keyMap = "hu101";
   i18n =
     let
       HU = "hu_HU.UTF-8";
@@ -143,20 +143,16 @@
     };
   time = {
     timeZone = "Europe/Budapest";
-    # For Windows and Linux to have synced time
     hardwareClockInLocalTime = true;
   };
 
 
   # Bootloader
   boot.loader = {
-    grub = {
-      theme = pkgs.nixos-grub2-theme;
-    };
+    systemd-boot.enable = true;
     efi = {
       canTouchEfiVariables = true;
       efiSysMountPoint = "/boot/efi";
     };
-    systemd-boot.enable = true;
   };
 }
