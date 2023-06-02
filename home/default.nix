@@ -45,10 +45,8 @@
         gimp # Image editing
         osu-lazer-bin # Rythm moment - UNFREE
         ani-cli # Anime moment
-
-        mpv
-
-        xfce.thunar
+        mpv # Video player
+        xfce.thunar # File manager
 
         ### Utils ###
         lxappearance # Look at themes (just don't switch them)
@@ -82,7 +80,8 @@
         python311
 
         #APL
-        dyalog-apl #UNFREE
+        dyalog
+        dyalog-ride
 
       ];
   };

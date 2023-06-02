@@ -1,5 +1,25 @@
 {
   "nodes": {
+    "dyalog-nixos": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1685721497,
+        "narHash": "sha256-xiKgnsuGk6zeI6Kf56mMaVVXRV0zDn+nMtOGyAEAfJQ=",
+        "owner": "TomaSajt",
+        "repo": "dyalog-nixos",
+        "rev": "560698e41d811ff3d36e7db148c6616e91b773ff",
+        "type": "github"
+      },
+      "original": {
+        "owner": "TomaSajt",
+        "repo": "dyalog-nixos",
+        "type": "github"
+      }
+    },
     "fenix": {
       "inputs": {
         "nixpkgs": [
@@ -37,7 +57,6 @@
       },
       "original": {
         "owner": "rycee",
-        "ref": "master",
         "repo": "home-manager",
         "type": "github"
       }
@@ -91,6 +110,7 @@
     },
     "root": {
       "inputs": {
+        "dyalog-nixos": "dyalog-nixos",
         "fenix": "fenix",
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",

@@ -5,13 +5,18 @@
     nur.url = github:nix-community/NUR;
 
     home-manager = {
-      url = "github:rycee/home-manager/master";
+      url = github:rycee/home-manager;
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
     fenix = {
-      url = "github:nix-community/fenix";
+      url = github:nix-community/fenix;
       inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    dyalog-nixos = {
+      url = github:TomaSajt/dyalog-nixos;
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -22,21 +27,23 @@
       pkgs = import inputs.nixpkgs {
         inherit system;
         config.allowUnfree = true;
-        overlays = [
-          unstableOverlay
-          inputs.nur.overlay
-          (import ./overlay)
+        config.permittedInsecurePackages = [
+          "electron-13.6.9"
         ];
+
+        overlays = commonOverlays ++ [ unstableOverlay ];
       };
+      commonOverlays = [
+        inputs.nur.overlay
+        inputs.dyalog-nixos.overlay
+        (import ./overlay)
+      ];
+
       unstableOverlay = final: prev: {
         unstable = import inputs.nixpkgs-unstable {
           inherit system;
           config.allowUnfree = true;
-          overlays = [
-            inputs.nur.overlay
-            inputs.fenix.overlays.default
-            (import ./overlay)
-          ];
+          overlays = commonOverlays ++ [ inputs.fenix.overlays.default ];
         };
       };
 
@@ -52,7 +59,6 @@
         modules = [
           path # per-host system config
           ./. # global system config
-          inputs.nur.nixosModules.nur
           inputs.home-manager.nixosModules.home-manager
           # Extra setup
           {
