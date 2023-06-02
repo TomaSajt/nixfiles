@@ -23,7 +23,7 @@
     ./neovim
 
     # Other
-    ./gpg
+    ./gpg.nix
     ./git.nix
     ./firefox.nix
     ./user-dirs.nix
