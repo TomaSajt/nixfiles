@@ -20,32 +20,22 @@
     };
   };
 
-  outputs = inputs:
+  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, nur, home-manager, fenix, dyalog-nixos }:
     let
       system = "x86_64-linux";
 
-      pkgs = import inputs.nixpkgs {
+      mkPkgs = pkgs-flake: overlays: import pkgs-flake {
         inherit system;
         config.allowUnfree = true;
-        config.permittedInsecurePackages = [
-          "electron-13.6.9"
+        overlays = overlays ++ [
+          nur.overlay
+          dyalog-nixos.overlay
+          (import ./packages/overlay.nix)
         ];
-
-        overlays = commonOverlays ++ [ unstableOverlay ];
       };
-      commonOverlays = [
-        inputs.nur.overlay
-        inputs.dyalog-nixos.overlay
-        (import ./packages/overlay.nix)
-      ];
 
-      unstableOverlay = final: prev: {
-        unstable = import inputs.nixpkgs-unstable {
-          inherit system;
-          config.allowUnfree = true;
-          overlays = commonOverlays ++ [ inputs.fenix.overlays.default ];
-        };
-      };
+      pkgs-unstable = mkPkgs nixpkgs-unstable [ fenix.overlays.default ];
+      pkgs = mkPkgs nixpkgs [ (_: _: { unstable = pkgs-unstable; }) ];
 
       inherit (pkgs) lib;
 
@@ -53,13 +43,13 @@
         inherit inputs system;
       };
 
-      mkHost = path: inputs.nixpkgs.lib.nixosSystem {
+      mkHost = path: nixpkgs.lib.nixosSystem {
         inherit system;
         inherit specialArgs;
         modules = [
           path # per-host system config
           ./. # global system config
-          inputs.home-manager.nixosModules.home-manager
+          home-manager.nixosModules.home-manager
           # Extra setup
           {
             networking.hostName = lib.mkDefault (builtins.baseNameOf path);
