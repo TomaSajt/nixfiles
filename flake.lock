@@ -7,11 +7,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1685790054,
-        "narHash": "sha256-wVO52hipG3LyJbGubMqk6F9sChPSj0JkaQJ4ADrprD4=",
+        "lastModified": 1685807666,
+        "narHash": "sha256-72wikJZz3R6SL+2vWZbvzgSAvXNaddTM+3Cz4/BuAZ4=",
         "owner": "TomaSajt",
         "repo": "dyalog-nixos",
-        "rev": "b1c47a6d14783f6d74fa5d104ab67f5ae376fed4",
+        "rev": "565714d6bbf05cb58054c7f614a0c893914e5c37",
         "type": "github"
       },
       "original": {
