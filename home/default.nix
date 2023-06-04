@@ -81,7 +81,7 @@
 
         #APL
         dyalog
-        dyalog-ride
+        ride
 
       ];
   };
