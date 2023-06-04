@@ -30,6 +30,8 @@
 
       "typescript.updateImportsOnFileMove.enabled" = "always";
       "svelte.enable-ts-plugin" = true;
+
+      "git.openRepositoryInParentFolders" = "always";
     };
 
   };
