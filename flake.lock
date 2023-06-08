@@ -4,19 +4,21 @@
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
-        ]
+        ],
+        "ride": "ride"
       },
       "locked": {
-        "lastModified": 1685916922,
-        "narHash": "sha256-/8OmqHq2D/FgQ6zAb6y+3QJY9PmmXr7xYAyGYCZh/cc=",
+        "lastModified": 1686174030,
+        "narHash": "sha256-K+FZwAWoFeNb8GA+nmNQ0ORt+O3BXqX/OSHrBfN+t5Y=",
         "owner": "TomaSajt",
-        "repo": "dyalog-nixos",
-        "rev": "7b6f30d08c8d60385141c4107219d39d4c62697e",
+        "repo": "dyalog-nixos-m",
+        "rev": "15ed0b27ce31ac2bc0e3aa50e470ba7179da5a44",
         "type": "github"
       },
       "original": {
         "owner": "TomaSajt",
-        "repo": "dyalog-nixos",
+        "ref": "dyalog-cleanup",
+        "repo": "dyalog-nixos-m",
         "type": "github"
       }
     },
@@ -105,6 +107,22 @@
       "original": {
         "owner": "nix-community",
         "repo": "NUR",
+        "type": "github"
+      }
+    },
+    "ride": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1684338347,
+        "narHash": "sha256-j3flZ1sKsYRkJ79yxmR4NKcOSf66bHsCXiupKhUAFcQ=",
+        "owner": "Dyalog",
+        "repo": "ride",
+        "rev": "246649aad81daadfa8ac7e0af7c0206e49b4e337",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Dyalog",
+        "repo": "ride",
         "type": "github"
       }
     },

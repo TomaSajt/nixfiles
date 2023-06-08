@@ -15,7 +15,7 @@
     };
 
     dyalog-nixos = {
-      url = github:TomaSajt/dyalog-nixos;
+      url = github:TomaSajt/dyalog-nixos-m/dyalog-cleanup;
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -29,7 +29,7 @@
         config.allowUnfree = true;
         overlays = overlays ++ [
           nur.overlay
-          dyalog-nixos.overlay
+          #dyalog-nixos.overlay
           (import ./packages/overlay.nix)
         ];
       };

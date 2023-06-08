@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   imports = [
     # Desktop
@@ -80,8 +80,8 @@
         python311
 
         #APL
-        dyalog
-        ride
+        inputs.dyalog-nixos.packages.${system}.dyalog
+        inputs.dyalog-nixos.packages.${system}.ride
 
       ];
   };
