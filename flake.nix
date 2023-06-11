@@ -15,7 +15,7 @@
     };
 
     dyalog-nixos = {
-      url = github:TomaSajt/dyalog-nixos-m/dyalog-cleanup;
+      url = github:TomaSajt/dyalog-nixos-m/dotnet-fix;
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };

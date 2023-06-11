@@ -48,6 +48,8 @@
         mpv # Video player
         xfce.thunar # File manager
 
+        prismlauncher
+
         ### Utils ###
         lxappearance # Look at themes (just don't switch them)
         gparted # Partition Management
