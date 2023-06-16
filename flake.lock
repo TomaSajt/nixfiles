@@ -8,17 +8,16 @@
         "ride": "ride"
       },
       "locked": {
-        "lastModified": 1686438608,
-        "narHash": "sha256-yLF02FUg3nMLROdSSCkwGn0Dq+t3t3GcaX/tbnKoQ5Q=",
-        "owner": "TomaSajt",
-        "repo": "dyalog-nixos-m",
-        "rev": "0a42e2ad63d840b163df48ed724149575c21bb54",
+        "lastModified": 1686848289,
+        "narHash": "sha256-zeIUAg7Gqvh5x+B/ZXn4ss76cWh//9LptJsLyY94g3Y=",
+        "owner": "markus1189",
+        "repo": "dyalog-nixos",
+        "rev": "bccb2b31c1b9b16107584793d5934800f8741c30",
         "type": "github"
       },
       "original": {
-        "owner": "TomaSajt",
-        "ref": "dotnet-fix",
-        "repo": "dyalog-nixos-m",
+        "owner": "markus1189",
+        "repo": "dyalog-nixos",
         "type": "github"
       }
     },

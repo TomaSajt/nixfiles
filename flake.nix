@@ -15,7 +15,7 @@
     };
 
     dyalog-nixos = {
-      url = github:TomaSajt/dyalog-nixos-m/dotnet-fix;
+      url = github:markus1189/dyalog-nixos;
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -30,7 +30,7 @@
         overlays = overlays ++ [
           nur.overlay
           #dyalog-nixos.overlay
-          (import ./packages/overlay.nix)
+          (import ./overlay)
         ];
       };
 
