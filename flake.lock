@@ -5,18 +5,20 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "ride": "ride"
+        "ride": "ride",
+        "rscproxy": "rscproxy"
       },
       "locked": {
-        "lastModified": 1686848289,
-        "narHash": "sha256-zeIUAg7Gqvh5x+B/ZXn4ss76cWh//9LptJsLyY94g3Y=",
-        "owner": "markus1189",
+        "lastModified": 1687552014,
+        "narHash": "sha256-qIPv0lEUXcLtgJv/77tmwZ5Ci7i8uXf678JgMg20qWM=",
+        "owner": "TomaSajt",
         "repo": "dyalog-nixos",
-        "rev": "bccb2b31c1b9b16107584793d5934800f8741c30",
+        "rev": "4649a0b53f5e16b4d0d2343ce2b34a8d652e6d1e",
         "type": "github"
       },
       "original": {
-        "owner": "markus1189",
+        "owner": "TomaSajt",
+        "ref": "r-support",
         "repo": "dyalog-nixos",
         "type": "github"
       }
@@ -133,6 +135,22 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur"
+      }
+    },
+    "rscproxy": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1595847950,
+        "narHash": "sha256-SVoBoAWUmQ+jWaTG7hdmyRq6By4RnmmgWZXoua19/Kg=",
+        "owner": "Dyalog",
+        "repo": "rscproxy",
+        "rev": "31de3323fb8596ff5ecbf4bacd030e542cfd8133",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Dyalog",
+        "repo": "rscproxy",
+        "type": "github"
       }
     },
     "rust-analyzer-src": {

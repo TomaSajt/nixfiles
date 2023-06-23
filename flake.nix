@@ -15,7 +15,7 @@
     };
 
     dyalog-nixos = {
-      url = github:markus1189/dyalog-nixos;
+      url = github:TomaSajt/dyalog-nixos/r-support;
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
