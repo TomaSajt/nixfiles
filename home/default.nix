@@ -44,7 +44,7 @@
         obsidian # Note-taking - UNFREE
         gimp # Image editing
         osu-lazer-bin # Rythm moment - UNFREE
-        ani-cli # Anime moment
+        unstable.ani-cli # Anime moment
         mpv # Video player
         xfce.thunar # File manager
 
