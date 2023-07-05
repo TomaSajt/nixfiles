@@ -111,13 +111,14 @@
     pulse.enable = true;
   };
 
-  services.udev.extraRules = ''
-    # Nintendo Switch (for Goldleaf+Quark connection)
-    SUBSYSTEM=="usb", ATTRS{idVendor}=="057e", ATTRS{idProduct}=="3000", MODE="0666"
+  services.udev = {
+    packages = with pkgs; [ unstable.quark-goldleaf ];
+    extraRules = ''
+      # Backlight permissions
+      ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
+    '';
+  };
 
-    # Backlight permissions
-    ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
-  '';
 
 
   # Locale stuff

@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = github:NixOS/nixpkgs/nixos-23.05;
-    nixpkgs-unstable.url = github:NixOS/nixpkgs/nixpkgs-unstable;
+    nixpkgs-unstable.url = github:TomaSajt/nixpkgs;
     nur.url = github:nix-community/NUR;
 
     home-manager.url = github:rycee/home-manager;
@@ -75,5 +75,6 @@
     in
     {
       nixosConfigurations = mapDirModules ./hosts mkHost;
+      inherit pkgs; # expose pkgs for debugging purposes
     };
 }
