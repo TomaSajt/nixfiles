@@ -33,10 +33,16 @@
   home-manager.users.toma = {
     # Turn off the default screen-tearing fix
     services.picom.vSync = lib.mkForce false;
-    home.packages = with pkgs; [
-      heroic
-      steam
-    ];
+    home.packages =
+      let
+        steam = (pkgs.steam.override { });
+      in
+      [
+        pkgs.heroic
+        pkgs.wine
+        steam
+        steam.run
+      ];
 
   };
 }

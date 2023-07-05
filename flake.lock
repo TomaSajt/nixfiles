@@ -9,16 +9,15 @@
         "rscproxy": "rscproxy"
       },
       "locked": {
-        "lastModified": 1687552014,
-        "narHash": "sha256-qIPv0lEUXcLtgJv/77tmwZ5Ci7i8uXf678JgMg20qWM=",
-        "owner": "TomaSajt",
+        "lastModified": 1688492227,
+        "narHash": "sha256-7iP1tUZ5D0rhPqFEUiLz193vCAfkBdCXBXyH35suogk=",
+        "owner": "markus1189",
         "repo": "dyalog-nixos",
-        "rev": "4649a0b53f5e16b4d0d2343ce2b34a8d652e6d1e",
+        "rev": "5ada923a4d6230c7b2306c0b0816c1c75eafbe5f",
         "type": "github"
       },
       "original": {
-        "owner": "TomaSajt",
-        "ref": "r-support",
+        "owner": "markus1189",
         "repo": "dyalog-nixos",
         "type": "github"
       }
@@ -82,11 +81,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1687977148,
-        "narHash": "sha256-gUcXiU2GgjYIc65GOIemdBJZ+lkQxuyIh7OkR9j0gCo=",
+        "lastModified": 1688465017,
+        "narHash": "sha256-xzFcCnzPOgQaX7Acprfqo+tqHJ2UKWC38pXrcqvdXHU=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "60a783e00517fce85c42c8c53fe0ed05ded5b2a4",
+        "rev": "0d5682acc109add20f70440269587a1b169cc2fe",
         "type": "github"
       },
       "original": {

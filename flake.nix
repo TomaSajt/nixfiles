@@ -4,20 +4,14 @@
     nixpkgs-unstable.url = github:NixOS/nixpkgs/nixpkgs-unstable;
     nur.url = github:nix-community/NUR;
 
-    home-manager = {
-      url = github:rycee/home-manager;
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    home-manager.url = github:rycee/home-manager;
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    fenix = {
-      url = github:nix-community/fenix;
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
+    fenix.url = github:nix-community/fenix;
+    fenix.inputs.nixpkgs.follows = "nixpkgs-unstable";
 
-    dyalog-nixos = {
-      url = github:TomaSajt/dyalog-nixos/r-support;
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    dyalog-nixos.url = github:markus1189/dyalog-nixos;
+    dyalog-nixos.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, nur, home-manager, fenix, dyalog-nixos }:

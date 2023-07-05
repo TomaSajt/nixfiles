@@ -43,7 +43,7 @@
         discord # Online Chat - UNFREE
         obsidian # Note-taking - UNFREE
         gimp # Image editing
-        osu-lazer-bin # Rythm moment - UNFREE
+        unstable.osu-lazer-bin # Rythm moment - UNFREE
         unstable.ani-cli # Anime moment
         mpv # Video player
         xfce.thunar # File manager
@@ -53,7 +53,7 @@
         ### Utils ###
         lxappearance # Look at themes (just don't switch them)
         gparted # Partition Management
-        quark-goldleaf # Nintendo Switch File Transfer Client
+        unstable.quark-goldleaf # Nintendo Switch File Transfer Client
         zip # Zip compression utils
         unzip
         wget
