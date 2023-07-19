@@ -36,7 +36,7 @@
               "Nix Packages" = {
                 urls = [{ template = "https://search.nixos.org/packages?query={searchTerms}"; }];
                 icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-                definedAliases = [ "@p"];
+                definedAliases = [ "@p" ];
               };
               "NixOS Options" = {
                 urls = [{ template = "https://search.nixos.org/options?query={searchTerms}"; }];
@@ -48,19 +48,25 @@
                 icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
                 definedAliases = [ "@hm" ];
               };
+              "Nixpkgs Github" = {
+                urls = [{ template = "https://github.com/search?q=repo%3ANixOS%2Fnixpkgs+{searchTerms}&type=code"; }];
+                icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+                definedAliases = [ "@gh" ];
+              };
               "Google".metaData.alias = "@g";
               "Wikipedia (en)".metaData.alias = "@w";
               "Amazon.com".metaData.hidden = true;
               "Bing".metaData.hidden = true;
               "eBay".metaData.hidden = true;
             };
-            order = [ "DuckDuckGo" "Google" "Nix Packages" "NixOS Options" "Home Manager Options" "Wikipedia (en)" ];
+            order = [ "DuckDuckGo" "Google" "Nix Packages" "NixOS Options" "Home Manager Options" "Nixpkgs Github" "Wikipedia (en)" ];
           };
           extensions = with pkgs.nur.repos.rycee.firefox-addons; [
             ublock-origin
             bitwarden
             darkreader
             sponsorblock
+            tampermonkey
           ];
           settings = {
             # Don't show warning when viewing about:config
