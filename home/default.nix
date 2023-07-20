@@ -48,12 +48,14 @@
         mpv # Video player
         xfce.thunar # File manager
 
+        unstable.trimage
+
         prismlauncher
 
         ### Utils ###
         lxappearance # Look at themes (just don't switch them)
         gparted # Partition Management
-        unstable.quark-goldleaf # Nintendo Switch File Transfer Client
+        #unstable.quark-goldleaf # Nintendo Switch File Transfer Client
         zip # Zip compression utils
         unzip
         wget

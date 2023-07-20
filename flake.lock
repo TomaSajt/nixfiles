@@ -81,15 +81,16 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1688577076,
-        "narHash": "sha256-cezOfPvlrHeiSGG71mH6nxRKX0gDLVIy+4gvsiqfNow=",
+        "lastModified": 1689803857,
+        "narHash": "sha256-GU7hcX3XWkZE1SQRGcuBPa2IDep8TCKChUN0v+/vgGc=",
         "owner": "TomaSajt",
         "repo": "nixpkgs",
-        "rev": "f3b06a75f8473fe61b98b46c3aacb589e74e8352",
+        "rev": "13f59525b3474f1146c90d2d1cb0d962b0ef582b",
         "type": "github"
       },
       "original": {
         "owner": "TomaSajt",
+        "ref": "trimage",
         "repo": "nixpkgs",
         "type": "github"
       }

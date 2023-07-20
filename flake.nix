@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = github:NixOS/nixpkgs/nixos-23.05;
-    nixpkgs-unstable.url = github:TomaSajt/nixpkgs;
+    nixpkgs-unstable.url = github:TomaSajt/nixpkgs/trimage;
     nur.url = github:nix-community/NUR;
 
     home-manager.url = github:rycee/home-manager;
