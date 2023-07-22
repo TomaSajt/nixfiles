@@ -3,11 +3,23 @@
     ./hardware-configuration.nix
   ];
 
+  boot.supportedFilesystems = [ "ntfs" ];
+
+  services.transmission = {
+    enable = true;
+    downloadDirPermissions = "770";
+    settings = {
+      download-dir = "/transmission/download";
+      incomplete-dir = "/transmission/.incomplete";
+    };
+  };
+
   hardware.opengl = {
     enable = true;
     driSupport32Bit = true;
   };
 
+  # Disable trackpoint (it's broken on this laptop)
   hardware.trackpoint = {
     enable = true;
     device = "TPPS/2 Elan TrackPoint";
