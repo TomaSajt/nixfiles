@@ -15,6 +15,12 @@
   };
 
 
+  networking.firewall = {
+    allowedUDPPortRanges = [{ from = 25565; to = 25575; } { from = 7777; to = 7777; }];
+    allowedTCPPortRanges = [{ from = 25565; to = 25575; } { from = 7777; to = 7777; }];
+  };
+
+
   hardware.opengl = {
     enable = true;
     driSupport32Bit = true;
