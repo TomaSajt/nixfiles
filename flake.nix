@@ -38,8 +38,7 @@
       };
 
       mkHost = path: nixpkgs.lib.nixosSystem {
-        inherit system;
-        inherit specialArgs;
+        inherit system specialArgs;
         modules = [
           path # per-host system config
           ./. # global system config

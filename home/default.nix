@@ -36,57 +36,54 @@
     sessionVariables = {
       DOTNET_CLI_TELEMETRY_OPTOUT = "true";
     };
-    packages = with pkgs;
-      [
+    packages = with pkgs; [
+      ### User stuff ###
+      discord # Online Chat - UNFREE
+      obsidian # Note-taking - UNFREE
+      gimp # Image editing
+      unstable.osu-lazer-bin # Rythm moment - UNFREE
+      unstable.ani-cli # Anime moment
+      mpv # Video player
+      xfce.thunar # File manager
+      prismlauncher # Minecraft Launcher
 
-        ### User stuff ###
-        discord # Online Chat - UNFREE
-        obsidian # Note-taking - UNFREE
-        gimp # Image editing
-        unstable.osu-lazer-bin # Rythm moment - UNFREE
-        unstable.ani-cli # Anime moment
-        mpv # Video player
-        xfce.thunar # File manager
+      ### Utils ###
+      lxappearance # Look at themes (just don't switch them)
+      gparted # Partition Management
+      # quark-goldleaf # Nintendo Switch File Transfer Client
+      zip # Zip compression utils
+      unzip
+      wget
+      file
+      qdirstat
 
-        unstable.trimage
+      ### Support ###
+      ntfs3g # NTFS Filesystem Support
+      ripgrep # telescope.nvim support for grep
+      xclip # Clipboard support (for synced neovim clipboard)
+      fd # `find` alternative (used for neovim)
 
-        prismlauncher
+      ### Languages ###
 
-        ### Utils ###
-        lxappearance # Look at themes (just don't switch them)
-        gparted # Partition Management
-        #unstable.quark-goldleaf # Nintendo Switch File Transfer Client
-        zip # Zip compression utils
-        unzip
-        wget
-        file
-        qdirstat
+      # C++
+      gcc
 
-        ### Support ###
-        ntfs3g # NTFS Filesystem Support
-        ripgrep # telescope.nvim support for grep
-        xclip # Clipboard support (for synced neovim clipboard)
-        fd # `find` alternative (used for neovim)
+      # Java
+      jdk
 
-        ### Languages ###
+      # NodeJS
+      nodejs
+      nodePackages_latest.pnpm # npm alternative
 
-        # C++
-        gcc
+      # Dotnet - C#/F#
+      dotnet-sdk
 
-        # NodeJS
-        nodejs
-        nodePackages_latest.pnpm # npm alternative
+      # Python
+      python311
 
-        # Dotnet - C#/F#
-        dotnet-sdk
-
-        # Python
-        python311
-
-        #APL
-        inputs.dyalog-nixos.packages.${system}.dyalog
-        inputs.dyalog-nixos.packages.${system}.ride
-
-      ];
+      # APL
+      inputs.dyalog-nixos.packages.${system}.dyalog
+      inputs.dyalog-nixos.packages.${system}.ride
+    ];
   };
 }

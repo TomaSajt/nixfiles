@@ -5,6 +5,10 @@
 
   boot.supportedFilesystems = [ "ntfs" ];
 
+  boot.kernelParams = [
+    "libata.noacpi=1"
+  ];
+
   services.transmission = {
     enable = true;
     downloadDirPermissions = "770";
@@ -13,7 +17,6 @@
       incomplete-dir = "/mnt/extra/transmission/.incomplete";
     };
   };
-
 
   networking.firewall = {
     allowedUDPPortRanges = [{ from = 25565; to = 25575; } { from = 7777; to = 7777; }];
