@@ -1,4 +1,6 @@
+
 vim.diagnostic.config({ virtual_text = false })
+
 local lspzero = require('lsp-zero')
 local lsp = lspzero.preset({
     float_border = 'rounded',
@@ -15,7 +17,6 @@ local lsp = lspzero.preset({
     },
 })
 
-
 lsp.default_keymaps({
     preserve_mappings = false
 })
@@ -24,15 +25,12 @@ lsp.on_attach(function(_, bufnr)
     lsp.default_keymaps({ buffer = bufnr })
 end)
 
--- When you don't have mason.nvim installed
--- You'll need to list the servers installed in your system
 lsp.setup_servers({
     'rnix',
     'hls',
     'tsserver',
     'eslint',
     'pyright',
-    'ccls',
     'rust_analyzer',
     'html',
     'jsonls',
@@ -43,10 +41,16 @@ local lspconfig = require('lspconfig')
 
 lspconfig.lua_ls.setup(lsp.defaults.nvim_workspace())
 
-local pid = vim.fn.getpid()
+lspconfig.ccls.setup {
+    init_options = {
+        clang = {
+            extraArgs = { "-std=c++17" }
+        }
+    }
+}
 
 lspconfig.omnisharp.setup {
-    cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(pid) },
+    cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
     organize_imports_on_format = false,
     enable_import_completion = false,
 }
