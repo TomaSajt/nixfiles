@@ -6,7 +6,8 @@
   home.packages = with pkgs; [
     lua-language-server
     haskell-language-server
-    unstable.csharp-ls
+    #(unstable.omnisharp-roslyn.overrideAttrs (oldAttrs: { useDotnetFromEnv = false; }))
+    unstable.omnisharp-roslyn
     rust-analyzer
     rnix-lsp
     ccls
@@ -26,6 +27,9 @@
       nvim-web-devicons
       vim-monokai
 
+      vim-airline
+      vim-airline-themes
+
       indent-blankline-nvim
 
       nvim-autopairs
@@ -39,8 +43,8 @@
       undotree
       vim-fugitive
 
-      pkgs.unstable.vimPlugins.nvim-lspconfig
-      pkgs.unstable.vimPlugins.lsp-zero-nvim
+      nvim-lspconfig
+      lsp-zero-nvim
       nvim-cmp
       cmp-buffer
       cmp-path
@@ -48,6 +52,7 @@
       cmp-nvim-lsp
       cmp-nvim-lua
       luasnip
+      omnisharp-extended-lsp-nvim
 
       (nvim-treesitter.withPlugins (import ./treesitter-grammars.nix))
 

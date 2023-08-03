@@ -43,7 +43,6 @@ in
     stateVersion = "22.11";
     sessionVariables = {
       DOTNET_CLI_TELEMETRY_OPTOUT = "true";
-      DOTNET_ROOT = "${dotnet-sdks}";
     };
     packages = with pkgs; [
       ### User stuff ###
@@ -85,6 +84,7 @@ in
       nodePackages_latest.pnpm # npm alternative
 
       # Dotnet - C#/F#
+      #unstable.dotnet-sdk
       dotnet-sdks
 
       # Python

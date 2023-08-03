@@ -81,16 +81,16 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1691006197,
-        "narHash": "sha256-DbtxVWPt+ZP5W0Usg7jAyTomIM//c3Jtfa59Ht7AV8s=",
-        "owner": "NixOS",
+        "lastModified": 1691094226,
+        "narHash": "sha256-NJcQCeUhcJHcgdXHeyTuyoQAgtlRm64rLmZ1Q4qqPqc=",
+        "owner": "TomaSajt",
         "repo": "nixpkgs",
-        "rev": "66aedfd010204949cb225cf749be08cb13ce1813",
+        "rev": "8f4cb0ad09830d8df7147bbfe19e38c1be2924ad",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
-        "ref": "nixos-unstable",
+        "owner": "TomaSajt",
+        "ref": "dotnet-fix",
         "repo": "nixpkgs",
         "type": "github"
       }

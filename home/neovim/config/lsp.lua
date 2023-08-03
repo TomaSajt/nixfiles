@@ -34,10 +34,18 @@ lsp.setup_servers({
     'html',
     'jsonls',
     'svelte',
-    'csharp_ls'
 })
 
 local lspconfig = require('lspconfig')
+
+lspconfig.omnisharp.setup {
+    cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
+    handlers = {
+        ["textDocument/definition"] = require('omnisharp_extended').handler,
+    },
+    organize_imports_on_format = false,
+    enable_import_completion = false,
+}
 
 lspconfig.lua_ls.setup(lsp.defaults.nvim_workspace())
 
