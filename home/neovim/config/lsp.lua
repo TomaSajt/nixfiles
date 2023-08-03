@@ -1,4 +1,3 @@
-
 vim.diagnostic.config({ virtual_text = false })
 
 local lspzero = require('lsp-zero')
@@ -35,6 +34,7 @@ lsp.setup_servers({
     'html',
     'jsonls',
     'svelte',
+    'csharp_ls'
 })
 
 local lspconfig = require('lspconfig')
@@ -47,12 +47,6 @@ lspconfig.ccls.setup {
             extraArgs = { "-std=c++17" }
         }
     }
-}
-
-lspconfig.omnisharp.setup {
-    cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
-    organize_imports_on_format = false,
-    enable_import_completion = false,
 }
 
 local cmp = require('cmp')

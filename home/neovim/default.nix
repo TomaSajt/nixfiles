@@ -6,7 +6,7 @@
   home.packages = with pkgs; [
     lua-language-server
     haskell-language-server
-    omnisharp-roslyn
+    unstable.csharp-ls
     rust-analyzer
     rnix-lsp
     ccls
@@ -39,7 +39,8 @@
       undotree
       vim-fugitive
 
-      nvim-lspconfig
+      pkgs.unstable.vimPlugins.nvim-lspconfig
+      pkgs.unstable.vimPlugins.lsp-zero-nvim
       nvim-cmp
       cmp-buffer
       cmp-path
@@ -47,11 +48,8 @@
       cmp-nvim-lsp
       cmp-nvim-lua
       luasnip
-      lsp-zero-nvim
 
-      (nvim-treesitter.withPlugins
-        (import ./treesitter-grammars.nix)
-      )
+      (nvim-treesitter.withPlugins (import ./treesitter-grammars.nix))
 
     ];
 

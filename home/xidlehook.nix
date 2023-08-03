@@ -38,6 +38,7 @@ in
   services.xidlehook = {
     enable = true;
     not-when-audio = true;
+    not-when-fullscreen = true;
     detect-sleep = true;
     timers = [
       {
@@ -50,4 +51,4 @@ in
       }
     ];
   };
- }
+}

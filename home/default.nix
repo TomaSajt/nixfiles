@@ -1,4 +1,12 @@
 { pkgs, inputs, ... }:
+let
+  dotnet-sdks = with pkgs.unstable.dotnetCorePackages; combinePackages [
+    sdk_6_0
+    sdk_7_0
+  ];
+  inherit (inputs.dyalog-nixos.packages.${pkgs.system}) dyalog ride;
+in
+
 {
   imports = [
     # Desktop
@@ -35,6 +43,7 @@
     stateVersion = "22.11";
     sessionVariables = {
       DOTNET_CLI_TELEMETRY_OPTOUT = "true";
+      DOTNET_ROOT = "${dotnet-sdks}";
     };
     packages = with pkgs; [
       ### User stuff ###
@@ -76,14 +85,14 @@
       nodePackages_latest.pnpm # npm alternative
 
       # Dotnet - C#/F#
-      dotnet-sdk
+      dotnet-sdks
 
       # Python
       python311
 
       # APL
-      inputs.dyalog-nixos.packages.${system}.dyalog
-      inputs.dyalog-nixos.packages.${system}.ride
+      dyalog
+      ride # Editor
     ];
   };
 }
