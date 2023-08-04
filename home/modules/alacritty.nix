@@ -28,7 +28,7 @@ in
       font:
         normal:
           family: monospace
-        size: ${font-size}
+        size: ${toString cfg.font-size}
         builtin_box_drawing: true
 
       colors:

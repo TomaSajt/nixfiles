@@ -1,58 +1,46 @@
-{ pkgs, inputs, ... }:
-let
-  dotnet-sdks = with pkgs.unstable.dotnetCorePackages; combinePackages [
-    sdk_6_0
-    sdk_7_0
-  ];
-  inherit (inputs.dyalog-nixos.packages.${pkgs.system}) dyalog ride;
-in
-
+{ pkgs, lib, ... }:
 {
   imports = [
     ./modules
+
     # Desktop
-    ./picom.nix
     ./autorandr.nix
-    ./xidlehook.nix
 
     ./feh-bg
-    ./rofi.nix
-
-    ./gtk.nix
-    ./xdg.nix
-
-    # Terminal
-    ./alacritty
-    ./readline.nix
 
     # Editor
     ./vscode
     ./neovim
 
     # Other
-    ./firefox.nix
     ./user-dirs.nix
   ];
 
-  modules = {
-    gpg = {
-      enable = true;
-    };
+  modules = lib.mkDefault {
+    gpg.enable = true;
     git = {
       enable = true;
       signing = true;
     };
-    dotnet = {
-      enable = true;
-    };
-    bash = {
-      enable = true;
-    };
+    dotnet.enable = true;
+    bash.enable = true;
     i3 = {
       enable = true;
+      xidlehook.enable = true;
+    };
+    alacritty = {
+      enable = true;
+      font-size = 10.0;
+    };
+    firefox.enable = true;
+    dyalog.enable = true;
+    mime-apps.enable = true;
+    gtk.enable = true;
+    picom = {
+      enable = true;
+      vSync = true;
     };
   };
-
 
   # Network Applet
   services.network-manager-applet.enable = true;
@@ -111,10 +99,6 @@ in
 
       # Python
       python311
-
-      # APL
-      dyalog
-      ride # Editor
     ];
   };
 }

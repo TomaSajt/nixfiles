@@ -6,7 +6,7 @@
   boot.supportedFilesystems = [ "ntfs" ];
 
   boot.kernelParams = [
-    "libata.noacpi=1"
+    "libata.noacpi=1" # fix some BIOS error
   ];
 
   services.transmission = {
@@ -44,7 +44,7 @@
 
   home-manager.users.toma = {
     # Turn off the default screen-tearing fix
-    services.picom.vSync = lib.mkForce false;
+    modules.picom.vSync = false;
     home.packages = with pkgs; [
       heroic
       wine
@@ -56,6 +56,5 @@
       #glaxnimate
       #mediainfo
     ];
-
   };
 }
