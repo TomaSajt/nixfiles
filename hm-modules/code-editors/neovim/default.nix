@@ -32,19 +32,24 @@ in
         vim-nix
 
         nvim-web-devicons
-        vim-monokai
+        gitsigns-nvim
 
         vim-airline
         vim-airline-themes
+
+        vim-monokai
 
         indent-blankline-nvim
 
         nvim-autopairs
 
+        vim-hexokinase # Displays colors for color codes
+
         plenary-nvim
         telescope-nvim
         telescope-fzf-native-nvim
         telescope-file-browser-nvim
+
 
         harpoon
         undotree
