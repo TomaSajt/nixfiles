@@ -1,11 +1,7 @@
 { pkgs, lib, config, ... }:
-
-with lib;
-
 let
   cfg = config.modules.git;
 in
-
 {
   options = {
     modules.git = {
@@ -14,13 +10,13 @@ in
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     programs.git = {
       enable = true;
       package = pkgs.gitFull;
       userName = "TomaSajt";
       userEmail = "62384384+TomaSajt@users.noreply.github.com";
-      signing = mkIf cfg.signing {
+      signing = lib.mkIf cfg.signing {
         key = "F011163C050122A1";
         signByDefault = true;
       };

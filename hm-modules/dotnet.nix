@@ -1,7 +1,5 @@
 { pkgs, lib, config, ... }:
 
-with lib;
-
 let
   cfg = config.modules.dotnet;
 
@@ -15,7 +13,7 @@ in
     enable = lib.mkEnableOption "dotnet";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     home = {
       sessionVariables = {
         DOTNET_CLI_TELEMETRY_OPTOUT = "true";

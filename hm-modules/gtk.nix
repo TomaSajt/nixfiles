@@ -1,16 +1,15 @@
 { pkgs, lib, config, ... }:
-
-with lib;
-
 let
   cfg = config.modules.gtk;
 in
 {
   options.modules.gtk = {
-    enable = mkEnableOption "GTK";
+    enable = lib.mkEnableOption "GTK";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
+    home.packages = [ pkgs.lxappearance ]; # Look at themes (just don't switch them)
+
     gtk = {
       enable = true;
       theme = {

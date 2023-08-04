@@ -1,8 +1,6 @@
 { pkgs, lib, config, ... }:
 # Parts stolen from https://github.com/mahmoudk1000/nix-config/blob/main/modules/programs/firefox.nix
 
-with lib;
-
 let
   cfg = config.modules.firefox;
 
@@ -83,10 +81,15 @@ let
 in
 {
   options.modules.firefox = {
-    enable = mkEnableOption "firefox";
+    enable = lib.mkEnableOption "firefox";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
+
+    modules.mime-apps.associations = {
+      "application/pdf" = "firefox.desktop";
+    };
+
     programs.firefox = {
       enable = true;
       package = firefox-wrapped;

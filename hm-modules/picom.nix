@@ -1,17 +1,14 @@
 { lib, config, ... }:
-
-with lib;
-
 let
   cfg = config.modules.picom;
 in
 {
   options.modules.picom = {
-    enable = mkEnableOption "picom";
-    vSync = mkEnableOption "picom vSync";
+    enable = lib.mkEnableOption "picom";
+    vSync = lib.mkEnableOption "picom vSync";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     # Compositor (for transparency)
     services.picom = {
       enable = true;

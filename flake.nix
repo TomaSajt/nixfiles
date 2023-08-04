@@ -52,7 +52,7 @@
               extraSpecialArgs = specialArgs;
               useGlobalPkgs = true;
               useUserPackages = true;
-              users.toma = import ./home;
+              users.toma = import ./home.nix;
             };
           }
         ];

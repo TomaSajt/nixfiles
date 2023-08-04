@@ -1,5 +1,4 @@
 { pkgs, lib, config, osConfig, ... }:
-with lib;
 let
   cfg = config.modules.i3;
 
@@ -21,48 +20,15 @@ let
   i3status-rs-dir = "${config.xdg.configHome}/i3status-rust";
   pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";
   nm-connection-editor = "${pkgs.networkmanagerapplet}/bin/nm-connection-editor";
-
-  i3lock-color = "${pkgs.i3lock-color}/bin/i3lock-color";
-  systemctl = "${osConfig.systemd.package}/bin/systemctl";
-  lock-colors = {
-    blank = "#00000000";
-    clear = "#ffffff22";
-    default = "#8800FF";
-    text = "#8800FF";
-    wrong = "#880000";
-    verifying = "#bb00bb";
-    keydown = "#28FF49";
-  };
-  lock-args = with lock-colors; [
-    "--insidever-color=${clear}"
-    "--ringver-color=${verifying}"
-    "--insidewrong-color=${clear}"
-    "--ringwrong-color=${wrong}"
-    "--inside-color=${blank}"
-    "--ring-color=${blank}"
-    "--line-color=${blank}"
-    "--separator-color=${default}"
-    "--verif-color=${text}"
-    "--wrong-color=${text}"
-    "--time-color=${text}"
-    "--date-color=${text}"
-    "--layout-color=${text}"
-    "--keyhl-color=${keydown}"
-    "--bshl-color=${wrong}"
-    "--screen 1"
-    "--blur 1"
-    "--clock"
-    "--time-str='%H:%M:%S'"
-    "--keylayout 1"
-  ];
 in
 {
+  imports = [ ./xidlehook.nix ./autorandr.nix ];
+
   options.modules.i3 = {
-    enable = mkEnableOption "i3";
-    xidlehook.enable = mkEnableOption "xidlehook";
+    enable = lib.mkEnableOption "i3";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
 
     # For the player keys to properly work (maybe)
     services.playerctld.enable = true;
@@ -321,23 +287,6 @@ in
           }
         ];
       };
-    };
-
-    services.xidlehook = mkIf cfg.xidlehook.enable {
-      enable = true;
-      not-when-audio = true;
-      not-when-fullscreen = true;
-      detect-sleep = true;
-      timers = [
-        {
-          delay = 300;
-          command = "${i3lock-color} ${lib.concatStringsSep " " lock-args}";
-        }
-        {
-          delay = 1500;
-          command = "${systemctl} suspend";
-        }
-      ];
     };
   };
 }

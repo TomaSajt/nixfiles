@@ -1,14 +1,13 @@
 { config, lib, ... }:
-with lib;
 let
   cfg = config.modules.gpg;
 in
 {
   options.modules.gpg = {
-    enable = mkEnableOption "GPG";
+    enable = lib.mkEnableOption "GPG";
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     programs.gpg = {
       enable = true;
     };

@@ -1,45 +1,43 @@
 { pkgs, lib, ... }:
 {
-  imports = [
-    ./modules
-
-    # Desktop
-    ./autorandr.nix
-
-    ./feh-bg
-
-    # Editor
-    ./vscode
-    ./neovim
-
-    # Other
-    ./user-dirs.nix
-  ];
+  imports = [ ./hm-modules ];
 
   modules = lib.mkDefault {
-    gpg.enable = true;
-    git = {
-      enable = true;
-      signing = true;
-    };
-    dotnet.enable = true;
-    bash.enable = true;
-    i3 = {
-      enable = true;
-      xidlehook.enable = true;
-    };
     alacritty = {
       enable = true;
       font-size = 10.0;
     };
-    firefox.enable = true;
+    bash.enable = true;
+    code-editors = {
+      neovim.enable = true;
+      vscode = {
+        enable = true;
+        codium = true;
+      };
+    };
+    dotnet.enable = true;
     dyalog.enable = true;
-    mime-apps.enable = true;
+    feh.enable = true;
+    firefox.enable = true;
+    git = {
+      enable = true;
+      signing = true;
+    };
+    gpg.enable = true;
     gtk.enable = true;
+    i3 = {
+      enable = true;
+      xidlehook.enable = true;
+      autorandr.enable = true;
+    };
+    mime-apps.enable = true;
     picom = {
       enable = true;
       vSync = true;
     };
+    thunar.enable = true;
+    user-dirs.enable = true;
+    wallpaper.enable = true;
   };
 
   # Network Applet
@@ -54,7 +52,6 @@
     tray = "auto";
   };
 
-
   home = {
     username = "toma";
     stateVersion = "22.11";
@@ -66,11 +63,9 @@
       unstable.osu-lazer-bin # Rythm moment - UNFREE
       unstable.ani-cli # Anime moment
       mpv # Video player
-      xfce.thunar # File manager
       prismlauncher # Minecraft Launcher
 
       ### Utils ###
-      lxappearance # Look at themes (just don't switch them)
       gparted # Partition Management
       # quark-goldleaf # Nintendo Switch File Transfer Client
       zip # Zip compression utils

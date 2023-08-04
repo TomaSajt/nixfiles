@@ -1,20 +1,19 @@
 { pkgs, lib, config, ... }:
 
-with lib;
-
 let
   cfg = config.modules.alacritty;
 in
 {
   options.modules.alacritty = {
-    enable = mkEnableOption "alacritty";
-    font-size = mkOption {
-      type = types.float;
-      default = 10.0;
+    enable = lib.mkEnableOption "alacritty";
+    font-size = lib.mkOption {
+      type = lib.types.number;
+      apply = toString;
+      default = 10;
     };
   };
 
-  config = mkIf cfg.enable {
+  config = lib.mkIf cfg.enable {
     programs.alacritty = {
       enable = true;
     };
@@ -28,7 +27,7 @@ in
       font:
         normal:
           family: monospace
-        size: ${font-size}
+        size: ${cfg.font-size}
         builtin_box_drawing: true
 
       colors:
