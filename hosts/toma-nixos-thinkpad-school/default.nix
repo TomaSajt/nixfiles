@@ -14,6 +14,11 @@
     };
   };
 
+  networking.firewall = {
+    allowedUDPPorts = [ 7777 ];
+    allowedTCPPorts = [ 7777 ];
+  };
+
   hardware.opengl.driSupport32Bit = true;
 
   # Disable trackpoint (it's broken on this laptop)

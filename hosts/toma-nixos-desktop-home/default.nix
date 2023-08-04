@@ -19,8 +19,10 @@
   };
 
   networking.firewall = {
-    allowedUDPPortRanges = [{ from = 25565; to = 25575; } { from = 7777; to = 7777; }];
-    allowedTCPPortRanges = [{ from = 25565; to = 25575; } { from = 7777; to = 7777; }];
+    allowedUDPPortRanges = [{ from = 25565; to = 25575; }];
+    allowedTCPPortRanges = [{ from = 25565; to = 25575; }];
+    allowedUDPPorts = [ 7777 ];
+    allowedTCPPorts = [ 7777 ];
   };
 
   hardware.opengl.driSupport32Bit = true;

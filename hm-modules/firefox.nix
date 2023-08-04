@@ -54,13 +54,18 @@ let
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = [ "@gh" ];
         };
+        "Terraria Wiki" = {
+          urls = [{ template = "https://terraria.wiki.gg/index.php?search={searchTerms}"; }];
+          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          definedAliases = [ "@tw" ];
+        };
         "Google".metaData.alias = "@g";
         "Wikipedia (en)".metaData.alias = "@w";
         "Amazon.com".metaData.hidden = true;
         "Bing".metaData.hidden = true;
         "eBay".metaData.hidden = true;
       };
-      order = [ "DuckDuckGo" "Google" "Nix Packages" "NixOS Options" "Home Manager Options" "Nixpkgs Github" "Wikipedia (en)" ];
+      order = [ "DuckDuckGo" "Google" "Nix Packages" "NixOS Options" "Home Manager Options" "Nixpkgs Github" "Wikipedia (en)" "Terraria Wiki" ];
     };
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
       ublock-origin
