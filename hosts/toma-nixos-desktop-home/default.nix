@@ -23,11 +23,7 @@
     allowedTCPPortRanges = [{ from = 25565; to = 25575; } { from = 7777; to = 7777; }];
   };
 
-
-  hardware.opengl = {
-    enable = true;
-    driSupport32Bit = true;
-  };
+  hardware.opengl.driSupport32Bit = true;
 
   services.xserver.videoDrivers = [ "nvidia" ];
 

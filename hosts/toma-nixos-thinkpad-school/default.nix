@@ -14,10 +14,7 @@
     };
   };
 
-  hardware.opengl = {
-    enable = true;
-    driSupport32Bit = true;
-  };
+  hardware.opengl.driSupport32Bit = true;
 
   # Disable trackpoint (it's broken on this laptop)
   hardware.trackpoint = {
