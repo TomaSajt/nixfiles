@@ -3,9 +3,7 @@
 
   system.stateVersion = "22.11";
 
-  imports = [
-    ./debug-installed.nix
-  ];
+  imports = [ ./utils/debug-installed.nix ];
 
   fonts = {
     fontDir.enable = true;

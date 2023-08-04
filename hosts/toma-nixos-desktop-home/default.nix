@@ -6,7 +6,7 @@
   boot.supportedFilesystems = [ "ntfs" ];
 
   boot.kernelParams = [
-    "libata.noacpi=1" # fix some BIOS error
+    "libata.noacpi=1" # Fixes some BIOS error
   ];
 
   services.transmission = {
@@ -29,6 +29,7 @@
     driSupport32Bit = true;
   };
 
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
     prime = {
@@ -40,17 +41,10 @@
     forceFullCompositionPipeline = true;
   };
 
-  services.xserver.videoDrivers = [ "nvidia" ];
 
   home-manager.users.toma = {
-    # Turn off the default screen-tearing fix
-    modules.picom.vSync = false;
+    modules.picom.vSync = false; # Turns off the default screen-tearing fix
     home.packages = with pkgs; [
-      heroic
-      wine
-      steam
-      steam.run
-
       # Kdenlive
       kdenlive
       #glaxnimate

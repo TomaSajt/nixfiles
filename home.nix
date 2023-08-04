@@ -19,6 +19,11 @@
     dyalog.enable = true;
     feh.enable = true;
     firefox.enable = true;
+    games = {
+      heroic.enable = true;
+      steam.enable = true;
+      wine.enable = true;
+    };
     git = {
       enable = true;
       signing = true;
@@ -31,6 +36,7 @@
       autorandr.enable = true;
     };
     mime-apps.enable = true;
+    obs-studio.enable = true;
     picom = {
       enable = true;
       vSync = true;
