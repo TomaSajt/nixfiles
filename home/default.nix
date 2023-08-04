@@ -9,8 +9,8 @@ in
 
 {
   imports = [
+    ./modules
     # Desktop
-    ./i3
     ./picom.nix
     ./autorandr.nix
     ./xidlehook.nix
@@ -23,7 +23,6 @@ in
 
     # Terminal
     ./alacritty
-    ./bash.nix
     ./readline.nix
 
     # Editor
@@ -31,19 +30,46 @@ in
     ./neovim
 
     # Other
-    ./gpg.nix
-    ./git.nix
     ./firefox.nix
     ./user-dirs.nix
   ];
+
+  modules = {
+    gpg = {
+      enable = true;
+    };
+    git = {
+      enable = true;
+      signing = true;
+    };
+    dotnet = {
+      enable = true;
+    };
+    bash = {
+      enable = true;
+    };
+    i3 = {
+      enable = true;
+    };
+  };
+
+
+  # Network Applet
+  services.network-manager-applet.enable = true;
+
+  # Audio Applet
+  services.pasystray.enable = true;
+
+  # Automatic external disk mounting to /var/run/mount
+  services.udiskie = {
+    enable = true;
+    tray = "auto";
+  };
 
 
   home = {
     username = "toma";
     stateVersion = "22.11";
-    sessionVariables = {
-      DOTNET_CLI_TELEMETRY_OPTOUT = "true";
-    };
     packages = with pkgs; [
       ### User stuff ###
       discord # Online Chat - UNFREE
@@ -82,10 +108,6 @@ in
       # NodeJS
       nodejs
       nodePackages_latest.pnpm # npm alternative
-
-      # Dotnet - C#/F#
-      #unstable.dotnet-sdk
-      dotnet-sdks
 
       # Python
       python311

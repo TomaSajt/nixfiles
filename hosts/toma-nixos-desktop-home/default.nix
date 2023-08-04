@@ -29,6 +29,7 @@
     driSupport32Bit = true;
   };
 
+
   hardware.nvidia = {
     prime = {
       sync.enable = true;
@@ -38,21 +39,23 @@
     modesetting.enable = true;
     forceFullCompositionPipeline = true;
   };
+
   services.xserver.videoDrivers = [ "nvidia" ];
 
   home-manager.users.toma = {
     # Turn off the default screen-tearing fix
     services.picom.vSync = lib.mkForce false;
-    home.packages =
-      let
-        steam = (pkgs.steam.override { });
-      in
-      [
-        pkgs.heroic
-        pkgs.wine
-        steam
-        steam.run
-      ];
+    home.packages = with pkgs; [
+      heroic
+      wine
+      steam
+      steam.run
+
+      # Kdenlive
+      kdenlive
+      #glaxnimate
+      #mediainfo
+    ];
 
   };
 }
