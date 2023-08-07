@@ -13,7 +13,6 @@ in
     home.packages = with pkgs; [
       lua-language-server
       haskell-language-server
-      #(unstable.omnisharp-roslyn.overrideAttrs (oldAttrs: { useDotnetFromEnv = false; }))
       unstable.omnisharp-roslyn
       rust-analyzer
       rnix-lsp

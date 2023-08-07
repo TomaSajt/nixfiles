@@ -3,7 +3,8 @@ vim.g.mapleader = " "
 vim.cmd.colorscheme("monokai")
 vim.opt.termguicolors = true
 
--- vim.lsp.set_log_level("debug")
+-- set to "off" or "debug"
+vim.lsp.set_log_level("off")
 
 -- Allow background transparency
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
@@ -20,7 +21,10 @@ vim.opt.signcolumn = "yes"
 vim.opt.clipboard:append("unnamedplus")
 
 -- Tab settings
-require('guess-indent').setup {}
+require('guess-indent').setup {
+    auto_cmd = true,
+    override_editorconfig = false,
+}
 
 vim.opt.wrap = false
 
