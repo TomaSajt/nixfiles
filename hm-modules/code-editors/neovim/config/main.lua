@@ -9,11 +9,6 @@ vim.opt.termguicolors = true
 vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
-local signcolumnbg = vim.api.nvim_get_hl(0, { name = "SignColumn" }).bg
-vim.api.nvim_set_hl(0, "DiffAdd", { fg = vim.api.nvim_get_hl(0, { name = "DiffAdd" }).fg, bg = signcolumnbg })
-vim.api.nvim_set_hl(0, "DiffChange", { fg = vim.api.nvim_get_hl(0, { name = "DiffChange" }).fg, bg = signcolumnbg })
-vim.api.nvim_set_hl(0, "DiffDelete", { fg = vim.api.nvim_get_hl(0, { name = "DiffDelete" }).fg, bg = signcolumnbg })
-
 -- Hybrid line numbers
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -25,11 +20,7 @@ vim.opt.signcolumn = "yes"
 vim.opt.clipboard:append("unnamedplus")
 
 -- Tab settings
-vim.opt.shiftwidth = 4
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.expandtab = true
-
+require('guess-indent').setup {}
 
 vim.opt.wrap = false
 
@@ -49,18 +40,11 @@ require('config.treesitter')
 require('config.harpoon')
 require('config.lsp')
 require('config.keymap')
-
-
---require("config.statusline")
---vim.cmd("set statusline=%!v:lua.MyStatusLine()")
-
-vim.g['airline#extensions#tabline#enabled'] = true
-vim.g['airline#extensions#tabline#formatter'] = 'unique_tail_improved'
-vim.g['airline_theme'] = 'molokai'
+require('config.gitsigns')
+require('config.airline')
 
 vim.g['Hexokinase_optOutPatterns'] = { 'colour_names' }
 
-require('gitsigns').setup()
 
 require("nvim-autopairs").setup {}
 

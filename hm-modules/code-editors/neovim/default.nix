@@ -39,6 +39,7 @@ in
 
         vim-monokai
 
+        guess-indent-nvim
         indent-blankline-nvim
 
         nvim-autopairs
