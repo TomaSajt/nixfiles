@@ -6,7 +6,7 @@ let
 
   alacritty = "${config.programs.alacritty.package}/bin/alacritty";
   rofi = "${config.programs.rofi.finalPackage}/bin/rofi";
-  rofimoji = "${pkgs.rofimoji}/bin/rofimoji";
+  rofimoji' = "${pkgs.rofimoji}/bin/rofimoji";
   firefox = "${config.programs.firefox.package}/bin/firefox";
   firefox-dir = "${config.home.homeDirectory}/.mozilla/firefox";
   playerctl = "${config.services.playerctld.package}/bin/playerctl";
@@ -39,7 +39,7 @@ in
     programs.rofi = {
       enable = true;
       theme = "android_notification";
-      plugins = [ pkgs.rofi-calc pkgs.rofimoji ];
+      plugins = with pkgs; [ rofi-calc rofimoji ];
     };
 
     xsession.windowManager.i3 = {
@@ -52,7 +52,7 @@ in
           "${mod}+Shift+q" = "kill";
 
           "${mod}+d" = "exec --no-startup-id \"${rofi} -show combi -combi-modes 'window,run,drun' -modes combi\"";
-          "${mod}+period" = "exec --no-startup-id ${rofimoji}";
+          "${mod}+period" = "exec --no-startup-id ${rofimoji'}";
 
           "${mod}+Left" = "focus left";
           "${mod}+Down" = "focus down";
@@ -233,18 +233,21 @@ in
         blocks = [
           {
             block = "disk_space";
+            interval = 20;
+
             path = "/";
             info_type = "available";
             format = " $icon /: $available.eng(w:2) ";
-            interval = 20;
-            warning = 20.0;
-            alert = 10.0;
+
+            warning = 20;
+            alert = 10;
           }
           {
             block = "memory";
+            interval = 1;
+
             format = " $icon $mem_used_percents.eng(w:2) ";
             format_alt = " $icon $swap_used_percents.eng(w:2) ";
-            interval = 1;
           }
           {
             block = "cpu";
@@ -252,16 +255,20 @@ in
           }
           {
             block = "load";
-            format = " $icon $1m ";
             interval = 1;
+
+            format = " $icon $1m ";
           }
           {
             block = "sound";
+
             format = " $icon $output_name {$volume.eng(w:2) |}";
+
             mappings = {
-              "alsa_output.pci-0000_00_1f.3.analog-stereo" = "";
+              "alsa_output.pci-0000_00_1f.3.analog-stereo" = "";
               "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp__sink" = "";
             };
+
             click = [{
               button = "left";
               cmd = "${pavucontrol} --tab=3";
@@ -269,7 +276,7 @@ in
           }
           {
             block = "net";
-            format = " $icon  {$signal_strength $ssid $frequency|Wired connection} - $device ";
+            format = " $icon  {$ssid|Wired connection} [$device] ";
             click = [{
               button = "left";
               cmd = "${nm-connection-editor}";
@@ -277,13 +284,23 @@ in
           }
           {
             block = "battery";
-            format = "{ $icon  $percentage ($time) |}";
             interval = 5;
+
+            format = " $icon  $percentage ($time) ";
+
+            full_threshold = 90;
+            full_format = " $icon  $percentage ($time) ";
+
+            empty_threshold = 5;
+            empty_format = " $icon  $percentage ($time) ";
+
+            missing_format = " No Battery ";
           }
           {
             block = "time";
-            format = " $timestamp.datetime(f:'%a %y.%m.%d %R') ";
             interval = 5;
+
+            format = " $timestamp.datetime(f:'%a %y.%m.%d %R') ";
           }
         ];
       };
