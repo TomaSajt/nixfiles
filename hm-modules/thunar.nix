@@ -8,7 +8,10 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ pkgs.xfce.thunar ];
+    home.packages = with pkgs.xfce; [
+      thunar
+      tumbler # For thumbnails
+    ];
     modules.mime-apps.associations = {
       "inode/directory" = "thunar.desktop";
     };

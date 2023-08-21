@@ -1,11 +1,12 @@
 {
   inputs = {
+    #nixpkgs.url = github:TomaSajt/nixpkgs/lanraragi;
     nixpkgs.url = github:NixOS/nixpkgs/nixos-23.05;
-    nixpkgs-unstable.url = github:TomaSajt/nixpkgs/dotnet-fix;
-    #nixpkgs-unstable.url = github:NixOS/nixpkgs/nixos-unstable;
+    #nixpkgs-unstable.url = github:TomaSajt/nixpkgs/dotnet-fix;
+    nixpkgs-unstable.url = github:NixOS/nixpkgs/nixos-unstable;
     nur.url = github:nix-community/NUR;
 
-    home-manager.url = github:rycee/home-manager;
+    home-manager.url = github:nix-community/home-manager/release-23.05;
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     fenix.url = github:nix-community/fenix;

@@ -5,9 +5,8 @@
 
   boot.supportedFilesystems = [ "ntfs" ];
 
-  boot.kernelParams = [
-    "libata.noacpi=1" # Fixes some BIOS error
-  ];
+  # Fixes some BIOS error
+  boot.kernelParams = [ "libata.noacpi=1" ];
 
   services.transmission = {
     enable = true;
@@ -24,6 +23,8 @@
     allowedUDPPorts = [ 7777 ];
     allowedTCPPorts = [ 7777 ];
   };
+
+  #services.lanraragi.enable = true;
 
   hardware.opengl.driSupport32Bit = true;
 
