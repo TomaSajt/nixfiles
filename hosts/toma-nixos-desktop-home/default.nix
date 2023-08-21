@@ -42,7 +42,10 @@
 
 
   home-manager.users.toma = {
-    modules.picom.vSync = false; # Turns off the default screen-tearing fix
+    modules = {
+      picom.vSync = false; # Turns off the default screen-tearing fix
+      i3.show-battery = false;
+    };
     home.packages = with pkgs; [
       # Kdenlive
       kdenlive

@@ -32,6 +32,7 @@
     gtk.enable = true;
     i3 = {
       enable = true;
+      show-battery = true;
       xidlehook.enable = true;
       autorandr.enable = true;
     };

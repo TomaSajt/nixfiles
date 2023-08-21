@@ -26,6 +26,7 @@ in
 
   options.modules.i3 = {
     enable = lib.mkEnableOption "i3";
+    show-battery = lib.mkEnableOption "i3status-rs battery bar";
   };
 
   config = lib.mkIf cfg.enable {
@@ -282,20 +283,22 @@ in
               cmd = "${nm-connection-editor}";
             }];
           }
-          {
-            block = "battery";
-            interval = 5;
+        ]
+        ++ lib.optional cfg.show-battery {
+          block = "battery";
+          interval = 5;
 
-            format = " $icon  $percentage ($time) ";
+          format = " $icon  $percentage {($time)| }";
 
-            full_threshold = 90;
-            full_format = " $icon  $percentage ($time) ";
+          full_threshold = 90;
+          full_format = " $icon  $percentage {($time)| }";
 
-            empty_threshold = 5;
-            empty_format = " $icon  $percentage ($time) ";
+          empty_threshold = 5;
+          empty_format = " $icon  $percentage {($time)| }";
 
-            missing_format = " No Battery ";
-          }
+          missing_format = " No Battery ";
+        }
+        ++ [
           {
             block = "time";
             interval = 5;
