@@ -1,4 +1,4 @@
-{ inputs, lib, config, system, ... }:
+{ pkgs, lib, config, ... }:
 let
   cfg = config.modules.dyalog;
 in
@@ -8,9 +8,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with inputs.dyalog-nixos.packages.${system}; [
-      dyalog
-      ride
+    home.packages = [
+      pkgs.dev2.dyalog-apl
+      pkgs.dev1.ride
     ];
   };
 }

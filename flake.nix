@@ -2,21 +2,17 @@
   inputs = {
     #nixpkgs.url = github:TomaSajt/nixpkgs/lanraragi;
     nixpkgs.url = github:NixOS/nixpkgs/nixos-23.05;
-    #nixpkgs-unstable.url = github:TomaSajt/nixpkgs/dotnet-fix;
-    nixpkgs-unstable.url = github:NixOS/nixpkgs/nixos-unstable;
+    nixpkgs-unstable.url = github:NixOS/nixpkgs;
+    nixpkgs-dev1.url = github:TomaSajt/nixpkgs/ride;
+    nixpkgs-dev2.url = github:TomaSajt/nixpkgs/dyalog;
+
     nur.url = github:nix-community/NUR;
 
     home-manager.url = github:nix-community/home-manager/release-23.05;
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-
-    fenix.url = github:nix-community/fenix;
-    fenix.inputs.nixpkgs.follows = "nixpkgs-unstable";
-
-    dyalog-nixos.url = github:markus1189/dyalog-nixos;
-    dyalog-nixos.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nixpkgs, nixpkgs-unstable, nur, home-manager, fenix, dyalog-nixos }:
+  outputs = inputs: with inputs;
     let
       system = "x86_64-linux";
 
@@ -25,13 +21,20 @@
         config.allowUnfree = true;
         overlays = overlays ++ [
           nur.overlay
-          #dyalog-nixos.overlay
           (import ./overlay)
         ];
       };
 
-      pkgs-unstable = mkPkgs nixpkgs-unstable [ fenix.overlays.default ];
-      pkgs = mkPkgs nixpkgs [ (_: _: { unstable = pkgs-unstable; }) ];
+      pkgs-unstable = mkPkgs nixpkgs-unstable [ ];
+      pkgs-dev1 = mkPkgs nixpkgs-dev1 [ ];
+      pkgs-dev2 = mkPkgs nixpkgs-dev2 [ ];
+      pkgs = mkPkgs nixpkgs [
+        (_: _: {
+          unstable = pkgs-unstable;
+          dev1 = pkgs-dev1;
+          dev2 = pkgs-dev2;
+        })
+      ];
 
       inherit (pkgs) lib;
 
@@ -76,6 +79,5 @@
     in
     {
       nixosConfigurations = mapDirModules ./hosts mkHost;
-      inherit pkgs; # expose pkgs for debugging purposes
     };
 }

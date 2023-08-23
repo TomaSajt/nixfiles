@@ -49,15 +49,25 @@ let
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = [ "@hm" ];
         };
-        "Nixpkgs Github" = {
-          urls = [{ template = "https://github.com/search?q=repo%3ANixOS%2Fnixpkgs+{searchTerms}&type=code"; }];
+        "Github Search" = {
+          urls = [{ template = "https://github.com/search?q={searchTerms}"; }];
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = [ "@gh" ];
+        };
+        "Github Search Nixpkgs" = {
+          urls = [{ template = "https://github.com/search?q=repo%3ANixOS%2Fnixpkgs+{searchTerms}"; }];
+          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          definedAliases = [ "@gn" "@ghn" ];
         };
         "Terraria Wiki" = {
           urls = [{ template = "https://terraria.wiki.gg/index.php?search={searchTerms}"; }];
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = [ "@tw" ];
+        };
+        "APLCart" = {
+          urls = [{ template = "https://aplcart.info/?q={searchTerms}"; }];
+          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          definedAliases = [ "@apl" "@apc" ];
         };
         "Google".metaData.alias = "@g";
         "Wikipedia (en)".metaData.alias = "@w";
@@ -65,7 +75,18 @@ let
         "Bing".metaData.hidden = true;
         "eBay".metaData.hidden = true;
       };
-      order = [ "DuckDuckGo" "Google" "Nix Packages" "NixOS Options" "Home Manager Options" "Nixpkgs Github" "Wikipedia (en)" "Terraria Wiki" ];
+      order = [
+        "DuckDuckGo"
+        "Google"
+        "Wikipedia (en)"
+        "Nix Packages"
+        "NixOS Options"
+        "Home Manager Options"
+        "Github Search"
+        "Github Search Nixpkgs"
+        "Terraria Wiki"
+        "APLCart"
+      ];
     };
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
       ublock-origin

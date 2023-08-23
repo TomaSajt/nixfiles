@@ -1,7 +1,5 @@
 { pkgs, lib, ... }: {
-  imports = [
-    ./hardware-configuration.nix
-  ];
+  imports = [ ./hardware-configuration.nix ];
 
   boot.supportedFilesystems = [ "ntfs" ];
 
@@ -18,10 +16,8 @@
   };
 
   networking.firewall = {
-    allowedUDPPortRanges = [{ from = 25565; to = 25575; }];
-    allowedTCPPortRanges = [{ from = 25565; to = 25575; }];
-    allowedUDPPorts = [ 7777 ];
-    allowedTCPPorts = [ 7777 ];
+    allowedUDPPorts = [ 7777 25565 ];
+    allowedTCPPorts = [ 7777 25565 ];
   };
 
   #services.lanraragi.enable = true;

@@ -1,7 +1,5 @@
 { pkgs, ... }: {
-  imports = [
-    ./hardware-configuration.nix
-  ];
+  imports = [ ./hardware-configuration.nix ];
 
   boot.supportedFilesystems = [ "ntfs" ];
 
@@ -15,8 +13,8 @@
   };
 
   networking.firewall = {
-    allowedUDPPorts = [ 7777 ];
-    allowedTCPPorts = [ 7777 ];
+    allowedUDPPorts = [ 7777 25565 ];
+    allowedTCPPorts = [ 7777 25565 ];
   };
 
   hardware.opengl.driSupport32Bit = true;
