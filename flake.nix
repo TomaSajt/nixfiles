@@ -10,6 +10,9 @@
 
     home-manager.url = github:nix-community/home-manager/release-23.05;
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixpkgs-review-checks.url = github:SuperSandro2000/nixpkgs-review-checks;
+    nixpkgs-review-checks.inputs.nixpkgs.follows = "nixpkgs-unstable";
   };
 
   outputs = inputs: with inputs;

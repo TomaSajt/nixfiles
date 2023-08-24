@@ -1,5 +1,23 @@
 {
   "nodes": {
+    "flake-utils": {
+      "inputs": {
+        "systems": "systems"
+      },
+      "locked": {
+        "lastModified": 1689068808,
+        "narHash": "sha256-6ixXo3wt24N/melDWjq70UuHQLxGV8jZvooRanIHXw0=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "919d646de7be200f3bf08cb76ae1f09402b6f9b4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -69,6 +87,27 @@
         "type": "github"
       }
     },
+    "nixpkgs-review-checks": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": [
+          "nixpkgs-unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1692645044,
+        "narHash": "sha256-dmgwhP8MYrcsoJ7xNxEJymJ3ruvozQc6yqx1QQ2Ilmc=",
+        "owner": "SuperSandro2000",
+        "repo": "nixpkgs-review-checks",
+        "rev": "b0fbaef4ff6b312343e65db070723d8073c89c11",
+        "type": "github"
+      },
+      "original": {
+        "owner": "SuperSandro2000",
+        "repo": "nixpkgs-review-checks",
+        "type": "github"
+      }
+    },
     "nixpkgs-unstable": {
       "locked": {
         "lastModified": 1692781644,
@@ -105,8 +144,24 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-dev1": "nixpkgs-dev1",
         "nixpkgs-dev2": "nixpkgs-dev2",
+        "nixpkgs-review-checks": "nixpkgs-review-checks",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur"
+      }
+    },
+    "systems": {
+      "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
       }
     }
   },
