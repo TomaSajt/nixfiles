@@ -69,6 +69,11 @@ let
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = [ "@apl" "@apc" ];
         };
+        "Google Translate" = {
+          urls = [{ template = "https://translate.google.com/?sl=auto&tl=hu&op=translate&text={searchTerms}"; }];
+          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          definedAliases = [ "@tr" "@gt" ];
+        };
         "Google".metaData.alias = "@g";
         "Wikipedia (en)".metaData.alias = "@w";
         "Amazon.com".metaData.hidden = true;
@@ -86,6 +91,7 @@ let
         "Github Search Nixpkgs"
         "Terraria Wiki"
         "APLCart"
+        "Google Translate"
       ];
     };
     extensions = with pkgs.nur.repos.rycee.firefox-addons; [
