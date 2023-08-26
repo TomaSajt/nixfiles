@@ -37,6 +37,10 @@
       autorandr.enable = true;
     };
     mime-apps.enable = true;
+    notification = {
+      enable = true;
+      battery = true;
+    };
     obs-studio.enable = true;
     picom = {
       enable = true;

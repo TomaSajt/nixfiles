@@ -13,6 +13,7 @@
     ./gtk.nix
     ./i3
     ./mime-apps.nix
+    ./notification.nix
     ./obs-studio.nix
     ./picom.nix
     ./thunar.nix
