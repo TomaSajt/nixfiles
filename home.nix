@@ -1,6 +1,6 @@
 { pkgs, lib, ... }:
 {
-  imports = [ ./hm-modules ];
+  imports = [ ./hm-modules ./utils ];
 
   modules = lib.mkDefault {
     alacritty = {
