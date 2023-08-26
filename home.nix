@@ -78,7 +78,7 @@
 
       ### Utils ###
       gparted # Partition Management
-      # quark-goldleaf # Nintendo Switch File Transfer Client
+      dev3.quark-goldleaf # Nintendo Switch File Transfer Client
       zip # Zip compression utils
       unzip
       wget

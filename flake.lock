@@ -87,6 +87,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-dev3": {
+      "locked": {
+        "lastModified": 1692813429,
+        "narHash": "sha256-107mnXcA3z7uqOfZ/STaijL3kAnQKATVbRZ5ed0O+U4=",
+        "owner": "TomaSajt",
+        "repo": "nixpkgs",
+        "rev": "4479972fc4eb6735fb6ad7f8409568dc48bc37a7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "TomaSajt",
+        "ref": "quark-goldleaf",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-review-checks": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -144,6 +160,7 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-dev1": "nixpkgs-dev1",
         "nixpkgs-dev2": "nixpkgs-dev2",
+        "nixpkgs-dev3": "nixpkgs-dev3",
         "nixpkgs-review-checks": "nixpkgs-review-checks",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur"

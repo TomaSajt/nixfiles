@@ -126,7 +126,7 @@
   };
 
   services.udev = {
-    #packages = with pkgs; [ unstable.quark-goldleaf ];
+    packages = with pkgs; [ dev3.quark-goldleaf ];
     extraRules = ''
       # Backlight permissions
       ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
