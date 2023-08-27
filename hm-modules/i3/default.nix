@@ -12,6 +12,8 @@ let
   playerctl = "${config.services.playerctld.package}/bin/playerctl";
   xbacklight = "${pkgs.acpilight}/bin/xbacklight";
   pactl = "${pkgs.pulseaudio}/bin/pactl";
+  xcolor = "${pkgs.xcolor}/bin/xcolor";
+  notify-send = "${pkgs.libnotify}/bin/notify-send";
   gnome-screenshot = "${pkgs.gnome.gnome-screenshot}/bin/gnome-screenshot";
   dbus-update-activation-environment = "${pkgs.dbus}/bin/dbus-update-activation-environment";
 
@@ -136,6 +138,7 @@ in
           "${mod}+XF86MonBrightnessUp" = "exec --no-startup-id ${xbacklight} -inc 1";
           "${mod}+XF86MonBrightnessDown" = "exec --no-startup-id ${xbacklight} -dec 1";
 
+          "${mod}+p" = "exec --no-startup-id sleep 0.25 && ${xcolor} -s clipboard && ${notify-send} 'The selected color was copied to the clipboard!'";
           "${mod}+Print" = "exec ${gnome-screenshot} -i";
 
         };
@@ -277,7 +280,7 @@ in
           }
           {
             block = "net";
-            format = " $icon  {$ssid|Wired connection} [$device] ";
+            format = " {$icon $ssid|Wired connection} [$device] ";
             click = [{
               button = "left";
               cmd = "${nm-connection-editor}";
