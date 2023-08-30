@@ -280,7 +280,7 @@ in
           }
           {
             block = "net";
-            format = " {$icon $ssid|Wired connection} [$device] ";
+            format = " {$icon  $ssid|Wired connection} [$device] ";
             click = [{
               button = "left";
               cmd = "${nm-connection-editor}";
