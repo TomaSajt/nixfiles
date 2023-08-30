@@ -89,11 +89,11 @@
     },
     "nixpkgs-dev3": {
       "locked": {
-        "lastModified": 1692813429,
-        "narHash": "sha256-107mnXcA3z7uqOfZ/STaijL3kAnQKATVbRZ5ed0O+U4=",
+        "lastModified": 1693356906,
+        "narHash": "sha256-cO0UniQaAMBls0cGXGkw0f06cjXD35yHWqx7tM8RG/M=",
         "owner": "TomaSajt",
         "repo": "nixpkgs",
-        "rev": "4479972fc4eb6735fb6ad7f8409568dc48bc37a7",
+        "rev": "33e971b0b9f1c017ee3c7a8b3b09a49ecc914b0e",
         "type": "github"
       },
       "original": {
