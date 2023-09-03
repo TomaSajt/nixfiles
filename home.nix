@@ -23,6 +23,7 @@
       heroic.enable = true;
       steam.enable = true;
       wine.enable = true;
+      osu.enable = true;
     };
     git = {
       enable = true;
@@ -71,7 +72,6 @@
       discord # Online Chat - UNFREE
       obsidian # Note-taking - UNFREE
       gimp # Image editing
-      unstable.osu-lazer-bin # Rythm moment - UNFREE
       unstable.ani-cli # Anime moment
       mpv # Video player
       prismlauncher # Minecraft Launcher

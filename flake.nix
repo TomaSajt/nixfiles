@@ -85,5 +85,6 @@
     in
     {
       nixosConfigurations = mapDirModules ./hosts mkHost;
+      inherit pkgs;
     };
 }

@@ -103,6 +103,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-dev4": {
+      "locked": {
+        "lastModified": 1693664668,
+        "narHash": "sha256-wlm6LDhC8zM6XO14ZGGQJyJSAjwThHhc4NmnZ+h+iNo=",
+        "owner": "TomaSajt",
+        "repo": "nixpkgs",
+        "rev": "55bc87b37aad5e33e710684dcb45cdf88b8dd397",
+        "type": "github"
+      },
+      "original": {
+        "owner": "TomaSajt",
+        "ref": "desktop-postflop",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-review-checks": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -161,6 +177,7 @@
         "nixpkgs-dev1": "nixpkgs-dev1",
         "nixpkgs-dev2": "nixpkgs-dev2",
         "nixpkgs-dev3": "nixpkgs-dev3",
+        "nixpkgs-dev4": "nixpkgs-dev4",
         "nixpkgs-review-checks": "nixpkgs-review-checks",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur"
