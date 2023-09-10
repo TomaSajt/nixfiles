@@ -103,22 +103,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-dev4": {
-      "locked": {
-        "lastModified": 1693664668,
-        "narHash": "sha256-wlm6LDhC8zM6XO14ZGGQJyJSAjwThHhc4NmnZ+h+iNo=",
-        "owner": "TomaSajt",
-        "repo": "nixpkgs",
-        "rev": "55bc87b37aad5e33e710684dcb45cdf88b8dd397",
-        "type": "github"
-      },
-      "original": {
-        "owner": "TomaSajt",
-        "ref": "desktop-postflop",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-review-checks": {
       "inputs": {
         "flake-utils": "flake-utils",
@@ -157,11 +141,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1686944706,
-        "narHash": "sha256-Hk34iJFREf11mjhSnh7pm3vn6tWBzm0+VzzuO8Ce9KM=",
+        "lastModified": 1694267186,
+        "narHash": "sha256-LQosi2J9XCA5zXg2Fg3+Crthxd9JS7sKQF8X+EnxuHE=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "ac1fe7d676f4d2856f431165fc079d3ea565e540",
+        "rev": "bb7dc60ce4084565323cb414a074e0d849bfdebb",
         "type": "github"
       },
       "original": {
@@ -177,7 +161,6 @@
         "nixpkgs-dev1": "nixpkgs-dev1",
         "nixpkgs-dev2": "nixpkgs-dev2",
         "nixpkgs-dev3": "nixpkgs-dev3",
-        "nixpkgs-dev4": "nixpkgs-dev4",
         "nixpkgs-review-checks": "nixpkgs-review-checks",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur"

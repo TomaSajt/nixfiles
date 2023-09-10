@@ -4,7 +4,7 @@
 let
   cfg = config.modules.firefox;
 
-  firefox-wrapped = pkgs.wrapFirefox pkgs.firefox-unwrapped {
+  firefox-wrapped = pkgs.unstable.wrapFirefox pkgs.unstable.firefox-unwrapped {
     extraPolicies = {
       CaptivePortal = false;
       DisableFirefoxStudies = true;
@@ -94,7 +94,7 @@ let
         "Google Translate"
       ];
     };
-    extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+    extensions = with pkgs.unstable.nur.repos.rycee.firefox-addons; [
       ublock-origin
       bitwarden
       darkreader
