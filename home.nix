@@ -84,6 +84,7 @@
       wget
       file
       qdirstat
+      gdb # Debugger
 
       ### Support ###
       ntfs3g # NTFS Filesystem Support
