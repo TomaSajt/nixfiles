@@ -20,7 +20,11 @@
     allowedTCPPorts = [ 7777 25565 ];
   };
 
-  #services.lanraragi.enable = true;
+  services.lanraragi = {
+    enable = true;
+    port = 3009;
+    redis.port = 7329;
+  };
 
   hardware.opengl.driSupport32Bit = true;
 
@@ -35,7 +39,6 @@
     modesetting.enable = true;
     forceFullCompositionPipeline = true;
   };
-
 
   home-manager.users.toma = {
     modules = {

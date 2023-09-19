@@ -8,18 +8,17 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [ pkgs.lxappearance ]; # Look at themes (just don't switch them)
+    home.packages = [ pkgs.lxappearance ]; # Look at themes (just don't switch them pls)
 
     gtk = {
       enable = true;
       theme = {
-        # it says light, but it's actually dark
-        name = "Catppuccin-Latte-Compact-Blue-Light";
+        name = "Catppuccin-Mocca-Compact-Blue-dark";
         package = pkgs.catppuccin-gtk.override {
           accents = [ "blue" ];
           size = "compact";
-          tweaks = [ "rimless" /*"black"*/ ];
-          variant = "latte";
+          tweaks = [ "rimless" ];
+          variant = "mocha";
         };
       };
       cursorTheme = {
@@ -28,7 +27,15 @@ in
       };
       gtk3.extraConfig = {
         gtk-application-prefer-dark-theme = 1;
-        gtk-cursor-theme-size = 0;
+      };
+      gtk4.extraConfig = {
+        gtk-application-prefer-dark-theme = 1;
+      };
+    };
+
+    dconf.settings = {
+      "org/gnome/desktop/interface" = {
+        "color-scheme" = "prefer-dark";
       };
     };
   };

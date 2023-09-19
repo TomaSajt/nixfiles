@@ -102,11 +102,9 @@ let
       tampermonkey
     ];
     settings = {
-      # Don't show warning when viewing about:config
-      "browser.aboutConfig.showWarning" = false;
-
-      # Automatically enable extensions (maybe unsafe, idc)
-      "extensions.autoDisableScopes" = 0;
+      "browser.aboutConfig.showWarning" = false; # Don't show warning when viewing about:config
+      "extensions.autoDisableScopes" = 0; # Automatically enable extensions (maybe unsafe, idc)
+      "layout.css.prefers-color-scheme.content-override" = 0; # force dark mode
     };
   };
 

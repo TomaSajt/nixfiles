@@ -1,7 +1,7 @@
 {
   inputs = {
-    #nixpkgs.url = github:TomaSajt/nixpkgs/lanraragi;
-    nixpkgs.url = github:NixOS/nixpkgs/nixos-23.05;
+    nixpkgs.url = github:TomaSajt/nixpkgs/lanraragi;
+    #nixpkgs.url = github:NixOS/nixpkgs/nixos-23.05;
     nixpkgs-unstable.url = github:NixOS/nixpkgs;
     nixpkgs-dev1.url = github:TomaSajt/nixpkgs/ride;
     nixpkgs-dev2.url = github:TomaSajt/nixpkgs/dyalog;
@@ -9,7 +9,7 @@
 
     nur.url = github:nix-community/NUR;
 
-    home-manager.url = github:nix-community/home-manager/release-23.05;
+    home-manager.url = github:nix-community/home-manager;
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     nixpkgs-review-checks.url = github:SuperSandro2000/nixpkgs-review-checks;
