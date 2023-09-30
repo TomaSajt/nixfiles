@@ -16,8 +16,8 @@
   };
 
   networking.firewall = {
-    allowedUDPPorts = [ 7777 25565 ];
-    allowedTCPPorts = [ 7777 25565 ];
+    allowedUDPPorts = [ 7777 25565 3131 ];
+    allowedTCPPorts = [ 7777 25565 3131 ];
   };
 
   services.lanraragi = {

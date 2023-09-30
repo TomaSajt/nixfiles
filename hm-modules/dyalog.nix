@@ -8,9 +8,9 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = [
-      pkgs.dev2.dyalog-apl
-      pkgs.dev1.ride
+    home.packages = with pkgs; [
+      (unstable.dyalog.override { acceptLicense = true; })
+      dev1.ride
     ];
   };
 }

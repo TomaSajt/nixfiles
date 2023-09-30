@@ -4,8 +4,8 @@
     #nixpkgs.url = github:NixOS/nixpkgs/nixos-23.05;
     nixpkgs-unstable.url = github:NixOS/nixpkgs;
     nixpkgs-dev1.url = github:TomaSajt/nixpkgs/ride;
-    nixpkgs-dev2.url = github:TomaSajt/nixpkgs/dyalog;
     nixpkgs-dev3.url = github:TomaSajt/nixpkgs/quark-goldleaf;
+    nixpkgs-dev4.url = github:TomaSajt/nixpkgs/actiona;
 
     nur.url = github:nix-community/NUR;
 
@@ -29,16 +29,12 @@
         ];
       };
 
-      pkgs-unstable = mkPkgs nixpkgs-unstable [ ];
-      pkgs-dev1 = mkPkgs nixpkgs-dev1 [ ];
-      pkgs-dev2 = mkPkgs nixpkgs-dev2 [ ];
-      pkgs-dev3 = mkPkgs nixpkgs-dev3 [ ];
       pkgs = mkPkgs nixpkgs [
         (_: _: {
-          unstable = pkgs-unstable;
-          dev1 = pkgs-dev1;
-          dev2 = pkgs-dev2;
-          dev3 = pkgs-dev3;
+          unstable = mkPkgs nixpkgs-unstable [ ];
+          dev1 = mkPkgs nixpkgs-dev1 [ ];
+          dev3 = mkPkgs nixpkgs-dev3 [ ];
+          dev4 = mkPkgs nixpkgs-dev4 [ ];
         })
       ];
 

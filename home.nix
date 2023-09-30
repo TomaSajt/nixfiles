@@ -86,6 +86,8 @@
       qdirstat
       gdb # Debugger
 
+      dev4.actiona
+
       ### Support ###
       ntfs3g # NTFS Filesystem Support
       ripgrep # telescope.nvim support for grep

@@ -40,11 +40,11 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1694963166,
-        "narHash": "sha256-VKwl0DjZth7bjYLwvPbAgQduZ/yVoMUNtgf7Qg68LIY=",
+        "lastModified": 1695227625,
+        "narHash": "sha256-a8NJJSibiOMKB+/cMFSD5QayLL3ZZRBnXfkY2178spw=",
         "owner": "TomaSajt",
         "repo": "nixpkgs",
-        "rev": "8ca7355b0cf6b2a925741f1dbb2c842b4326f1f8",
+        "rev": "ab963a34b1612fa4d485f9823e70ea7d1eb62799",
         "type": "github"
       },
       "original": {
@@ -70,22 +70,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-dev2": {
-      "locked": {
-        "lastModified": 1692698574,
-        "narHash": "sha256-RoGEeT1dAnCDOhNBx0eGO1oxL/0hfjfz6VaSK9WjPBI=",
-        "owner": "TomaSajt",
-        "repo": "nixpkgs",
-        "rev": "a680ad3b15d2a88869d0d47c80657220f6475eec",
-        "type": "github"
-      },
-      "original": {
-        "owner": "TomaSajt",
-        "ref": "dyalog",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs-dev3": {
       "locked": {
         "lastModified": 1693356906,
@@ -98,6 +82,22 @@
       "original": {
         "owner": "TomaSajt",
         "ref": "quark-goldleaf",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-dev4": {
+      "locked": {
+        "lastModified": 1695513288,
+        "narHash": "sha256-hzO6t3qQKJi8gyWYhgU8iZdvmT8CtBhmLP9iti5SDww=",
+        "owner": "TomaSajt",
+        "repo": "nixpkgs",
+        "rev": "62e0793b3a7158d55bd6f12df7923f3c1a129cb5",
+        "type": "github"
+      },
+      "original": {
+        "owner": "TomaSajt",
+        "ref": "actiona",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -125,11 +125,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1694946133,
-        "narHash": "sha256-Ut8ehCUpYdc3J6Ep6a91cQBRUgzGxqZyxHA7unOBEOY=",
+        "lastModified": 1696106167,
+        "narHash": "sha256-kq6THODyisob9I2apXRBhzn06ixFOKyk0Qm2CHnDfMo=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "d035ca3b2873a0aab6bfbd1ffed188d9d64c3415",
+        "rev": "7cdd86dc087553a9eb5013b19bd2c4e242e30bad",
         "type": "github"
       },
       "original": {
@@ -158,8 +158,8 @@
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixpkgs-dev1": "nixpkgs-dev1",
-        "nixpkgs-dev2": "nixpkgs-dev2",
         "nixpkgs-dev3": "nixpkgs-dev3",
+        "nixpkgs-dev4": "nixpkgs-dev4",
         "nixpkgs-review-checks": "nixpkgs-review-checks",
         "nixpkgs-unstable": "nixpkgs-unstable",
         "nur": "nur"
