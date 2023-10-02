@@ -87,7 +87,6 @@
       gdb # Debugger
 
       inkscape
-      dev4.actiona
 
       ### Support ###
       ntfs3g # NTFS Filesystem Support

@@ -5,7 +5,6 @@
     nixpkgs-unstable.url = github:NixOS/nixpkgs;
     nixpkgs-dev1.url = github:TomaSajt/nixpkgs/ride;
     nixpkgs-dev3.url = github:TomaSajt/nixpkgs/quark-goldleaf;
-    nixpkgs-dev4.url = github:TomaSajt/nixpkgs/actiona;
 
     nur.url = github:nix-community/NUR;
 
@@ -34,7 +33,6 @@
           unstable = mkPkgs nixpkgs-unstable [ ];
           dev1 = mkPkgs nixpkgs-dev1 [ ];
           dev3 = mkPkgs nixpkgs-dev3 [ ];
-          dev4 = mkPkgs nixpkgs-dev4 [ ];
         })
       ];
 

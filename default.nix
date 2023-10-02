@@ -10,7 +10,7 @@
       sansSerif = [ "Noto Sans" ];
       monospace = [ "JetBrainsMono Nerd Font" ];
     };
-    fonts = with pkgs; [
+    packages = with pkgs; [
       noto-fonts
       (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
     ];
