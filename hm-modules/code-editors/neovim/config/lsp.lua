@@ -52,7 +52,7 @@ lspconfig.lua_ls.setup(lsp.defaults.nvim_workspace())
 lspconfig.ccls.setup {
     init_options = {
         clang = {
-            extraArgs = { "-std=c++17" }
+            extraArgs = { "-std=c++20" }
         }
     }
 }

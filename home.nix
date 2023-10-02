@@ -86,6 +86,7 @@
       qdirstat
       gdb # Debugger
 
+      inkscape
       dev4.actiona
 
       ### Support ###
