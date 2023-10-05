@@ -1,6 +1,7 @@
 {
   inputs = {
-    nixpkgs.url = github:TomaSajt/nixpkgs/lanraragi;
+    nixpkgs.url = github:TomaSajt/nixpkgs/veyon;
+    #nixpkgs.url = github:TomaSajt/nixpkgs/lanraragi;
     #nixpkgs.url = github:NixOS/nixpkgs/nixos-23.05;
     nixpkgs-unstable.url = github:NixOS/nixpkgs;
     nixpkgs-dev1.url = github:TomaSajt/nixpkgs/ride;

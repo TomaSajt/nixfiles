@@ -25,11 +25,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1695149570,
-        "narHash": "sha256-6LrNG9ggW9zPKjEkX/JV8/VASTTk1Ot6xuOhG5skN/0=",
+        "lastModified": 1696446489,
+        "narHash": "sha256-xSjMKdNR+q/3hdSPyg/LUMsZT/WIoUi8dcm5zT4SMUQ=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "f5b920f4d2f920a1982ca844cfd22c8f1e82ed7e",
+        "rev": "68f7d8c0fb0bfc67d1916dd7f06288424360d43a",
         "type": "github"
       },
       "original": {
@@ -40,16 +40,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1695227625,
-        "narHash": "sha256-a8NJJSibiOMKB+/cMFSD5QayLL3ZZRBnXfkY2178spw=",
+        "lastModified": 1696546110,
+        "narHash": "sha256-i8zrUkE0x3iHtXWBwFUUi7SKr1gsglf978Q6399rUYs=",
         "owner": "TomaSajt",
         "repo": "nixpkgs",
-        "rev": "ab963a34b1612fa4d485f9823e70ea7d1eb62799",
+        "rev": "793a5943f218b38bf958f31745532eba5ab509e4",
         "type": "github"
       },
       "original": {
         "owner": "TomaSajt",
-        "ref": "lanraragi",
+        "ref": "veyon",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -124,11 +124,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1694267186,
-        "narHash": "sha256-LQosi2J9XCA5zXg2Fg3+Crthxd9JS7sKQF8X+EnxuHE=",
+        "lastModified": 1696542377,
+        "narHash": "sha256-swb06Kj12+F9Rr/fXbT2ZGfEoVHcKZCIW+GVjQSI3Xc=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "bb7dc60ce4084565323cb414a074e0d849bfdebb",
+        "rev": "bd7b9e4113d3a4c726309b32f01c62bc192eb311",
         "type": "github"
       },
       "original": {

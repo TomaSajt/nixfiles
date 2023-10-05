@@ -4,4 +4,5 @@ final: prev:
   vimPlugins = prev.vimPlugins // prev.callPackage ./vim-plugins { };
   osu-mime-types = prev.callPackage ./osu-mime-types { };
   ccls = prev.callPackage ./ccls { llvmPackages = prev.llvmPackages_16; };
+  dyalog = prev.dyalog.override { acceptLicense = true; };
 }

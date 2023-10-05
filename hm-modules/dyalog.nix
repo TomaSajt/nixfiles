@@ -9,7 +9,7 @@ in
 
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [
-      (unstable.dyalog.override { acceptLicense = true; })
+      unstable.dyalog
       dev1.ride
     ];
   };

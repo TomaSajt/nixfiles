@@ -20,11 +20,11 @@
     allowedTCPPorts = [ 7777 25565 3131 ];
   };
 
-  services.lanraragi = {
+  /*services.lanraragi = {
     enable = true;
     port = 3009;
     redis.port = 7329;
-  };
+    };*/
 
   hardware.opengl.driSupport32Bit = true;
 
