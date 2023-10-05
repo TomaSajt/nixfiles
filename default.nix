@@ -109,7 +109,7 @@
 
   virtualisation.docker.enable = true;
 
-  services.veyon.enable = true;
+  # services.veyon.enable = true;
 
   security.polkit.enable = true;
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
