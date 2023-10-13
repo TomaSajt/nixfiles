@@ -95,19 +95,12 @@
       fd # `find` alternative (used for neovim)
 
       ### Languages ###
-
-      # C++
       gcc
-
-      # Java
       jdk
-
-      # NodeJS
       nodejs
       nodePackages_latest.pnpm # npm alternative
-
-      # Python
       python311
+      dev2.uiua
     ];
   };
 }

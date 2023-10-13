@@ -50,7 +50,6 @@ vim.opt.updatetime = 50
 
 require('config.telescope')
 require('config.treesitter')
-require('config.harpoon')
 require('config.lsp')
 require('config.keymap')
 require('config.gitsigns')
@@ -61,7 +60,4 @@ vim.g['Hexokinase_optOutPatterns'] = { 'colour_names' }
 
 require("nvim-autopairs").setup {}
 
-require("indent_blankline").setup {
-    space_char_blankline = " ",
-    show_current_context = true,
-}
+require("ibl").setup {}

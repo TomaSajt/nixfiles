@@ -40,16 +40,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1696546110,
-        "narHash": "sha256-i8zrUkE0x3iHtXWBwFUUi7SKr1gsglf978Q6399rUYs=",
-        "owner": "TomaSajt",
+        "lastModified": 1697009197,
+        "narHash": "sha256-viVRhBTFT8fPJTb1N3brQIpFZnttmwo3JVKNuWRVc3s=",
+        "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "793a5943f218b38bf958f31745532eba5ab509e4",
+        "rev": "01441e14af5e29c9d27ace398e6dd0b293e25a54",
         "type": "github"
       },
       "original": {
-        "owner": "TomaSajt",
-        "ref": "veyon",
+        "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -66,6 +66,21 @@
       "original": {
         "owner": "TomaSajt",
         "ref": "ride",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-dev2": {
+      "locked": {
+        "lastModified": 1697181342,
+        "narHash": "sha256-J3oYE7SI7GT07pVW5wcelDcapuYjccCcyYw3ngey3Ec=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "4c2613a3f21cc00290a5642b657d77264c827e7b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -109,11 +124,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1696106167,
-        "narHash": "sha256-kq6THODyisob9I2apXRBhzn06ixFOKyk0Qm2CHnDfMo=",
+        "lastModified": 1696657718,
+        "narHash": "sha256-DLVkrAwcVWFdyePbR0E1Cw96eCpRXBzdNtDxniqIOYg=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "7cdd86dc087553a9eb5013b19bd2c4e242e30bad",
+        "rev": "1124eb9e0d7eb65199a2dc81a66df1550550d8cc",
         "type": "github"
       },
       "original": {
@@ -142,6 +157,7 @@
         "home-manager": "home-manager",
         "nixpkgs": "nixpkgs",
         "nixpkgs-dev1": "nixpkgs-dev1",
+        "nixpkgs-dev2": "nixpkgs-dev2",
         "nixpkgs-dev3": "nixpkgs-dev3",
         "nixpkgs-review-checks": "nixpkgs-review-checks",
         "nixpkgs-unstable": "nixpkgs-unstable",

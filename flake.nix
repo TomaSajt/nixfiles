@@ -1,10 +1,12 @@
 {
   inputs = {
-    nixpkgs.url = github:TomaSajt/nixpkgs/veyon;
+    nixpkgs.url = github:NixOS/nixpkgs/nixpkgs-unstable;
+    #nixpkgs.url = github:TomaSajt/nixpkgs/veyon;
     #nixpkgs.url = github:TomaSajt/nixpkgs/lanraragi;
     #nixpkgs.url = github:NixOS/nixpkgs/nixos-23.05;
     nixpkgs-unstable.url = github:NixOS/nixpkgs;
     nixpkgs-dev1.url = github:TomaSajt/nixpkgs/ride;
+    nixpkgs-dev2.url = github:NixOS/nixpkgs;
     nixpkgs-dev3.url = github:TomaSajt/nixpkgs/quark-goldleaf;
 
     nur.url = github:nix-community/NUR;
@@ -33,6 +35,7 @@
         (_: _: {
           unstable = mkPkgs nixpkgs-unstable [ ];
           dev1 = mkPkgs nixpkgs-dev1 [ ];
+          dev2 = mkPkgs nixpkgs-dev2 [ ];
           dev3 = mkPkgs nixpkgs-dev3 [ ];
         })
       ];
