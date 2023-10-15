@@ -100,7 +100,7 @@
       nodejs
       nodePackages_latest.pnpm # npm alternative
       python311
-      dev2.uiua
+      dev-uiua.uiua
     ];
   };
 }

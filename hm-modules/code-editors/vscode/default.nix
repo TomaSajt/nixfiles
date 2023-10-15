@@ -25,6 +25,8 @@ in
         arrterian.nix-env-selector
         bradlc.vscode-tailwindcss
         antfu.unocss
+
+        pkgs.dev-uiua.vscode-extensions.uiua-lang.uiua-vscode
       ];
 
       userSettings = {
