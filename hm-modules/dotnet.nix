@@ -3,7 +3,7 @@
 let
   cfg = config.modules.dotnet;
 
-  dotnet-sdks = with pkgs.unstable.dotnetCorePackages; combinePackages [
+  dotnet-sdks = with pkgs.dotnetCorePackages; combinePackages [
     sdk_6_0
     sdk_7_0
   ];

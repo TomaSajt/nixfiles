@@ -34,6 +34,7 @@ lsp.setup_servers({
     'html',
     'jsonls',
     'svelte',
+    'uiua'
 })
 
 local lspconfig = require('lspconfig')

@@ -20,11 +20,22 @@
     allowedTCPPorts = [ 7777 25565 3131 ];
   };
 
-  /*services.lanraragi = {
+  services.lanraragi = {
     enable = true;
-    port = 3009;
-    redis.port = 7329;
-    };*/
+    port = 6969;
+    passwordFile = pkgs.writeText "lrr-pass" "poggers123"; # ayo, wtf, who puts secrets in publci repos??
+    redis = {
+      port = 6971;
+      passwordFile = pkgs.writeText "lrr-pass" "epic-pass";
+    };
+  };
+
+  services.redis.servers.lrr-test-3 = {
+    enable = true;
+    port = 9999;
+  };
+
+  programs.darling.enable = true;
 
   hardware.opengl.driSupport32Bit = true;
 

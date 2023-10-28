@@ -54,7 +54,6 @@
       '';
       registry = {
         nixpkgs.to = lock.nodes.nixpkgs.locked;
-        nixpkgs-unstable.to = lock.nodes.nixpkgs-unstable.locked;
         nixpkgs-review-checks.to = lock.nodes.nixpkgs-review-checks.locked;
       };
       channel.enable = false;

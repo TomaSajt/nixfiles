@@ -230,7 +230,6 @@ in
     };
     programs.i3status-rust = {
       enable = true;
-      package = pkgs.unstable.i3status-rust;
       bars.default = {
         icons = "awesome6";
         theme = "gruvbox-dark";

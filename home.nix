@@ -20,7 +20,7 @@
     feh.enable = true;
     firefox.enable = true;
     games = {
-      heroic.enable = true;
+      heroic.enable = false; # electron EOL stuff
       steam.enable = true;
       wine.enable = true;
       osu.enable = true;
@@ -72,7 +72,7 @@
       discord # Online Chat - UNFREE
       obsidian # Note-taking - UNFREE
       gimp # Image editing
-      unstable.ani-cli # Anime moment
+      ani-cli # Anime moment
       mpv # Video player
       prismlauncher # Minecraft Launcher
 
@@ -83,7 +83,7 @@
       unzip
       wget
       file
-      qdirstat
+      #qdirstat
       gdb # Debugger
 
       inkscape

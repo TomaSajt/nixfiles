@@ -10,7 +10,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs.unstable; [
+    home.packages = with pkgs; [
       osu-lazer-bin
       osu-mime-types
     ];

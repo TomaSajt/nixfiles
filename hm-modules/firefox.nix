@@ -4,7 +4,7 @@
 let
   cfg = config.modules.firefox;
 
-  firefox-wrapped = pkgs.unstable.wrapFirefox pkgs.unstable.firefox-unwrapped {
+  firefox-wrapped = pkgs.wrapFirefox pkgs.firefox-unwrapped {
     extraPolicies = {
       CaptivePortal = false;
       DisableFirefoxStudies = true;
@@ -94,7 +94,7 @@ let
         "Google Translate"
       ];
     };
-    extensions = with pkgs.unstable.nur.repos.rycee.firefox-addons; [
+    extensions = with pkgs.nur.repos.rycee.firefox-addons; [
       ublock-origin
       bitwarden
       darkreader
@@ -104,6 +104,7 @@ let
     settings = {
       "browser.aboutConfig.showWarning" = false; # Don't show warning when viewing about:config
       "extensions.autoDisableScopes" = 0; # Automatically enable extensions (maybe unsafe, idc)
+      "browser.translations.automaticallyPopup" = false;
     };
   };
 
