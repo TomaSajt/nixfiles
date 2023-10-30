@@ -4,24 +4,18 @@ let
 
   mod = "Mod4";
 
-  alacritty = "${config.programs.alacritty.package}/bin/alacritty";
-  rofi = "${config.programs.rofi.finalPackage}/bin/rofi";
-  rofimoji' = "${pkgs.rofimoji}/bin/rofimoji";
-  firefox = "${config.programs.firefox.package}/bin/firefox";
-  firefox-dir = "${config.home.homeDirectory}/.mozilla/firefox";
+  alacritty = lib.getExe config.programs.alacritty.package;
+  rofi = lib.getExe config.programs.rofi.finalPackage;
+  firefox = lib.getExe config.programs.firefox.package;
   playerctl = "${config.services.playerctld.package}/bin/playerctl";
-  xbacklight = "${pkgs.acpilight}/bin/xbacklight";
+  xbacklight = lib.getExe pkgs.acpilight;
   pactl = "${pkgs.pulseaudio}/bin/pactl";
-  xcolor = "${pkgs.xcolor}/bin/xcolor";
-  notify-send = "${pkgs.libnotify}/bin/notify-send";
-  gnome-screenshot = "${pkgs.gnome.gnome-screenshot}/bin/gnome-screenshot";
+  xcolor = lib.getExe pkgs.xcolor;
+  notify-send = lib.getExe pkgs.libnotify;
   dbus-update-activation-environment = "${pkgs.dbus}/bin/dbus-update-activation-environment";
+  i3status-rs = lib.getExe config.programs.i3status-rust.package;
 
-
-  i3status-rs = "${config.programs.i3status-rust.package}/bin/i3status-rs";
-  i3status-rs-dir = "${config.xdg.configHome}/i3status-rust";
-  pavucontrol = "${pkgs.pavucontrol}/bin/pavucontrol";
-  nm-connection-editor = "${pkgs.networkmanagerapplet}/bin/nm-connection-editor";
+  mkScreenshotCommand = filename: flags: ''exec --no-startup-id mkdir -p ${config.xdg.userDirs.pictures}/screenshots && cd ${config.xdg.userDirs.pictures}/screenshots && ${lib.getExe pkgs.scrot} ${filename} ${flags} -e "${lib.getExe pkgs.xclip} -selection clipboard -t image/png -i \$f && ${notify-send} 'Saved as \$f\nImage was copied to the clipboard'"'';
 in
 {
   imports = [ ./xidlehook.nix ./autorandr.nix ];
@@ -42,7 +36,7 @@ in
     programs.rofi = {
       enable = true;
       theme = "android_notification";
-      plugins = with pkgs; [ rofi-calc rofimoji ];
+      plugins = [ pkgs.rofi-calc ];
     };
 
     xsession.windowManager.i3 = {
@@ -52,10 +46,12 @@ in
         modifier = mod;
         keybindings = {
           "${mod}+Return" = "exec --no-startup-id ${alacritty}";
+          "${mod}+Shift+Return" = "exec --no-startup-id ${alacritty} --working-directory $(${lib.getExe pkgs.xcwd})";
+
           "${mod}+Shift+q" = "kill";
 
           "${mod}+d" = "exec --no-startup-id \"${rofi} -show combi -combi-modes 'window,run,drun' -modes combi\"";
-          "${mod}+period" = "exec --no-startup-id ${rofimoji'}";
+          "${mod}+period" = "exec --no-startup-id ${lib.getExe pkgs.rofimoji}";
 
           "${mod}+Left" = "focus left";
           "${mod}+Down" = "focus down";
@@ -110,8 +106,8 @@ in
           "${mod}+Shift+9" = "move container to workspace number 9";
 
           # mod2+KP_N are the numpad keys
-          "${mod}+mod2+KP_1" = "exec ${firefox} --profile ${firefox-dir}/main --new-window";
-          "${mod}+mod2+KP_2" = "exec ${firefox} --profile ${firefox-dir}/school --new-window";
+          "${mod}+mod2+KP_1" = "exec ${firefox} --profile ~/.mozilla/firefox/main --new-window";
+          "${mod}+mod2+KP_2" = "exec ${firefox} --profile ~/.mozilla/firefox/school --new-window";
           "${mod}+mod2+KP_3" = "exec --no-startup-id ${rofi} -show calc -modi calc -no-show-match -no-sort";
 
           "${mod}+Shift+c" = "reload";
@@ -138,9 +134,10 @@ in
           "${mod}+XF86MonBrightnessUp" = "exec --no-startup-id ${xbacklight} -inc 1";
           "${mod}+XF86MonBrightnessDown" = "exec --no-startup-id ${xbacklight} -dec 1";
 
-          "${mod}+p" = "exec --no-startup-id sleep 0.25 && ${xcolor} -s clipboard && ${notify-send} 'The selected color was copied to the clipboard!'";
-          "${mod}+Print" = "exec ${gnome-screenshot} -i";
-
+          "--release ${mod}+p" = "exec --no-startup-id ${xcolor} -s clipboard && ${notify-send} 'The selected color was copied to the clipboard!'";
+          "--release ${mod}+Shift+s" = mkScreenshotCommand ''%Y-%m-%d-%H-%M-%S-crop-\$wx\$h.png'' "-s -f";
+          "--release ${mod}+Shift+Control+s" = mkScreenshotCommand ''%Y-%m-%d-%H-%M-%S-crop-\$wx\$h.png'' "-s";
+          "--release Print" = mkScreenshotCommand ''%Y-%m-%d-%H-%M-%S.png'' "";
         };
         modes = {
           resize = {
@@ -189,7 +186,7 @@ in
           position = "top";
           workspaceButtons = true;
           workspaceNumbers = true;
-          statusCommand = "${i3status-rs} ${i3status-rs-dir}/config-default.toml";
+          statusCommand = "${i3status-rs} ${config.xdg.configHome}/i3status-rust/config-default.toml";
           fonts = {
             names = [ "monospace" ];
             size = 11.0;
