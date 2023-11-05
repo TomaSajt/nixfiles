@@ -1,26 +1,25 @@
 {
   inputs = {
-    nixpkgs.url = github:TomaSajt/nixpkgs/lanraragi;
-    nixpkgs-dev1.url = github:TomaSajt/nixpkgs/ride;
-    nixpkgs-dev2.url = github:NixOS/nixpkgs/c585eaf8d88cbcd32935f7865f1e2568f8f5e9ce;
-    nixpkgs-dev-uiua.url = github:NixOS/nixpkgs;
-    nixpkgs-dev3.url = github:TomaSajt/nixpkgs/quark-goldleaf;
+    nixpkgs.url = "github:TomaSajt/nixpkgs/lanraragi";
+    nixpkgs-dev1.url = "github:TomaSajt/nixpkgs/ride";
+    nixpkgs-dev2.url = "github:NixOS/nixpkgs/c585eaf8d88cbcd32935f7865f1e2568f8f5e9ce";
+    nixpkgs-dev-uiua.url = "github:NixOS/nixpkgs";
+    nixpkgs-dev3.url = "github:TomaSajt/nixpkgs/quark-goldleaf";
 
-    nur.url = github:nix-community/NUR;
+    nur.url = "github:nix-community/NUR";
 
-    home-manager.url = github:nix-community/home-manager;
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    nixpkgs-review-checks.url = github:SuperSandro2000/nixpkgs-review-checks;
+    nixpkgs-review-checks.url = "github:SuperSandro2000/nixpkgs-review-checks";
     nixpkgs-review-checks.inputs.nixpkgs.follows = "nixpkgs";
 
 
-    nixpkgs-droid.url = github:NixOS/nixpkgs/nixpkgs-unstable;
+    nixpkgs-droid.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
-    nix-on-droid.url = github:nix-community/nix-on-droid;
+    nix-on-droid.url = "github:nix-community/nix-on-droid";
     nix-on-droid.inputs.nixpkgs.follows = "nixpkgs-droid";
     nix-on-droid.inputs.home-manager.follows = "home-manager";
-   
   };
 
   outputs = inputs: with inputs;
@@ -28,28 +27,26 @@
       system = "x86_64-linux";
 
       mkPkgs = pkgs-flake: system: overlays: import pkgs-flake {
-        inherit system;
+        inherit system overlays;
         config.allowUnfree = true;
-        inherit overlays;
       };
 
-      pkgs = mkPkgs nixpkgs "x86_64-linux" [
+      mkPkgs' = pkgs-flake: overlays: mkPkgs pkgs-flake "x86_64-linux" overlays;
+
+      pkgs = mkPkgs' nixpkgs [
         (import ./overlay)
         nur.overlay
         (_: _: {
-          dev1 = mkPkgs nixpkgs-dev1 "x86_64-linux" [ ];
-          dev2 = mkPkgs nixpkgs-dev2 "x86_64-linux" [ ];
-          dev3 = mkPkgs nixpkgs-dev3 "x86_64-linux" [ ];
-          dev-uiua = mkPkgs nixpkgs-dev-uiua "x86_64-linux" [ ];
+          dev1 = mkPkgs' nixpkgs-dev1 [ ];
+          dev2 = mkPkgs' nixpkgs-dev2 [ ];
+          dev3 = mkPkgs' nixpkgs-dev3 [ ];
+          dev-uiua = mkPkgs' nixpkgs-dev-uiua [ ];
         })
       ];
 
       inherit (pkgs) lib;
 
-      specialArgs = {
-        inherit inputs;
-        system = "x86_64-linux";
-      };
+      specialArgs = { inherit inputs; };
 
       mkHost = path: nixpkgs.lib.nixosSystem {
         inherit system specialArgs;
@@ -71,6 +68,10 @@
         ];
       };
 
+      droidConf = nix-on-droid.lib.nixOnDroidConfiguration {
+        modules = [ ./droid.nix ];
+      };
+
       mapDirModules = dir: fn:
         let
           dirData = builtins.readDir dir;
@@ -86,14 +87,11 @@
         in
         lib.filterAttrs (_: v: v != null) mappedAttrs;
     in
-    rec {
+    {
       nixosConfigurations = mapDirModules ./hosts mkHost;
-      
-      nixOnDroidConfigurations.default = nix-on-droid.lib.nixOnDroidConfiguration {
-        modules = [ ./droid.nix ];
-      };
-
       inherit pkgs;
-      droid-pkgs = nixOnDroidConfigurations.default.pkgs;
+
+      nixOnDroidConfigurations.default = droidConf;
+      droid-pkgs = droidConf.pkgs;
     };
 }
