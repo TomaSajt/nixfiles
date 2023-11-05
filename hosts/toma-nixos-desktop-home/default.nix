@@ -23,16 +23,11 @@
   services.lanraragi = {
     enable = true;
     port = 6969;
-    passwordFile = pkgs.writeText "lrr-pass" "poggers123"; # ayo, wtf, who puts secrets in publci repos??
+    passwordFile = pkgs.writeText "lrr-pass" "poggers123"; # ayo, wtf, who puts secrets in public repos??
     redis = {
       port = 6971;
       passwordFile = pkgs.writeText "lrr-pass" "epic-pass";
     };
-  };
-
-  services.redis.servers.lrr-test-3 = {
-    enable = true;
-    port = 9999;
   };
 
   programs.darling.enable = true;
