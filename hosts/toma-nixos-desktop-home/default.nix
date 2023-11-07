@@ -30,7 +30,11 @@
     };
   };
 
-  programs.darling.enable = true;
+  services.redis.servers.lrr-test-5 = {
+    enable = true;
+    port = 9998;
+    requirePass = "asd";
+  };
 
   hardware.opengl.driSupport32Bit = true;
 
@@ -52,11 +56,13 @@
       i3.show-battery = false;
       notification.battery = false;
     };
-    home.packages = with pkgs; [
-      # Kdenlive
-      kdenlive
-      #glaxnimate
-      #mediainfo
-    ];
+    home = {
+      sessionVariables = {
+        # https://bugs.webkit.org/show_bug.cgi?id=228268
+        # fix for nvidia proprietary drivers
+        "WEBKIT_DISABLE_COMPOSITING_MODE" = "1";
+      };
+      packages = with pkgs; [ ];
+    };
   };
 }

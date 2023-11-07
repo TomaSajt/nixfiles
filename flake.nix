@@ -2,7 +2,6 @@
   inputs = {
     nixpkgs.url = "github:TomaSajt/nixpkgs/lanraragi";
     nixpkgs-dev1.url = "github:TomaSajt/nixpkgs/ride";
-    nixpkgs-dev2.url = "github:NixOS/nixpkgs/c585eaf8d88cbcd32935f7865f1e2568f8f5e9ce";
     nixpkgs-dev-uiua.url = "github:NixOS/nixpkgs";
     nixpkgs-dev3.url = "github:TomaSajt/nixpkgs/quark-goldleaf";
 
@@ -13,7 +12,6 @@
 
     nixpkgs-review-checks.url = "github:SuperSandro2000/nixpkgs-review-checks";
     nixpkgs-review-checks.inputs.nixpkgs.follows = "nixpkgs";
-
 
     nixpkgs-droid.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
@@ -38,7 +36,6 @@
         nur.overlay
         (_: _: {
           dev1 = mkPkgs' nixpkgs-dev1 [ ];
-          dev2 = mkPkgs' nixpkgs-dev2 [ ];
           dev3 = mkPkgs' nixpkgs-dev3 [ ];
           dev-uiua = mkPkgs' nixpkgs-dev-uiua [ ];
         })

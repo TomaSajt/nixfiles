@@ -17,7 +17,7 @@ in
         svelte.svelte-vscode
         pkief.material-icon-theme
         ms-vscode.cpptools
-        pkgs.dev2.vscode-extensions.ms-python.python
+        ms-python.python
         ms-dotnettools.csharp
         batisteo.vscode-django
         SPGoding.datapack-language-server

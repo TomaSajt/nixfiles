@@ -5,5 +5,4 @@ final: prev:
   osu-mime-types = prev.callPackage ./osu-mime-types { };
   ccls = prev.callPackage ./ccls { llvmPackages = prev.llvmPackages_16; };
   dyalog = prev.dyalog.override { acceptLicense = true; };
-  udiskie = final.dev2.udiskie;
 }
