@@ -13,6 +13,9 @@
     nixpkgs-review-checks.url = "github:SuperSandro2000/nixpkgs-review-checks";
     nixpkgs-review-checks.inputs.nixpkgs.follows = "nixpkgs";
 
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+
     nixpkgs-droid.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     nix-on-droid.url = "github:nix-community/nix-on-droid";
@@ -51,6 +54,15 @@
           path # per-host system config
           ./. # global system config
           home-manager.nixosModules.home-manager
+          nix-index-database.nixosModules.nix-index
+          {
+            programs.nix-index = {
+              enable = true;
+              enableBashIntegration = false;
+              enableFishIntegration = false;
+              enableZshIntegration = false;
+            };
+          }
           # Extra setup
           {
             networking.hostName = lib.mkDefault (builtins.baseNameOf path);
