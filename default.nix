@@ -25,6 +25,8 @@
       "wheel"
       "transmission"
       "docker"
+      "plugdev"
+      "input"
     ];
   };
 
@@ -54,7 +56,6 @@
       '';
       registry = {
         nixpkgs.to = lock.nodes.nixpkgs.locked;
-        nixpkgs-review-checks.to = lock.nodes.nixpkgs-review-checks.locked;
       };
       channel.enable = false;
     };
@@ -133,6 +134,8 @@
     extraRules = ''
       # Backlight permissions
       ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
+
+      KERNEL=="uinput", SUBSYSTEM=="misc", TAG+="uaccess", OPTIONS+="static_node=uinput"
     '';
   };
 
