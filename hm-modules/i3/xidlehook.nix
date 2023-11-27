@@ -1,9 +1,9 @@
-{ pkgs, lib, config, osConfig, ... }:
+{ pkgs, lib, config, ... }:
 let
   cfg = config.modules.i3;
 
   i3lock-color = "${pkgs.i3lock-color}/bin/i3lock-color";
-  systemctl = "${osConfig.systemd.package}/bin/systemctl";
+  systemctl = "${pkgs.systemd}/bin/systemctl";
   colors = {
     blank = "#00000000";
     clear = "#ffffff22";

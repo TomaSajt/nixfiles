@@ -1,4 +1,4 @@
-{ pkgs, lib, config, osConfig, ... }:
+{ pkgs, lib, config, ... }:
 let
   cfg = config.modules.i3;
 
@@ -41,7 +41,6 @@ in
 
     xsession.windowManager.i3 = {
       enable = true;
-      package = osConfig.services.xserver.windowManager.i3.package;
       config = {
         modifier = mod;
         keybindings = {
@@ -246,18 +245,13 @@ in
             block = "memory";
             interval = 1;
 
-            format = " $icon $mem_used_percents.eng(w:2) ";
-            format_alt = " $icon $swap_used_percents.eng(w:2) ";
+            format = "  MEM $mem_used_percents.eng(w:2) ";
+            format_alt = " SWAP $swap_used_percents.eng(w:2) ";
           }
           {
             block = "cpu";
             interval = 1;
-          }
-          {
-            block = "load";
-            interval = 1;
-
-            format = " $icon $1m ";
+            format = " CPU $utilization $barchart";
           }
           {
             block = "sound";
