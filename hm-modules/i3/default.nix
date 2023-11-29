@@ -263,10 +263,6 @@ in
               "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp__sink" = "";
             };
           }
-          {
-            block = "net";
-            format = " {$icon  $ssid|Wired connection} [$device] ";
-          }
         ]
         ++ lib.optional cfg.show-battery {
           block = "battery";

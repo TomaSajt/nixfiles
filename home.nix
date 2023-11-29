@@ -71,20 +71,19 @@
       ### User stuff ###
       discord # Online Chat - UNFREE
       obsidian # Note-taking - UNFREE
-      gimp # Image editing
-      ani-cli # Anime moment
-      mpv # Video player
-      prismlauncher # Minecraft Launcher
+      gimp
+      ani-cli
+      mpv
+      prismlauncher
 
       ### Utils ###
-      gparted # Partition Management
-      dev3.quark-goldleaf # Nintendo Switch File Transfer Client
-      zip # Zip compression utils
+      gparted
+      dev3.quark-goldleaf
+      zip
       unzip
       wget
       file
-      #qdirstat
-      gdb # Debugger
+      gdb
 
       inkscape
 
@@ -96,9 +95,8 @@
 
       ### Languages ###
       gcc
-      jdk
       nodejs
-      nodePackages_latest.pnpm # npm alternative
+      nodejs.pkgs.pnpm
       python311
       dev-uiua.uiua
     ];

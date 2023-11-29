@@ -17,11 +17,11 @@ in
       rust-analyzer
       rnix-lsp
       ccls
-      nodePackages_latest.eslint
-      nodePackages_latest.typescript-language-server
-      nodePackages_latest.pyright
-      nodePackages_latest.svelte-language-server
-      nodePackages_latest.vscode-langservers-extracted
+      nodejs.pkgs.eslint
+      nodejs.pkgs.typescript-language-server
+      nodejs.pkgs.pyright
+      nodejs.pkgs.svelte-language-server
+      nodejs.pkgs.vscode-langservers-extracted
     ];
 
     programs.neovim = {
@@ -49,24 +49,22 @@ in
         telescope-fzf-native-nvim
         telescope-file-browser-nvim
 
-
         harpoon
         undotree
         vim-fugitive
 
         nvim-lspconfig
-        lsp-zero-nvim
         nvim-cmp
         cmp-buffer
         cmp-path
         cmp_luasnip
+        friendly-snippets
         cmp-nvim-lsp
         cmp-nvim-lua
         luasnip
         omnisharp-extended-lsp-nvim
 
         (nvim-treesitter.withPlugins (import ./treesitter-grammars.nix))
-
       ];
 
       vimAlias = true;

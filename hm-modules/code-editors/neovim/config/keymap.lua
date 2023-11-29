@@ -1,4 +1,3 @@
-
 -- Open netrw
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
@@ -17,13 +16,10 @@ vim.keymap.set("n", "J", "mzJ`z")
 vim.keymap.set("n", "<leader>d", "\"_d")
 vim.keymap.set("v", "<leader>d", "\"_d")
 
--- Formatting
-vim.keymap.set("n", "<leader>f", function() vim.lsp.buf.format() end)
-
 -- Undotree
 vim.keymap.set("n", "<leader>u", function()
-	vim.cmd.UndotreeToggle()
-	vim.cmd.UndotreeFocus()
+  vim.cmd.UndotreeToggle()
+  vim.cmd.UndotreeFocus()
 end)
 
 -- Fugitive
