@@ -2,10 +2,95 @@ local bufmap = function(mode, lhs, rhs)
   vim.keymap.set(mode, lhs, rhs, { buffer = true })
 end
 
+vim.lsp.set_log_level("DEBUG")
+local lspconfig = require('lspconfig')
+
+vim.diagnostic.config({
+  virtual_text = false,
+  severity_sort = true,
+  float = {
+    border = 'rounded',
+    source = 'always',
+  },
+})
+
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+  vim.lsp.handlers.hover,
+  { border = 'rounded' }
+)
+
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+  vim.lsp.handlers.signature_help,
+  { border = 'rounded' }
+)
+
+-- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+local default_setup = function(ls)
+  lspconfig[ls].setup {
+    capabilities = capabilities
+  }
+end
+
+default_setup('rnix')
+default_setup('hls')
+default_setup('tsserver')
+default_setup('eslint')
+default_setup('pyright')
+default_setup('rust_analyzer')
+default_setup('html')
+default_setup('jsonls')
+default_setup('svelte')
+default_setup('uiua')
+
+lspconfig.lua_ls.setup {
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      telemetry = { enable = false },
+      diagnostics = { globals = { 'vim' } },
+      workspace = { checkThirdParty = false, }
+    }
+  }
+}
+
+lspconfig.omnisharp.setup {
+  cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
+  capabilities = capabilities,
+  handlers = {
+    ["textDocument/definition"] = require('omnisharp_extended').handler,
+  },
+  organize_imports_on_format = false,
+  enable_import_completion = false,
+}
+
+lspconfig.ccls.setup {
+  capabilities = capabilities,
+  init_options = {
+    clang = {
+      extraArgs = { "-std=c++20" }
+    }
+  }
+}
+
+
+local cmds = vim.api.nvim_create_augroup('cmds', { clear = true })
+
 -- Use autocmd to not have to pass on_attach to each setup
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
-  callback = function()
+  group = cmds,
+  callback = function(args)
+    local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+    if client.name == "uiua" then
+      client.server_capabilities.semanticTokensProvider.legend = {
+        tokenModifiers = { "static" },
+        tokenTypes = { "comment", "number", "string" }
+      }
+    end
+
     -- Displays hover information about the symbol under the cursor
     bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
 
@@ -44,75 +129,15 @@ vim.api.nvim_create_autocmd('LspAttach', {
   end
 })
 
-local lspconfig = require('lspconfig')
-
-vim.diagnostic.config({
-  virtual_text = false,
-  severity_sort = true,
-  float = {
-    border = 'rounded',
-    source = 'always',
-  },
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  desc = "Uiua filetype detection",
+  group = cmds,
+  pattern = "*.ua",
+  callback = function()
+    vim.opt.filetype = "uiua"
+  end
 })
 
-vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-  vim.lsp.handlers.hover,
-  { border = 'rounded' }
-)
-
-vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-  vim.lsp.handlers.signature_help,
-  { border = 'rounded' }
-)
-
-lspconfig.lua_ls.setup {
-  settings = {
-    Lua = {
-      telemetry = { enable = false },
-      diagnostics = { globals = { 'vim' } },
-      workspace = { checkThirdParty = false, }
-    }
-  }
-}
-
--- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
-local default_setup = function(ls)
-  lspconfig[ls].setup {
-    capabilities = capabilities
-  }
-end
-
-default_setup('rnix')
-default_setup('hls')
-default_setup('tsserver')
-default_setup('eslint')
-default_setup('pyright')
-default_setup('rust_analyzer')
-default_setup('html')
-default_setup('jsonls')
-default_setup('svelte')
-default_setup('uiua')
-
-lspconfig.omnisharp.setup {
-  cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
-  capabilities = capabilities,
-  handlers = {
-    ["textDocument/definition"] = require('omnisharp_extended').handler,
-  },
-  organize_imports_on_format = false,
-  enable_import_completion = false,
-}
-
-lspconfig.ccls.setup {
-  capabilities = capabilities,
-  init_options = {
-    clang = {
-      extraArgs = { "-std=c++20" }
-    }
-  }
-}
 
 bufmap("n", "<leader>f", '<cmd>lua vim.lsp.buf.format()<cr>')
 
@@ -129,3 +154,17 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.opt.softtabstop = 2
   end
 })
+
+
+local sign = function(name, text)
+  vim.fn.sign_define(name, {
+    texthl = name,
+    text = text,
+    numhl = ''
+  })
+end
+
+sign('DiagnosticSignError', '✘')
+sign('DiagnosticSignWarn', '▲')
+sign('DiagnosticSignHint', '⚑')
+sign('DiagnosticSignInfo', '»')
