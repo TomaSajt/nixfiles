@@ -1,8 +1,8 @@
 local bufmap = function(mode, lhs, rhs)
-  local opts = { buffer = true }
-  vim.keymap.set(mode, lhs, rhs, opts)
+  vim.keymap.set(mode, lhs, rhs, { buffer = true })
 end
 
+-- Use autocmd to not have to pass on_attach to each setup
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
   callback = function()
@@ -43,6 +43,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     bufmap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
   end
 })
+
 local lspconfig = require('lspconfig')
 
 vim.diagnostic.config({
@@ -68,35 +69,35 @@ lspconfig.lua_ls.setup {
   settings = {
     Lua = {
       telemetry = { enable = false },
-      runtime = {
-        version = 'LuaJIT',
-      },
-      diagnostics = {
-        globals = { 'vim' }
-      },
-      workspace = {
-        checkThirdParty = false,
-        library = {
-          vim.fn.expand('$VIMRUNTIME/lua'),
-          vim.fn.stdpath('config') .. '/lua'
-        }
-      }
+      diagnostics = { globals = { 'vim' } },
+      workspace = { checkThirdParty = false, }
     }
   }
 }
-lspconfig.rnix.setup {}
-lspconfig.hls.setup {}
-lspconfig.tsserver.setup {}
-lspconfig.eslint.setup {}
-lspconfig.pyright.setup {}
-lspconfig.rust_analyzer.setup {}
-lspconfig.html.setup {}
-lspconfig.jsonls.setup {}
-lspconfig.svelte.setup {}
-lspconfig.uiua.setup {}
+
+-- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+local default_setup = function(ls)
+  lspconfig[ls].setup {
+    capabilities = capabilities
+  }
+end
+
+default_setup('rnix')
+default_setup('hls')
+default_setup('tsserver')
+default_setup('eslint')
+default_setup('pyright')
+default_setup('rust_analyzer')
+default_setup('html')
+default_setup('jsonls')
+default_setup('svelte')
+default_setup('uiua')
 
 lspconfig.omnisharp.setup {
   cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
+  capabilities = capabilities,
   handlers = {
     ["textDocument/definition"] = require('omnisharp_extended').handler,
   },
@@ -105,6 +106,7 @@ lspconfig.omnisharp.setup {
 }
 
 lspconfig.ccls.setup {
+  capabilities = capabilities,
   init_options = {
     clang = {
       extraArgs = { "-std=c++20" }
