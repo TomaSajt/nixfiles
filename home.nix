@@ -70,7 +70,7 @@
     packages = with pkgs; [
       ### User stuff ###
       discord # Online Chat - UNFREE
-      obsidian # Note-taking - UNFREE
+      dev3.obsidian # Note-taking - UNFREE
       gimp
       ani-cli
       mpv

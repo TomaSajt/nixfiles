@@ -1,8 +1,10 @@
+-- https://vonheikemen.github.io/devlog/tools/setup-nvim-lspconfig-plus-nvim-cmp/
+
 local bufmap = function(mode, lhs, rhs)
   vim.keymap.set(mode, lhs, rhs, { buffer = true })
 end
 
-vim.lsp.set_log_level("DEBUG")
+-- vim.lsp.set_log_level("DEBUG")
 local lspconfig = require('lspconfig')
 
 vim.diagnostic.config({
