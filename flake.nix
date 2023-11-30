@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:TomaSajt/nixpkgs/lanraragi";
+    nixpkgs.url = "github:NixOS/nixpkgs/eac5dfd20ff4a618b0b62262bdafcd2245f2c7ea";
     nixpkgs-dev1.url = "github:TomaSajt/nixpkgs/ride";
     nixpkgs-dev-uiua.url = "github:NixOS/nixpkgs";
     nixpkgs-dev3.url = "github:TomaSajt/nixpkgs/quark-goldleaf";

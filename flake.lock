@@ -93,25 +93,25 @@
       "locked": {
         "lastModified": 1701244368,
         "narHash": "sha256-bZLqH4wDhbFMqv9HXNlSDsXtGcVf4tFARllKXWtA6ag=",
-        "owner": "TomaSajt",
+        "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "eac5dfd20ff4a618b0b62262bdafcd2245f2c7ea",
         "type": "github"
       },
       "original": {
-        "owner": "TomaSajt",
-        "ref": "lanraragi",
+        "owner": "NixOS",
         "repo": "nixpkgs",
+        "rev": "eac5dfd20ff4a618b0b62262bdafcd2245f2c7ea",
         "type": "github"
       }
     },
     "nixpkgs-dev-uiua": {
       "locked": {
-        "lastModified": 1699398037,
-        "narHash": "sha256-IuD8gMHNpb4RcmZ5c7pnvKJb6NoQQeHbo08Z+7NA3h8=",
+        "lastModified": 1701361560,
+        "narHash": "sha256-MN37wm1iIvstqUZewZcX8tAYeTrMPFPMk8Poo1vQEro=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c1cfba583d14b98b38ff667d670f79e076daed95",
+        "rev": "44b6679edff3c6b4780e429473c24b97c882e3fd",
         "type": "github"
       },
       "original": {

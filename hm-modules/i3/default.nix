@@ -261,6 +261,7 @@ in
             mappings = {
               "alsa_output.pci-0000_00_1f.3.analog-stereo" = "";
               "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp__sink" = "";
+              "alsa_output.usb-KYE_Keyboard-00.analog-stereo" = "KBD";
             };
           }
         ]
@@ -281,9 +282,8 @@ in
         ++ [
           {
             block = "time";
-            interval = 5;
-
-            format = " $timestamp.datetime(f:'%a %y.%m.%d %R') ";
+            interval = 1;
+            format = " $timestamp.datetime(f:'%a %y.%m.%d %R', l:en_US) ";
           }
         ];
       };

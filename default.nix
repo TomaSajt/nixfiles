@@ -59,7 +59,10 @@
       registry = {
         nixpkgs.to = lock.nodes.nixpkgs.locked;
       };
-      channel.enable = false;
+      channel.enable = true;
+      nixPath = [
+        "nixpkgs=flake:${inputs.nixpkgs}"
+      ];
     };
 
   # List packages installed in system profile.
