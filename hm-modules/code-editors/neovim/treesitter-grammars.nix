@@ -39,6 +39,7 @@ p: with p; [
   toml
   tsx
   typescript
+  tree-sitter-uiua
   vim
   yaml
 ]

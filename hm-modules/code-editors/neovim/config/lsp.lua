@@ -4,7 +4,7 @@ local bufmap = function(mode, lhs, rhs)
   vim.keymap.set(mode, lhs, rhs, { buffer = true })
 end
 
--- vim.lsp.set_log_level("DEBUG")
+vim.lsp.set_log_level("DEBUG")
 local lspconfig = require('lspconfig')
 
 vim.diagnostic.config({
@@ -86,12 +86,20 @@ vim.api.nvim_create_autocmd('LspAttach', {
   callback = function(args)
     local client = vim.lsp.get_client_by_id(args.data.client_id)
 
-    if client.name == "uiua" then
-      client.server_capabilities.semanticTokensProvider.legend = {
-        tokenModifiers = { "static" },
-        tokenTypes = { "comment", "number", "string" }
-      }
+    -- Fix dashes in semantic token types
+    if client.name == "omnisharp" then
+      local function toSnakeCase(str) return string.gsub(str, "%s*[- ]%s*", "_") end
+      local tokenTypes = client.server_capabilities.semanticTokensProvider.legend.tokenTypes
+      for i, v in ipairs(tokenTypes) do
+        tokenTypes[i] = toSnakeCase(v)
+      end
     end
+
+    if client.name == "uiua" then
+      vim.api.nvim_set_hl(0, '@lsp.type.monadic_function', { fg = 'Purple' })
+      vim.api.nvim_set_hl(0, '@lsp.type.dyadic_function', { fg = 'Yellow' })
+    end
+
 
     -- Displays hover information about the symbol under the cursor
     bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')

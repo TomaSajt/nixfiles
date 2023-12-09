@@ -91,31 +91,32 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1701244368,
-        "narHash": "sha256-bZLqH4wDhbFMqv9HXNlSDsXtGcVf4tFARllKXWtA6ag=",
+        "lastModified": 1701626906,
+        "narHash": "sha256-ugr1QyzzwNk505ICE4VMQzonHQ9QS5W33xF2FXzFQ00=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "eac5dfd20ff4a618b0b62262bdafcd2245f2c7ea",
+        "rev": "0c6d8c783336a59f4c59d4a6daed6ab269c4b361",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
+        "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
-        "rev": "eac5dfd20ff4a618b0b62262bdafcd2245f2c7ea",
         "type": "github"
       }
     },
     "nixpkgs-dev-uiua": {
       "locked": {
-        "lastModified": 1701361560,
-        "narHash": "sha256-MN37wm1iIvstqUZewZcX8tAYeTrMPFPMk8Poo1vQEro=",
-        "owner": "NixOS",
+        "lastModified": 1701926900,
+        "narHash": "sha256-Bb9Sw5nP/JtcL3mDPrU8nkrghupD+gsRFLAuo2pK35s=",
+        "owner": "Defelo",
         "repo": "nixpkgs",
-        "rev": "44b6679edff3c6b4780e429473c24b97c882e3fd",
+        "rev": "f2431238bcac701e39c3ec8e61985d9decd929b3",
         "type": "github"
       },
       "original": {
-        "owner": "NixOS",
+        "owner": "Defelo",
+        "ref": "uiua",
         "repo": "nixpkgs",
         "type": "github"
       }

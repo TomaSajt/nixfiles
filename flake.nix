@@ -1,8 +1,8 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/eac5dfd20ff4a618b0b62262bdafcd2245f2c7ea";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-dev1.url = "github:TomaSajt/nixpkgs/ride";
-    nixpkgs-dev-uiua.url = "github:NixOS/nixpkgs";
+    nixpkgs-dev-uiua.url = "github:Defelo/nixpkgs/uiua";
     nixpkgs-dev3.url = "github:TomaSajt/nixpkgs/quark-goldleaf";
 
     nur.url = "github:nix-community/NUR";
@@ -96,6 +96,7 @@
     {
       nixosConfigurations = mapDirModules ./hosts mkHost;
       inherit pkgs;
+      asd = (pkgs.vimPlugins.nvim-treesitter.withPlugins (import ./hm-modules/code-editors/neovim/treesitter-grammars.nix));
 
       nixOnDroidConfigurations.default = droidConf;
       droid-pkgs = droidConf.pkgs;

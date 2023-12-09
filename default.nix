@@ -11,6 +11,7 @@
       monospace = [ "JetBrainsMono Nerd Font" ];
     };
     packages = with pkgs; [
+      uiua386
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
