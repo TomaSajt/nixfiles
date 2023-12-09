@@ -96,10 +96,16 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     if client.name == "uiua" then
-      vim.api.nvim_set_hl(0, '@lsp.type.monadic_function', { fg = 'Purple' })
-      vim.api.nvim_set_hl(0, '@lsp.type.dyadic_function', { fg = 'Yellow' })
+      vim.api.nvim_set_hl(0, '@lsp.type.string', { fg = '#20f9fc' })
+      vim.api.nvim_set_hl(0, '@lsp.type.number', { fg = '#ff8844' })
+      vim.api.nvim_set_hl(0, '@lsp.type.comment', { fg = '#888888' })
+      vim.api.nvim_set_hl(0, '@lsp.type.stack_function', { fg = '#d1daec' })
+      vim.api.nvim_set_hl(0, '@lsp.type.noadic_function', { fg = '#ed5e6a' })
+      vim.api.nvim_set_hl(0, '@lsp.type.monadic_function', { fg = '#95d16a' })
+      vim.api.nvim_set_hl(0, '@lsp.type.dyadic_function', { fg = '#54b0fc' })
+      vim.api.nvim_set_hl(0, '@lsp.type.monadic_modifier', { fg = '#f0c36f' })
+      vim.api.nvim_set_hl(0, '@lsp.type.dyadic_modifier', { fg = '#cc6be9' })
     end
-
 
     -- Displays hover information about the symbol under the cursor
     bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')

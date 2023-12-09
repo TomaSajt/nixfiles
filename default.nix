@@ -6,16 +6,17 @@
   fonts = {
     fontDir.enable = true;
     fontconfig.defaultFonts = {
+      emoji = [ "Noto Color Emoji" ];
       serif = [ "Noto Serif" ];
       sansSerif = [ "Noto Sans" ];
-      monospace = [ "JetBrainsMono Nerd Font" ];
+      monospace = [ "JetBrainsMono Nerd Font" "Uiua386" ];
     };
     packages = with pkgs; [
-      uiua386
       noto-fonts
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
       (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      uiua386
     ];
   };
 
