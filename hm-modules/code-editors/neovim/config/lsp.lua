@@ -76,9 +76,7 @@ lspconfig.ccls.setup {
   }
 }
 
-
 local cmds = vim.api.nvim_create_augroup('cmds', { clear = true })
-
 -- Use autocmd to not have to pass on_attach to each setup
 vim.api.nvim_create_autocmd('LspAttach', {
   desc = 'LSP actions',
@@ -105,6 +103,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
       vim.api.nvim_set_hl(0, '@lsp.type.dyadic_function', { fg = '#54b0fc' })
       vim.api.nvim_set_hl(0, '@lsp.type.monadic_modifier', { fg = '#f0c36f' })
       vim.api.nvim_set_hl(0, '@lsp.type.dyadic_modifier', { fg = '#cc6be9' })
+      bufmap('n', '<C-R>', '<cmd>term uiua run %<CR>')
     end
 
     -- Displays hover information about the symbol under the cursor
