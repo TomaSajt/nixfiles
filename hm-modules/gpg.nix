@@ -13,6 +13,7 @@ in
     };
     services.gpg-agent = {
       enable = true;
+      pinentryFlavor = "qt";
     };
   };
 }
