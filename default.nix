@@ -1,6 +1,6 @@
 { inputs, pkgs, ... }:
-{
 
+{
   system.stateVersion = "23.11";
 
   fonts = {
@@ -34,7 +34,6 @@
     ];
   };
 
-
   nix =
     let
       emptyRegisty = builtins.toFile "empty-flake-registry.json" ''{"flakes":[],"version":2}'';
@@ -42,31 +41,20 @@
     in
     {
       settings = {
-        substituters = [
-          "https://nix-community.cachix.org"
-        ];
-        trusted-public-keys = [
-          "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        ];
+        experimental-features = [ "nix-command" "flakes" ]; # How did I survive without these?
+        substituters = [ "https://nix-community.cachix.org" ];
+        trusted-public-keys = [ "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" ];
         auto-optimise-store = true;
-
+        warn-dirty = false;
+        flake-registry = emptyRegisty;
       };
-      # Enables flakes
-      package = pkgs.nixFlakes;
-      # Enables experimental features and clears the registy to avoid most impurities
-      extraOptions = ''
-        experimental-features = nix-command flakes
-        flake-registry = ${emptyRegisty}
-        warn-dirty = false
-        allow-import-from-derivation = false
-      '';
+      # Hack ----> Profit
       registry = {
         nixpkgs.to = lock.nodes.nixpkgs.locked;
       };
+      # Now way, legacy support
       channel.enable = true;
-      nixPath = [
-        "nixpkgs=flake:${inputs.nixpkgs}"
-      ];
+      nixPath = [ "nixpkgs=flake:${inputs.nixpkgs}" ];
     };
 
   # List packages installed in system profile.
@@ -85,6 +73,7 @@
     xkbVariant = "dyalog";
     xkbOptions = "grp:caps_switch";
   };
+
   console.useXkbConfig = true;
 
   # Secrets management or something
@@ -118,12 +107,11 @@
 
   virtualisation.docker.enable = true;
 
-  # services.veyon.enable = true;
-
   security.polkit = {
     enable = true;
     debug = true;
   };
+
   systemd.user.services.polkit-gnome-authentication-agent-1 = {
     description = "polkit-gnome-authentication-agent-1";
     wantedBy = [ "graphical-session.target" ];
@@ -169,11 +157,11 @@
           LC_TIME = HU;
         };
     };
+
   time = {
     timeZone = "Europe/Budapest";
     hardwareClockInLocalTime = true;
   };
-
 
   # Bootloader
   boot.loader = {
