@@ -20,7 +20,7 @@
     feh.enable = true;
     firefox.enable = true;
     games = {
-      heroic.enable = false; # electron EOL stuff
+      heroic.enable = false;
       steam.enable = true;
       wine.enable = true;
       osu.enable = true;
@@ -70,15 +70,16 @@
     packages = with pkgs; [
       ### User stuff ###
       discord # Online Chat - UNFREE
-      dev3.obsidian # Note-taking - UNFREE
+      #obsidian # Note-taking - UNFREE
       gimp
       ani-cli
       mpv
       prismlauncher
+      element-desktop
 
       ### Utils ###
       gparted
-      dev3.quark-goldleaf
+      dev2.quark-goldleaf
       zip
       unzip
       wget
@@ -89,16 +90,16 @@
 
       ### Support ###
       ntfs3g # NTFS Filesystem Support
-      ripgrep # telescope.nvim support for grep
-      xclip # Clipboard support (for synced neovim clipboard)
-      fd # `find` alternative (used for neovim)
+      ripgrep # grep in filesystem (also used for telescope.nvim support for grep)
+      xclip # Clipboard utils (used for synced neovim clipboard)
+      fd # `find` alternative (also used for neovim)
 
       ### Languages ###
       gcc
       nodejs
       nodejs.pkgs.pnpm
       python311
-      dev-uiua.uiua
+      uiua
     ];
   };
 }

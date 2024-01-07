@@ -49,6 +49,7 @@
           "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         ];
         auto-optimise-store = true;
+
       };
       # Enables flakes
       package = pkgs.nixFlakes;
@@ -57,6 +58,7 @@
         experimental-features = nix-command flakes
         flake-registry = ${emptyRegisty}
         warn-dirty = false
+        allow-import-from-derivation = false
       '';
       registry = {
         nixpkgs.to = lock.nodes.nixpkgs.locked;
@@ -137,7 +139,7 @@
   };
 
   services.udev = {
-    packages = with pkgs; [ dev3.quark-goldleaf ];
+    packages = with pkgs; [ dev2.quark-goldleaf ];
     extraRules = ''
       # Backlight permissions
       ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"

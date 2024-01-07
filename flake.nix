@@ -2,8 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-dev1.url = "github:TomaSajt/nixpkgs/ride";
-    nixpkgs-dev-uiua.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-dev3.url = "github:TomaSajt/nixpkgs/quark-goldleaf";
+    nixpkgs-dev2.url = "github:TomaSajt/nixpkgs/quark-goldleaf";
 
     nur.url = "github:nix-community/NUR";
 
@@ -36,8 +35,7 @@
         nur.overlay
         (_: _: {
           dev1 = mkPkgs' nixpkgs-dev1 [ ];
-          dev3 = mkPkgs' nixpkgs-dev3 [ ];
-          dev-uiua = mkPkgs' nixpkgs-dev-uiua [ ];
+          dev2 = mkPkgs' nixpkgs-dev2 [ ];
         })
       ];
 
