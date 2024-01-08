@@ -74,6 +74,16 @@ let
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = [ "@tr" "@gt" ];
         };
+        "Repology Projects" = {
+          urls = [{ template = "https://repology.org/projects/?search={searchTerms}"; }];
+          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          definedAliases = [ "@re" "@rep" ];
+        };
+        "Repology Maintainers" = {
+          urls = [{ template = "https://repology.org/maintainers/?search={searchTerms}"; }];
+          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          definedAliases = [ "@re" "@rep" ];
+        };
         "Google".metaData.alias = "@g";
         "Wikipedia (en)".metaData.alias = "@w";
         "Amazon.com".metaData.hidden = true;
