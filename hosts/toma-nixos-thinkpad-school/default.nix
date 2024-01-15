@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   imports = [ ./hardware-configuration.nix ];
 
   boot.supportedFilesystems = [ "ntfs" ];
@@ -10,6 +10,21 @@
       download-dir = "/transmission/download";
       incomplete-dir = "/transmission/.incomplete";
     };
+  };
+
+  services.mysql = {
+    enable = true;
+    package = pkgs.mariadb;
+    ensureUsers = [{
+      name = "toma";
+      ensurePermissions = { "*.*" = "ALL"; };
+    }];
+  };
+
+  home-manager.users.toma = {
+    home.packages = with pkgs; [
+      mysql-workbench
+    ];
   };
 
   networking.firewall = {
