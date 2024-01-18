@@ -92,10 +92,8 @@
         lib.filterAttrs (_: v: v != null) mappedAttrs;
     in
     {
-      nixosConfigurations = mapDirModules ./hosts mkHost;
       inherit pkgs;
-      asd = (pkgs.vimPlugins.nvim-treesitter.withPlugins (import ./hm-modules/code-editors/neovim/treesitter-grammars.nix));
-
+      nixosConfigurations = mapDirModules ./hosts mkHost;
       nixOnDroidConfigurations.default = droidConf;
       droid-pkgs = droidConf.pkgs;
     };

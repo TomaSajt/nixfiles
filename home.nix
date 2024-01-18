@@ -66,7 +66,7 @@
 
   home = {
     username = "toma";
-    stateVersion = "22.11";
+    stateVersion = "23.11";
     packages = with pkgs; [
       ### User stuff ###
       discord # Online Chat - UNFREE

@@ -174,10 +174,13 @@ in
             { class = "Pavucontrol"; }
           ];
         };
-        window.commands = [{
-          command = "resize set 500 500";
-          criteria = { class = "Pavucontrol"; };
-        }];
+        window = {
+          titlebar = false;
+          commands = [{
+            command = "resize set 500 500";
+            criteria = { class = "Pavucontrol"; };
+          }];
+        };
 
         bars = [{
           mode = "dock";
