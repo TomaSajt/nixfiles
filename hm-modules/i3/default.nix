@@ -169,6 +169,7 @@ in
         ];
         focus.followMouse = false;
         floating = {
+          titlebar = false;
           criteria = [
             { title = "Steam - Update News"; }
             { class = "Pavucontrol"; }

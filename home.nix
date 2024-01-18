@@ -87,6 +87,7 @@
       gdb
 
       inkscape
+      jasp-desktop
 
       ### Support ###
       ntfs3g # NTFS Filesystem Support
