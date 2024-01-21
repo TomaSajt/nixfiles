@@ -3,8 +3,6 @@
     ./alacritty.nix
     ./bash.nix
     ./code-editors
-    ./dotnet.nix
-    ./dyalog.nix
     ./feh.nix
     ./firefox.nix
     ./games
@@ -12,6 +10,7 @@
     ./gpg.nix
     ./gtk.nix
     ./i3
+    ./langs
     ./mime-apps.nix
     ./notification.nix
     ./obs-studio.nix

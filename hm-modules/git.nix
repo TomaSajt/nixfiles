@@ -40,5 +40,12 @@ in
     programs.gh = {
       enable = true;
     };
+
+    programs.vscode.userSettings = {
+      "git.autofetch" = true;
+      "git.enableSmartCommit" = true;
+      "git.confirmSync" = false;
+      "git.openRepositoryInParentFolders" = "always";
+    };
   };
 }

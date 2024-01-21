@@ -63,7 +63,9 @@
     git
     vim
     wget
+    zip
     unzip
+    file
   ];
 
   services.xserver = {

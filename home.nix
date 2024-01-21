@@ -15,15 +15,14 @@
         codium = true;
       };
     };
-    dotnet.enable = true;
-    dyalog.enable = true;
     feh.enable = true;
     firefox.enable = true;
     games = {
-      heroic.enable = false;
+      heroic.enable = true;
+      minecraft.enable = true;
+      osu.enable = true;
       steam.enable = true;
       wine.enable = true;
-      osu.enable = true;
     };
     git = {
       enable = true;
@@ -36,6 +35,14 @@
       show-battery = true;
       xidlehook.enable = true;
       autorandr.enable = true;
+    };
+    langs = {
+      cpp.enable = true;
+      dotnet.enable = true;
+      dyalog.enable = true;
+      javascript.enable = true;
+      python.enable = true;
+      uiua.enable = true;
     };
     mime-apps.enable = true;
     notification = {
@@ -71,36 +78,25 @@
       ### User stuff ###
       discord # Online Chat - UNFREE
       dev1.obsidian # Note-taking - UNFREE
-      gimp
+      element-desktop
+
       ani-cli
       mpv
-      prismlauncher
-      element-desktop
 
       ### Utils ###
       gparted
       dev2.quark-goldleaf
-      zip
-      unzip
-      wget
-      file
-      gdb
 
+      gimp
       inkscape
       jasp-desktop
+      libsForQt5.filelight
 
       ### Support ###
       ntfs3g # NTFS Filesystem Support
       ripgrep # grep in filesystem (also used for telescope.nvim support for grep)
       xclip # Clipboard utils (used for synced neovim clipboard)
       fd # `find` alternative (also used for neovim)
-
-      ### Languages ###
-      gcc
-      nodejs
-      nodejs.pkgs.pnpm
-      python311
-      uiua
     ];
   };
 }

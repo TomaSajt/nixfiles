@@ -93,15 +93,15 @@
       "locked": {
         "lastModified": 1705563296,
         "narHash": "sha256-njGKvJxcr4hkOK/i72/txAS9jcT5Ma7ZDZdjXY/u4iY=",
-        "owner": "TomaSajt",
+        "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "798bd062a5d98cfda46cefd55ea7878b486cc09a",
         "type": "github"
       },
       "original": {
-        "owner": "TomaSajt",
-        "ref": "jasp-desktop",
+        "owner": "NixOS",
         "repo": "nixpkgs",
+        "rev": "798bd062a5d98cfda46cefd55ea7878b486cc09a",
         "type": "github"
       }
     },

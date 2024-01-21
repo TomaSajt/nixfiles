@@ -1,7 +1,7 @@
 { pkgs, lib, config, ... }:
 
 let
-  cfg = config.modules.dotnet;
+  cfg = config.modules.langs.dotnet;
 
   dotnet-sdks = with pkgs.dotnetCorePackages; combinePackages [
     sdk_6_0
@@ -10,7 +10,7 @@ let
   ];
 in
 {
-  options.modules.dotnet = {
+  options.modules.langs.dotnet = {
     enable = lib.mkEnableOption "dotnet";
   };
 
@@ -19,7 +19,13 @@ in
       sessionVariables = {
         DOTNET_CLI_TELEMETRY_OPTOUT = "true";
       };
-      packages = [ dotnet-sdks ];
+      packages = [
+        dotnet-sdks
+      ];
     };
+
+    programs.vscode.extensions = with pkgs.vscode-extensions; [
+      ms-dotnettools.csharp
+    ];
   };
 }

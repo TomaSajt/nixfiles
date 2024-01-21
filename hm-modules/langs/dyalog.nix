@@ -1,9 +1,9 @@
 { pkgs, lib, config, ... }:
 let
-  cfg = config.modules.dyalog;
+  cfg = config.modules.langs.dyalog;
 in
 {
-  options.modules.dyalog = {
+  options.modules.langs.dyalog = {
     enable = lib.mkEnableOption "dyalog";
   };
 

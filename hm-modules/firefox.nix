@@ -29,18 +29,25 @@ let
     };
   };
 
+  repology-logo = pkgs.fetchFromGitHub {
+    owner = "repology";
+    repo = "repology-logo";
+    rev = "3ea2198d4c7dc2ded5a2269aef906c2097d9c41e";
+    hash = "sha256-q1fin92PO913/gxQtpLORDn/0Ciiq9GAiUeQGYP4044=";
+  };
+
   shared = {
     search = {
       force = true;
       default = "DuckDuckGo";
       engines = {
         "Nix Packages" = {
-          urls = [{ template = "https://search.nixos.org/packages?query={searchTerms}"; }];
+          urls = [{ template = "https://search.nixos.org/packages?channel=unstable&query={searchTerms}"; }];
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = [ "@p" ];
         };
         "NixOS Options" = {
-          urls = [{ template = "https://search.nixos.org/options?query={searchTerms}"; }];
+          urls = [{ template = "https://search.nixos.org/options?channel=unstable&query={searchTerms}"; }];
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = [ "@o" ];
         };
@@ -76,13 +83,13 @@ let
         };
         "Repology Projects" = {
           urls = [{ template = "https://repology.org/projects/?search={searchTerms}"; }];
-          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          icon = "${repology-logo}/repology-logo.svg";
           definedAliases = [ "@re" "@rep" ];
         };
         "Repology Maintainers" = {
           urls = [{ template = "https://repology.org/maintainers/?search={searchTerms}"; }];
-          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
-          definedAliases = [ "@re" "@rep" ];
+          icon = "${repology-logo}/repology-logo.svg";
+          definedAliases = [ "@rem" ];
         };
         "Google".metaData.alias = "@g";
         "Wikipedia (en)".metaData.alias = "@w";
