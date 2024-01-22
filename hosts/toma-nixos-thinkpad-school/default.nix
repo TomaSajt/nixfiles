@@ -23,7 +23,7 @@
 
   home-manager.users.toma = {
     home.packages = with pkgs; [
-      mysql-workbench
+      #dev1.mysql-workbench
     ];
   };
 
