@@ -1,6 +1,8 @@
 { pkgs, ... }: {
   imports = [ ./hardware-configuration.nix ];
 
+  isDesktop = true;
+
   boot.supportedFilesystems = [ "ntfs" ];
 
   # Fixes some BIOS error
