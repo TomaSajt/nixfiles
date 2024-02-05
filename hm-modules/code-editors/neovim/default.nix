@@ -17,7 +17,7 @@ in
       rust-analyzer
       rnix-lsp
       ccls
-      java-language-server
+      jdt-language-server
       nodejs.pkgs.eslint
       nodejs.pkgs.typescript-language-server
       nodejs.pkgs.pyright

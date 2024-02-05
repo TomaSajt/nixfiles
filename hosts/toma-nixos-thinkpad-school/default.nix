@@ -24,6 +24,23 @@
   };
 
   home-manager.users.toma = {
+
+    i18n.inputMethod = {
+      enabled = "fcitx5";
+      fcitx5.addons = with pkgs; [
+        fcitx5-mozc
+        fcitx5-gtk
+      ];
+    };
+
+    # xdg.configFile."fcitx5/config".source = ./config;
+    home.sessionVariables = {
+      GTK_IM_MODULE = "fcitx";
+      QT_IM_MODULE = "fcitx";
+      XMODIFIERS = "@im=fcitx";
+      SDL_IM_MODULE = "fcitx";
+    };
+
     home.packages = with pkgs; [
       #dev1.mysql-workbench
     ];

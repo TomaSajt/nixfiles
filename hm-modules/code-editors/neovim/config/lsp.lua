@@ -45,11 +45,7 @@ default_setup('html')
 default_setup('jsonls')
 default_setup('svelte')
 default_setup('uiua')
-
-lspconfig.java_language_server.setup {
-  cmd = { "java-language-server" },
-  -- capabilities = capabilities
-}
+default_setup('jdtls')
 
 lspconfig.lua_ls.setup {
   capabilities = capabilities,

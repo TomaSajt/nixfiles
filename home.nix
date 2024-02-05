@@ -8,9 +8,9 @@
     };
     git = {
       enable = true;
-      signing = lib.mkDefault false;
+      signing = lib.mkDefault true;
     };
-    gpg.enable = lib.mkDefault false;
+    gpg.enable = lib.mkDefault true;
     langs = {
       cpp.enable = true;
       dotnet.enable = true;

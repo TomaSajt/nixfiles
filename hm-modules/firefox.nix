@@ -91,6 +91,11 @@ let
           icon = "${repology-logo}/repology-logo.svg";
           definedAliases = [ "@rem" ];
         };
+        "Jisho" = {
+          urls = [{ template = "https://jisho.org/search/{searchTerms}"; }];
+          icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
+          definedAliases = [ "@jp" "@ji" ];
+        };
         "Google".metaData.alias = "@g";
         "Wikipedia (en)".metaData.alias = "@w";
         "Amazon.com".metaData.hidden = true;

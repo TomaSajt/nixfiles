@@ -17,6 +17,8 @@ in
         sdn = "shutdown now";
         nv = "nvim";
         nix-gcroots = "ls -l $(readlink /nix/var/nix/gcroots/auto/*)";
+        "えんヴぃむ" = "nvim";
+        "ばっしゅ" = "bash";
       };
       initExtra = ''
         export PS1="\[\033[1;32m\]\w \$ \[\033[0m\]"
