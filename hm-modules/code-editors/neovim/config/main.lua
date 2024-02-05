@@ -17,9 +17,6 @@ vim.opt.relativenumber = true
 -- Always have space before line numbers for markers
 vim.opt.signcolumn = "yes"
 
--- Sync clipboard with os (using xclip)
-vim.opt.clipboard:append("unnamedplus")
-
 vim.opt.wrap = false
 
 vim.opt.hlsearch = false
