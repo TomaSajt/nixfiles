@@ -19,6 +19,23 @@
     ];
   };
 
+  fonts = {
+    fontDir.enable = true;
+    fontconfig.defaultFonts = {
+      emoji = [ "Noto Color Emoji" ];
+      serif = [ "Noto Serif" ];
+      sansSerif = [ "Noto Sans" ];
+      monospace = [ "JetBrainsMono Nerd Font" "Uiua386" ];
+    };
+    packages = with pkgs; [
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
+      (nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
+      uiua386
+    ];
+  };
+
   nix =
     let
       emptyRegisty = builtins.toFile "empty-flake-registry.json" ''{"flakes":[],"version":2}'';
