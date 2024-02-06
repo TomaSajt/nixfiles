@@ -17,6 +17,7 @@
       dyalog.enable = true;
       javascript.enable = true;
       python.enable = true;
+      rust.enable = true;
       uiua.enable = true;
     };
     user-dirs.enable = true;

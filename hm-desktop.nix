@@ -50,7 +50,7 @@
 
     home.packages = with pkgs; [
       discord # Online Chat - UNFREE
-      dev1.obsidian # Note-taking - UNFREE
+      dev3.obsidian # Note-taking - UNFREE
       element-desktop
 
       ani-cli

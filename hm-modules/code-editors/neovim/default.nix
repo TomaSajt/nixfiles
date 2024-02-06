@@ -77,7 +77,7 @@ in
       extraLuaConfig = ''
         require "config.main"
       '' + lib.optionalString osConfig.isDesktop ''
-        # Sync clipboard with os
+        -- Sync clipboard with os
         vim.opt.clipboard:append("unnamedplus")
       '';
     };
