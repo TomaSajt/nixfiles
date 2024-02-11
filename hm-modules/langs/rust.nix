@@ -13,6 +13,7 @@ in
       packages = with pkgs; [
         rustc
         cargo
+        rustfmt
       ];
     };
 

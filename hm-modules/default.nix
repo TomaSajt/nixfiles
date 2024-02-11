@@ -3,6 +3,7 @@
     ./alacritty.nix
     ./bash.nix
     ./code-editors
+    ./fcitx5
     ./feh.nix
     ./firefox.nix
     ./games

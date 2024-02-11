@@ -1,0 +1,55 @@
+[Groups/0]
+# Group Name
+Name=Normal
+# Layout
+Default Layout=hu
+# Default Input Method
+DefaultIM=keyboard-us
+
+[Groups/0/Items/0]
+# Name
+Name=keyboard-hu
+# Layout
+Layout=
+
+[Groups/0/Items/1]
+# Name
+Name=keyboard-us
+# Layout
+Layout=
+
+[Groups/0/Items/2]
+# Name
+Name=mozc
+# Layout
+Layout=
+
+[Groups/1]
+# Group Name
+Name=Programming
+# Layout
+Default Layout=hu
+# Default Input Method
+DefaultIM=keyboard-apl
+
+[Groups/1/Items/0]
+# Name
+Name=keyboard-hu
+# Layout
+Layout=
+
+[Groups/1/Items/1]
+# Name
+Name=keyboard-apl
+# Layout
+Layout=
+
+[Groups/1/Items/2]
+# Name
+Name=keyboard-bqn
+# Layout
+Layout=
+
+[GroupOrder]
+0=Normal
+1=Programming
