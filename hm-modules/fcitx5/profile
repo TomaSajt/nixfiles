@@ -4,7 +4,7 @@ Name=Normal
 # Layout
 Default Layout=hu
 # Default Input Method
-DefaultIM=keyboard-us
+DefaultIM=mozc
 
 [Groups/0/Items/0]
 # Name
@@ -53,3 +53,4 @@ Layout=
 [GroupOrder]
 0=Normal
 1=Programming
+

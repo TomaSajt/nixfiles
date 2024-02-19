@@ -46,6 +46,7 @@ default_setup('jsonls')
 default_setup('svelte')
 default_setup('uiua')
 default_setup('jdtls')
+default_setup('serve_d')
 
 lspconfig.lua_ls.setup {
   capabilities = capabilities,
