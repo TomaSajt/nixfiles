@@ -11,7 +11,10 @@
       enable = lib.mkDefault true;
       windowManager.i3.enable = true;
       displayManager.defaultSession = "none+i3";
+      xkb.layout = "hu";
     };
+
+    programs.quark-goldleaf.enable = true;
 
     # Secrets management or something
     services.gnome.gnome-keyring.enable = true;
@@ -62,12 +65,10 @@
     };
 
     services.udev = {
-      packages = with pkgs; [ dev2.quark-goldleaf ];
+      packages = with pkgs; [ ];
       extraRules = ''
         # Backlight permissions
         ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
-
-        KERNEL=="uinput", SUBSYSTEM=="misc", TAG+="uaccess", OPTIONS+="static_node=uinput"
       '';
     };
   };

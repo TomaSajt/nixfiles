@@ -43,5 +43,8 @@ in
         set menu-complete-display-prefix on
       '';
     };
+
+    programs.zoxide.enable = true;
   };
+
 }

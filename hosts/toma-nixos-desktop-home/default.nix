@@ -17,27 +17,6 @@
     };
   };
 
-  networking.firewall = {
-    allowedUDPPorts = [ 7777 25565 3131 ];
-    allowedTCPPorts = [ 7777 25565 3131 ];
-  };
-
-  services.lanraragi = {
-    enable = true;
-    port = 6969;
-    passwordFile = pkgs.writeText "lrr-pass" "poggers123"; # ayo, wtf, who puts secrets in public repos??
-    redis = {
-      port = 6971;
-      passwordFile = pkgs.writeText "lrr-pass" "epic-pass";
-    };
-  };
-
-  services.redis.servers.lrr-test-5 = {
-    enable = true;
-    port = 9998;
-    requirePass = "asd";
-  };
-
   hardware.opengl.driSupport32Bit = true;
 
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -57,6 +36,7 @@
       picom.vSync = false; # Turns off the default screen-tearing fix
       i3.show-battery = false;
       notification.battery = false;
+      fcitx5.enable = true;
     };
     home = {
       sessionVariables = {

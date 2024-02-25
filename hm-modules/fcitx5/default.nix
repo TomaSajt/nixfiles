@@ -18,6 +18,7 @@ in
 
     xdg.configFile."fcitx5/config".source = ./config;
     xdg.configFile."fcitx5/profile".source = ./profile;
+    xdg.configFile."fcitx5/profile".force = true;
 
     home.sessionVariables = {
       GTK_IM_MODULE = "fcitx";
