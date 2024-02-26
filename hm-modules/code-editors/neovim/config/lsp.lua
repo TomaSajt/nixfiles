@@ -4,7 +4,7 @@ local bufmap = function(mode, lhs, rhs)
   vim.keymap.set(mode, lhs, rhs, { buffer = true })
 end
 
-vim.lsp.set_log_level("DEBUG")
+-- vim.lsp.set_log_level("DEBUG")
 local lspconfig = require('lspconfig')
 
 vim.diagnostic.config({
@@ -96,15 +96,19 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     if client.name == "uiua" then
-      vim.api.nvim_set_hl(0, '@lsp.type.string', { fg = '#20f9fc' })
-      vim.api.nvim_set_hl(0, '@lsp.type.number', { fg = '#ff8844' })
       vim.api.nvim_set_hl(0, '@lsp.type.comment', { fg = '#888888' })
+      vim.api.nvim_set_hl(0, '@lsp.type.uiua_number', { fg = '#eeaa55' })
+      vim.api.nvim_set_hl(0, '@lsp.type.uiua_string', { fg = '#20f9fc' })
       vim.api.nvim_set_hl(0, '@lsp.type.stack_function', { fg = '#d1daec' })
       vim.api.nvim_set_hl(0, '@lsp.type.noadic_function', { fg = '#ed5e6a' })
       vim.api.nvim_set_hl(0, '@lsp.type.monadic_function', { fg = '#95d16a' })
       vim.api.nvim_set_hl(0, '@lsp.type.dyadic_function', { fg = '#54b0fc' })
+      vim.api.nvim_set_hl(0, '@lsp.type.triadic_function', { fg = '#8078f1' })
+      vim.api.nvim_set_hl(0, '@lsp.type.tetradic_function', { fg = '#f576d8' })
       vim.api.nvim_set_hl(0, '@lsp.type.monadic_modifier', { fg = '#f0c36f' })
       vim.api.nvim_set_hl(0, '@lsp.type.dyadic_modifier', { fg = '#cc6be9' })
+      vim.api.nvim_set_hl(0, '@lsp.type.triadic_modifier', { fg = '#f5a9b8' })
+      vim.api.nvim_set_hl(0, '@lsp.type.module', { fg = '#d7be8c' })
       bufmap('n', '<C-R>', '<cmd>term uiua run %<CR>')
     end
 
