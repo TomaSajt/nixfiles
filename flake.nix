@@ -2,6 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-dev-ride.url = "github:TomaSajt/nixpkgs/ride";
+    nixpkgs-dev-uiua.url = "github:TomaSajt/nixpkgs/uiua";
     nixpkgs-dev-obsidian.url = "github:NixOS/nixpkgs/44a8d8f0450c47125db0d47e17ffdc8f8cc93834"; # for obsidian (electron 25 EOL)
 
     nur.url = "github:nix-community/NUR";
@@ -35,6 +36,7 @@
         nur.overlay
         (_: _: {
           dev-ride = mkPkgs' nixpkgs-dev-ride [ ];
+          dev-uiua = mkPkgs' nixpkgs-dev-uiua [ ];
           dev-obsidian = mkPkgs' nixpkgs-dev-obsidian [ ];
         })
       ];

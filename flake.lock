@@ -137,6 +137,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-dev-uiua": {
+      "locked": {
+        "lastModified": 1708905432,
+        "narHash": "sha256-TcB87GMqVsYJs9OKI+ie8T2Daarmci/u5lc1odwZzck=",
+        "owner": "TomaSajt",
+        "repo": "nixpkgs",
+        "rev": "95be24dad1960532c4a4f70803b22799b48744df",
+        "type": "github"
+      },
+      "original": {
+        "owner": "TomaSajt",
+        "ref": "uiua",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-droid": {
       "locked": {
         "lastModified": 1704161960,
@@ -240,6 +256,7 @@
         "nixpkgs": "nixpkgs",
         "nixpkgs-dev-obsidian": "nixpkgs-dev-obsidian",
         "nixpkgs-dev-ride": "nixpkgs-dev-ride",
+        "nixpkgs-dev-uiua": "nixpkgs-dev-uiua",
         "nixpkgs-droid": "nixpkgs-droid",
         "nur": "nur"
       }
