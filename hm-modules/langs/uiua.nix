@@ -8,11 +8,11 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs.dev-uiua; [
+    home.packages = with pkgs; [
       uiua
     ];
 
-    programs.vscode.extensions = with pkgs.dev-uiua.vscode-extensions; [
+    programs.vscode.extensions = with pkgs.vscode-extensions; [
       uiua-lang.uiua-vscode
     ];
   };

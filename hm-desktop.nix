@@ -61,8 +61,10 @@
 
       gimp
       inkscape
-      jasp-desktop
       libsForQt5.filelight
+
+      nix-du
+      graphviz
     ];
   };
 }
