@@ -35,6 +35,9 @@
     # Enable CUPS to print documents.
     services.printing.enable = true;
 
+    # Enable support for Nintendo Pro Controllers and Joycons
+    services.joycond.enable = true;
+
     # Enable sound with pipewire.
     sound.enable = true;
     security.rtkit.enable = true;

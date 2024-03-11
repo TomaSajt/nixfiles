@@ -15,7 +15,8 @@ in
       haskell-language-server
       omnisharp-roslyn
       rust-analyzer
-      rnix-lsp
+      nil
+      nixpkgs-fmt
       ccls
       jdt-language-server
       nodejs.pkgs.eslint

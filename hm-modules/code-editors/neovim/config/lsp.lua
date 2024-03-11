@@ -35,7 +35,7 @@ local default_setup = function(ls)
   }
 end
 
-default_setup('rnix')
+default_setup('nil_ls')
 default_setup('hls')
 default_setup('tsserver')
 default_setup('eslint')
@@ -47,6 +47,17 @@ default_setup('svelte')
 default_setup('uiua')
 default_setup('jdtls')
 default_setup('serve_d')
+
+lspconfig.nil_ls.setup {
+  capabilities = capabilities,
+  settings = {
+    ['nil'] = {
+      formatting = {
+        command = { "nixpkgs-fmt" },
+      },
+    },
+  },
+}
 
 lspconfig.lua_ls.setup {
   capabilities = capabilities,
