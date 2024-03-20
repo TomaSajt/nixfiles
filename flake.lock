@@ -91,33 +91,17 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1710159071,
-        "narHash": "sha256-CT0WKgcmlcWZPZL/sSSICN/Vbm4Of0ZDgxc0GFf6sYU=",
+        "lastModified": 1710313540,
+        "narHash": "sha256-HtTTpGe0azsEJVaT9RvbGFGB4idUneraLiUTxFb3ABM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "0fbcc4b2e8571f4af39be41752581ea09dd9ab06",
+        "rev": "4008381882569ab4773f2ba0d7b7bbde8f665672",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
         "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs-dev-obsidian": {
-      "locked": {
-        "lastModified": 1701799722,
-        "narHash": "sha256-Wg63qQicwZm6T0UCGIPHnOv0QGLx8v0pPAjeR+KlFEg=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "44a8d8f0450c47125db0d47e17ffdc8f8cc93834",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "44a8d8f0450c47125db0d47e17ffdc8f8cc93834",
         "type": "github"
       }
     },
@@ -238,7 +222,6 @@
         "nix-index-database": "nix-index-database",
         "nix-on-droid": "nix-on-droid",
         "nixpkgs": "nixpkgs",
-        "nixpkgs-dev-obsidian": "nixpkgs-dev-obsidian",
         "nixpkgs-dev-ride": "nixpkgs-dev-ride",
         "nixpkgs-droid": "nixpkgs-droid",
         "nur": "nur"

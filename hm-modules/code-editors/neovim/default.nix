@@ -16,7 +16,7 @@ in
       omnisharp-roslyn
       rust-analyzer
       nil
-      nixpkgs-fmt
+      nixfmt-rfc-style
       ccls
       jdt-language-server
       nodejs.pkgs.eslint
