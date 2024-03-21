@@ -68,6 +68,7 @@
     zip
     unzip
     file
+    rsync
   ];
 
   console.keyMap = "hu";
