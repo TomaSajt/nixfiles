@@ -17,6 +17,7 @@ in
       rust-analyzer
       nil
       nixfmt-rfc-style
+      nixpkgs-fmt
       ccls
       jdt-language-server
       nodejs.pkgs.eslint

@@ -1,4 +1,6 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+
+{
   imports = [ ./hardware-configuration.nix ];
 
   isDesktop = true;
@@ -30,6 +32,13 @@
     modesetting.enable = true;
     forceFullCompositionPipeline = true;
   };
+
+  environment.etc."X11/xorg.conf.d/10-disable-nvidia-phantom-monitor.conf".text = ''
+    Section "Monitor"
+        Identifier "None-1-1"
+        Option "Ignore" "true"
+    EndSection
+  '';
 
   home-manager.users.toma = {
     modules = {
