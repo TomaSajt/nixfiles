@@ -1,10 +1,11 @@
-{ lib
-, stdenv
-, fetchFromGitHub
-, cmake
-, llvmPackages
-, rapidjson
-, runtimeShell
+{
+  lib,
+  stdenv,
+  fetchFromGitHub,
+  cmake,
+  llvmPackages,
+  rapidjson,
+  runtimeShell,
 }:
 
 stdenv.mkDerivation rec {
@@ -18,8 +19,15 @@ stdenv.mkDerivation rec {
     sha256 = "sha256-u499fHd2lyqOYXJApFdiIXHQGF+QEVlQ4E8jm5VMb3w=";
   };
 
-  nativeBuildInputs = [ cmake llvmPackages.llvm.dev ];
-  buildInputs = with llvmPackages; [ libclang llvm rapidjson ];
+  nativeBuildInputs = [
+    cmake
+    llvmPackages.llvm.dev
+  ];
+  buildInputs = with llvmPackages; [
+    libclang
+    llvm
+    rapidjson
+  ];
 
   cmakeFlags = [ "-DCCLS_VERSION=${version}" ];
 
@@ -42,6 +50,9 @@ stdenv.mkDerivation rec {
     homepage = "https://github.com/MaskRay/ccls";
     license = licenses.asl20;
     platforms = platforms.linux ++ platforms.darwin;
-    maintainers = with maintainers; [ mic92 tobim ];
+    maintainers = with maintainers; [
+      mic92
+      tobim
+    ];
   };
 }

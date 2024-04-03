@@ -1,7 +1,14 @@
-{ pkgs, lib, config, osConfig, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  osConfig,
+  ...
+}:
 let
 
-  mkStats = packageList:
+  mkStats =
+    packageList:
     let
       packages = builtins.map (p: "${p.name}") packageList;
       sortedUnique = builtins.sort builtins.lessThan (lib.unique packages);

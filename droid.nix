@@ -19,7 +19,10 @@
     useGlobalPkgs = true;
     config = {
       home.stateVersion = "23.11";
-      imports = [ ./hm-modules/bash.nix ./hm-modules/git.nix ];
+      imports = [
+        ./hm-modules/bash.nix
+        ./hm-modules/git.nix
+      ];
       modules = {
         bash.enable = true;
         git.enable = true;

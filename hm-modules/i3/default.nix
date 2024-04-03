@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   cfg = config.modules.i3;
 
@@ -15,10 +20,15 @@ let
   dbus-update-activation-environment = "${pkgs.dbus}/bin/dbus-update-activation-environment";
   i3status-rs = lib.getExe config.programs.i3status-rust.package;
 
-  mkScreenshotCommand = filename: flags: ''exec --no-startup-id mkdir -p ${config.xdg.userDirs.pictures}/screenshots && cd ${config.xdg.userDirs.pictures}/screenshots && ${lib.getExe pkgs.scrot} ${filename} ${flags} -e "${lib.getExe pkgs.xclip} -selection clipboard -t image/png -i \$f && ${notify-send} 'Saved as \$f\nImage was copied to the clipboard'"'';
+  mkScreenshotCommand =
+    filename: flags:
+    ''exec --no-startup-id mkdir -p ${config.xdg.userDirs.pictures}/screenshots && cd ${config.xdg.userDirs.pictures}/screenshots && ${lib.getExe pkgs.scrot} ${filename} ${flags} -e "${lib.getExe pkgs.xclip} -selection clipboard -t image/png -i \$f && ${notify-send} 'Saved as \$f\nImage was copied to the clipboard'"'';
 in
 {
-  imports = [ ./xidlehook.nix ./autorandr.nix ];
+  imports = [
+    ./xidlehook.nix
+    ./autorandr.nix
+  ];
 
   options.modules.i3 = {
     enable = lib.mkEnableOption "i3";
@@ -177,55 +187,61 @@ in
         };
         window = {
           titlebar = false;
-          commands = [{
-            command = "resize set 500 500";
-            criteria = { class = "Pavucontrol"; };
-          }];
+          commands = [
+            {
+              command = "resize set 500 500";
+              criteria = {
+                class = "Pavucontrol";
+              };
+            }
+          ];
         };
 
-        bars = [{
-          mode = "dock";
-          hiddenState = "hide";
-          position = "top";
-          workspaceButtons = true;
-          workspaceNumbers = true;
-          statusCommand = "${i3status-rs} ${config.xdg.configHome}/i3status-rust/config-default.toml";
-          fonts = {
-            names = [ "monospace" ];
-            size = 11.0;
-          };
-          trayOutput = "primary";
-          colors = {
-            background = "#000000";
-            statusline = "#ffffff";
-            separator = "#666666";
-            focusedWorkspace = {
-              border = "#4c7899";
-              background = "#285577";
-              text = "#ffffff";
+        bars = [
+          {
+            mode = "dock";
+            hiddenState = "hide";
+            position = "top";
+            workspaceButtons = true;
+            workspaceNumbers = true;
+            statusCommand = "${i3status-rs} ${config.xdg.configHome}/i3status-rust/config-default.toml";
+            fonts = {
+              names = [ "monospace" ];
+              size = 11.0;
             };
-            activeWorkspace = {
-              border = "#333333";
-              background = "#5f676a";
-              text = "#ffffff";
+            trayOutput = "primary";
+            colors = {
+              background = "#000000";
+              statusline = "#ffffff";
+              separator = "#666666";
+              focusedWorkspace = {
+                border = "#4c7899";
+                background = "#285577";
+                text = "#ffffff";
+              };
+              activeWorkspace = {
+                border = "#333333";
+                background = "#5f676a";
+                text = "#ffffff";
+              };
+              inactiveWorkspace = {
+                border = "#333333";
+                background = "#222222";
+                text = "#888888";
+              };
+              urgentWorkspace = {
+                border = "#2f343a";
+                background = "#900000";
+                text = "#ffffff";
+              };
+              bindingMode = {
+                border = "#2f343a";
+                background = "#900000";
+                text = "#ffffff";
+              };
             };
-            inactiveWorkspace = {
-              border = "#333333";
-              background = "#222222";
-              text = "#888888";
-            };
-            urgentWorkspace = {
-              border = "#2f343a";
-              background = "#900000";
-              text = "#ffffff";
-            };
-            bindingMode = {
-              border = "#2f343a";
-              background = "#900000";
-              text = "#ffffff";
-            };
-          };
-        }];
+          }
+        ];
       };
     };
     programs.i3status-rust = {
@@ -233,64 +249,65 @@ in
       bars.default = {
         icons = "awesome6";
         theme = "gruvbox-dark";
-        blocks = [
-          {
-            block = "disk_space";
-            interval = 20;
+        blocks =
+          [
+            {
+              block = "disk_space";
+              interval = 20;
 
-            path = "/";
-            info_type = "available";
-            format = " $icon /: $available.eng(w:2) ";
+              path = "/";
+              info_type = "available";
+              format = " $icon /: $available.eng(w:2) ";
 
-            warning = 20;
-            alert = 10;
+              warning = 20;
+              alert = 10;
+            }
+            {
+              block = "memory";
+              interval = 1;
+
+              format = "  MEM $mem_used_percents.eng(w:2) ";
+              format_alt = " SWAP $swap_used_percents.eng(w:2) ";
+            }
+            {
+              block = "cpu";
+              interval = 1;
+              format = " CPU $utilization $barchart";
+            }
+            {
+              block = "sound";
+
+              format = " $icon $output_name {$volume.eng(w:2) |}";
+
+              mappings = {
+                "alsa_output.pci-0000_00_1f.3.analog-stereo" = "";
+                "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp__sink" = "";
+                "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp_3__sink" = "HDMI?";
+                "alsa_output.usb-KYE_Keyboard-00.analog-stereo" = "KBD";
+              };
+            }
+          ]
+          ++ lib.optional cfg.show-battery {
+            block = "battery";
+            interval = 5;
+
+            format = " $icon  $percentage {($time)| }";
+
+            full_threshold = 90;
+            full_format = " $icon  $percentage {($time)| }";
+
+            empty_threshold = 5;
+            empty_format = " $icon  $percentage {($time)| }";
+
+            missing_format = " No Battery ";
           }
-          {
-            block = "memory";
-            interval = 1;
-
-            format = "  MEM $mem_used_percents.eng(w:2) ";
-            format_alt = " SWAP $swap_used_percents.eng(w:2) ";
-          }
-          {
-            block = "cpu";
-            interval = 1;
-            format = " CPU $utilization $barchart";
-          }
-          {
-            block = "sound";
-
-            format = " $icon $output_name {$volume.eng(w:2) |}";
-
-            mappings = {
-              "alsa_output.pci-0000_00_1f.3.analog-stereo" = "";
-              "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp__sink" = "";
-              "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp_3__sink" = "HDMI?";
-              "alsa_output.usb-KYE_Keyboard-00.analog-stereo" = "KBD";
-            };
-          }
-        ]
-        ++ lib.optional cfg.show-battery {
-          block = "battery";
-          interval = 5;
-
-          format = " $icon  $percentage {($time)| }";
-
-          full_threshold = 90;
-          full_format = " $icon  $percentage {($time)| }";
-
-          empty_threshold = 5;
-          empty_format = " $icon  $percentage {($time)| }";
-
-          missing_format = " No Battery ";
-        }
-        ++ [
-          {
-            block = "time";
-            interval = 1;
-            format = " $timestamp.datetime(f:'%a %y.%m.%d %R', l:en_US) ";
-          }
-        ];
+          ++ [
+            {
+              block = "time";
+              interval = 1;
+              format = " $timestamp.datetime(f:'%a %y.%m.%d %R', l:en_US) ";
+            }
+          ];
       };
     };
   };

@@ -1,4 +1,9 @@
-{ pkgs, lib, osConfig, ... }:
+{
+  pkgs,
+  lib,
+  osConfig,
+  ...
+}:
 {
   config = lib.mkIf osConfig.isDesktop {
     modules = lib.mkDefault {

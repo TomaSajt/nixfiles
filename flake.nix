@@ -18,74 +18,80 @@
     nix-on-droid.inputs.home-manager.follows = "home-manager";
   };
 
-  outputs = inputs: with inputs;
+  outputs =
+    inputs:
+    with inputs;
     let
       system = "x86_64-linux";
 
-      mkPkgs = pkgs-flake: system: overlays: import pkgs-flake {
-        inherit system overlays;
-        config.allowUnfree = true;
-      };
+      mkPkgs =
+        pkgs-flake: system: overlays:
+        import pkgs-flake {
+          inherit system overlays;
+          config.allowUnfree = true;
+        };
 
       mkPkgs' = pkgs-flake: overlays: mkPkgs pkgs-flake "x86_64-linux" overlays;
 
       pkgs = mkPkgs' nixpkgs [
         (import ./overlay)
         nur.overlay
-        (_: _: {
-          dev-ride = mkPkgs' nixpkgs-dev-ride [ ];
-        })
+        (_: _: { dev-ride = mkPkgs' nixpkgs-dev-ride [ ]; })
       ];
 
       inherit (pkgs) lib;
 
-      specialArgs = { inherit inputs; };
-
-      mkHost = path: nixpkgs.lib.nixosSystem {
-        inherit system specialArgs;
-        modules = [
-          path # per-host system config
-          ./. # global system config
-          home-manager.nixosModules.home-manager
-          nix-index-database.nixosModules.nix-index
-          {
-            programs.nix-index = {
-              enable = true;
-              enableBashIntegration = false;
-              enableFishIntegration = false;
-              enableZshIntegration = false;
-            };
-          }
-          # Extra setup
-          {
-            networking.hostName = lib.mkDefault (builtins.baseNameOf path);
-            nixpkgs.pkgs = pkgs;
-            home-manager = {
-              extraSpecialArgs = specialArgs;
-              useGlobalPkgs = true;
-              useUserPackages = true;
-              users.toma = import ./home.nix;
-            };
-          }
-        ];
+      specialArgs = {
+        inherit inputs;
       };
 
-      droidConf = nix-on-droid.lib.nixOnDroidConfiguration {
-        modules = [ ./droid.nix ];
-      };
+      mkHost =
+        path:
+        nixpkgs.lib.nixosSystem {
+          inherit system specialArgs;
+          modules = [
+            path # per-host system config
+            ./. # global system config
+            home-manager.nixosModules.home-manager
+            nix-index-database.nixosModules.nix-index
+            {
+              programs.nix-index = {
+                enable = true;
+                enableBashIntegration = false;
+                enableFishIntegration = false;
+                enableZshIntegration = false;
+              };
+            }
+            # Extra setup
+            {
+              networking.hostName = lib.mkDefault (builtins.baseNameOf path);
+              nixpkgs.pkgs = pkgs;
+              home-manager = {
+                extraSpecialArgs = specialArgs;
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                users.toma = import ./home.nix;
+              };
+            }
+          ];
+        };
 
-      mapDirModules = dir: fn:
+      droidConf = nix-on-droid.lib.nixOnDroidConfiguration { modules = [ ./droid.nix ]; };
+
+      mapDirModules =
+        dir: fn:
         let
           dirData = builtins.readDir dir;
-          mappedAttrs = lib.mapAttrs'
-            (n: v:
-              let path = dir + "/${n}"; in
-              if v == "directory" && lib.pathExists (path + "/default.nix")
-              then lib.nameValuePair n (fn path)
-              else lib.nameValuePair "" null
-            )
-            dirData;
-
+          mappedAttrs = lib.mapAttrs' (
+            n: v:
+            let
+              path = dir + "/${n}";
+            in
+            if v == "directory" && lib.pathExists (path + "/default.nix") then
+              lib.nameValuePair n (fn path)
+            else
+              lib.nameValuePair "" null
+          ) dirData;
         in
         lib.filterAttrs (_: v: v != null) mappedAttrs;
     in

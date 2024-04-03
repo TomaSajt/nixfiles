@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 let
   cfg = config.modules.langs.python;
@@ -9,9 +14,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      python311
-    ];
+    home.packages = with pkgs; [ python311 ];
 
     programs.vscode = {
       extensions = with pkgs.vscode-extensions; [

@@ -1,4 +1,5 @@
-{ pkgs, lib, ... }: {
+{ pkgs, lib, ... }:
+{
   imports = [ ./hardware-configuration.nix ];
 
   services.getty.autologinUser = "toma";
@@ -20,7 +21,6 @@
   home-manager.users.toma = {
     modules.git.signing = false;
     modules.gpg.enable = false;
-
 
     # https://github.com/nyarla/nixos-configurations/blob/8edd7435a5c37d61180570b927e7d023e7a0989d/dotfiles/config/shell/fbterm.nix#L4
     xdg.configFile."fbterm/fbtermrc".text = lib.generators.toKeyValue { } {
@@ -71,6 +71,4 @@
       incomplete-dir = "/transmission/.incomplete";
     };
   };
-
-
 }

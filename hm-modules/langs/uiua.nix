@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   cfg = config.modules.langs.uiua;
 in
@@ -8,12 +13,8 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      uiua
-    ];
+    home.packages = with pkgs; [ uiua ];
 
-    programs.vscode.extensions = with pkgs.vscode-extensions; [
-      uiua-lang.uiua-vscode
-    ];
+    programs.vscode.extensions = with pkgs.vscode-extensions; [ uiua-lang.uiua-vscode ];
   };
 }

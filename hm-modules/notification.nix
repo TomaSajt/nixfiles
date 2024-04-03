@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 let
   cfg = config.modules.notification;
@@ -18,7 +23,17 @@ in
     services.dunst.enable = true;
     services.batsignal = lib.mkIf cfg.battery {
       enable = true;
-      extraArgs = [ "-e" "-f" full "-w" warning "-c" critical "-d" danger ];
+      extraArgs = [
+        "-e"
+        "-f"
+        full
+        "-w"
+        warning
+        "-c"
+        critical
+        "-d"
+        danger
+      ];
     };
   };
 }

@@ -14,9 +14,7 @@ in
       enable = true;
       vSync = cfg.vSync;
       # Stacked transparent windows will not show behind eachother
-      opacityRules = [
-        "0:_NET_WM_STATE@:32a *= '_NET_WM_STATE_HIDDEN'"
-      ];
+      opacityRules = [ "0:_NET_WM_STATE@:32a *= '_NET_WM_STATE_HIDDEN'" ];
     };
   };
 }

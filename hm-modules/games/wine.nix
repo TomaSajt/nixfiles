@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   cfg = config.modules.games.wine;
 in
@@ -7,9 +12,5 @@ in
     enable = lib.mkEnableOption "wine";
   };
 
-  config = lib.mkIf cfg.enable {
-    home.packages = [
-      pkgs.wine
-    ];
-  };
+  config = lib.mkIf cfg.enable { home.packages = [ pkgs.wine ]; };
 }

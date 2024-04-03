@@ -1,6 +1,9 @@
 { pkgs, lib, ... }:
 {
-  imports = [ ./hm-modules ./hm-desktop.nix ];
+  imports = [
+    ./hm-modules
+    ./hm-desktop.nix
+  ];
   modules = {
     bash.enable = true;
     code-editors = {

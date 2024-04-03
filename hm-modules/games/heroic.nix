@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   cfg = config.modules.games.heroic;
 
@@ -9,9 +14,5 @@ in
     enable = lib.mkEnableOption "heroic";
   };
 
-  config = lib.mkIf cfg.enable {
-    home.packages = [
-      heroic
-    ];
-  };
+  config = lib.mkIf cfg.enable { home.packages = [ heroic ]; };
 }

@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 let
   cfg = config.modules.langs.cpp;
@@ -16,8 +21,6 @@ in
       ];
     };
 
-    programs.vscode.extensions = with pkgs.vscode-extensions; [
-      ms-vscode.cpptools
-    ];
+    programs.vscode.extensions = with pkgs.vscode-extensions; [ ms-vscode.cpptools ];
   };
 }

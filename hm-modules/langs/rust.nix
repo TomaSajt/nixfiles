@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 let
   cfg = config.modules.langs.rust;
@@ -17,8 +22,6 @@ in
       ];
     };
 
-    programs.vscode.extensions = with pkgs.vscode-extensions; [
-      rust-lang.rust-analyzer
-    ];
+    programs.vscode.extensions = with pkgs.vscode-extensions; [ rust-lang.rust-analyzer ];
   };
 }

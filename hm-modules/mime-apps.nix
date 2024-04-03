@@ -3,8 +3,8 @@ let
   cfg = config.modules.mime-apps;
 
   strListOrSingleton = with lib.types; coercedTo (either (listOf str) str) lib.toList (listOf str);
-  # check /etc/profiles/per-user/toma/share/applications/mimeinfo.cache for associations used by the system already
 in
+# check /etc/profiles/per-user/toma/share/applications/mimeinfo.cache for associations used by the system already
 {
   options.modules.mime-apps = {
     enable = lib.mkEnableOption "mime-apps";

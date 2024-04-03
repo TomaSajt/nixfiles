@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 let
   cfg = config.modules.i3;
 
@@ -60,7 +65,3 @@ in
     };
   };
 }
-
-
-
-

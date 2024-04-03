@@ -1,4 +1,10 @@
-{ pkgs, lib, config, osConfig, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  osConfig,
+  ...
+}:
 
 let
   cfg = config.modules.code-editors.neovim;
@@ -78,9 +84,11 @@ in
 
       extraLuaConfig = ''
         require "config.main"
-      '' + lib.optionalString osConfig.isDesktop ''
-        -- Sync clipboard with os
-        vim.opt.clipboard:append("unnamedplus")
+
+        ${lib.optionalString osConfig.isDesktop ''
+          -- Sync clipboard with os
+          vim.opt.clipboard:append("unnamedplus")
+        ''}
       '';
     };
     xdg.configFile."nvim/lua/config".source = ./config;

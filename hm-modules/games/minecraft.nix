@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 let
   cfg = config.modules.games.minecraft;
@@ -9,9 +14,7 @@ in
   };
 
   config = lib.mkIf cfg.enable {
-    home.packages = with pkgs; [
-      prismlauncher
-    ];
+    home.packages = with pkgs; [ prismlauncher ];
 
     programs.vscode.extensions = with pkgs.vscode-extensions; [
       SPGoding.datapack-language-server

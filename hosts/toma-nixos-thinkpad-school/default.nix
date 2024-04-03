@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   imports = [ ./hardware-configuration.nix ];
 
   isDesktop = true;
@@ -17,10 +18,14 @@
   services.mysql = {
     enable = true;
     package = pkgs.mariadb;
-    ensureUsers = [{
-      name = "toma";
-      ensurePermissions = { "*.*" = "ALL"; };
-    }];
+    ensureUsers = [
+      {
+        name = "toma";
+        ensurePermissions = {
+          "*.*" = "ALL";
+        };
+      }
+    ];
   };
 
   home-manager.users.toma = {
@@ -29,8 +34,14 @@
   };
 
   networking.firewall = {
-    allowedUDPPorts = [ 7777 25565 ];
-    allowedTCPPorts = [ 7777 25565 ];
+    allowedUDPPorts = [
+      7777
+      25565
+    ];
+    allowedTCPPorts = [
+      7777
+      25565
+    ];
   };
 
   hardware.opengl.driSupport32Bit = true;

@@ -1,13 +1,20 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 let
   cfg = config.modules.langs.dotnet;
 
-  dotnet-sdks = with pkgs.dotnetCorePackages; combinePackages [
-    sdk_6_0
-    sdk_7_0
-    sdk_8_0
-  ];
+  dotnet-sdks =
+    with pkgs.dotnetCorePackages;
+    combinePackages [
+      sdk_6_0
+      sdk_7_0
+      sdk_8_0
+    ];
 in
 {
   options.modules.langs.dotnet = {
@@ -19,13 +26,9 @@ in
       sessionVariables = {
         DOTNET_CLI_TELEMETRY_OPTOUT = "true";
       };
-      packages = [
-        dotnet-sdks
-      ];
+      packages = [ dotnet-sdks ];
     };
 
-    programs.vscode.extensions = with pkgs.vscode-extensions; [
-      ms-dotnettools.csharp
-    ];
+    programs.vscode.extensions = with pkgs.vscode-extensions; [ ms-dotnettools.csharp ];
   };
 }

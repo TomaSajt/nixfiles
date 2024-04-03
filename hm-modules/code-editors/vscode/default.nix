@@ -1,4 +1,9 @@
-{ pkgs, lib, config, ... }:
+{
+  pkgs,
+  lib,
+  config,
+  ...
+}:
 
 let
   cfg = config.modules.code-editors.vscode;
@@ -13,9 +18,7 @@ in
     programs.vscode = {
       enable = true;
       package = if cfg.codium then pkgs.vscodium else pkgs.vscode;
-      extensions = with pkgs.vscode-extensions; [
-        pkief.material-icon-theme
-      ];
+      extensions = with pkgs.vscode-extensions; [ pkief.material-icon-theme ];
 
       userSettings = {
         "workbench.iconTheme" = "material-icon-theme";
@@ -23,4 +26,3 @@ in
     };
   };
 }
-
