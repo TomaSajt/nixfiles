@@ -1,6 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nixpkgs-dev-ride.url = "github:TomaSajt/nixpkgs/ride";
 
     nur.url = "github:nix-community/NUR";

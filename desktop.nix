@@ -16,9 +16,10 @@
     services.xserver = {
       enable = lib.mkDefault true;
       windowManager.i3.enable = true;
-      displayManager.defaultSession = "none+i3";
       xkb.layout = "hu";
     };
+
+    services.displayManager.defaultSession = "none+i3";
 
     programs.quark-goldleaf.enable = true;
 
