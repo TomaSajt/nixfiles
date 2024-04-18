@@ -58,7 +58,7 @@ let
         };
         "Home Manager Options" = {
           urls = [
-            { template = "https://mipmip.github.io/home-manager-option-search/?query={searchTerms}"; }
+            { template = "https://home-manager-options.extranix.com/?query={searchTerms}&release=master"; }
           ];
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = [ "@hm" ];
