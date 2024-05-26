@@ -6,12 +6,20 @@
 
   users.users.toma.extraGroups = [ "video" ];
 
+  services.openssh.enable = true;
+  services.openssh.settings.PasswordAuthentication = false;
+  services.openssh.settings.KbdInteractiveAuthentication = false;
+  users.users.toma.openssh.authorizedKeys.keys = [
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGt1fXoeID60m9v+mSwNmqaJ5IXdlOUeFG7YWTmnruN9 toma"
+  ];
+
   security.wrappers.fbterm = {
     source = "${pkgs.fbterm}/bin/fbterm";
     owner = "nobody";
     group = "nogroup";
     capabilities = "cap_sys_tty_config+ep";
   };
+
 
   environment = {
     loginShellInit = "fbterm";
