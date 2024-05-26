@@ -58,7 +58,7 @@ in
           command = "${i3lock-color} ${lib.concatStringsSep " " lock-args}";
         }
         {
-          delay = 1500;
+          delay = 10800; # 3 hours
           command = "${systemctl} suspend";
         }
       ];

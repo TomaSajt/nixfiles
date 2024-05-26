@@ -23,6 +23,8 @@
 
     programs.quark-goldleaf.enable = true;
 
+    hardware.steam-hardware.enable = true;
+
     # Secrets management or something
     services.gnome.gnome-keyring.enable = true;
     programs.seahorse.enable = true;
