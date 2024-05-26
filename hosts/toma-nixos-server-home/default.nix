@@ -10,7 +10,9 @@
   services.openssh.settings.PasswordAuthentication = false;
   services.openssh.settings.KbdInteractiveAuthentication = false;
   users.users.toma.openssh.authorizedKeys.keys = [
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGt1fXoeID60m9v+mSwNmqaJ5IXdlOUeFG7YWTmnruN9 toma"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGt1fXoeID60m9v+mSwNmqaJ5IXdlOUeFG7YWTmnruN9 toma@toma-nixos-desktop-home"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBeNXRcTFAHC2AHFQhsV4bw0yuouPlKcxrmq6Z6QRdqV toma@toma-nixos-thinkpad-school"
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPAndu7CnQfqEwo/jck4I7QuK6bGAMeJkA1OGdvI5iY+ u0_a158@localhost" # termux
   ];
 
   security.wrappers.fbterm = {
@@ -19,7 +21,6 @@
     group = "nogroup";
     capabilities = "cap_sys_tty_config+ep";
   };
-
 
   environment = {
     loginShellInit = "fbterm";
