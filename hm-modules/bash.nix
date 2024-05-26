@@ -10,6 +10,10 @@ in
 {
   options.modules.bash = {
     enable = lib.mkEnableOption "bash";
+    color = lib.mkOption {
+      type = lib.types.str;
+      default = "32";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -26,7 +30,7 @@ in
         "ばっしゅ" = "bash";
       };
       initExtra = ''
-        export PS1="\[\033[1;35m\]\w \$ \[\033[0m\]"
+        export PS1="\[\033[1;${cfg.color}m\]\w \$ \[\033[0m\]"
       '';
     };
 
