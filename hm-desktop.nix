@@ -70,6 +70,8 @@
 
       nix-du
       graphviz
+
+      nix-update
     ];
   };
 }

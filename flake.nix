@@ -1,7 +1,6 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
-    nixpkgs-dev-ride.url = "github:TomaSajt/nixpkgs/ride";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
 
     nur.url = "github:nix-community/NUR";
 
@@ -19,11 +18,17 @@
   };
 
   outputs =
-    inputs:
-    with inputs;
-    let
-      system = "x86_64-linux";
+    {
+      self,
+      nixpkgs,
+      nur,
+      home-manager,
+      nix-index-database,
+      nixpkgs-droid,
+      nix-on-droid,
+    }@inputs:
 
+    let
       mkPkgs =
         pkgs-flake: system: overlays:
         import pkgs-flake {
@@ -36,7 +41,7 @@
       pkgs = mkPkgs' nixpkgs [
         (import ./overlay)
         nur.overlay
-        (_: _: { dev-ride = mkPkgs' nixpkgs-dev-ride [ ]; })
+        # (_: _: { dev-ride = mkPkgs' nixpkgs-dev-ride [ ]; })
       ];
 
       inherit (pkgs) lib;
@@ -48,7 +53,8 @@
       mkHost =
         path:
         nixpkgs.lib.nixosSystem {
-          inherit system specialArgs;
+          system = "x86_64-linux";
+          inherit specialArgs;
           modules = [
             path # per-host system config
             ./. # global system config

@@ -27,7 +27,7 @@ in
         };
       };
       cursorTheme = {
-        name = "Catppuccin-Latte-Dark-Cursors";
+        name = "catppuccin-latte-dark-cursors";
         package = pkgs.catppuccin-cursors.latteDark;
       };
       gtk3.extraConfig = {
