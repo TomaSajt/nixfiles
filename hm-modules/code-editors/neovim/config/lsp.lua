@@ -35,7 +35,6 @@ local default_setup = function(ls)
   }
 end
 
-default_setup('nil_ls')
 default_setup('hls')
 default_setup('tsserver')
 default_setup('eslint')
