@@ -59,7 +59,7 @@ in
 
           "${mod}+Shift+q" = "kill";
 
-          "${mod}+d" = "exec --no-startup-id \"${rofi} -show combi -combi-modes 'window,run,drun' -modes combi\"";
+          "${mod}+d" = "exec --no-startup-id \"${rofi} -show combi -combi-modes 'window,drun,run' -modes combi\"";
           "${mod}+period" = "exec --no-startup-id ${lib.getExe pkgs.rofimoji}";
 
           "${mod}+Left" = "focus left";

@@ -41,5 +41,6 @@ p: with p; [
   typescript
   tree-sitter-uiua
   vim
+  vimdoc
   yaml
 ]
