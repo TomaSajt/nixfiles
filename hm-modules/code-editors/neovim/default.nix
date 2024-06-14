@@ -83,12 +83,10 @@ in
       defaultEditor = true;
 
       extraLuaConfig = ''
+        nixos_config = {
+          is_desktop = ${if osConfig.isDesktop then "true" else "false"}
+        }
         require "config.main"
-
-        ${lib.optionalString osConfig.isDesktop ''
-          -- Sync clipboard with os
-          vim.opt.clipboard:append("unnamedplus")
-        ''}
       '';
     };
     xdg.configFile."nvim/lua/config".source = ./config;

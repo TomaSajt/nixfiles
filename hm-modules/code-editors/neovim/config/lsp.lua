@@ -63,7 +63,7 @@ lspconfig.lua_ls.setup {
   settings = {
     Lua = {
       telemetry = { enable = false },
-      diagnostics = { globals = { 'vim' } },
+      diagnostics = { globals = { 'vim', 'nixos_config' } },
       workspace = { checkThirdParty = false, }
     }
   }

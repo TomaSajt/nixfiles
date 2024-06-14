@@ -19,7 +19,17 @@ vim.opt.scrolloff = 8
 
 vim.opt.updatetime = 50
 
-require('gitsigns').setup()
+if nixos_config.is_desktop then
+  -- Sync clipboard with os
+  vim.opt.clipboard:append("unnamedplus")
+end
+
+require('gitsigns').setup {}
+require("nvim-autopairs").setup {}
+require("ibl").setup {}
+
+vim.g['Hexokinase_optOutPatterns'] = { 'colour_names' }
+
 require('config.telescope')
 require('config.treesitter')
 require('config.lsp')
@@ -27,9 +37,3 @@ require('config.cmp')
 require('config.keymap')
 require('config.airline')
 require('config.color')
-
-vim.g['Hexokinase_optOutPatterns'] = { 'colour_names' }
-
-require("nvim-autopairs").setup {}
-
-require("ibl").setup {}
