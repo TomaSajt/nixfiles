@@ -105,6 +105,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-dev-voicevox": {
+      "locked": {
+        "lastModified": 1718386555,
+        "narHash": "sha256-Gkb1Lzr6BO/Oa9GdGuszFs4k07P3yNybVDJwhf0J170=",
+        "owner": "TomaSajt",
+        "repo": "nixpkgs",
+        "rev": "d3df0b0d0a249f866f9643abae00fb6e256ca271",
+        "type": "github"
+      },
+      "original": {
+        "owner": "TomaSajt",
+        "ref": "voicevox",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-droid": {
       "locked": {
         "lastModified": 1704161960,
@@ -206,6 +222,7 @@
         "nix-index-database": "nix-index-database",
         "nix-on-droid": "nix-on-droid",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-dev-voicevox": "nixpkgs-dev-voicevox",
         "nixpkgs-droid": "nixpkgs-droid",
         "nur": "nur"
       }

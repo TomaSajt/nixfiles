@@ -67,6 +67,7 @@
       gimp
       inkscape
       libsForQt5.filelight
+      dev-voicevox.voicevox
 
       nix-du
       graphviz

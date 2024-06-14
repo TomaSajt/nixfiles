@@ -1,6 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-dev-voicevox.url = "github:TomaSajt/nixpkgs/voicevox";
 
     nur.url = "github:nix-community/NUR";
 
@@ -21,6 +22,7 @@
     {
       self,
       nixpkgs,
+      nixpkgs-dev-voicevox,
       nur,
       home-manager,
       nix-index-database,
@@ -41,7 +43,7 @@
       pkgs = mkPkgs' nixpkgs [
         (import ./overlay)
         nur.overlay
-        # (_: _: { dev-ride = mkPkgs' nixpkgs-dev-ride [ ]; })
+        (_: _: { dev-voicevox = mkPkgs' nixpkgs-dev-voicevox [ ]; })
       ];
 
       inherit (pkgs) lib;

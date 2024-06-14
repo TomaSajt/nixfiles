@@ -19,6 +19,13 @@
     };
   };
 
+  virtualisation.docker.enable = true;
+
+  virtualisation.docker.rootless = {
+    enable = true;
+    setSocketVariable = true;
+  };
+
   hardware.opengl.driSupport32Bit = true;
 
   services.xserver.videoDrivers = [ "nvidia" ];
