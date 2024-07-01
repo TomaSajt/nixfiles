@@ -46,6 +46,7 @@ default_setup('svelte')
 default_setup('uiua')
 default_setup('jdtls')
 default_setup('serve_d')
+default_setup('tailwindcss')
 
 lspconfig.nil_ls.setup {
   capabilities = capabilities,

@@ -26,9 +26,10 @@ in
       nixpkgs-fmt
       ccls
       jdt-language-server
+      pyright
+      tailwindcss-language-server
       nodejs.pkgs.eslint
       nodejs.pkgs.typescript-language-server
-      nodejs.pkgs.pyright
       nodejs.pkgs.svelte-language-server
       nodejs.pkgs.vscode-langservers-extracted
     ];
