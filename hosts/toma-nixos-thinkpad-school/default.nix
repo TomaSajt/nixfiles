@@ -31,6 +31,7 @@
   home-manager.users.toma = {
     modules.alacritty.font-size = 8;
     modules.fcitx5.enable = true;
+    home.packages = [ ];
   };
 
   networking.firewall = {
@@ -44,7 +45,7 @@
     ];
   };
 
-  hardware.opengl.driSupport32Bit = true;
+  hardware.graphics.enable32Bit = true;
 
   # Disable trackpoint (it's broken on this laptop)
   hardware.trackpoint = {
