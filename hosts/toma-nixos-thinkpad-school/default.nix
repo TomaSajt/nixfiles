@@ -114,8 +114,6 @@
     ];
   };
 
-  hardware.graphics.enable32Bit = true;
-
   # Disable trackpoint (it's broken on this laptop)
   hardware.trackpoint = {
     enable = true;

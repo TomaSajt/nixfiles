@@ -1,5 +1,4 @@
 {
-  inputs,
   pkgs,
   lib,
   config,
@@ -25,6 +24,10 @@
 
     hardware.steam-hardware.enable = true;
 
+    hardware.graphics.enable32Bit = true;
+
+    hardware.opentabletdriver.enable = true;
+
     # Secrets management or something
     services.gnome.gnome-keyring.enable = true;
     programs.seahorse.enable = true;
@@ -48,6 +51,7 @@
     services.joycond.enable = true;
 
     # Enable sound with pipewire.
+    security.rtkit.enable = true;
     services.pipewire = {
       enable = true;
       alsa.enable = true;
