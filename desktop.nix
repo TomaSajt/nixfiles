@@ -48,14 +48,14 @@
     services.joycond.enable = true;
 
     # Enable sound with pipewire.
-    sound.enable = true;
-    security.rtkit.enable = true;
     services.pipewire = {
       enable = true;
       alsa.enable = true;
       alsa.support32Bit = true;
       pulse.enable = true;
     };
+
+    hardware.alsa.enablePersistence = true;
 
     security.polkit = {
       enable = true;
@@ -81,6 +81,9 @@
       extraRules = ''
         # Backlight permissions
         ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
+
+        # Label Printer
+        SUBSYSTEM=="usb", ATTRS{idVendor}=="0471", ATTRS{idProduct}=="0055", MODE="0666"
       '';
     };
   };
