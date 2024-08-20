@@ -71,6 +71,8 @@
     ];
   };
 
+  services.tailscale.enable = true;
+
   home-manager.users.toma = {
     modules = {
       picom.vSync = false; # Turns off the default screen-tearing fix
