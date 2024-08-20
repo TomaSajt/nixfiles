@@ -4,6 +4,7 @@
     ./hm-modules
     ./hm-desktop.nix
   ];
+
   modules = {
     bash.enable = true;
     code-editors = {

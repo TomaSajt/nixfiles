@@ -1,13 +1,20 @@
-{
-  inputs,
-  pkgs,
-  lib,
-  config,
-  ...
-}:
+{ inputs, pkgs, ... }:
 
 {
-  imports = [ ./desktop.nix ];
+  imports = [
+    inputs.home-manager.nixosModules.home-manager
+    inputs.nix-index-database.nixosModules.nix-index
+    ./desktop.nix
+  ];
+
+  home-manager.users.toma = import ./home.nix;
+
+  programs.nix-index = {
+    enable = true;
+    enableBashIntegration = false;
+    enableFishIntegration = false;
+    enableZshIntegration = false;
+  };
 
   system.stateVersion = "23.11";
 
