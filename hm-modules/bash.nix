@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }:
 let
@@ -25,9 +26,9 @@ in
         code = "codium";
         sdn = "shutdown now";
         nv = "nvim";
-        nix-gcroots = "ls -l $(readlink /nix/var/nix/gcroots/auto/*)";
-        "えんヴぃむ" = "nvim";
-        "ばっしゅ" = "bash";
+        nvi = "nvim";
+        nivm = "nvim";
+        flu = "nix flake lock ${lib.concatStrings (map (x: " --update-input " + x) (lib.attrNames inputs))}";
       };
       initExtra = ''
         export PS1="\[\033[1;${cfg.color}m\]\w \$ \[\033[0m\]"
