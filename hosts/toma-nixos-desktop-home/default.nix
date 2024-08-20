@@ -7,9 +7,6 @@
 
   boot.supportedFilesystems = [ "ntfs" ];
 
-  # Fixes some BIOS error
-  boot.kernelParams = [ "libata.noacpi=1" ];
-
   services.transmission = {
     enable = true;
     downloadDirPermissions = "770";
@@ -26,6 +23,11 @@
     setSocketVariable = true;
   };
 
+  boot.kernelParams = [
+    "libata.noacpi=1" # Fixes some BIOS error
+    "nvidia-drm.modeset=1" # temporary fix for enabling modesetting
+  ];
+
   services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
@@ -34,7 +36,7 @@
       nvidiaBusId = "PCI:1:0:0";
       intelBusId = "PCI:0:1:0";
     };
-    modesetting.enable = true;
+    modesetting.enable = false; # should be true, set above manually
     forceFullCompositionPipeline = true;
   };
 
