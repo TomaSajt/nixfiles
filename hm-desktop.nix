@@ -68,6 +68,7 @@
       inkscape
       libsForQt5.filelight
 
+      nix-tree
       nix-du
       graphviz
 
