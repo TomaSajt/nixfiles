@@ -66,6 +66,7 @@
         "toma-nixos-desktop-home" = mkHost "x86_64-linux" "toma-nixos-desktop-home";
         "toma-nixos-thinkpad-school" = mkHost "x86_64-linux" "toma-nixos-thinkpad-school";
         "toma-nixos-server-home" = mkHost "x86_64-linux" "toma-nixos-server-home";
+        "toma-nixos-rpi4-home" = mkHost "aarch64-linux" "toma-nixos-rpi4-home";
       };
     };
 }

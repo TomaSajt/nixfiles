@@ -6,25 +6,25 @@
   ];
 
   modules = {
-    bash.enable = true;
+    bash.enable = lib.mkDefault true;
     code-editors = {
-      neovim.enable = true;
+      neovim.enable = lib.mkDefault true;
     };
     git = {
-      enable = true;
+      enable = lib.mkDefault true;
       signing = lib.mkDefault true;
     };
     gpg.enable = lib.mkDefault true;
     langs = {
-      cpp.enable = true;
-      dotnet.enable = true;
-      dyalog.enable = true;
-      javascript.enable = true;
-      python.enable = true;
-      rust.enable = true;
-      uiua.enable = true;
+      cpp.enable = lib.mkDefault true;
+      dotnet.enable = lib.mkDefault true;
+      dyalog.enable = lib.mkDefault true;
+      javascript.enable = lib.mkDefault true;
+      python.enable = lib.mkDefault true;
+      rust.enable = lib.mkDefault true;
+      uiua.enable = lib.mkDefault true;
     };
-    user-dirs.enable = true;
+    user-dirs.enable = lib.mkDefault true;
   };
 
   # Automatic external disk mounting to /var/run/mount

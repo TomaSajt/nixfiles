@@ -5,6 +5,15 @@
     ./fbterm.nix
   ];
 
+  # Bootloader
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi = {
+      canTouchEfiVariables = true;
+      efiSysMountPoint = "/boot/efi";
+    };
+  };
+
   services.getty.autologinUser = "toma";
 
   users.users.toma.extraGroups = [ "video" ];
