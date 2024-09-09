@@ -1,10 +1,5 @@
-{
-  pkgs,
-  lib,
-  config,
-  inputs,
-  ...
-}:
+{ lib, config, ... }:
+
 let
   cfg = config.modules.bash;
 in
@@ -28,7 +23,6 @@ in
         nv = "nvim";
         nvi = "nvim";
         nivm = "nvim";
-        flu = "nix flake lock ${lib.concatStrings (map (x: " --update-input " + x) (lib.attrNames inputs))}";
       };
       initExtra = ''
         export PS1="\[\033[1;${cfg.color}m\]\w \$ \[\033[0m\]"

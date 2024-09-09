@@ -5,12 +5,13 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    nur.url = "github:nix-community/NUR";
-
     nixos-hardware.url = "github:NixOS/nixos-hardware";
 
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+
+    firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+    firefox-addons.flake = false;
   };
 
   outputs =
@@ -18,19 +19,20 @@
       self,
       nixpkgs,
       home-manager,
-      nur,
       nixos-hardware,
       nix-index-database,
+      firefox-addons,
     }@inputs:
 
     let
-      specialArgs = {
-        inherit inputs;
-      };
 
       mkHost =
         system: hostName:
         let
+          specialArgs = {
+            inherit inputs system;
+          };
+
           mkPkgs =
             pkgs-flake: overlays:
             import pkgs-flake {
@@ -40,8 +42,7 @@
 
           pkgs = mkPkgs nixpkgs [
             (import ./overlay)
-            nur.overlay
-            # (_: _: { dev-voicevox = mkPkgs' nixpkgs-dev-voicevox [ ]; })
+            #(_: _: { dev-uiua = mkPkgs nixpkgs-uiua [ ]; })
           ];
         in
         nixpkgs.lib.nixosSystem {

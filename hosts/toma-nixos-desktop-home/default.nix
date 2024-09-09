@@ -40,6 +40,7 @@
   services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
+    open = false;
     prime = {
       sync.enable = true;
       nvidiaBusId = "PCI:1:0:0";
@@ -72,6 +73,16 @@
   };
 
   services.tailscale.enable = true;
+
+  # https://github.com/NixOS/nixpkgs/issues/180175
+  systemd.services.NetworkManager-wait-online = {
+    serviceConfig = {
+      ExecStart = [
+        ""
+        "${pkgs.networkmanager}/bin/nm-online -q"
+      ];
+    };
+  };
 
   home-manager.users.toma = {
     modules = {

@@ -2,12 +2,16 @@
   pkgs,
   lib,
   config,
+  inputs,
   ...
 }:
+
 # Parts stolen from https://github.com/mahmoudk1000/nix-config/blob/main/modules/programs/firefox.nix
 
 let
   cfg = config.modules.firefox;
+
+  firefox-addons = pkgs.callPackage inputs.firefox-addons { };
 
   firefox-wrapped = pkgs.wrapFirefox pkgs.firefox-unwrapped {
     extraPolicies = {
@@ -140,7 +144,7 @@ let
         "Google Translate"
       ];
     };
-    extensions = with pkgs.nur.repos.rycee.firefox-addons; [
+    extensions = with firefox-addons; [
       ublock-origin
       bitwarden
       darkreader

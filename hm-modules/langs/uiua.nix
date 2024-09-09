@@ -4,6 +4,7 @@
   config,
   ...
 }:
+
 let
   cfg = config.modules.langs.uiua;
 in
