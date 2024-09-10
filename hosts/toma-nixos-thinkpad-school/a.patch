@@ -1,0 +1,85 @@
+diff --git a/lib/LANraragi/Model/Archive.pm b/lib/LANraragi/Model/Archive.pm
+index 20d9c69..de8ffae 100644
+--- a/lib/LANraragi/Model/Archive.pm
++++ b/lib/LANraragi/Model/Archive.pm
+@@ -93,6 +93,7 @@ sub update_thumbnail {
+ }
+ 
+ sub generate_page_thumbnails {
++    $logger->info("Toma: generate_page_thumbnails")
+ 
+     my ( $self, $id ) = @_;
+ 
+@@ -124,8 +125,12 @@ sub generate_page_thumbnails {
+         }
+     }
+ 
++    $logger->info("Toma: generate_page_thumbnails 2")
++
+     if ($should_queue_job) {
+ 
++        
++        $logger->info("Toma: generate_page_thumbnails 3")
+         # Check if a job is already queued for this archive
+         if ( $redis->hexists( $id, "thumbjob" ) ) {
+ 
+@@ -146,6 +151,7 @@ sub generate_page_thumbnails {
+                 return;
+             }
+         }
++        $logger->info("Toma: generate_page_thumbnails 4")
+ 
+         # Queue a minion job to generate the thumbnails. Clients can check on its progress through the job ID.
+         my $job_id = $self->minion->enqueue( page_thumbnails => [ $id, $force ] => { priority => 0, attempts => 3 } );
+@@ -160,6 +166,8 @@ sub generate_page_thumbnails {
+             },
+             status => 202    # 202 Accepted
+         );
++
++        $logger->info("Toma: generate_page_thumbnails 5")
+     } else {
+         $self->render(
+             json => {
+@@ -169,12 +177,15 @@ sub generate_page_thumbnails {
+             },
+             status => 200    # 200 OK
+         );
++
++        $logger->info("Toma: generate_page_thumbnails 6")
+     }
+ 
+     $redis->quit;
+ }
+ 
+ sub serve_thumbnail {
++    $logger->info("Toma: serve_thumbnail")
+ 
+     my ( $self, $id ) = @_;
+ 
+@@ -202,9 +213,11 @@ sub serve_thumbnail {
+     unless ( -e $thumbname ) {
+         $thumbname = $fallback_thumbname;
+     }
++    $logger->info("Toma: serve_thumbnail 2")
+ 
+     unless ( -e $thumbname ) {
+ 
++        $logger->info("Toma: serve_thumbnail 3")
+         if ($no_fallback) {
+ 
+             # Queue a minion job to generate the thumbnail. Thumbnail jobs have the lowest priority.
+@@ -219,12 +232,14 @@ sub serve_thumbnail {
+             );
+         } else {
+ 
++            $logger->info("Toma: serve_thumbnail 4")
+             # If the thumbnail doesn't exist, serve the default thumbnail.
+             $self->render_file( filepath => "./public/img/noThumb.png" );
+         }
+         return;
+     } else {
+ 
++        $logger->info("Toma: serve_thumbnail 5")
+         # Simply serve the thumbnail.
+         $self->render_file( filepath => $thumbname );
+     }

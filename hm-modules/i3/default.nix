@@ -281,8 +281,9 @@ in
 
               mappings = {
                 "alsa_output.pci-0000_00_1f.3.analog-stereo" = "";
-                "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp__sink" = "";
-                "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp_3__sink" = "HDMI?";
+                "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Headphones__sink" = "";
+                "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Speaker__sink" = "";
+                "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp_3__sink" = "HDMI";
                 "alsa_output.usb-KYE_Keyboard-00.analog-stereo" = "KBD";
               };
             }

@@ -24,6 +24,13 @@
     };
   };
 
+  services.lanraragi.enable = true;
+  services.lanraragi.port = 3001;
+  services.lanraragi.package = pkgs.lanraragi.overrideAttrs (prev: {
+    patches = [ ./a.patch ] ++ (prev.patches or [ ]);
+    checkPhase = "";
+  });
+
   services.mysql = {
     enable = true;
     package = pkgs.mariadb;
