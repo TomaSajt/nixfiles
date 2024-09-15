@@ -11,7 +11,7 @@
 let
   cfg = config.modules.firefox;
 
-  firefox-addons = pkgs.callPackage inputs.firefox-addons { };
+  firefox-addons = (import inputs.rycee-nur { inherit pkgs; }).firefox-addons;
 
   firefox-wrapped = pkgs.wrapFirefox pkgs.firefox-unwrapped {
     extraPolicies = {

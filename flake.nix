@@ -10,8 +10,8 @@
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
-    firefox-addons.url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
-    firefox-addons.flake = false;
+    rycee-nur.url = "gitlab:rycee/nur-expressions";
+    rycee-nur.flake = false;
   };
 
   outputs =
@@ -21,10 +21,17 @@
       home-manager,
       nixos-hardware,
       nix-index-database,
-      firefox-addons,
+      rycee-nur,
     }@inputs:
 
     let
+
+      mkPkgs =
+        system: pkgs-flake: overlays:
+        import pkgs-flake {
+          inherit system overlays;
+          config.allowUnfree = true;
+        };
 
       mkHost =
         system: hostName:
@@ -33,14 +40,9 @@
             inherit inputs system;
           };
 
-          mkPkgs =
-            pkgs-flake: overlays:
-            import pkgs-flake {
-              inherit system overlays;
-              config.allowUnfree = true;
-            };
+          mkPkgs' = mkPkgs system;
 
-          pkgs = mkPkgs nixpkgs [
+          pkgs = mkPkgs' nixpkgs [
             (import ./overlay)
             #(_: _: { dev-uiua = mkPkgs nixpkgs-uiua [ ]; })
           ];

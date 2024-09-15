@@ -18,6 +18,7 @@ in
     home.packages = [
       steam
       steam.run
+      pkgs.steamcmd
       pkgs.protontricks
     ];
   };
