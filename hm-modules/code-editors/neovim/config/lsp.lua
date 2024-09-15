@@ -36,7 +36,7 @@ local default_setup = function(ls)
 end
 
 default_setup('hls')
-default_setup('tsserver')
+default_setup('ts_ls')
 default_setup('eslint')
 default_setup('pyright')
 default_setup('rust_analyzer')
