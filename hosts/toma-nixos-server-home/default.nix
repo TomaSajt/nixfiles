@@ -14,8 +14,6 @@
     };
   };
 
-  services.getty.autologinUser = "toma";
-
   users.users.toma.extraGroups = [ "video" ];
 
   services.openssh.enable = true;
