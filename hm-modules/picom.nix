@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  osConfig,
+  ...
+}:
 let
   cfg = config.modules.picom;
 in
@@ -8,7 +13,7 @@ in
     vSync = lib.mkEnableOption "picom vSync";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && (!osConfig.withWayland)) {
     # Compositor (for transparency)
     services.picom = {
       enable = true;

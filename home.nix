@@ -39,7 +39,9 @@
     packages = with pkgs; [
       ntfs3g # NTFS Filesystem Support
       ripgrep # grep in filesystem (also used for telescope.nvim support for grep)
-      xclip # Clipboard utils (used for synced neovim clipboard)
+      # Clipboard utils (used for synced neovim clipboard)
+      xclip
+      wl-clipboard
       fd # `find` alternative (also used for neovim)
       killall
     ];

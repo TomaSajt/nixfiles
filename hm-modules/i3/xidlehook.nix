@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  osConfig,
   ...
 }:
 let
@@ -52,7 +53,7 @@ in
     };
   };
 
-  config = lib.mkIf (cfg.enable && cfg.xidlehook.enable) {
+  config = lib.mkIf (cfg.enable && cfg.xidlehook.enable && !(osConfig.withWayland)) {
     services.xidlehook = {
       enable = true;
       not-when-audio = true;

@@ -8,22 +8,28 @@
 {
   options = {
     isGraphical = lib.mkEnableOption "graphical config";
+    withWayland = lib.mkEnableOption "wayland";
   };
 
   config = lib.mkIf config.isGraphical {
 
-    services.xserver = {
+    specialisation."wayland".configuration = {
+      withWayland = true;
+    };
+
+    services.xserver = lib.mkIf (!config.withWayland) {
       enable = lib.mkDefault true;
       windowManager.i3.enable = true;
       xkb.layout = "hu";
     };
 
-    services.displayManager.defaultSession = "none+i3";
+    services.displayManager.defaultSession = lib.mkIf (!config.withWayland) "none+i3";
 
     programs.quark-goldleaf.enable = true;
 
     hardware.steam-hardware.enable = true;
 
+    hardware.graphics.enable = true; # otherwise sway doesn't start
     hardware.graphics.enable32Bit = true;
 
     hardware.opentabletdriver.enable = true;
@@ -81,10 +87,10 @@
       packages = with pkgs; [ ];
       extraRules = ''
         # Backlight permissions
-        ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
+        # ACTION=="add", SUBSYSTEM=="backlight", KERNEL=="intel_backlight", MODE="0666", RUN+="${pkgs.coreutils}/bin/chmod a+w /sys/class/backlight/%k/brightness"
 
         # Label Printer
-        SUBSYSTEM=="usb", ATTRS{idVendor}=="0471", ATTRS{idProduct}=="0055", MODE="0666"
+        # SUBSYSTEM=="usb", ATTRS{idVendor}=="0471", ATTRS{idProduct}=="0055", MODE="0666"
       '';
     };
   };

@@ -2,6 +2,7 @@
   pkgs,
   lib,
   config,
+  osConfig,
   ...
 }:
 let
@@ -11,7 +12,7 @@ in
   options.modules.i3.autorandr = {
     enable = lib.mkEnableOption "autorandr";
   };
-  config = lib.mkIf (cfg.enable && cfg.autorandr.enable) {
+  config = lib.mkIf (cfg.enable && cfg.autorandr.enable && (!osConfig.withWayland)) {
     services.autorandr.enable = true;
     programs.autorandr = {
       enable = true;

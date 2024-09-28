@@ -1,4 +1,9 @@
-{ lib, config, ... }:
+{
+  lib,
+  config,
+  osConfig,
+  ...
+}:
 
 let
   cfg = config.modules.bash;
@@ -16,7 +21,8 @@ in
     programs.bash = {
       enable = true;
       shellAliases = {
-        snrs = "sudo nixos-rebuild switch";
+        snrs =
+          "sudo nixos-rebuild switch" + lib.optionalString (osConfig.withWayland) " --specialisation wayland";
         ls = "ls --group-directories-first --color=auto";
         code = "codium";
         sdn = "shutdown now";

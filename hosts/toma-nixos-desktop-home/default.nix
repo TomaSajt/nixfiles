@@ -1,4 +1,9 @@
-{ pkgs, ... }:
+{
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 
 {
   imports = [ ./hardware-configuration.nix ];
@@ -37,9 +42,9 @@
     "nvidia-drm.modeset=1" # temporary fix for enabling modesetting
   ];
 
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = lib.mkIf (!config.withWayland) [ "nvidia" ];
 
-  hardware.nvidia = {
+  hardware.nvidia = lib.mkIf (!config.withWayland) {
     open = false;
     prime = {
       sync.enable = true;
@@ -50,12 +55,16 @@
     forceFullCompositionPipeline = true;
   };
 
-  environment.etc."X11/xorg.conf.d/10-disable-nvidia-phantom-monitor.conf".text = ''
-    Section "Monitor"
-        Identifier "None-1-1"
-        Option "Ignore" "true"
-    EndSection
-  '';
+  environment.etc."X11/xorg.conf.d/10-disable-nvidia-phantom-monitor.conf" =
+    lib.mkIf (!config.withWayland)
+      {
+        text = ''
+          Section "Monitor"
+              Identifier "None-1-1"
+              Option "Ignore" "true"
+          EndSection
+        '';
+      };
 
   networking.firewall = {
     allowedUDPPorts = [
@@ -99,7 +108,5 @@
       };
       packages = with pkgs; [ ];
     };
-
-    services.syncthing.enable = true;
   };
 }

@@ -1,7 +1,7 @@
 {
-  pkgs,
   lib,
   config,
+  osConfig,
   ...
 }:
 let
@@ -12,7 +12,7 @@ in
     enable = lib.mkEnableOption "wallpaper";
   };
 
-  config = lib.mkIf cfg.enable {
+  config = lib.mkIf (cfg.enable && (!osConfig.withWayland)) {
     services.random-background = {
       enable = true;
       enableXinerama = true;
