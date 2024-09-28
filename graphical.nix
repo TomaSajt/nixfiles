@@ -7,7 +7,7 @@
 
 {
   options = {
-    isGraphical = lib.mkEnableOption "desktop";
+    isGraphical = lib.mkEnableOption "graphical config";
   };
 
   config = lib.mkIf config.isGraphical {
@@ -43,9 +43,6 @@
 
     # Needed for udiskie to work (in home-manager configs)
     services.udisks2.enable = true;
-
-    # Enable CUPS to print documents.
-    services.printing.enable = true;
 
     # Enable support for Nintendo Pro Controllers and Joycons
     services.joycond.enable = true;

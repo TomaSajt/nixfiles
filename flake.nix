@@ -37,14 +37,14 @@
         system: hostName:
         let
           specialArgs = {
-            inherit inputs system;
+            inherit inputs;
           };
 
           mkPkgs' = mkPkgs system;
 
           pkgs = mkPkgs' nixpkgs [
             (import ./overlay)
-            #(_: _: { dev-uiua = mkPkgs nixpkgs-uiua [ ]; })
+            #(_: _: { dev-uiua = mkPkgs' nixpkgs-uiua [ ]; })
           ];
         in
         nixpkgs.lib.nixosSystem {
