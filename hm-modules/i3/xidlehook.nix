@@ -42,8 +42,14 @@ let
   ];
 in
 {
-  options.modules.i3.xidlehook = {
-    enable = lib.mkEnableOption "xidlehook";
+  options = {
+    modules.i3.xidlehook = {
+      enable = lib.mkEnableOption "xidlehook";
+    };
+    myLockCmd = lib.mkOption {
+      type = lib.types.str;
+      default = "${i3lock-color} ${lib.concatStringsSep " " lock-args}";
+    };
   };
 
   config = lib.mkIf (cfg.enable && cfg.xidlehook.enable) {
@@ -55,7 +61,7 @@ in
       timers = [
         {
           delay = 300;
-          command = "${i3lock-color} ${lib.concatStringsSep " " lock-args}";
+          command = config.myLockCmd;
         }
         {
           delay = 10800; # 3 hours

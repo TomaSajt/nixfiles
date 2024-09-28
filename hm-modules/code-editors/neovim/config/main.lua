@@ -19,7 +19,7 @@ vim.opt.scrolloff = 8
 
 vim.opt.updatetime = 50
 
-if nixos_config.is_desktop then
+if nixos_config.is_graphical then
   -- Sync clipboard with os
   vim.opt.clipboard:append("unnamedplus")
 end

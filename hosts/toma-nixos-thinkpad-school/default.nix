@@ -2,7 +2,7 @@
 {
   imports = [ ./hardware-configuration.nix ];
 
-  isDesktop = true;
+  isGraphical = true;
 
   # Bootloader
   boot.loader = {

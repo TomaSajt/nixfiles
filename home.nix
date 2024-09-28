@@ -2,7 +2,7 @@
 {
   imports = [
     ./hm-modules
-    ./hm-desktop.nix
+    ./home-graphical.nix
   ];
 
   modules = {
@@ -41,6 +41,7 @@
       ripgrep # grep in filesystem (also used for telescope.nvim support for grep)
       xclip # Clipboard utils (used for synced neovim clipboard)
       fd # `find` alternative (also used for neovim)
+      killall
     ];
   };
 }

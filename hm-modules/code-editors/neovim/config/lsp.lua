@@ -36,6 +36,7 @@ local default_setup = function(ls)
 end
 
 default_setup('hls')
+default_setup('bashls')
 default_setup('ts_ls')
 default_setup('eslint')
 default_setup('pyright')

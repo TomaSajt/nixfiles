@@ -17,6 +17,7 @@ in
   config = lib.mkIf cfg.enable {
 
     home.packages = with pkgs; [
+      bash-language-server
       lua-language-server
       haskell-language-server
       omnisharp-roslyn
@@ -85,7 +86,7 @@ in
 
       extraLuaConfig = ''
         nixos_config = {
-          is_desktop = ${if osConfig.isDesktop then "true" else "false"}
+          is_graphical = ${if osConfig.isGraphical then "true" else "false"}
         }
         require "config.main"
       '';

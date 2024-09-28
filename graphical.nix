@@ -7,10 +7,10 @@
 
 {
   options = {
-    isDesktop = lib.mkEnableOption "desktop";
+    isGraphical = lib.mkEnableOption "desktop";
   };
 
-  config = lib.mkIf config.isDesktop {
+  config = lib.mkIf config.isGraphical {
 
     services.xserver = {
       enable = lib.mkDefault true;

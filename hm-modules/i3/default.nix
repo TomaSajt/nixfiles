@@ -121,7 +121,8 @@ in
 
           "${mod}+Shift+c" = "reload";
           "${mod}+Shift+r" = "restart";
-          "${mod}+Shift+e" = "exec i3-nagbar -t warning -m 'Do you want to exit i3?' -b 'Yes' 'i3-msg exit'";
+          "${mod}+Shift+l" = "exec i3-msg exit";
+          "${mod}+l" = "exec ${config.myLockCmd}";
 
           "${mod}+r" = "mode resize";
 
@@ -174,6 +175,11 @@ in
           {
             command = "${dbus-update-activation-environment} --all";
             always = true;
+            notification = false;
+          }
+          {
+            command = "discord";
+            always = false;
             notification = false;
           }
         ];

@@ -5,7 +5,7 @@
   ...
 }:
 {
-  config = lib.mkIf osConfig.isDesktop {
+  config = lib.mkIf osConfig.isGraphical {
     modules = lib.mkDefault {
       alacritty = {
         enable = true;
