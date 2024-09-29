@@ -98,7 +98,7 @@ let
 
         "${mod}+Shift+c" = "reload";
         "${mod}+Shift+r" = "restart";
-        "${mod}+Shift+l" = "exec i3-msg exit";
+        "${mod}+Shift+l" = "exec ${if osConfig.withWayland then "swaymsg" else "i3-msg"} exit";
         "${mod}+l" = "exec ${config.myLockCmd}";
 
         "${mod}+r" = "mode resize";
