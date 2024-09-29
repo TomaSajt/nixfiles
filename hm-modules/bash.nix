@@ -22,7 +22,7 @@ in
       enable = true;
       shellAliases = {
         snrs =
-          "sudo nixos-rebuild switch" + lib.optionalString (osConfig.withWayland) " --specialisation wayland";
+          "sudo nixos-rebuild switch" + lib.optionalString (!osConfig.withWayland) " --specialisation x11";
         ls = "ls --group-directories-first --color=auto";
         code = "codium";
         sdn = "shutdown now";

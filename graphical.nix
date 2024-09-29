@@ -13,8 +13,9 @@
 
   config = lib.mkIf config.isGraphical {
 
-    specialisation."wayland".configuration = {
-      withWayland = true;
+    withWayland = lib.mkDefault true;
+    specialisation."x11".configuration = {
+      withWayland = false;
     };
 
     services.xserver = lib.mkIf (!config.withWayland) {
