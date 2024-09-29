@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 {
   imports = [ ./hardware-configuration.nix ];
 
@@ -112,7 +112,7 @@
   };
 
   home-manager.users.toma = {
-    modules.alacritty.font-size = 8;
+    modules.alacritty.font-size = if config.withWayland then 12 else 8;
     modules.fcitx5.enable = true;
     home.packages = [ ];
   };

@@ -9,7 +9,7 @@
     modules = lib.mkDefault {
       alacritty = {
         enable = true;
-        font-size = 10.0;
+        font-size = if osConfig.withWayland then 15 else 10;
       };
       code-editors = {
         vscode = {

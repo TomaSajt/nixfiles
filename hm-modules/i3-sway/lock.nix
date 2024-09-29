@@ -38,6 +38,11 @@ let
     "--keylayout 1"
   ];
   pidof = lib.getExe' pkgs.procps "pidof";
+
+  img = ../wallpaper/wallpapers/minimalistic-1.jpg;
+  img-blurred = pkgs.runCommand "blurred.jpg" { } ''
+    ${lib.getExe pkgs.imagemagick} convert -blur 14x5 ${img} $out
+  '';
 in
 {
   options = {
@@ -60,6 +65,8 @@ in
         indicator-radius = 100;
         line-color = "ffffff";
         show-failed-attempts = true;
+        image = "${img-blurred}";
+        scaling = "fill";
       };
     };
   };
