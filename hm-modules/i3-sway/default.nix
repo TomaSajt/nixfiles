@@ -159,17 +159,12 @@ let
       )
       (
         {
-          command = "discord";
+          command = "discord --start-minimized";
           always = false;
         }
         // lib.optionalAttrs (!osConfig.withWayland) { notification = false; }
       )
     ];
-    assigns = {
-      "1" = [
-        { class = "^discord$"; }
-      ];
-    };
     focus.followMouse = false;
     floating = {
       titlebar = false;
