@@ -6,7 +6,7 @@
   ...
 }:
 let
-  cfg = config.modules.i3;
+  cfg = config.modules.i3-sway;
 
   mod = "Mod4";
 
@@ -165,6 +165,11 @@ let
         // lib.optionalAttrs (!osConfig.withWayland) { notification = false; }
       )
     ];
+    assigns = {
+      "1" = [
+        { class = "^discord$"; }
+      ];
+    };
     focus.followMouse = false;
     floating = {
       titlebar = false;
@@ -197,7 +202,7 @@ let
           names = [ "monospace" ];
           size = 11.0;
         };
-        trayOutput = "primary";
+        trayOutput = if osConfig.withWayland then "*" else "primary";
         colors = {
           background = "#000000";
           statusline = "#ffffff";
@@ -235,12 +240,13 @@ let
 in
 {
   imports = [
-    ./xidlehook.nix
+    ./lock.nix
+    ./idle.nix
     ./autorandr.nix
   ];
 
-  options.modules.i3 = {
-    enable = lib.mkEnableOption "i3";
+  options.modules.i3-sway = {
+    enable = lib.mkEnableOption "i3-sway";
     show-battery = lib.mkEnableOption "i3status-rs battery bar";
   };
 
@@ -261,10 +267,16 @@ in
     wayland.windowManager.sway = lib.mkIf osConfig.withWayland {
       enable = true;
       config = myConfig // {
-        input."*" = {
-          xkb_layout = "hu";
-          xkb_numlock = "enabled";
-          xkb_options = "caps:escape";
+        input = {
+          "type:keyboard" = {
+            "xkb_layout" = "hu";
+            "xkb_numlock" = "enabled";
+            "xkb_options" = "caps:escape";
+          };
+          "type:touchpad" = {
+            "tap" = "enabled";
+            "natural_scroll" = "enabled";
+          };
         };
         output."*" = {
           bg = "${../wallpaper/wallpapers/minimalistic-1.jpg} fill";

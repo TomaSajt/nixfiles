@@ -6,10 +6,10 @@
   ...
 }:
 let
-  cfg = config.modules.i3;
+  cfg = config.modules.i3-sway;
 in
 {
-  options.modules.i3.autorandr = {
+  options.modules.i3-sway.autorandr = {
     enable = lib.mkEnableOption "autorandr";
   };
   config = lib.mkIf (cfg.enable && cfg.autorandr.enable && (!osConfig.withWayland)) {

@@ -25,6 +25,20 @@
 
     services.displayManager.defaultSession = lib.mkIf (!config.withWayland) "none+i3";
 
+    environment.loginShellInit = lib.mkIf config.withWayland ''
+      # load home manager env
+      . ~/.profile
+
+      if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
+          exec sway
+      fi    
+    '';
+
+    # enable swaylock to handle authentication
+    security.pam.services = lib.mkIf config.withWayland {
+      swaylock = { };
+    };
+
     programs.quark-goldleaf.enable = true;
 
     hardware.steam-hardware.enable = true;

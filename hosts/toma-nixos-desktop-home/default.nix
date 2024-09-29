@@ -96,7 +96,7 @@
   home-manager.users.toma = {
     modules = {
       picom.vSync = false; # Turns off the default screen-tearing fix
-      i3.show-battery = false;
+      i3-sway.show-battery = false;
       notification.battery = false;
       fcitx5.enable = true;
     };

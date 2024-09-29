@@ -11,7 +11,7 @@
     ./git.nix
     ./gpg.nix
     ./gtk.nix
-    ./i3
+    ./i3-sway
     ./langs
     ./mime-apps.nix
     ./notification.nix

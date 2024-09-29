@@ -1,15 +1,11 @@
 {
   pkgs,
   lib,
-  config,
   osConfig,
   ...
 }:
-let
-  cfg = config.modules.i3;
 
-  i3lock-color = "${pkgs.i3lock-color}/bin/i3lock-color";
-  systemctl = "${pkgs.systemd}/bin/systemctl";
+let
   colors = {
     blank = "#00000000";
     clear = "#ffffff22";
@@ -41,34 +37,30 @@ let
     "--time-str='%H:%M:%S'"
     "--keylayout 1"
   ];
+  pidof = lib.getExe' pkgs.procps "pidof";
 in
 {
   options = {
-    modules.i3.xidlehook = {
-      enable = lib.mkEnableOption "xidlehook";
-    };
     myLockCmd = lib.mkOption {
       type = lib.types.str;
-      default = "${i3lock-color} ${lib.concatStringsSep " " lock-args}";
+      default =
+        if osConfig.withWayland then
+          "${lib.getExe pkgs.swaylock} -f"
+        else
+          "${pidof} i3lock-color || ${lib.getExe' pkgs.i3lock-color "i3lock-color"} ${lib.concatStringsSep " " lock-args}";
     };
   };
-
-  config = lib.mkIf (cfg.enable && cfg.xidlehook.enable && !(osConfig.withWayland)) {
-    services.xidlehook = {
+  config = {
+    programs.swaylock = lib.mkIf osConfig.withWayland {
       enable = true;
-      not-when-audio = true;
-      not-when-fullscreen = true;
-      detect-sleep = true;
-      timers = [
-        {
-          delay = 300;
-          command = config.myLockCmd;
-        }
-        {
-          delay = 10800; # 3 hours
-          command = "${systemctl} suspend";
-        }
-      ];
+      settings = {
+        color = "808080";
+        font-size = 24;
+        indicator-idle-visible = false;
+        indicator-radius = 100;
+        line-color = "ffffff";
+        show-failed-attempts = true;
+      };
     };
   };
 }

@@ -27,10 +27,10 @@
         wine.enable = true;
       };
       gtk.enable = true;
-      i3 = {
+      i3-sway = {
         enable = true;
         show-battery = true;
-        xidlehook.enable = true;
+        idle.enable = true;
         autorandr.enable = true;
       };
       mime-apps.enable = true;
