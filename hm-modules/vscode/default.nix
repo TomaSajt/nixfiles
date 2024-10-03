@@ -6,10 +6,10 @@
 }:
 
 let
-  cfg = config.modules.code-editors.vscode;
+  cfg = config.modules.vscode;
 in
 {
-  options.modules.code-editors.vscode = {
+  options.modules.vscode = {
     enable = lib.mkEnableOption "vscode";
     codium = lib.mkEnableOption "use vscodium";
   };

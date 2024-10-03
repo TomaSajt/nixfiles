@@ -3,7 +3,6 @@
   imports = [
     ./alacritty.nix
     ./bash.nix
-    ./code-editors
     ./fcitx5
     ./feh.nix
     ./firefox.nix
@@ -14,10 +13,12 @@
     ./i3-sway
     ./langs
     ./mime-apps.nix
+    ./neovim
     ./notification.nix
     ./obs-studio.nix
     ./picom.nix
     ./thunar.nix
     ./user-dirs.nix
+    ./vscode
   ];
 }

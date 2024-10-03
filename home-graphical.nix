@@ -11,11 +11,9 @@
         enable = true;
         font-size = if osConfig.withWayland then 15 else 10;
       };
-      code-editors = {
-        vscode = {
-          enable = true;
-          codium = true;
-        };
+      vscode = {
+        enable = true;
+        codium = true;
       };
       feh.enable = true;
       firefox.enable = true;

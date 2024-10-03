@@ -7,10 +7,10 @@
 }:
 
 let
-  cfg = config.modules.code-editors.neovim;
+  cfg = config.modules.neovim;
 in
 {
-  options.modules.code-editors.neovim = {
+  options.modules.neovim = {
     enable = lib.mkEnableOption "neovim";
   };
 

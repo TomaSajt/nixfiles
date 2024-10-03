@@ -7,9 +7,7 @@
 
   modules = {
     bash.enable = lib.mkDefault true;
-    code-editors = {
-      neovim.enable = lib.mkDefault true;
-    };
+    neovim.enable = lib.mkDefault true;
     git = {
       enable = lib.mkDefault true;
       signing = lib.mkDefault true;
