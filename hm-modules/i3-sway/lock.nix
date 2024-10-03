@@ -39,7 +39,7 @@ let
   ];
   pidof = lib.getExe' pkgs.procps "pidof";
 
-  img = ../wallpaper/wallpapers/minimalistic-1.jpg;
+  img = ./wallpapers/minimalistic-1.jpg;
   img-blurred = pkgs.runCommand "blurred.jpg" { } ''
     ${lib.getExe pkgs.imagemagick} convert -blur 14x5 ${img} $out
   '';
