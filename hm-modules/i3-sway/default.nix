@@ -246,6 +246,7 @@ in
     ./lock.nix
     ./idle.nix
     ./autorandr.nix
+    ./wallpaper.nix
   ];
 
   options.modules.i3-sway = {
@@ -281,9 +282,6 @@ in
             "natural_scroll" = "enabled";
             "dwt" = "disabled";
           };
-        };
-        output."*" = {
-          bg = "${../wallpaper/wallpapers/minimalistic-1.jpg} fill";
         };
       };
     };

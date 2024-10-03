@@ -32,6 +32,7 @@
         show-battery = true;
         idle.enable = true;
         autorandr.enable = true;
+        wallpaper.enable = true;
       };
       mime-apps.enable = true;
       notification = {
@@ -44,7 +45,6 @@
         vSync = true;
       };
       thunar.enable = true;
-      wallpaper.enable = true;
     };
 
     # Network Applet

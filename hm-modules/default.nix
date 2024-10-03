@@ -19,6 +19,5 @@
     ./picom.nix
     ./thunar.nix
     ./user-dirs.nix
-    ./wallpaper
   ];
 }
