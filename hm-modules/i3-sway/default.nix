@@ -23,6 +23,12 @@ let
 
   mkKP = n: (lib.optionalString (!osConfig.withWayland) "mod2+") + "KP_" + n;
 
+  wcwd = pkgs.writeShellScriptBin "wcwd" ''
+    pid=$(swaymsg -t get_tree | ${lib.getExe pkgs.jq} '.. | select(.type?) | select(.type=="con") | select(.focused==true).pid') 
+    ppid=$(pgrep --newest --parent $pid)
+    readlink /proc/$ppid/cwd || echo $HOME
+  '';
+
   mkScreenshotCommand =
     filename: flags:
     ''exec --no-startup-id mkdir -p ${config.xdg.userDirs.pictures}/screenshots && cd ${config.xdg.userDirs.pictures}/screenshots && ${lib.getExe pkgs.scrot} ${filename} ${flags} -e "${lib.getExe pkgs.xclip} -selection clipboard -t image/png -i \$f && ${notify-send} 'Saved as \$f\nImage was copied to the clipboard'"'';
@@ -32,7 +38,9 @@ let
     keybindings =
       {
         "${mod}+Return" = "exec --no-startup-id ${alacritty}";
-        "${mod}+Shift+Return" = "exec --no-startup-id ${alacritty} --working-directory $(${lib.getExe pkgs.xcwd})";
+        "${mod}+Shift+Return" = "exec --no-startup-id ${alacritty} --working-directory $(${
+          lib.getExe (if osConfig.withWayland then wcwd else pkgs.xcwd)
+        })";
 
         "${mod}+Shift+q" = "kill";
 
@@ -271,6 +279,7 @@ in
           "type:touchpad" = {
             "tap" = "enabled";
             "natural_scroll" = "enabled";
+            "dwt" = "disabled";
           };
         };
         output."*" = {

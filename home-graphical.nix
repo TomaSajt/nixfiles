@@ -72,6 +72,8 @@
       nix-du
       graphviz
 
+      xdg-utils
+
       nix-update
     ];
   };
