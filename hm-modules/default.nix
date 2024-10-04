@@ -19,6 +19,6 @@
     ./picom.nix
     ./thunar.nix
     ./user-dirs.nix
-    ./vscode
+    ./vscode.nix
   ];
 }
