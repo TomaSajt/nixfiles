@@ -1,4 +1,9 @@
-{ pkgs, config, ... }:
+{
+  lib,
+  pkgs,
+  config,
+  ...
+}:
 {
   imports = [ ./hardware-configuration.nix ];
 
@@ -130,14 +135,10 @@
     ];
   };
 
-  # Disable trackpoint (it's broken on this laptop)
-  hardware.trackpoint = {
-    enable = true;
-    device = "TPPS/2 Elan TrackPoint";
-    speed = 0;
-    sensitivity = 0;
-    emulateWheel = false;
-  };
+  services.udev.extraRules = ''
+    ACTION=="add|change", SUBSYSTEM=="input", ATTR{name}=="TPPS/2 Elan TrackPoint", ATTR{device/speed}="0", ATTR{device/sensitivity}="0"
+    ACTION=="add|change", SUBSYSTEM=="input", ATTR{name}=="PS/2 Generic Mouse", ATTR{device/speed}="0", ATTR{device/sensitivity}="0"
+  '';
 
   # Enable touchpad support (with natural scrolling)
   services.libinput = {
