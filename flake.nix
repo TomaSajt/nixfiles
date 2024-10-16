@@ -34,7 +34,11 @@
         };
 
       mkHost =
-        system: hostName:
+        {
+          system,
+          hostName,
+          hostModule,
+        }:
         let
           specialArgs = {
             inherit inputs;
@@ -50,8 +54,8 @@
         nixpkgs.lib.nixosSystem {
           inherit system specialArgs;
           modules = [
-            ./hosts/${hostName} # per-host system config
             ./. # global system config
+            hostModule # per host configs
             {
               networking.hostName = hostName;
               nixpkgs.pkgs = pkgs;
@@ -66,10 +70,26 @@
     in
     {
       nixosConfigurations = {
-        "toma-nixos-desktop-home" = mkHost "x86_64-linux" "toma-nixos-desktop-home";
-        "toma-nixos-thinkpad-school" = mkHost "x86_64-linux" "toma-nixos-thinkpad-school";
-        "toma-nixos-server-home" = mkHost "x86_64-linux" "toma-nixos-server-home";
-        "toma-nixos-rpi4-home" = mkHost "aarch64-linux" "toma-nixos-rpi4-home";
+        "toma-nixos-desktop-home" = mkHost {
+          system = "x86_64-linux";
+          hostName = "toma-nixos-desktop-home";
+          hostModule = ./hosts/toma-nixos-desktop-home;
+        };
+        "toma-nixos-thinkpad-school" = mkHost {
+          system = "x86_64-linux";
+          hostName = "toma-nixos-thinkpad-school";
+          hostModule = ./hosts/toma-nixos-thinkpad-school;
+        };
+        "toma-nixos-server-home" = mkHost {
+          system = "x86_64-linux";
+          hostName = "toma-nixos-server-home";
+          hostModule = ./hosts/toma-nixos-server-home;
+        };
+        "toma-nixos-rpi4-home" = mkHost {
+          system = "aarch64-linux";
+          hostName = "toma-nixos-rpi4-home";
+          hostModule = ./hosts/toma-nixos-rpi4-home;
+        };
       };
     };
 }
