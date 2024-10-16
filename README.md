@@ -48,6 +48,9 @@ nixos-generate-config --root /mnt --dir ./hosts/<hostname>
 # remove unwanted generated file
 rm ./hosts/<hostname>/configuration.nix
 
+# add new entry to nixosConfigurations
+vim flake.nix
+
 # add newly made files to git (because flakes can't see them otherwise)
 git add .
 ```
