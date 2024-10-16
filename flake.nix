@@ -73,22 +73,22 @@
         "toma-nixos-desktop-home" = mkHost {
           system = "x86_64-linux";
           hostName = "toma-nixos-desktop-home";
-          hostModule = ./hosts/toma-nixos-desktop-home;
+          hostModule = ./hosts/desktop-home;
         };
         "toma-nixos-thinkpad-school" = mkHost {
           system = "x86_64-linux";
           hostName = "toma-nixos-thinkpad-school";
-          hostModule = ./hosts/toma-nixos-thinkpad-school;
+          hostModule = ./hosts/thinkpad-school;
         };
         "toma-nixos-server-home" = mkHost {
           system = "x86_64-linux";
           hostName = "toma-nixos-server-home";
-          hostModule = ./hosts/toma-nixos-server-home;
+          hostModule = ./hosts/server-home;
         };
         "toma-nixos-rpi4-home" = mkHost {
           system = "aarch64-linux";
           hostName = "toma-nixos-rpi4-home";
-          hostModule = ./hosts/toma-nixos-rpi4-home;
+          hostModule = ./hosts/rpi4-home;
         };
       };
     };
