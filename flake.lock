@@ -57,6 +57,54 @@
     },
     "nixpkgs": {
       "locked": {
+        "lastModified": 1730959490,
+        "narHash": "sha256-JwQZIGSYnRNOgDDoIgqKITrPVil+RMWHsZH1eE1VGN0=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "07f48745be31ac617da1da81d925689b25a9e308",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "07f48745be31ac617da1da81d925689b25a9e308",
+        "type": "github"
+      }
+    },
+    "nixpkgs-lanraragi": {
+      "locked": {
+        "lastModified": 1731539996,
+        "narHash": "sha256-WHUYfMgAGWQ/YPlJ3OEvA2GCDYpPXZYQg76vHaF6ibU=",
+        "owner": "TomaSajt",
+        "repo": "nixpkgs",
+        "rev": "a1c11b685d6ab889d36a4f525a6f6abecf714678",
+        "type": "github"
+      },
+      "original": {
+        "owner": "TomaSajt",
+        "ref": "lanraragi",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs-picom": {
+      "locked": {
+        "lastModified": 1731485797,
+        "narHash": "sha256-8uOofgzAClEV6+69fQ0ZizO0pXGrT40fZV4XhbCeUQI=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "3b5b0af7c6dbde41f287bded4f5cb7d2d2c03ab3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "3b5b0af7c6dbde41f287bded4f5cb7d2d2c03ab3",
+        "type": "github"
+      }
+    },
+    "nixpkgs-sway": {
+      "locked": {
         "lastModified": 1730045389,
         "narHash": "sha256-4spSNTZ6h8Xmvrr9oqfuxc9jarasGj1QOcsgw8BfNd8=",
         "owner": "NixOS",
@@ -66,8 +114,8 @@
       },
       "original": {
         "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
+        "rev": "0fcb98acb6633445764dafe180e6833eb0f95208",
         "type": "github"
       }
     },
@@ -77,6 +125,9 @@
         "nix-index-database": "nix-index-database",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-lanraragi": "nixpkgs-lanraragi",
+        "nixpkgs-picom": "nixpkgs-picom",
+        "nixpkgs-sway": "nixpkgs-sway",
         "rycee-nur": "rycee-nur"
       }
     },

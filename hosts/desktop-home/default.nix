@@ -30,6 +30,17 @@
     };
   };
 
+  services.lanraragi.enable = true;
+  services.lanraragi.port = 3001;
+  services.lanraragi.passwordFile = pkgs.writeText "pass" "password";
+  services.lanraragi.package = pkgs.lanraragi.overrideAttrs (
+    prev:
+    {
+    }
+  );
+
+  services.speechd.enable = true;
+
   virtualisation.docker.enable = true;
 
   virtualisation.docker.rootless = {
@@ -98,7 +109,7 @@
       picom.vSync = false; # Turns off the default screen-tearing fix
       i3-sway.show-battery = false;
       notification.battery = false;
-      fcitx5.enable = true;
+      fcitx5.enable = false;
     };
     home = {
       sessionVariables = {
