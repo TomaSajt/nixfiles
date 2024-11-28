@@ -47,7 +47,7 @@
     hardware.graphics.enable = true; # otherwise sway doesn't start
     hardware.graphics.enable32Bit = true;
 
-    hardware.opentabletdriver.enable = true;
+    # hardware.opentabletdriver.enable = true;
 
     # Secrets management or something
     services.gnome.gnome-keyring.enable = true;

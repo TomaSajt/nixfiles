@@ -20,7 +20,7 @@ in
       bash-language-server
       lua-language-server
       haskell-language-server
-      omnisharp-roslyn
+      #omnisharp-roslyn
       rust-analyzer
       nil
       nixfmt-rfc-style

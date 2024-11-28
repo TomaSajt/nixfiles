@@ -29,7 +29,7 @@
       incomplete-dir = "/mnt/extra/transmission/.incomplete";
     };
   };
-
+/*
   services.lanraragi.enable = true;
   services.lanraragi.port = 3001;
   services.lanraragi.passwordFile = pkgs.writeText "pass" "password";
@@ -37,7 +37,7 @@
     prev:
     {
     }
-  );
+  );*/
 
   services.speechd.enable = true;
 

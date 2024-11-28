@@ -1,9 +1,7 @@
 {
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/07f48745be31ac617da1da81d925689b25a9e308";
-    nixpkgs-lanraragi.url = "github:TomaSajt/nixpkgs/lanraragi";
-    nixpkgs-picom.url = "github:NixOS/nixpkgs/3b5b0af7c6dbde41f287bded4f5cb7d2d2c03ab3";
-    nixpkgs-sway.url = "github:NixOS/nixpkgs/0fcb98acb6633445764dafe180e6833eb0f95208";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    # nixpkgs-lanraragi.url = "github:TomaSajt/nixpkgs/lanraragi";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -21,9 +19,7 @@
     {
       self,
       nixpkgs,
-      nixpkgs-lanraragi,
-      nixpkgs-picom,
-      nixpkgs-sway,
+      # nixpkgs-lanraragi,
       home-manager,
       nixos-hardware,
       nix-index-database,
@@ -31,7 +27,6 @@
     }@inputs:
 
     let
-
       mkPkgs =
         system: pkgs-flake: overlays:
         import pkgs-flake {
@@ -54,9 +49,7 @@
 
           pkgs = mkPkgs' nixpkgs [
             (import ./overlay)
-            (_: _: { lanraragi = (mkPkgs' nixpkgs-lanraragi [ ]).lanraragi; })
-            (_: _: { picom = (mkPkgs' nixpkgs-picom [ ]).picom; })
-            (_: _: { sway-unwrapped = (mkPkgs' nixpkgs-sway [ ]).sway-unwrapped; })
+            # (_: _: { lanraragi = (mkPkgs' nixpkgs-lanraragi [ ]).lanraragi; })
           ];
         in
         nixpkgs.lib.nixosSystem {
