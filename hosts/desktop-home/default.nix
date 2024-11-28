@@ -29,15 +29,16 @@
       incomplete-dir = "/mnt/extra/transmission/.incomplete";
     };
   };
-/*
-  services.lanraragi.enable = true;
-  services.lanraragi.port = 3001;
-  services.lanraragi.passwordFile = pkgs.writeText "pass" "password";
-  services.lanraragi.package = pkgs.lanraragi.overrideAttrs (
-    prev:
-    {
-    }
-  );*/
+  /*
+    services.lanraragi.enable = true;
+    services.lanraragi.port = 3001;
+    services.lanraragi.passwordFile = pkgs.writeText "pass" "password";
+    services.lanraragi.package = pkgs.lanraragi.overrideAttrs (
+      prev:
+      {
+      }
+    );
+  */
 
   services.speechd.enable = true;
 
@@ -50,19 +51,18 @@
 
   boot.kernelParams = [
     "libata.noacpi=1" # Fixes some BIOS error
-    "nvidia-drm.modeset=1" # temporary fix for enabling modesetting
   ];
 
-  services.xserver.videoDrivers = lib.mkIf (!config.withWayland) [ "nvidia" ];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
-  hardware.nvidia = lib.mkIf (!config.withWayland) {
+  hardware.nvidia = {
     open = false;
     prime = {
       sync.enable = true;
       nvidiaBusId = "PCI:1:0:0";
       intelBusId = "PCI:0:1:0";
     };
-    modesetting.enable = false; # should be true, set above manually
+    modesetting.enable = true; # its true by default, but set it anyway
     forceFullCompositionPipeline = true;
   };
 

@@ -31,8 +31,8 @@
       . ~/.profile
 
       if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
-          exec sway
-      fi    
+          sway --unsupported-gpu
+      fi
     '';
 
     # enable swaylock to handle authentication
