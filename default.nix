@@ -45,6 +45,7 @@
     };
     packages = with pkgs; [
       noto-fonts
+      noto-fonts-color-emoji
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
       nerd-fonts.jetbrains-mono
@@ -111,12 +112,6 @@
         LC_TELEPHONE = HU;
         LC_TIME = HU;
       };
-      supportedLocales = map (x: x + "/UTF-8") [
-        HU
-        EN
-        "he_IL.UTF-8"
-        "C.UTF-8"
-      ];
     };
 
   time = {

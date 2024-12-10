@@ -72,6 +72,8 @@
 
       xdg-utils
 
+      ghc
+
       nix-update
     ];
   };
