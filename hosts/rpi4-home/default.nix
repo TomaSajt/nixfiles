@@ -8,6 +8,9 @@
 
   home-manager.users.toma = {
     modules.langs.dyalog.enable = false;
+    modules.git.signing = false;
+    modules.gpg.enable = false;
+    modules.bash.color = "35";
   };
 
   fileSystems = {
