@@ -282,15 +282,6 @@ in
             "natural_scroll" = "enabled";
             "dwt" = "disabled";
           };
-          #disabled with udev rule anyway
-          /*
-            "2:1:PS/2_Generic_Mouse" = {
-              "events" = "disabled";
-            };
-            "2:10:TPPS/2_Elan_TrackPoint" = {
-              "events" = "disabled";
-            };
-          */
         };
       };
     };

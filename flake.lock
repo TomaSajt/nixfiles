@@ -71,12 +71,28 @@
         "type": "github"
       }
     },
+    "nixpkgs-uiua": {
+      "locked": {
+        "lastModified": 1735310256,
+        "narHash": "sha256-aHv7+70gH2KiRMtm5IdLUBzmy3Yf7Qhm2esJyOmeDes=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "a825f65c06b648b0c49f49b44993adc6402ae6ba",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "nix-index-database": "nix-index-database",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-uiua": "nixpkgs-uiua",
         "rycee-nur": "rycee-nur"
       }
     },

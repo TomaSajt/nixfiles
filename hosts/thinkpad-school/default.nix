@@ -140,8 +140,11 @@
   };
 
   services.udev.extraRules = ''
-    ACTION=="add|change", SUBSYSTEM=="input", ATTR{name}=="TPPS/2 Elan TrackPoint", ATTR{device/speed}="0", ATTR{device/sensitivity}="0"
-    ACTION=="add|change", SUBSYSTEM=="input", ATTR{name}=="PS/2 Generic Mouse", ATTR{device/speed}="0", ATTR{device/sensitivity}="0"
+    # disable the trackpoint
+    # ACTION=="add|change", ATTRS{phys}=="synaptics-pt/serio0/input0", ATTR{enabled}="0"
+    ACTION=="add|change", SUBSYSTEM=="input", ATTRS{phys}=="synaptics-pt/serio0/input0", ATTR{device/speed}="0", ATTR{device/sensitivity}="0"
+    # ACTION=="add|change", SUBSYSTEM=="input", ATTR{name}=="TPPS/2 Elan TrackPoint", ATTR{device/speed}="0", ATTR{device/sensitivity}="0"
+    # ACTION=="add|change", SUBSYSTEM=="input", ATTR{name}=="PS/2 Generic Mouse", ATTR{device/speed}="0", ATTR{device/sensitivity}="0"
   '';
 
   # Enable touchpad support (with natural scrolling)
