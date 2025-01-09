@@ -66,10 +66,11 @@
     services.udisks2.enable = true;
 
     # Enable support for Nintendo Pro Controllers and Joycons
-    services.joycond.enable = true;
+    # services.joycond.enable = true;
 
     # Enable sound with pipewire.
     security.rtkit.enable = true;
+
     services.pipewire = {
       enable = true;
       alsa.enable = true;
@@ -77,7 +78,8 @@
       pulse.enable = true;
     };
 
-    hardware.alsa.enablePersistence = true;
+    # hardware.alsa.enablePersistence = true;
+    # hardware.alsa.enable = true;
 
     security.polkit = {
       enable = true;

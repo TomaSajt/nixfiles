@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    nixpkgs-uiua.url = "github:NixOS/nixpkgs";
+    #nixpkgs-uiua.url = "github:NixOS/nixpkgs";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -19,7 +19,7 @@
     {
       self,
       nixpkgs,
-      nixpkgs-uiua,
+      #nixpkgs-uiua,
       home-manager,
       nixos-hardware,
       nix-index-database,
@@ -49,7 +49,7 @@
 
           pkgs = mkPkgs' nixpkgs [
             (import ./overlay)
-            (_: _: { inherit (mkPkgs' nixpkgs-uiua [ ]) uiua uiua-unstable; })
+            #(_: _: { inherit (mkPkgs' nixpkgs-uiua [ ]) uiua uiua-unstable; })
           ];
         in
         nixpkgs.lib.nixosSystem {

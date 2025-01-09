@@ -18,7 +18,7 @@
       feh.enable = true;
       firefox.enable = true;
       games = {
-        heroic.enable = true;
+        #heroic.enable = true;
         minecraft.enable = true;
         osu.enable = true;
         steam.enable = true;
