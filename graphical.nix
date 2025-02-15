@@ -40,6 +40,11 @@
       swaylock = { };
     };
 
+    xdg.portal.enable = true;
+    xdg.portal.configPackages = [
+      pkgs.xdg-desktop-portal-gtk
+    ];
+
     programs.quark-goldleaf.enable = true;
 
     hardware.steam-hardware.enable = true;

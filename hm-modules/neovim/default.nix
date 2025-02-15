@@ -20,7 +20,7 @@ in
       bash-language-server
       lua-language-server
       haskell-language-server
-      #omnisharp-roslyn
+      omnisharp-roslyn
       rust-analyzer
       nil
       nixfmt-rfc-style
@@ -29,10 +29,10 @@ in
       jdt-language-server
       pyright
       tailwindcss-language-server
-      nodejs.pkgs.eslint
-      nodejs.pkgs.typescript-language-server
-      nodejs.pkgs.svelte-language-server
-      nodejs.pkgs.vscode-langservers-extracted
+      eslint
+      typescript-language-server
+      svelte-language-server
+      vscode-langservers-extracted
     ];
 
     programs.neovim = {

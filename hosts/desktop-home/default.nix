@@ -57,6 +57,7 @@
 
   hardware.nvidia = {
     open = false;
+    package = config.boot.kernelPackages.nvidiaPackages.latest; # sway fix???
     prime = {
       sync.enable = true;
       nvidiaBusId = "PCI:1:0:0";
