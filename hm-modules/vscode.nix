@@ -18,10 +18,13 @@ in
     programs.vscode = {
       enable = true;
       package = if cfg.codium then pkgs.vscodium else pkgs.vscode;
-      extensions = with pkgs.vscode-extensions; [ pkief.material-icon-theme ];
 
-      userSettings = {
-        "workbench.iconTheme" = "material-icon-theme";
+      profiles.default = {
+        extensions = with pkgs.vscode-extensions; [ pkief.material-icon-theme ];
+
+        userSettings = {
+          "workbench.iconTheme" = "material-icon-theme";
+        };
       };
     };
   };

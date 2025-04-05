@@ -48,31 +48,36 @@ let
   shared = {
     search = {
       force = true;
-      default = "DuckDuckGo";
+      default = "ddg";
       engines = {
-        "Nix Packages" = {
+        "nixpkgs" = {
+          name = "Nix Packages";
           urls = [ { template = "https://search.nixos.org/packages?channel=unstable&query={searchTerms}"; } ];
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = [ "@p" ];
         };
-        "NixOS Options" = {
+        "nixos-opts" = {
+          name = "NixOS Options";
           urls = [ { template = "https://search.nixos.org/options?channel=unstable&query={searchTerms}"; } ];
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = [ "@o" ];
         };
-        "Home Manager Options" = {
+        "hm-opts" = {
+          name = "Home Manager Options";
           urls = [
             { template = "https://home-manager-options.extranix.com/?query={searchTerms}&release=master"; }
           ];
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = [ "@hm" ];
         };
-        "Github Search" = {
+        "github" = {
+          name = "Github Search";
           urls = [ { template = "https://github.com/search?q={searchTerms}"; } ];
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = [ "@gh" ];
         };
-        "Github Search Nixpkgs" = {
+        "github-nixpkgs" = {
+          name = "Github Search Nixpkgs";
           urls = [ { template = "https://github.com/search?q=repo%3ANixOS%2Fnixpkgs+{searchTerms}"; } ];
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = [
@@ -80,12 +85,14 @@ let
             "@ghn"
           ];
         };
-        "Terraria Wiki" = {
+        "terraria-wiki" = {
+          name = "Terraria Wiki";
           urls = [ { template = "https://terraria.wiki.gg/index.php?search={searchTerms}"; } ];
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = [ "@tw" ];
         };
-        "APLCart" = {
+        "aplcart" = {
+          name = "APLCart";
           urls = [ { template = "https://aplcart.info/?q={searchTerms}"; } ];
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = [
@@ -93,7 +100,8 @@ let
             "@apc"
           ];
         };
-        "Google Translate" = {
+        "google-translate" = {
+          name = "Google Translate";
           urls = [
             { template = "https://translate.google.com/?sl=auto&tl=hu&op=translate&text={searchTerms}"; }
           ];
@@ -103,7 +111,8 @@ let
             "@gt"
           ];
         };
-        "Repology Projects" = {
+        "repology-proj" = {
+          name = "Repology Projects";
           urls = [ { template = "https://repology.org/projects/?search={searchTerms}"; } ];
           icon = "${repology-logo}/repology-logo.svg";
           definedAliases = [
@@ -111,12 +120,14 @@ let
             "@rep"
           ];
         };
-        "Repology Maintainers" = {
+        "repology-maintainers" = {
+          name = "Repology Maintainers";
           urls = [ { template = "https://repology.org/maintainers/?search={searchTerms}"; } ];
           icon = "${repology-logo}/repology-logo.svg";
           definedAliases = [ "@rem" ];
         };
-        "Jisho" = {
+        "jisho" = {
+          name = "Jisho";
           urls = [ { template = "https://jisho.org/search/{searchTerms}"; } ];
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = [
@@ -124,27 +135,30 @@ let
             "@ji"
           ];
         };
-        "Google".metaData.alias = "@g";
-        "Wikipedia (en)".metaData.alias = "@w";
-        "Amazon.com".metaData.hidden = true;
-        "Bing".metaData.hidden = true;
-        "eBay".metaData.hidden = true;
+        "google".metaData.alias = "@g";
+        "wikipedia".metaData.alias = "@w";
+        "amazon".metaData.hidden = true;
+        "bing".metaData.hidden = true;
+        "ebay".metaData.hidden = true;
       };
       order = [
-        "DuckDuckGo"
-        "Google"
-        "Wikipedia (en)"
-        "Nix Packages"
-        "NixOS Options"
-        "Home Manager Options"
-        "Github Search"
-        "Github Search Nixpkgs"
-        "Terraria Wiki"
-        "APLCart"
-        "Google Translate"
+        "ddg"
+        "google"
+        "wikipedia"
+        "nixpkgs"
+        "nixos-opts"
+        "hm-opts"
+        "github"
+        "github-nixpkgs"
+        "terraria-wiki"
+        "aplcart"
+        "google-translate"
+        "repology-proj"
+        "repology-maintainers"
+        "jisho"
       ];
     };
-    extensions = with firefox-addons; [
+    extensions.packages = with firefox-addons; [
       ublock-origin
       bitwarden
       darkreader

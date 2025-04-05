@@ -28,6 +28,6 @@ in
       packages = [ dotnet-sdks ];
     };
 
-    programs.vscode.extensions = with pkgs.vscode-extensions; [ ms-dotnettools.csharp ];
+    programs.vscode.profiles.default.extensions = with pkgs.vscode-extensions; [ ms-dotnettools.csharp ];
   };
 }

@@ -46,7 +46,7 @@ in
       enable = true;
     };
 
-    programs.vscode.userSettings = {
+    programs.vscode.profiles.default.userSettings = {
       "git.autofetch" = true;
       "git.enableSmartCommit" = true;
       "git.confirmSync" = false;

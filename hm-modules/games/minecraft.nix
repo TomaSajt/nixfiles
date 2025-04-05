@@ -16,7 +16,7 @@ in
   config = lib.mkIf cfg.enable {
     home.packages = with pkgs; [ prismlauncher ];
 
-    programs.vscode.extensions = with pkgs.vscode-extensions; [
+    programs.vscode.profiles.default.extensions = with pkgs.vscode-extensions; [
       SPGoding.datapack-language-server
       arcensoth.language-mcfunction
     ];

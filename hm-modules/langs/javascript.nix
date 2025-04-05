@@ -21,7 +21,7 @@ in
       ];
     };
 
-    programs.vscode = {
+    programs.vscode.profiles.default = {
       extensions = with pkgs.vscode-extensions; [
         svelte.svelte-vscode
         bradlc.vscode-tailwindcss
