@@ -19,7 +19,7 @@
     };
 
     services.xserver = lib.mkIf (!config.withWayland) {
-      enable = lib.mkDefault true;
+      enable = true;
       windowManager.i3.enable = true;
       xkb.layout = "hu";
     };
@@ -35,9 +35,10 @@
       fi
     '';
 
-    # enable swaylock to handle authentication
-    security.pam.services = lib.mkIf config.withWayland {
-      swaylock = { };
+    # configure what can handle authentication
+    security.pam.services = {
+      "swaylock" = lib.mkIf config.withWayland { };
+      "i3lock" = lib.mkIf (!config.withWayland) { };
     };
 
     xdg.portal.enable = true;
@@ -65,7 +66,7 @@
     # Some config support or something
     programs.dconf.enable = true;
 
-    # Some kind of accessibility thingy, makes a waring go away
+    # Some kind of accessibility thingy, makes a warning go away
     services.gnome.at-spi2-core.enable = true;
 
     # Needed for udiskie to work (in home-manager configs)
@@ -87,24 +88,26 @@
     # hardware.alsa.enablePersistence = true;
     # hardware.alsa.enable = true;
 
-    security.polkit = {
-      enable = true;
-      debug = true;
-    };
-
-    systemd.user.services.polkit-gnome-authentication-agent-1 = {
-      description = "polkit-gnome-authentication-agent-1";
-      wantedBy = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
+    /*
+      security.polkit = {
+        enable = true;
+        debug = true;
       };
-    };
+
+      systemd.user.services.polkit-gnome-authentication-agent-1 = {
+        description = "polkit-gnome-authentication-agent-1";
+        wantedBy = [ "graphical-session.target" ];
+        wants = [ "graphical-session.target" ];
+        after = [ "graphical-session.target" ];
+        serviceConfig = {
+          Type = "simple";
+          ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+          Restart = "on-failure";
+          RestartSec = 1;
+          TimeoutStopSec = 10;
+        };
+      };
+    */
 
     services.udev = {
       packages = with pkgs; [ ];
