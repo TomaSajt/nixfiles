@@ -29,6 +29,7 @@
       "docker"
       "plugdev"
       "input"
+      "terraria"
     ];
   };
 

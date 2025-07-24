@@ -70,11 +70,12 @@
       nix-du
       graphviz
 
+      btop
+
       xdg-utils
 
-      ghc
-
       nix-update
+      nixpkgs-review
     ];
   };
 }

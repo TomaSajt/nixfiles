@@ -6,7 +6,10 @@
 }:
 
 {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ./terraria2.nix
+  ];
 
   isGraphical = true;
 
@@ -29,6 +32,18 @@
       incomplete-dir = "/mnt/extra/transmission/.incomplete";
     };
   };
+
+  /*
+    services.terraria2 = {
+      enable = true;
+      port = 7776;
+      worldPath = "/var/lib/terraria/.local/share/Terraria/Worlds/asd.wld";
+      autocreate = {
+        enable = true;
+      };
+    };
+  */
+
   /*
     services.lanraragi.enable = true;
     services.lanraragi.port = 3001;
