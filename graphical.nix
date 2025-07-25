@@ -30,7 +30,7 @@
       # load home manager env
       . ~/.profile
 
-      if [ -z "$WAYLAND_DISPLAY" ] && [ "$XDG_VTNR" -eq 1 ]; then
+      if [ -z "$WAYLAND_DISPLAY" ]  && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
           sway --unsupported-gpu
       fi
     '';
@@ -71,6 +71,9 @@
 
     # Needed for udiskie to work (in home-manager configs)
     services.udisks2.enable = true;
+
+    # https://wiki.nixos.org/wiki/MTP
+    services.gvfs.enable = true;
 
     # Enable support for Nintendo Pro Controllers and Joycons
     # services.joycond.enable = true;
