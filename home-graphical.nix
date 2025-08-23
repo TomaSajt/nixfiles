@@ -52,8 +52,8 @@
     services.pasystray.enable = true;
 
     home.packages = with pkgs; [
-      discord # Online Chat - UNFREE
-      obsidian # Note-taking - UNFREE
+      discord # UNFREE
+      obsidian # UNFREE
       element-desktop
 
       ani-cli
@@ -64,7 +64,6 @@
 
       gimp
       inkscape
-      libsForQt5.filelight
 
       nix-tree
       nix-du

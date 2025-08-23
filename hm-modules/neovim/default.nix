@@ -23,8 +23,7 @@ in
       omnisharp-roslyn
       rust-analyzer
       nil
-      nixfmt-rfc-style
-      nixpkgs-fmt
+      nixfmt
       ccls
       jdt-language-server
       pyright

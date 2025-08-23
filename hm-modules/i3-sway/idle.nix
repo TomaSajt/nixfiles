@@ -51,5 +51,11 @@ in
         "-d"
       ];
     };
+
+    wayland.windowManager.sway = lib.mkIf osConfig.withWayland {
+      config = {
+        startup = [ { command = "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit"; } ];
+      };
+    };
   };
 }

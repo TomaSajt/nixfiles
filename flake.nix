@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    #nixpkgs-extra.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-extra.url = "github:Petingoso/nixpkgs/lanraragi";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -19,7 +19,7 @@
     {
       self,
       nixpkgs,
-      #nixpkgs-extra,
+      nixpkgs-extra,
       home-manager,
       nixos-hardware,
       nix-index-database,
@@ -49,7 +49,7 @@
 
           pkgs = mkPkgs' nixpkgs [
             (import ./overlay)
-            #(_: _: { inherit (mkPkgs' nixpkgs-extra [ ]) bruh; })
+            (_: _: { inherit (mkPkgs' nixpkgs-extra [ ]) lanraragi; })
           ];
         in
         nixpkgs.lib.nixosSystem {

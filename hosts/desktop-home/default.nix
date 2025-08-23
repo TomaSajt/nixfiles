@@ -2,6 +2,7 @@
   pkgs,
   config,
   lib,
+  inputs,
   ...
 }:
 
@@ -9,7 +10,10 @@
   imports = [
     ./hardware-configuration.nix
     ./terraria2.nix
+    #"${inputs.nixpkgs-extra}/nixos/modules/programs/throne.nix"
   ];
+
+  #disabledModules = [ "${inputs.nixpkgs}/nixos/modules/programs/nekoray.nix" ];
 
   isGraphical = true;
 
@@ -34,6 +38,32 @@
   };
 
   /*
+    services.mysql = {
+      enable = true;
+      package = pkgs.mariadb;
+      ensureUsers = [
+        {
+          name = "toma";
+          ensurePermissions = {
+            "*.*" = "ALL";
+          };
+        }
+      ];
+      ensureDatabases = [ "spn-db" ];
+    };
+
+    fileSystems."/mnt/spn_shm" = {
+      device = "none";
+      fsType = "tmpfs";
+      options = [
+        "size=1G"
+        "noexec"
+        "uid=toma"
+      ];
+    };
+  */
+
+  /*
     services.terraria2 = {
       enable = true;
       port = 7776;
@@ -44,16 +74,12 @@
     };
   */
 
-  /*
-    services.lanraragi.enable = true;
-    services.lanraragi.port = 3001;
-    services.lanraragi.passwordFile = pkgs.writeText "pass" "password";
-    services.lanraragi.package = pkgs.lanraragi.overrideAttrs (
-      prev:
-      {
-      }
-    );
-  */
+  services.lanraragi = {
+    enable = true;
+    port = 3001;
+    passwordFile = pkgs.writeText "pass" "password";
+    package = pkgs.lanraragi.overrideAttrs (prev: { });
+  };
 
   services.speechd.enable = true;
 
