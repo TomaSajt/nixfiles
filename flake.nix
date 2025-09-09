@@ -81,6 +81,11 @@
           hostName = "toma-nixos-thinkpad-school";
           hostModule = ./hosts/thinkpad-school;
         };
+        "toma-nixos-probook" = mkHost {
+          system = "x86_64-linux";
+          hostName = "toma-nixos-probook";
+          hostModule = ./hosts/probook;
+        };
         "toma-nixos-server-home" = mkHost {
           system = "x86_64-linux";
           hostName = "toma-nixos-server-home";
