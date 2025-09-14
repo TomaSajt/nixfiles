@@ -32,6 +32,7 @@ in
       typescript-language-server
       svelte-language-server
       vscode-langservers-extracted
+      prettier
     ];
 
     programs.neovim = {
@@ -73,6 +74,8 @@ in
         cmp-nvim-lua
         luasnip
         omnisharp-extended-lsp-nvim
+
+        conform-nvim
 
         (nvim-treesitter.withPlugins (import ./treesitter-grammars.nix))
       ];

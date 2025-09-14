@@ -171,8 +171,22 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
   end
 })
 
+local conform = require("conform")
 
-bufmap("n", "<leader>f", '<cmd>lua vim.lsp.buf.format()<cr>')
+conform.setup({
+  formatters_by_ft = {
+    javascript = { "prettier" },
+    typescript = { "prettier" },
+    svelte = { "prettier" },
+    json = { "prettier" },
+    html = { "prettier" },
+    css = { "prettier" },
+  },
+})
+
+bufmap("n", "<leader>f", function()
+  conform.format({ lsp_fallback = true })
+end)
 
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
