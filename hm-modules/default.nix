@@ -1,11 +1,8 @@
 { ... }:
 {
   imports = [
-    ./bash.nix
-    ./feh.nix
     ./firefox.nix
     ./games
-    ./git.nix
     ./gpg.nix
     ./gtk.nix
     ./langs

@@ -107,7 +107,6 @@
           enable = true;
           codium = true;
         };
-        feh.enable = true;
         firefox.enable = true;
         games = {
           heroic.enable = true;
