@@ -2,7 +2,6 @@
 {
   imports = [
     ./hm-modules
-    ./home-graphical.nix
   ];
 
   modules = {

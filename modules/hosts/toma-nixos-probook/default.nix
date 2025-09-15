@@ -9,6 +9,7 @@
     {
       imports = with config.flake.modules.nixos; [
         base
+        graphical
         ../../..
       ];
 
@@ -16,6 +17,7 @@
         imports = with config.flake.modules.homeManager; [
           base
           fcitx5
+          graphical
         ];
       };
 

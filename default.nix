@@ -2,9 +2,7 @@
 
 {
   imports = [
-    inputs.home-manager.nixosModules.home-manager
     inputs.nix-index-database.nixosModules.nix-index
-    ./graphical.nix
   ];
 
   home-manager.users.toma = import ./home.nix;

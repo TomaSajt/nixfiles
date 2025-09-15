@@ -9,8 +9,16 @@
     {
       imports = with config.flake.modules.nixos; [
         base
+        graphical
         ../../..
       ];
+
+      home-manager.users.toma = {
+        imports = with config.flake.modules.homeManager; [
+          base
+          graphical
+        ];
+      };
 
       # Bootloader
       boot.loader = {
@@ -33,10 +41,5 @@
       # networking.interfaces.docker0.useDHCP = lib.mkDefault true;
       # networking.interfaces.enp0s31f6.useDHCP = lib.mkDefault true;
 
-      home-manager.users.toma = {
-        imports = with config.flake.modules.homeManager; [
-          base
-        ];
-      };
     };
 }

@@ -7,8 +7,6 @@
       ...
     }:
     {
-      isGraphical = true;
-
       services.transmission = {
         enable = true;
         downloadDirPermissions = "770";

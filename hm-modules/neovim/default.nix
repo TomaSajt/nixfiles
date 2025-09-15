@@ -87,9 +87,6 @@ in
       defaultEditor = true;
 
       extraLuaConfig = ''
-        nixos_config = {
-          is_graphical = ${if osConfig.isGraphical then "true" else "false"}
-        }
         require "config.main"
       '';
     };
