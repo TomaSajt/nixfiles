@@ -1,7 +1,6 @@
 { ... }:
 {
   imports = [
-    ./alacritty.nix
     ./bash.nix
     ./feh.nix
     ./firefox.nix
@@ -16,7 +15,6 @@
     ./obs-studio.nix
     ./picom.nix
     ./thunar.nix
-    ./user-dirs.nix
     ./vscode.nix
   ];
 }

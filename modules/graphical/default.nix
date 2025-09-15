@@ -103,10 +103,6 @@
     }:
     {
       modules = lib.mkDefault {
-        alacritty = {
-          enable = true;
-          font-size = if osConfig.withWayland then 15 else 10;
-        };
         vscode = {
           enable = true;
           codium = true;

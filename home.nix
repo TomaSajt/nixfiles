@@ -21,7 +21,6 @@
       rust.enable = lib.mkDefault true;
       uiua.enable = lib.mkDefault true;
     };
-    user-dirs.enable = lib.mkDefault true;
   };
 
   # Automatic external disk mounting to /var/run/mount
