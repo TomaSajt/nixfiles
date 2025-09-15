@@ -12,6 +12,12 @@
         ../../..
       ];
 
+      home-manager.users.toma = {
+        imports = with config.flake.modules.homeManager; [
+          base
+          fcitx5
+        ];
+      };
 
       # Bootloader.
       boot.loader.systemd-boot.enable = true;
@@ -24,11 +30,5 @@
       networking.useDHCP = lib.mkDefault true;
       # networking.interfaces.enp2s0.useDHCP = lib.mkDefault true;
       # networking.interfaces.wlp3s0.useDHCP = lib.mkDefault true;
-
-      home-manager.users.toma = {
-        imports = with config.flake.modules.homeManager; [
-          base
-        ];
-      };
     };
 }

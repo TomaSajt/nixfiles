@@ -3,7 +3,6 @@
   imports = [
     ./alacritty.nix
     ./bash.nix
-    ./fcitx5
     ./feh.nix
     ./firefox.nix
     ./games
