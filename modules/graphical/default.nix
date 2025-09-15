@@ -121,13 +121,6 @@
           wine.enable = true;
         };
         gtk.enable = true;
-        i3-sway = {
-          enable = true;
-          show-battery = true;
-          idle.enable = true;
-          autorandr.enable = true;
-          wallpaper.enable = true;
-        };
         mime-apps.enable = true;
         notification = {
           enable = true;
