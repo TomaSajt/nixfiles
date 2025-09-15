@@ -115,7 +115,6 @@
           steam.enable = true;
           wine.enable = true;
         };
-        gtk.enable = true;
         mime-apps.enable = true;
         notification = {
           enable = true;

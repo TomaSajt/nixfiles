@@ -4,7 +4,6 @@
     ./firefox.nix
     ./games
     ./gpg.nix
-    ./gtk.nix
     ./langs
     ./mime-apps.nix
     ./neovim
