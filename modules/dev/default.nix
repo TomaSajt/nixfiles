@@ -3,6 +3,7 @@
     { lib, ... }:
     {
       modules = {
+        vscode.enable = lib.mkDefault true;
         langs = {
           cpp.enable = lib.mkDefault true;
           dotnet.enable = lib.mkDefault true;

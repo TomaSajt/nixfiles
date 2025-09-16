@@ -52,15 +52,10 @@
     {
       pkgs,
       lib,
-      osConfig,
       ...
     }:
     {
       modules = lib.mkDefault {
-        vscode = {
-          enable = true;
-          codium = true;
-        };
         picom = {
           enable = true;
           vSync = true;
