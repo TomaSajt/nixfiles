@@ -185,4 +185,8 @@
         };
       };
     };
+
+  nixpkgs.allowedUnfreePackages = [
+    "tampermonkey"
+  ];
 }

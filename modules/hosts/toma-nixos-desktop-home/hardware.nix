@@ -14,6 +14,10 @@
       nixpkgs.hostPlatform = "x86_64-linux";
       hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
+      boot.kernelParams = [
+        "libata.noacpi=1" # Fixes some BIOS error
+      ];
+
       boot.initrd.availableKernelModules = [
         "xhci_pci"
         "ahci"

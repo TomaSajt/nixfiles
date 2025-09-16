@@ -34,4 +34,8 @@
         ];
       };
     };
+
+  nixpkgs.allowedUnfreePackages = [
+    "vscode-extension-ms-dotnettools-csharp"
+  ];
 }

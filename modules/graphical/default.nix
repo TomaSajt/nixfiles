@@ -60,30 +60,5 @@
 
       # Audio Applet
       services.pasystray.enable = true;
-
-      home.packages = with pkgs; [
-        discord # UNFREE
-        obsidian # UNFREE
-        element-desktop
-
-        ani-cli
-        mpv
-
-        gparted
-
-        gimp
-        inkscape
-
-        nix-tree
-        nix-du
-        graphviz
-
-        btop
-
-        xdg-utils
-
-        nix-update
-        nixpkgs-review
-      ];
     };
 }

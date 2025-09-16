@@ -19,4 +19,10 @@
         pkgs.protontricks
       ];
     };
+
+  nixpkgs.allowedUnfreePackages = [
+    "steam"
+    "steam-unwrapped"
+    "steamcmd"
+  ];
 }

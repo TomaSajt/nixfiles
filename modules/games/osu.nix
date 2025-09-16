@@ -17,4 +17,8 @@
         "application/x-osu-replay" = "osu!.desktop";
       };
     };
+
+  nixpkgs.allowedUnfreePackages = [
+    "osu-lazer-bin"
+  ];
 }
