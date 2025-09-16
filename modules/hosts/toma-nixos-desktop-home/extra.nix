@@ -128,9 +128,7 @@
 
   flake.modules.homeManager."hosts/toma-nixos-desktop-home" = {
 
-    modules = {
-      picom.vSync = false; # Turns off the default screen-tearing fix
-    };
+    services.picom.vSync = false; # Turns off the default screen-tearing fix
 
     home.sessionVariables = {
       # https://bugs.webkit.org/show_bug.cgi?id=228268

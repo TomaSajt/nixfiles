@@ -55,13 +55,6 @@
       ...
     }:
     {
-      modules = lib.mkDefault {
-        picom = {
-          enable = true;
-          vSync = true;
-        };
-      };
-
       # Network Applet
       services.network-manager-applet.enable = true;
 

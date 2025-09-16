@@ -86,10 +86,6 @@
   flake.modules.homeManager.base =
     { pkgs, lib, ... }:
     {
-      imports = [
-        ../../hm-modules
-      ];
-
       home = {
         username = "toma";
         stateVersion = "23.11";
