@@ -7,13 +7,6 @@
       ...
     }:
     {
-      home-manager.users.toma = {
-        modules.alacritty.font-size = if config.withWayland then 12 else 8;
-        home.packages = [ ];
-      };
-
-      networking.networkmanager.enable = true;
-
       services.transmission = {
         enable = true;
         downloadDirPermissions = "775";
@@ -28,5 +21,12 @@
         enable = true;
         touchpad.naturalScrolling = true;
       };
+    };
+
+  flake.modules.homeManager."hosts/toma-nixos-probook" =
+    { osConfig, ... }:
+    {
+      modules.alacritty.font-size = if osConfig.withWayland then 12 else 8;
+      home.packages = [ ];
     };
 }

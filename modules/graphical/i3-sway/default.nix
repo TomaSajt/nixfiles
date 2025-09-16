@@ -34,8 +34,6 @@
       ...
     }:
     let
-      cfg = config.modules.i3-sway;
-
       mod = "Mod4";
 
       alacritty = lib.getExe config.programs.alacritty.package;
@@ -272,112 +270,106 @@
 
     in
     {
-      options.modules.i3-sway = {
-        show-battery = lib.mkEnableOption "i3status-rs battery bar";
+
+      # For the player keys to properly work (maybe)
+      services.playerctld.enable = true;
+
+      xsession.enable = !osConfig.withWayland;
+      xsession.numlock.enable = !osConfig.withWayland;
+
+      programs.rofi = {
+        enable = true;
+        theme = "android_notification";
+        plugins = [ pkgs.rofi-calc ];
       };
 
-      config = {
-
-        # For the player keys to properly work (maybe)
-        services.playerctld.enable = true;
-
-        xsession.enable = !osConfig.withWayland;
-        xsession.numlock.enable = !osConfig.withWayland;
-
-        programs.rofi = {
-          enable = true;
-          theme = "android_notification";
-          plugins = [ pkgs.rofi-calc ];
-        };
-
-        wayland.windowManager.sway = lib.mkIf osConfig.withWayland {
-          enable = true;
-          config = myConfig // {
-            input = {
-              "type:keyboard" = {
-                "xkb_layout" = "hu";
-                "xkb_numlock" = "enabled";
-                "xkb_options" = "caps:escape";
-              };
-              "type:touchpad" = {
-                "tap" = "enabled";
-                "natural_scroll" = "enabled";
-                "dwt" = "disabled";
-              };
+      wayland.windowManager.sway = lib.mkIf osConfig.withWayland {
+        enable = true;
+        config = myConfig // {
+          input = {
+            "type:keyboard" = {
+              "xkb_layout" = "hu";
+              "xkb_numlock" = "enabled";
+              "xkb_options" = "caps:escape";
+            };
+            "type:touchpad" = {
+              "tap" = "enabled";
+              "natural_scroll" = "enabled";
+              "dwt" = "disabled";
             };
           };
         };
+      };
 
-        xsession.windowManager.i3 = lib.mkIf (!osConfig.withWayland) {
-          enable = true;
-          config = myConfig;
-        };
+      xsession.windowManager.i3 = lib.mkIf (!osConfig.withWayland) {
+        enable = true;
+        config = myConfig;
+      };
 
-        programs.i3status-rust = {
-          enable = true;
-          bars.default = {
-            icons = "awesome6";
-            theme = "gruvbox-dark";
-            blocks = [
-              {
-                block = "disk_space";
-                interval = 20;
+      programs.i3status-rust = {
+        enable = true;
+        bars.default = {
+          icons = "awesome6";
+          theme = "gruvbox-dark";
+          blocks = [
+            {
+              block = "disk_space";
+              interval = 20;
 
-                path = "/";
-                info_type = "available";
-                format = " $icon /: $available.eng(w:2) ";
+              path = "/";
+              info_type = "available";
+              format = " $icon /: $available.eng(w:2) ";
 
-                warning = 20;
-                alert = 10;
-              }
-              {
-                block = "memory";
-                interval = 1;
-
-                format = "  MEM $mem_used_percents.eng(w:2) ";
-                format_alt = " SWAP $swap_used_percents.eng(w:2) ";
-              }
-              {
-                block = "cpu";
-                interval = 1;
-                format = " CPU $utilization $barchart";
-              }
-              {
-                block = "sound";
-
-                format = " $icon $output_name {$volume.eng(w:2) |}";
-
-                mappings = {
-                  "alsa_output.pci-0000_00_1f.3.analog-stereo" = "";
-                  "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Headphones__sink" = "";
-                  "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Speaker__sink" = "";
-                  "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp_3__sink" = "HDMI";
-                  "alsa_output.usb-KYE_Keyboard-00.analog-stereo" = "KBD";
-                };
-              }
-            ]
-            ++ lib.optional cfg.show-battery {
-              block = "battery";
-              interval = 5;
-
-              format = " $icon  $percentage {($time)| }";
-
-              full_threshold = 90;
-              full_format = " $icon  $percentage {($time)| }";
-
-              empty_threshold = 5;
-              empty_format = " $icon  $percentage {($time)| }";
-
-              missing_format = " No Battery ";
+              warning = 20;
+              alert = 10;
             }
-            ++ [
-              {
-                block = "time";
-                interval = 1;
-                format = " $timestamp.datetime(f:'%a %y.%m.%d %R', l:en_US) ";
-              }
-            ];
-          };
+            {
+              block = "memory";
+              interval = 1;
+
+              format = "  MEM $mem_used_percents.eng(w:2) ";
+              format_alt = " SWAP $swap_used_percents.eng(w:2) ";
+            }
+            {
+              block = "cpu";
+              interval = 1;
+              format = " CPU $utilization $barchart";
+            }
+            {
+              block = "sound";
+
+              format = " $icon $output_name {$volume.eng(w:2) |}";
+
+              mappings = {
+                "alsa_output.pci-0000_00_1f.3.analog-stereo" = "";
+                "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Headphones__sink" = "";
+                "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__Speaker__sink" = "";
+                "alsa_output.pci-0000_00_1f.3-platform-skl_hda_dsp_generic.HiFi__hw_sofhdadsp_3__sink" = "HDMI";
+                "alsa_output.usb-KYE_Keyboard-00.analog-stereo" = "KBD";
+              };
+            }
+          ]
+          ++ lib.optional config.custom.batterySupport {
+            block = "battery";
+            interval = 5;
+
+            format = " $icon  $percentage {($time)| }";
+
+            full_threshold = 90;
+            full_format = " $icon  $percentage {($time)| }";
+
+            empty_threshold = 5;
+            empty_format = " $icon  $percentage {($time)| }";
+
+            missing_format = " No Battery ";
+          }
+          ++ [
+            {
+              block = "time";
+              interval = 1;
+              format = " $timestamp.datetime(f:'%a %y.%m.%d %R', l:en_US) ";
+            }
+          ];
         };
       };
     };

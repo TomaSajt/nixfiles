@@ -124,21 +124,18 @@
           ];
         };
       };
-
-      home-manager.users.toma = {
-        modules = {
-          picom.vSync = false; # Turns off the default screen-tearing fix
-          i3-sway.show-battery = false;
-          notification.battery = false;
-        };
-        home = {
-          sessionVariables = {
-            # https://bugs.webkit.org/show_bug.cgi?id=228268
-            # fix for nvidia proprietary drivers
-            "WEBKIT_DISABLE_COMPOSITING_MODE" = "1";
-          };
-          packages = with pkgs; [ ];
-        };
-      };
     };
+
+  flake.modules.homeManager."hosts/toma-nixos-desktop-home" = {
+
+    modules = {
+      picom.vSync = false; # Turns off the default screen-tearing fix
+    };
+
+    home.sessionVariables = {
+      # https://bugs.webkit.org/show_bug.cgi?id=228268
+      # fix for nvidia proprietary drivers
+      "WEBKIT_DISABLE_COMPOSITING_MODE" = "1";
+    };
+  };
 }

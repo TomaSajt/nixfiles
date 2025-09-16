@@ -61,11 +61,6 @@
           enable = true;
           codium = true;
         };
-        firefox.enable = true;
-        notification = {
-          enable = true;
-          battery = true;
-        };
         picom = {
           enable = true;
           vSync = true;
