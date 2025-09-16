@@ -18,6 +18,7 @@
         imports = with config.flake.modules.homeManager; [
           base
           graphical
+          dev
 
           games
         ];
