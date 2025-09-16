@@ -91,7 +91,6 @@
       ];
 
       modules = {
-        neovim.enable = lib.mkDefault true;
         gpg.enable = lib.mkDefault true;
         langs = {
           cpp.enable = lib.mkDefault true;
