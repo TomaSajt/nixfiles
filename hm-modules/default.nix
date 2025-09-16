@@ -5,7 +5,6 @@
     ./games
     ./gpg.nix
     ./langs
-    ./mime-apps.nix
     ./neovim
     ./notification.nix
     ./picom.nix
