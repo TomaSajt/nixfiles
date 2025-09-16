@@ -2,6 +2,8 @@
 
 This is my NixOS config, but you can take inspiration if you want to :)
 
+TODO: update instructions
+
 ## Installing
 
 ### Setting up environment
