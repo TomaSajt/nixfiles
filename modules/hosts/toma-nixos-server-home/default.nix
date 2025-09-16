@@ -10,7 +10,6 @@
       imports = with config.flake.modules.nixos; [
         base
         fbterm
-        ../../..
       ];
 
       # Bootloader

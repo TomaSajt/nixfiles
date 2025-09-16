@@ -10,7 +10,6 @@
       imports = with config.flake.modules.nixos; [
         base
         inputs.nixos-hardware.nixosModules.raspberry-pi-4
-        ../../..
       ];
 
       home-manager.users.toma = {
