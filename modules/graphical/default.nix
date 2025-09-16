@@ -47,8 +47,6 @@
           (if config.withWayland then pkgs.xdg-desktop-portal-wlr else pkgs.xdg-desktop-portal-xapp)
         ];
 
-        hardware.steam-hardware.enable = true;
-
         hardware.graphics.enable = true; # otherwise sway doesn't start
         hardware.graphics.enable32Bit = true;
 
@@ -108,13 +106,6 @@
           codium = true;
         };
         firefox.enable = true;
-        games = {
-          heroic.enable = true;
-          minecraft.enable = true;
-          osu.enable = true;
-          steam.enable = true;
-          wine.enable = true;
-        };
         notification = {
           enable = true;
           battery = true;

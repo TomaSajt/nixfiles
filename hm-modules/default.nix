@@ -2,7 +2,6 @@
 {
   imports = [
     ./firefox.nix
-    ./games
     ./gpg.nix
     ./langs
     ./neovim

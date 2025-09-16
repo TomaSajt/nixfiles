@@ -10,13 +10,17 @@
       imports = with config.flake.modules.nixos; [
         base
         graphical
+
+        games
       ];
 
       home-manager.users.toma = {
         imports = with config.flake.modules.homeManager; [
           base
-          fcitx5
           graphical
+
+          fcitx5
+          games
         ];
       };
 
