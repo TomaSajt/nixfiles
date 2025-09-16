@@ -120,12 +120,10 @@
           enable = true;
           battery = true;
         };
-        obs-studio.enable = true;
         picom = {
           enable = true;
           vSync = true;
         };
-        thunar.enable = true;
       };
 
       # Network Applet

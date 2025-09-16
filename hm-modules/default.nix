@@ -8,9 +8,7 @@
     ./mime-apps.nix
     ./neovim
     ./notification.nix
-    ./obs-studio.nix
     ./picom.nix
-    ./thunar.nix
     ./vscode.nix
   ];
 }
