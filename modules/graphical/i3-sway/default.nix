@@ -1,4 +1,30 @@
 {
+  flake.modules.nixos.graphical =
+    {
+      pkgs,
+      lib,
+      config,
+      ...
+    }:
+    {
+      services.xserver = lib.mkIf (!config.withWayland) {
+        enable = true;
+        windowManager.i3.enable = true;
+        xkb.layout = "hu";
+      };
+
+      services.displayManager.defaultSession = lib.mkIf (!config.withWayland) "none+i3";
+
+      environment.loginShellInit = lib.mkIf config.withWayland ''
+        # load home manager env
+        . ~/.profile
+
+        if [ -z "$WAYLAND_DISPLAY" ]  && [ -n "$XDG_VTNR" ] && [ "$XDG_VTNR" -eq 1 ]; then
+            sway --unsupported-gpu
+        fi
+      '';
+    };
+
   flake.modules.homeManager.graphical =
     {
       pkgs,

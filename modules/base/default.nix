@@ -104,12 +104,6 @@
         };
       };
 
-      # Automatic external disk mounting to /var/run/mount
-      services.udiskie = {
-        enable = true;
-        tray = "auto";
-      };
-
       home = {
         username = "toma";
         stateVersion = "23.11";

@@ -1,4 +1,14 @@
 {
+  flake.modules.nixos.graphical =
+    { lib, config, ... }:
+    {
+      # configure what can handle authentication
+      security.pam.services = {
+        "swaylock" = lib.mkIf config.withWayland { };
+        "i3lock" = lib.mkIf (!config.withWayland) { };
+      };
+    };
+
   flake.modules.homeManager.graphical =
     {
       pkgs,
