@@ -10,6 +10,7 @@
       imports = with config.flake.modules.nixos; [
         base
         inputs.nixos-hardware.nixosModules.raspberry-pi-4
+        tailscale
       ];
 
       home-manager.users.toma = {
@@ -43,6 +44,5 @@
       };
 
       services.openssh.enable = true;
-      services.tailscale.enable = true;
     };
 }

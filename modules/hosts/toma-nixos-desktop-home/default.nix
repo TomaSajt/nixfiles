@@ -11,6 +11,8 @@
         base
         graphical
 
+        tailscale
+        docker
         games
       ];
 

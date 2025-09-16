@@ -10,7 +10,15 @@
       imports = with config.flake.modules.nixos; [
         base
         fbterm
+        tailscale
       ];
+
+      home-manager.users.toma = {
+        imports = with config.flake.modules.homeManager; [
+          base
+          fbterm
+        ];
+      };
 
       # Bootloader
       boot.loader = {
@@ -28,11 +36,5 @@
       networking.useDHCP = lib.mkDefault true;
       # networking.interfaces.enp1s0.useDHCP = lib.mkDefault true;
 
-      home-manager.users.toma = {
-        imports = with config.flake.modules.homeManager; [
-          base
-          fbterm
-        ];
-      };
     };
 }

@@ -12,8 +12,6 @@
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPAndu7CnQfqEwo/jck4I7QuK6bGAMeJkA1OGdvI5iY+ u0_a158@localhost" # termux
       ];
 
-      services.tailscale.enable = true;
-
       /*
         services.minecraft-server = {
           enable = true;

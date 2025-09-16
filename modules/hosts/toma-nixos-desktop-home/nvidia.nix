@@ -29,6 +29,17 @@
           };
     };
 
+  flake.modules.homeManager."hosts/toma-nixos-desktop-home" = {
+
+    services.picom.vSync = false; # Turns off the default screen-tearing fix
+
+    home.sessionVariables = {
+      # https://bugs.webkit.org/show_bug.cgi?id=228268
+      # fix for nvidia proprietary drivers
+      "WEBKIT_DISABLE_COMPOSITING_MODE" = "1";
+    };
+  };
+
   nixpkgs.allowedUnfreePackages = [
     "nvidia-x11"
     "nvidia-settings"

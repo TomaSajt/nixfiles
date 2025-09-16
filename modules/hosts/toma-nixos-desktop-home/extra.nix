@@ -7,6 +7,8 @@
       ...
     }:
     {
+      custom.tailscale.enableNMWorkaround = true;
+
       services.transmission = {
         enable = true;
         downloadDirPermissions = "770";
@@ -62,13 +64,6 @@
 
       services.speechd.enable = true;
 
-      virtualisation.docker.enable = true;
-
-      virtualisation.docker.rootless = {
-        enable = true;
-        setSocketVariable = true;
-      };
-
       networking.firewall = {
         allowedUDPPorts = [
           7777
@@ -84,27 +79,5 @@
         ];
       };
 
-      services.tailscale.enable = true;
-
-      # https://github.com/NixOS/nixpkgs/issues/180175
-      systemd.services.NetworkManager-wait-online = {
-        serviceConfig = {
-          ExecStart = [
-            ""
-            "${pkgs.networkmanager}/bin/nm-online -q"
-          ];
-        };
-      };
     };
-
-  flake.modules.homeManager."hosts/toma-nixos-desktop-home" = {
-
-    services.picom.vSync = false; # Turns off the default screen-tearing fix
-
-    home.sessionVariables = {
-      # https://bugs.webkit.org/show_bug.cgi?id=228268
-      # fix for nvidia proprietary drivers
-      "WEBKIT_DISABLE_COMPOSITING_MODE" = "1";
-    };
-  };
 }
