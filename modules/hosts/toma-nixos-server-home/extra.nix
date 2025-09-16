@@ -9,17 +9,8 @@
       services.openssh.settings.KbdInteractiveAuthentication = false;
       users.users.toma.openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGt1fXoeID60m9v+mSwNmqaJ5IXdlOUeFG7YWTmnruN9 toma@toma-nixos-desktop-home"
-        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBeNXRcTFAHC2AHFQhsV4bw0yuouPlKcxrmq6Z6QRdqV toma@toma-nixos-thinkpad-school"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPAndu7CnQfqEwo/jck4I7QuK6bGAMeJkA1OGdvI5iY+ u0_a158@localhost" # termux
       ];
-
-      environment.systemPackages = with pkgs; [ ];
-
-      home-manager.users.toma = {
-        modules.git.signing = false;
-        modules.gpg.enable = false;
-        modules.bash.color = "35";
-      };
 
       services.tailscale.enable = true;
 
@@ -52,4 +43,9 @@
         };
       };
     };
+
+  flake.modules.homeManager."hosts/toma-nixos-server-home" = {
+    modules.git.signing = false;
+    modules.bash.color = "35";
+  };
 }

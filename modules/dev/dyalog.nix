@@ -21,4 +21,8 @@
         ];
       };
     };
+
+  nixpkgs.allowedUnfreePackages = [
+    "dyalog"
+  ];
 }
