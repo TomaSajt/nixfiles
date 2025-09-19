@@ -40,10 +40,10 @@
           incomplete-dir = "/transmission/.incomplete";
         };
       };
-    };
 
-  flake.modules.homeManager."hosts/toma-nixos-server-home" = {
-    modules.git.signing = false;
-    modules.bash.color = "35";
-  };
+      home-manager.users.toma = {
+        modules.git.signing = false;
+        modules.bash.color = "35";
+      };
+    };
 }

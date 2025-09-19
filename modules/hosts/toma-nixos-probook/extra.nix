@@ -21,13 +21,14 @@
         enable = true;
         touchpad.naturalScrolling = true;
       };
-    };
 
-  flake.modules.homeManager."hosts/toma-nixos-probook" =
-    { osConfig, ... }:
-    {
-      modules.git.signing = false;
-      modules.alacritty.font-size = if osConfig.withWayland then 12 else 8;
-      home.packages = [ ];
+      home-manager.users.toma =
+        { osConfig, ... }:
+        {
+          custom.batterySupport = true;
+          modules.git.signing = false;
+          modules.alacritty.font-size = if osConfig.withWayland then 12 else 8;
+          home.packages = [ ];
+        };
     };
 }
