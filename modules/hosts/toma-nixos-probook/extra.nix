@@ -26,6 +26,7 @@
   flake.modules.homeManager."hosts/toma-nixos-probook" =
     { osConfig, ... }:
     {
+      modules.git.signing = false;
       modules.alacritty.font-size = if osConfig.withWayland then 12 else 8;
       home.packages = [ ];
     };

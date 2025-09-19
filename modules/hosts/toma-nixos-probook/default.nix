@@ -11,6 +11,7 @@
         base
         graphical
 
+        tailscale
         games
       ];
 
