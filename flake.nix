@@ -14,6 +14,9 @@
     rycee-nur.url = "gitlab:rycee/nur-expressions";
     rycee-nur.flake = false;
 
+    copyparty.url = "github:9001/copyparty";
+    copyparty.inputs.nixpkgs.follows = "nixpkgs";
+
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
   };

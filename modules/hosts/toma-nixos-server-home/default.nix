@@ -11,6 +11,7 @@
         base
         fbterm
         tailscale
+        copyparty
       ];
 
       home-manager.users.toma = {
