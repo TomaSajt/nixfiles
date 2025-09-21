@@ -17,22 +17,15 @@
         ];
       };
 
+      # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
+      # (the default) this is the recommended approach. When using systemd-networkd it's
+      # still possible to use this option, but it's recommended to use it in conjunction
+      # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
+      networking.useDHCP = lib.mkDefault true;
+      # networking.interfaces.enp0s25.useDHCP = lib.mkDefault true;
+      # networking.interfaces.wlp3s0.useDHCP = lib.mkDefault true;
 
-  # Bootloader.
-  boot.loader.grub.enable = true;
-  boot.loader.grub.device = "/dev/sda";
-  boot.loader.grub.useOSProber = true;
+      networking.networkmanager.enable = true;
 
-  boot.initrd.luks.devices."luks-f5cc51d2-0d40-427f-ad3e-09dbe5393364".device = "/dev/disk/by-uuid/f5cc51d2-0d40-427f-ad3e-09dbe5393364";
-  # Setup keyfile
-  boot.initrd.secrets = {
-    "/boot/crypto_keyfile.bin" = null;
-  };
-
-  boot.loader.grub.enableCryptodisk = true;
-
-  boot.initrd.luks.devices."luks-bd05bf5e-e927-4514-ad1b-ac4653bdb734".keyFile = "/boot/crypto_keyfile.bin";
-  boot.initrd.luks.devices."luks-f5cc51d2-0d40-427f-ad3e-09dbe5393364".keyFile = "/boot/crypto_keyfile.bin";
-  networking.networkmanager.enable = true;
     };
 }
