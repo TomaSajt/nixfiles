@@ -16,7 +16,21 @@
 
       services.caddy = {
         enable = true;
+        package = pkgs.caddy.withPlugins {
+          plugins = [ "github.com/caddy-dns/cloudflare@v0.2.1" ];
+          hash = "sha256-j+xUy8OAjEo+bdMOkQ1kVqDnEkzKGTBIbMDVL7YDwDY=";
+        };
+        environmentFile = "/run/keys/caddy/env_file";
         settings = {
+          apss.tls.automation.policies.issuers = [
+            {
+              module = "acme";
+              challenges.dns.provider = {
+                name = "cloudflare";
+                api_token = "{env.CF_API_TOKEN}";
+              };
+            }
+          ];
           apps.http.servers."idk" = {
             listen = [ ":443" ];
             routes = [
