@@ -22,7 +22,7 @@
         };
         environmentFile = "/run/keys/caddy/env_file";
         settings = {
-          apss.tls.automation.policies.issuers = [
+          apps.tls.automation.policies.issuers = [
             {
               module = "acme";
               challenges.dns.provider = {
