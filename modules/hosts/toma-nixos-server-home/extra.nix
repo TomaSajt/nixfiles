@@ -20,54 +20,15 @@
           plugins = [ "github.com/caddy-dns/cloudflare@v0.2.1" ];
           hash = "sha256-j+xUy8OAjEo+bdMOkQ1kVqDnEkzKGTBIbMDVL7YDwDY=";
         };
+        email = "acme@tomasajt.net";
         environmentFile = "/run/keys/caddy/env_file";
-        settings = {
-          apps.tls.automation.policies = [
-            {
-              subjects = [ "files.tomasajt.net" ];
-              issuers = [
-                {
-                  module = "acme";
-                  email = "acme@tomasajt.net";
-                  challenges.dns.provider = {
-                    name = "cloudflare";
-                    api_token = "{env.CF_API_TOKEN}";
-                  };
-                }
-              ];
+        virtualHosts."files.tomasajt.net" = {
+          extraConfig = ''
+            tls {
+              dns cloudflare {env.CF_API_TOKEN}
             }
-          ];
-          apps.http.servers."idk" = {
-            listen = [ ":443" ];
-            routes = [
-              {
-                match = [
-                  {
-                    host = [ "files.tomasajt.net" ];
-                  }
-                ];
-                handle = [
-                  {
-                    handler = "reverse_proxy";
-                    upstreams = [
-                      {
-                        dial = "localhost:3210";
-                      }
-                    ];
-                  }
-                ];
-              }
-              {
-                handle = [
-                  {
-                    handler = "static_response";
-                    status_code = 403;
-                    body = "Access denied";
-                  }
-                ];
-              }
-            ];
-          };
+            reverse_proxy localhost:3210
+          '';
         };
       };
 
