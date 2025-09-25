@@ -12,23 +12,34 @@
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPAndu7CnQfqEwo/jck4I7QuK6bGAMeJkA1OGdvI5iY+ u0_a158@localhost" # termux
       ];
 
-      networking.firewall.allowedTCPPorts = [ 80 ];
+      networking.firewall.allowedTCPPorts = [
+        80
+        443
+      ];
 
       services.caddy = {
         enable = true;
-        package = pkgs.caddy.withPlugins {
-          plugins = [ "github.com/caddy-dns/cloudflare@v0.2.1" ];
-          hash = "sha256-j+xUy8OAjEo+bdMOkQ1kVqDnEkzKGTBIbMDVL7YDwDY=";
-        };
+        /*
+          package = pkgs.caddy.withPlugins {
+            plugins = [ "github.com/caddy-dns/cloudflare@v0.2.1" ];
+            hash = "sha256-j+xUy8OAjEo+bdMOkQ1kVqDnEkzKGTBIbMDVL7YDwDY=";
+          };
+        */
         email = "acme@tomasajt.net";
         environmentFile = "/run/keys/caddy/env_file";
         virtualHosts."files.tomasajt.net" = {
-          extraConfig = ''
-            tls {
-              dns cloudflare {env.CF_API_TOKEN}
-            }
-            reverse_proxy localhost:3210
-          '';
+          extraConfig =
+            /*
+              ''
+                tls {
+                  dns cloudflare {env.CF_API_TOKEN}
+                }
+              ''
+              +
+            */
+            ''
+              reverse_proxy localhost:3210
+            '';
         };
       };
 
