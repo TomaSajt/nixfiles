@@ -22,13 +22,19 @@
         };
         environmentFile = "/run/keys/caddy/env_file";
         settings = {
-          apps.tls.automation.policies.issuers = [
+          apps.tls.automation.policies = [
             {
-              module = "acme";
-              challenges.dns.provider = {
-                name = "cloudflare";
-                api_token = "{env.CF_API_TOKEN}";
-              };
+              subjects = [ "files.tomasajt.net" ];
+              issuers = [
+                {
+                  module = "acme";
+                  email = "acme@tomasajt.net";
+                  challenges.dns.provider = {
+                    name = "cloudflare";
+                    api_token = "{env.CF_API_TOKEN}";
+                  };
+                }
+              ];
             }
           ];
           apps.http.servers."idk" = {
@@ -51,25 +57,6 @@
                   }
                 ];
               }
-              /*
-                {
-                  match = [
-                    {
-                      host = [ "dev.tomasajt.net" ];
-                    }
-                  ];
-                  handle = [
-                    {
-                      handler = "reverse_proxy";
-                      upstreams = [
-                        {
-                          dial = "localhost:4000";
-                        }
-                      ];
-                    }
-                  ];
-                }
-              */
               {
                 handle = [
                   {
