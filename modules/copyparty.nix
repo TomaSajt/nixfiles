@@ -38,19 +38,10 @@
       };
 
       # create a volume
-      volumes = {
-        # create a volume at "/" (the webroot), which will
-        "/" = {
-          # share the contents of "/srv/copyparty"
-          path = "/srv/copyparty";
-          # see `copyparty --help-accounts` for available options
-          access = {
-            # everyone gets read-access, but
-            "r" = "*";
-            "rwmda." = [ "toma" ];
-          };
+      volumes =
+        let
           # see `copyparty --help-flags` for available options
-          flags = {
+          commonFlags = {
             # "fk" enables filekeys (necessary for upget permission) (4 chars long)
             fk = 4;
             # scan for new files every 60sec
@@ -62,8 +53,30 @@
             # skips hashing file contents if path matches *.iso
             nohash = "\.iso$";
           };
+        in
+        {
+          # create a volume at "/" (the webroot), which will
+          "/" = {
+            # share the contents of "/srv/copyparty"
+            path = "/srv/copyparty";
+            # see `copyparty --help-accounts` for available options
+            access = {
+              "r" = "*";
+              "rwmda." = [ "toma" ];
+            };
+            flags = commonFlags;
+          };
+          # create a volume at "/p", which will
+          "/p" = {
+            # share the contents of "/srv/copyparty/p"
+            path = "/srv/copyparty/p";
+            # see `copyparty --help-accounts` for available options
+            access = {
+              "rwmda." = [ "toma" ];
+            };
+            flags = commonFlags;
+          };
         };
-      };
       # you may increase the open file limit for the process
       openFilesLimit = 8192;
     };
