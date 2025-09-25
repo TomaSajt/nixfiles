@@ -37,23 +37,25 @@
                   }
                 ];
               }
-              {
-                match = [
-                  {
-                    host = [ "dev.tomasajt.net" ];
-                  }
-                ];
-                handle = [
-                  {
-                    handler = "reverse_proxy";
-                    upstreams = [
-                      {
-                        #dial = "localhost:4000";
-                      }
-                    ];
-                  }
-                ];
-              }
+              /*
+                {
+                  match = [
+                    {
+                      host = [ "dev.tomasajt.net" ];
+                    }
+                  ];
+                  handle = [
+                    {
+                      handler = "reverse_proxy";
+                      upstreams = [
+                        {
+                          dial = "localhost:4000";
+                        }
+                      ];
+                    }
+                  ];
+                }
+              */
               {
                 handle = [
                   {
