@@ -15,7 +15,13 @@
       networking.firewall.allowedTCPPorts = [
         80
         443
+        8096 # temp
+        8920 # temp
       ];
+
+      services.jellyfin = {
+        enable = true;
+      };
 
       services.caddy = {
         enable = true;
@@ -23,6 +29,11 @@
         virtualHosts."files.tomasajt.net" = {
           extraConfig = ''
             reverse_proxy localhost:3210
+          '';
+        };
+        virtualHosts."jelly.tomasajt.net" = {
+          extraConfig = ''
+            reverse_proxy localhost:8920
           '';
         };
       };
