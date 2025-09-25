@@ -12,6 +12,62 @@
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPAndu7CnQfqEwo/jck4I7QuK6bGAMeJkA1OGdvI5iY+ u0_a158@localhost" # termux
       ];
 
+      networking.firewall.allowedTCPPorts = [ 80 ];
+
+      services.caddy = {
+        enable = true;
+        settings = {
+          apps.http.servers."idk" = {
+            listen = [ ":80" ];
+            routes = [
+              {
+                match = [
+                  {
+                    host = [ "files.tomasajt.net" ];
+                  }
+                ];
+                handle = [
+                  {
+                    handler = "reverse_proxy";
+                    upstreams = [
+                      {
+                        dial = "localhost:3210";
+                      }
+                    ];
+                  }
+                ];
+              }
+              {
+                match = [
+                  {
+                    host = [ "dev.tomasajt.net" ];
+                  }
+                ];
+                handle = [
+                  {
+                    handler = "reverse_proxy";
+                    upstreams = [
+                      {
+                        #dial = "localhost:4000";
+                      }
+                    ];
+                  }
+                ];
+              }
+              {
+                handle = [
+                  {
+                    handler = "static_response";
+                    status_code = 403;
+                    body = "Access denied";
+                  }
+                ];
+              }
+            ];
+          };
+        };
+      };
+
       /*
         services.minecraft-server = {
           enable = true;

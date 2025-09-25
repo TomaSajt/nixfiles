@@ -12,10 +12,10 @@
 
     networking.firewall = {
       allowedUDPPorts = [
-        3210
+        # 3210
       ];
       allowedTCPPorts = [
-        3210
+        # 3210
       ];
     };
 
