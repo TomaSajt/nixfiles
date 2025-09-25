@@ -18,7 +18,7 @@
         enable = true;
         settings = {
           apps.http.servers."idk" = {
-            listen = [ ":80" ];
+            listen = [ ":443" ];
             routes = [
               {
                 match = [
