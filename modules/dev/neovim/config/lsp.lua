@@ -1,11 +1,9 @@
--- https://vonheikemen.github.io/devlog/tools/setup-nvim-lspconfig-plus-nvim-cmp/
 
 local bufmap = function(mode, lhs, rhs)
   vim.keymap.set(mode, lhs, rhs, { buffer = true })
 end
 
 -- vim.lsp.set_log_level("DEBUG")
-local lspconfig = require('lspconfig')
 
 vim.diagnostic.config({
   virtual_text = false,
@@ -27,30 +25,27 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
 )
 
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+vim.lsp.config('*', {
+  capabilities = require('cmp_nvim_lsp').default_capabilities()
+})
 
-local default_setup = function(ls)
-  lspconfig[ls].setup {
-    capabilities = capabilities
-  }
-end
 
-default_setup('hls')
-default_setup('bashls')
-default_setup('ts_ls')
-default_setup('eslint')
-default_setup('pyright')
-default_setup('rust_analyzer')
-default_setup('html')
-default_setup('jsonls')
-default_setup('svelte')
-default_setup('uiua')
-default_setup('jdtls')
-default_setup('serve_d')
-default_setup('tailwindcss')
+vim.lsp.enable('hls')
+vim.lsp.enable('bashls')
+vim.lsp.enable('ts_ls')
+vim.lsp.enable('eslint')
+vim.lsp.enable('pyright')
+vim.lsp.enable('rust_analyzer')
+vim.lsp.enable('html')
+vim.lsp.enable('jsonls')
+vim.lsp.enable('svelte')
+vim.lsp.enable('uiua')
+vim.lsp.enable('jdtls')
+vim.lsp.enable('serve_d')
+vim.lsp.enable('tailwindcss')
 
-lspconfig.nil_ls.setup {
-  capabilities = capabilities,
+vim.lsp.enable('nil_ls')
+vim.lsp.config('nil_ls', {
   settings = {
     ['nil'] = {
       formatting = {
@@ -58,10 +53,10 @@ lspconfig.nil_ls.setup {
       },
     },
   },
-}
+})
 
-lspconfig.lua_ls.setup {
-  capabilities = capabilities,
+vim.lsp.enable('lua_ls')
+vim.lsp.config('lua_ls', {
   settings = {
     Lua = {
       telemetry = { enable = false },
@@ -69,26 +64,26 @@ lspconfig.lua_ls.setup {
       workspace = { checkThirdParty = false, }
     }
   }
-}
+})
 
-lspconfig.omnisharp.setup {
+vim.lsp.enable('omnisharp')
+vim.lsp.config('omnisharp', {
   cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
-  capabilities = capabilities,
   handlers = {
     ["textDocument/definition"] = require('omnisharp_extended').handler,
   },
   organize_imports_on_format = false,
   enable_import_completion = false,
-}
+})
 
-lspconfig.ccls.setup {
-  capabilities = capabilities,
+vim.lsp.enable('ccls')
+vim.lsp.config('ccls', {
   init_options = {
     clang = {
       extraArgs = { "-std=c++20" }
     }
   }
-}
+})
 
 local cmds = vim.api.nvim_create_augroup('cmds', { clear = true })
 -- Use autocmd to not have to pass on_attach to each setup
