@@ -2,6 +2,7 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nixpkgs-extra.url = "github:Petingoso/nixpkgs/lanraragi";
+    nixpkgs-lean.url = "github:NixOS/nixpkgs/206ecb7";
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";

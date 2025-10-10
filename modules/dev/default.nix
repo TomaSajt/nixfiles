@@ -12,6 +12,7 @@
           python.enable = lib.mkDefault true;
           rust.enable = lib.mkDefault true;
           uiua.enable = lib.mkDefault true;
+          lean4.enable = lib.mkDefault true;
         };
       };
     };
