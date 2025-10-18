@@ -1,4 +1,3 @@
-
 local bufmap = function(mode, lhs, rhs)
   vim.keymap.set(mode, lhs, rhs, { buffer = true })
 end
@@ -85,6 +84,19 @@ vim.lsp.config('ccls', {
   }
 })
 
+local conform = require("conform")
+
+conform.setup({
+  formatters_by_ft = {
+    javascript = { "prettier" },
+    typescript = { "prettier" },
+    svelte = { "prettier" },
+    json = { "prettier" },
+    html = { "prettier" },
+    css = { "prettier" },
+  },
+})
+
 local cmds = vim.api.nvim_create_augroup('cmds', { clear = true })
 -- Use autocmd to not have to pass on_attach to each setup
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -120,40 +132,45 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     -- Displays hover information about the symbol under the cursor
-    bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
+    bufmap('n', 'K', vim.lsp.buf.hover)
 
     -- Jump to the definition
-    bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
+    bufmap('n', 'gd', vim.lsp.buf.definition)
 
     -- Jump to declaration
-    bufmap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>')
+    bufmap('n', 'gD', vim.lsp.buf.declaration)
 
     -- Lists all the implementations for the symbol under the cursor
-    bufmap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>')
+    bufmap('n', 'gi', vim.lsp.buf.implementation)
 
     -- Jumps to the definition of the type symbol
-    bufmap('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>')
+    bufmap('n', 'go', vim.lsp.buf.type_definition)
 
     -- Lists all the references
-    bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')
+    bufmap('n', 'gr', vim.lsp.buf.references)
 
     -- Displays a function's signature information
-    bufmap('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
+    bufmap('n', 'gs', vim.lsp.buf.signature_help)
 
     -- Renames all references to the symbol under the cursor
-    bufmap('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>')
+    bufmap('n', '<F2>', vim.lsp.buf.rename)
 
     -- Selects a code action available at the current cursor position
-    bufmap('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>')
+    bufmap('n', '<F4>', vim.lsp.buf.code_action)
 
     -- Show diagnostics in a floating window
-    bufmap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
+    bufmap('n', 'gl', vim.diagnostic.open_float)
 
     -- Move to the previous diagnostic
-    bufmap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
+    bufmap('n', '[d', vim.diagnostic.goto_prev)
 
     -- Move to the next diagnostic
-    bufmap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
+    bufmap('n', ']d', vim.diagnostic.goto_next)
+
+    -- Format
+    bufmap("n", "<leader>f", function()
+      conform.format({ lsp_fallback = true })
+    end)
   end
 })
 
@@ -165,23 +182,6 @@ vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
     vim.opt.filetype = "uiua"
   end
 })
-
-local conform = require("conform")
-
-conform.setup({
-  formatters_by_ft = {
-    javascript = { "prettier" },
-    typescript = { "prettier" },
-    svelte = { "prettier" },
-    json = { "prettier" },
-    html = { "prettier" },
-    css = { "prettier" },
-  },
-})
-
-bufmap("n", "<leader>f", function()
-  conform.format({ lsp_fallback = true })
-end)
 
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
