@@ -77,11 +77,11 @@ vim.lsp.config('omnisharp', {
 
 vim.lsp.enable('ccls')
 vim.lsp.config('ccls', {
-  init_options = {
-    clang = {
-      extraArgs = { "-std=c++20" }
-    }
-  }
+  --  init_options = {
+  --    clang = {
+  --      extraArgs = { "-std=c++20" }
+  --    }
+  --  }
 })
 
 local conform = require("conform")
