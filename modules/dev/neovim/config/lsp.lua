@@ -75,8 +75,8 @@ vim.lsp.config('omnisharp', {
   enable_import_completion = false,
 })
 
-vim.lsp.enable('ccls')
-vim.lsp.config('ccls', {
+vim.lsp.enable('clangd')
+vim.lsp.config('clangd', {
   --  init_options = {
   --    clang = {
   --      extraArgs = { "-std=c++20" }
