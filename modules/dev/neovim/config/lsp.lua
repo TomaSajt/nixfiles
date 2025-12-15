@@ -75,14 +75,19 @@ vim.lsp.config('omnisharp', {
   enable_import_completion = false,
 })
 
-vim.lsp.enable('clangd')
-vim.lsp.config('clangd', {
-  --  init_options = {
-  --    clang = {
-  --      extraArgs = { "-std=c++20" }
-  --    }
-  --  }
+vim.lsp.enable('ccls')
+vim.lsp.config('ccls', {
+  init_options = {
+    clang = {
+      extraArgs = { "-std=c++20" }
+    }
+  }
 })
+
+
+
+--vim.lsp.enable('clangd')
+--vim.lsp.config('clangd', {})
 
 local conform = require("conform")
 

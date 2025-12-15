@@ -16,7 +16,7 @@ let
       hostName = lib.removePrefix prefix hostModuleName;
       specialArgs = {
         inherit inputs;
-        hostConfig = hostModule // {
+        hostExtraInfo = {
           name = hostName;
         };
       };

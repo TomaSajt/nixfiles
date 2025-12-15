@@ -1,7 +1,7 @@
 {
   flake.modules.nixos.base =
-    { hostConfig, ... }:
+    { hostExtraInfo, ... }:
     {
-      networking.hostName = hostConfig.name;
+      networking.hostName = hostExtraInfo.name;
     };
 }

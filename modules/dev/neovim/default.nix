@@ -15,7 +15,7 @@
         rust-analyzer
         nil
         nixfmt
-        #ccls
+        ccls
         clang-tools # clangd
         jdt-language-server
         pyright

@@ -11,6 +11,7 @@
 
       services.transmission = {
         enable = true;
+        package = pkgs.transmission_4;
         downloadDirPermissions = "770";
         settings = {
           download-dir = "/mnt/extra/transmission/download";
@@ -55,12 +56,14 @@
         };
       */
 
-      services.lanraragi = {
-        enable = true;
-        port = 3001;
-        passwordFile = pkgs.writeText "pass" "password";
-        package = pkgs.lanraragi.overrideAttrs (prev: { });
-      };
+      /*
+        services.lanraragi = {
+          enable = true;
+          port = 3001;
+          passwordFile = pkgs.writeText "pass" "password";
+          package = pkgs.lanraragi.overrideAttrs (prev: { });
+        };
+      */
 
       services.speechd.enable = true;
 

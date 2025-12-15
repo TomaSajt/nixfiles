@@ -60,6 +60,7 @@
 
       services.transmission = {
         enable = true;
+        package = pkgs.transmission_4;
         downloadDirPermissions = "770";
         settings = {
           download-dir = "/transmission/download";

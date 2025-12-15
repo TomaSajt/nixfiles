@@ -12,7 +12,7 @@
     let
       cfg = config.modules.langs.lean4;
 
-      pkgs-lean = import inputs.nixpkgs-lean { system = pkgs.hostPlatform.system; };
+      #pkgs-lean = import inputs.nixpkgs-lean { system = pkgs.hostPlatform.system; };
     in
     {
       options.modules.langs.lean4 = {
@@ -21,7 +21,8 @@
 
       config = lib.mkIf cfg.enable {
         home.packages = [
-          pkgs-lean.lean4
+          pkgs.elan
+          #pkgs-lean.lean4
         ];
 
         programs.vscode.profiles.default.extensions = with pkgs.vscode-extensions; [
