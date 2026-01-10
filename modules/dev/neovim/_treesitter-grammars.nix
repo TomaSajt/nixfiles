@@ -19,7 +19,6 @@ p: with p; [
   javascript
   jsdoc
   json
-  jsonc
   latex
   lua
   luadoc

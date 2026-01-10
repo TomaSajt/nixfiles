@@ -1,4 +1,9 @@
+{ inputs, ... }:
 {
+  nixpkgs.allowedUnfreePackages = [
+    "terraria-server"
+  ];
+
   flake.modules.nixos."hosts/toma-nixos-desktop-home" =
     {
       pkgs,
@@ -18,6 +23,23 @@
           incomplete-dir = "/mnt/extra/transmission/.incomplete";
         };
       };
+
+      services.udev.packages = [ pkgs.quark-goldleaf ];
+
+      /*
+          disabledModules = [ "services/games/terraria.nix" ];
+
+          imports = [ "${inputs.nixpkgs-terraria}/nixos/modules/services/games/terraria.nix" ];
+
+          services.terraria = {
+            enable = true;
+            port = 7776;
+            worldPath = "/var/lib/terraria/.local/share/Terraria/Worlds/asd.wld";
+            autocreate = {
+              enable = true;
+            };
+          };
+      */
 
       /*
         services.mysql = {
@@ -46,23 +68,16 @@
       */
 
       /*
-        services.terraria2 = {
-          enable = true;
-          port = 7776;
-          worldPath = "/var/lib/terraria/.local/share/Terraria/Worlds/asd.wld";
-          autocreate = {
-            enable = true;
-          };
-        };
-      */
-
-      /*
         services.lanraragi = {
           enable = true;
           port = 3001;
           passwordFile = pkgs.writeText "pass" "password";
-          package = pkgs.lanraragi.overrideAttrs (prev: { });
-        };
+          package =
+            let
+              pkgs-lanraragi = import inputs.nixpkgs-lanraragi { system = pkgs.hostPlatform.system; };
+            in
+            pkgs-lanraragi.lanraragi.overrideAttrs (prev: { });
+          };
       */
 
       services.speechd.enable = true;

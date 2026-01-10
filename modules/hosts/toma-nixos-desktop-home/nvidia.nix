@@ -7,7 +7,7 @@
 
       hardware.nvidia = {
         open = false;
-        package = config.boot.kernelPackages.nvidiaPackages.latest; # sway fix???
+        package = config.boot.kernelPackages.nvidiaPackages.stable; # 590 no longer supports my GPU
         prime = {
           sync.enable = true;
           nvidiaBusId = "PCI:1:0:0";

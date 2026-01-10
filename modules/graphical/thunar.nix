@@ -2,7 +2,7 @@
   flake.modules.homeManager.graphical =
     { pkgs, ... }:
     {
-      home.packages = with pkgs.xfce; [
+      home.packages = with pkgs; [
         thunar
         tumbler # For thumbnails
       ];
