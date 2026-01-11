@@ -65,7 +65,9 @@
           cmp-nvim-lsp
           cmp-nvim-lua
           luasnip
+
           omnisharp-extended-lsp-nvim
+          lean-nvim
 
           conform-nvim
 

@@ -2,32 +2,41 @@ local bufmap = function(mode, lhs, rhs)
   vim.keymap.set(mode, lhs, rhs, { buffer = true })
 end
 
--- vim.lsp.set_log_level("DEBUG")
+vim.lsp.set_log_level("DEBUG")
+
+local border = "rounded"
 
 vim.diagnostic.config({
   virtual_text = false,
   severity_sort = true,
   float = {
-    border = 'rounded',
+    border = border,
     source = 'always',
   },
+  signs = {
+    text = {
+      [vim.diagnostic.severity.ERROR] = '✘',
+      [vim.diagnostic.severity.WARN] = '▲',
+      [vim.diagnostic.severity.HINT] = '⚑',
+      [vim.diagnostic.severity.INFO] = '»',
+    }
+  }
 })
 
-vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
-  vim.lsp.handlers.hover,
-  { border = 'rounded' }
-)
-
-vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
-  vim.lsp.handlers.signature_help,
-  { border = 'rounded' }
-)
+-- Doesn't seem to be working for some reason
+-- We supply border = border when setting the keymaps
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border })
 
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
 vim.lsp.config('*', {
   capabilities = require('cmp_nvim_lsp').default_capabilities()
 })
 
+
+require('lean').setup {
+  mappings = true
+}
 
 vim.lsp.enable('hls')
 vim.lsp.enable('bashls')
@@ -85,7 +94,6 @@ vim.lsp.config('ccls', {
 })
 
 
-
 --vim.lsp.enable('clangd')
 --vim.lsp.config('clangd', {})
 
@@ -137,7 +145,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     -- Displays hover information about the symbol under the cursor
-    bufmap('n', 'K', vim.lsp.buf.hover)
+    bufmap('n', 'K', function() vim.lsp.buf.hover({ border = border }) end)
 
     -- Jump to the definition
     bufmap('n', 'gd', vim.lsp.buf.definition)
@@ -155,7 +163,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     bufmap('n', 'gr', vim.lsp.buf.references)
 
     -- Displays a function's signature information
-    bufmap('n', 'gs', vim.lsp.buf.signature_help)
+    bufmap('n', 'gs', function() vim.lsp.buf.signature_help({ border = border }) end)
 
     -- Renames all references to the symbol under the cursor
     bufmap('n', '<F2>', vim.lsp.buf.rename)
@@ -201,17 +209,3 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     vim.opt.softtabstop = 2
   end
 })
-
-
-local sign = function(name, text)
-  vim.fn.sign_define(name, {
-    texthl = name,
-    text = text,
-    numhl = ''
-  })
-end
-
-sign('DiagnosticSignError', '✘')
-sign('DiagnosticSignWarn', '▲')
-sign('DiagnosticSignHint', '⚑')
-sign('DiagnosticSignInfo', '»')

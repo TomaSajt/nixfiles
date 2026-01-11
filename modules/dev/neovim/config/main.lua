@@ -2,6 +2,7 @@
 vim.lsp.set_log_level("off")
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = "  "
 
 -- Hybrid line numbers
 vim.opt.number = true
