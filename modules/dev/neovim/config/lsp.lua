@@ -1,17 +1,11 @@
-local bufmap = function(mode, lhs, rhs)
-  vim.keymap.set(mode, lhs, rhs, { buffer = true })
-end
-
-vim.lsp.set_log_level("DEBUG")
-
-local border = "rounded"
+-- set to "off" or "debug"
+vim.lsp.set_log_level("off")
 
 vim.diagnostic.config({
   virtual_text = false,
   severity_sort = true,
   float = {
-    border = border,
-    source = 'always',
+    source = true
   },
   signs = {
     text = {
@@ -22,11 +16,6 @@ vim.diagnostic.config({
     }
   }
 })
-
--- Doesn't seem to be working for some reason
--- We supply border = border when setting the keymaps
-vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, { border = border })
-vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = border })
 
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
 vim.lsp.config('*', {
@@ -110,6 +99,13 @@ conform.setup({
   },
 })
 
+
+
+local bufmap = function(mode, lhs, rhs)
+  vim.keymap.set(mode, lhs, rhs, { buffer = true })
+end
+
+
 local cmds = vim.api.nvim_create_augroup('cmds', { clear = true })
 -- Use autocmd to not have to pass on_attach to each setup
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -129,8 +125,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
     if client.name == "uiua" then
       vim.api.nvim_set_hl(0, '@lsp.type.comment', { fg = '#888888' })
+      -- vim.api.nvim_set_hl(0, '@lsp.type.parameter', { fg = '' })
       vim.api.nvim_set_hl(0, '@lsp.type.uiua_number', { fg = '#eeaa55' })
       vim.api.nvim_set_hl(0, '@lsp.type.uiua_string', { fg = '#20f9fc' })
+      -- vim.api.nvim_set_hl(0, '@lsp.type.uiua_constant', { fg = '' })
       vim.api.nvim_set_hl(0, '@lsp.type.stack_function', { fg = '#d1daec' })
       vim.api.nvim_set_hl(0, '@lsp.type.noadic_function', { fg = '#ed5e6a' })
       vim.api.nvim_set_hl(0, '@lsp.type.monadic_function', { fg = '#95d16a' })
@@ -145,7 +143,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end
 
     -- Displays hover information about the symbol under the cursor
-    bufmap('n', 'K', function() vim.lsp.buf.hover({ border = border }) end)
+    bufmap('n', 'K', vim.lsp.buf.hover)
 
     -- Jump to the definition
     bufmap('n', 'gd', vim.lsp.buf.definition)
@@ -163,7 +161,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
     bufmap('n', 'gr', vim.lsp.buf.references)
 
     -- Displays a function's signature information
-    bufmap('n', 'gs', function() vim.lsp.buf.signature_help({ border = border }) end)
+    bufmap('n', 'gs', vim.lsp.buf.signature_help)
 
     -- Renames all references to the symbol under the cursor
     bufmap('n', '<F2>', vim.lsp.buf.rename)

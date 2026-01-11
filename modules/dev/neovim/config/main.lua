@@ -1,8 +1,7 @@
--- set to "off" or "debug"
-vim.lsp.set_log_level("off")
-
 vim.g.mapleader = " "
 vim.g.maplocalleader = "  "
+
+vim.opt.winborder = "rounded"
 
 -- Hybrid line numbers
 vim.opt.number = true
@@ -16,14 +15,12 @@ vim.opt.wrap = false
 vim.opt.hlsearch = false
 vim.opt.incsearch = true
 
-vim.opt.scrolloff = 8
+vim.opt.scrolloff = 6
 
 vim.opt.updatetime = 50
 
-if true then
-  -- Sync clipboard with os
-  vim.opt.clipboard:append("unnamedplus")
-end
+-- Sync clipboard with os
+vim.opt.clipboard:append("unnamedplus")
 
 require('gitsigns').setup {}
 require("nvim-autopairs").setup {}
