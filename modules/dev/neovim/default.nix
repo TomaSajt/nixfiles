@@ -45,7 +45,7 @@
 
           nvim-autopairs
 
-          vim-hexokinase # Displays colors for color codes
+          vim-hexokinase
 
           plenary-nvim
           telescope-nvim
@@ -76,7 +76,7 @@
 
         defaultEditor = true;
 
-        extraLuaConfig = ''
+        initLua = ''
           require "config.main"
         '';
       };

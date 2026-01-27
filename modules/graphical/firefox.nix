@@ -3,9 +3,9 @@
   flake.modules.homeManager.graphical =
     { pkgs, ... }:
     let
-      firefox-addons = (import inputs.rycee-nur { inherit pkgs; }).firefox-addons;
+      inherit (import inputs.rycee-nur { inherit pkgs; }) firefox-addons;
 
-      # Parts stolen from https://github.com/mahmoudk1000/nix-config/blob/main/modules/programs/firefox.nix
+      # https://mozilla.github.io/policy-templates/
       firefox-wrapped = pkgs.wrapFirefox pkgs.firefox-unwrapped {
         extraPolicies = {
           CaptivePortal = false;
@@ -17,6 +17,11 @@
           OfferToSaveLogins = false;
           OfferToSaveLoginsDefault = false;
           PasswordManagerEnabled = false;
+          OverrideFirstRunPage = "";
+          OverridePostUpdatePage = "";
+          GenerativeAI = {
+            Enabled = false;
+          };
           FirefoxHome = {
             Search = true;
             Pocket = false;
@@ -26,6 +31,8 @@
           };
           UserMessaging = {
             ExtensionRecommendations = false;
+            FeatureRecommendations = false;
+            MoreFromMozilla = false;
             SkipOnboarding = true;
           };
         };
