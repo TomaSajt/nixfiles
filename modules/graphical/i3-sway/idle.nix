@@ -15,13 +15,15 @@
         detect-sleep = true;
         timers = [
           {
-            delay = 300;
+            delay = 600;
             command = config.myLockCmd;
           }
-          {
-            delay = 10800; # 3 hours
-            command = "${lib.getExe' pkgs.systemd "systemctl"} suspend";
-          }
+          /*
+            {
+              delay = 10800; # 3 hours
+              command = "${lib.getExe' pkgs.systemd "systemctl"} suspend";
+            }
+          */
         ];
       };
 
@@ -29,13 +31,15 @@
         enable = true;
         timeouts = [
           {
-            timeout = 300;
+            timeout = 600;
             command = config.myLockCmd;
           }
-          {
-            timeout = 10800; # 3 hours
-            command = "${lib.getExe' pkgs.systemd "systemctl"} suspend";
-          }
+          /*
+            {
+              timeout = 10800; # 3 hours
+              command = "${lib.getExe' pkgs.systemd "systemctl"} suspend";
+            }
+          */
         ];
         extraArgs = [
           "-w"
