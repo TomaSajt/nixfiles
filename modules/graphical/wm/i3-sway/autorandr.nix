@@ -7,7 +7,7 @@
       ...
     }:
     {
-      config = lib.mkIf (!osConfig.withWayland) {
+      config = lib.mkIf (osConfig.wm == "i3") {
         services.autorandr.enable = true;
         programs.autorandr = {
           enable = true;

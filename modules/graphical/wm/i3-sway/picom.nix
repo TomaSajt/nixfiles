@@ -2,7 +2,7 @@
   flake.modules.homeManager.graphical =
     { lib, osConfig, ... }:
     {
-      config = lib.mkIf (!osConfig.withWayland) {
+      config = lib.mkIf (osConfig.wm == "i3") {
         # Compositor (for transparency)
         services.picom = {
           enable = true;

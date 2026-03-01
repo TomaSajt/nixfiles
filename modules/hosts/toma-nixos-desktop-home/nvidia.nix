@@ -18,7 +18,7 @@
       };
 
       environment.etc."X11/xorg.conf.d/10-disable-nvidia-phantom-monitor.conf" =
-        lib.mkIf (!config.withWayland)
+        lib.mkIf (config.wm == "i3")
           {
             text = ''
               Section "Monitor"

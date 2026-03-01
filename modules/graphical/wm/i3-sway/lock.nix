@@ -4,8 +4,8 @@
     {
       # configure what can handle authentication
       security.pam.services = {
-        "swaylock" = lib.mkIf config.withWayland { };
-        "i3lock" = lib.mkIf (!config.withWayland) { };
+        "swaylock" = lib.mkIf (config.wm == "sway") { };
+        "i3lock" = lib.mkIf (config.wm == "i3") { };
       };
     };
 
@@ -60,14 +60,16 @@
         myLockCmd = lib.mkOption {
           type = lib.types.str;
           default =
-            if osConfig.withWayland then
+            if osConfig.wm == "sway" then
               "${lib.getExe pkgs.swaylock} -f"
+            else if osConfig.wm == "i3" then
+              "${pidof} i3lock-color || ${lib.getExe' pkgs.i3lock-color "i3lock-color"} ${lib.concatStringsSep " " lock-args}"
             else
-              "${pidof} i3lock-color || ${lib.getExe' pkgs.i3lock-color "i3lock-color"} ${lib.concatStringsSep " " lock-args}";
+              "true";
         };
       };
       config = {
-        programs.swaylock = {
+        programs.swaylock = lib.mkIf (osConfig.wm == "sway") {
           enable = true;
           settings = {
             color = "808080";

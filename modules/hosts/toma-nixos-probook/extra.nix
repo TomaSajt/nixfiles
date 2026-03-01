@@ -28,7 +28,7 @@
         {
           custom.batterySupport = true;
           modules.git.signing = false;
-          modules.alacritty.font-size = if osConfig.withWayland then 12 else 8;
+          modules.alacritty.font-size = if osConfig.wm == "i3" then 8 else 12;
           home.packages = [ ];
         };
     };

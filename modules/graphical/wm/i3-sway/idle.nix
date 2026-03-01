@@ -8,7 +8,7 @@
       ...
     }:
     {
-      services.xidlehook = lib.mkIf (!osConfig.withWayland) {
+      services.xidlehook = lib.mkIf (osConfig.wm == "i3") {
         enable = true;
         not-when-audio = true;
         not-when-fullscreen = true;
@@ -27,7 +27,7 @@
         ];
       };
 
-      services.swayidle = lib.mkIf osConfig.withWayland {
+      services.swayidle = lib.mkIf (osConfig.wm == "sway") {
         enable = true;
         timeouts = [
           {
@@ -47,7 +47,7 @@
         ];
       };
 
-      wayland.windowManager.sway = lib.mkIf osConfig.withWayland {
+      wayland.windowManager.sway = lib.mkIf (osConfig.wm == "sway") {
         config = {
           startup = [ { command = "${pkgs.sway-audio-idle-inhibit}/bin/sway-audio-idle-inhibit"; } ];
         };

@@ -14,7 +14,7 @@
       options.modules.alacritty = {
         font-size = lib.mkOption {
           type = lib.types.number;
-          default = if osConfig.withWayland then 15 else 10;
+          default = if osConfig.wm == "i3" then 10 else 15;
         };
       };
 

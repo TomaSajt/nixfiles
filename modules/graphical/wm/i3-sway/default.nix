@@ -7,15 +7,15 @@
       ...
     }:
     {
-      services.xserver = lib.mkIf (!config.withWayland) {
+      services.xserver = lib.mkIf (config.wm == "i3") {
         enable = true;
         windowManager.i3.enable = true;
         xkb.layout = "hu";
       };
 
-      services.displayManager.defaultSession = lib.mkIf (!config.withWayland) "none+i3";
+      services.displayManager.defaultSession = lib.mkIf (config.wm == "i3") "none+i3";
 
-      environment.loginShellInit = lib.mkIf config.withWayland ''
+      environment.loginShellInit = lib.mkIf (config.wm == "sway") ''
         # load home manager env
         . ~/.profile
 
@@ -47,7 +47,7 @@
       i3status-rs = lib.getExe config.programs.i3status-rust.package;
       brightnessctl = lib.getExe pkgs.brightnessctl;
 
-      mkKP = n: (lib.optionalString (!osConfig.withWayland) "mod2+") + "KP_" + n;
+      mkKP = n: (lib.optionalString (osConfig.wm == "i3") "mod2+") + "KP_" + n;
 
       wcwd = pkgs.writeShellScriptBin "wcwd" ''
         pid=$(swaymsg -t get_tree | ${lib.getExe pkgs.jq} '.. | select(.type?) | select(.type=="con") | select(.focused==true).pid') 
@@ -64,7 +64,7 @@
         keybindings = {
           "${mod}+Return" = "exec --no-startup-id ${alacritty}";
           "${mod}+Shift+Return" = "exec --no-startup-id ${alacritty} --working-directory $(${
-            lib.getExe (if osConfig.withWayland then wcwd else pkgs.xcwd)
+            lib.getExe (if osConfig.wm == "i3" then pkgs.xcwd else wcwd)
           })";
 
           "${mod}+Shift+q" = "kill";
@@ -132,7 +132,7 @@
 
           "${mod}+Shift+c" = "reload";
           "${mod}+Shift+r" = "restart";
-          "${mod}+Shift+l" = "exec ${if osConfig.withWayland then "swaymsg" else "i3-msg"} exit";
+          "${mod}+Shift+l" = "exec ${if osConfig.wm == "i3" then "i3-msg" else "swaymsg"} exit";
           "${mod}+l" = "exec ${config.myLockCmd}";
 
           "${mod}+r" = "mode resize";
@@ -155,13 +155,13 @@
           "${mod}+XF86MonBrightnessUp" = "exec --no-startup-id ${brightnessctl} set 1%+";
           "${mod}+XF86MonBrightnessDown" = "exec --no-startup-id ${brightnessctl} set 1%-";
         }
-        // lib.optionalAttrs (!osConfig.withWayland) {
+        // lib.optionalAttrs (osConfig.wm == "i3") {
           "--release ${mod}+p" =
             "exec --no-startup-id ${xcolor} -s clipboard && ${notify-send} 'The selected color was copied to the clipboard!'";
           "--release ${mod}+Shift+s" = mkScreenshotCommand ''%Y-%m-%d-%H-%M-%S-crop-\$wx\$h.png'' "-s -f";
           "--release ${mod}+Shift+Control+s" =
             mkScreenshotCommand ''%Y-%m-%d-%H-%M-%S-crop-\$wx\$h.png'' "-s";
-          "--release Print" = mkScreenshotCommand ''%Y-%m-%d-%H-%M-%S.png'' "";
+          "--release Print" = mkScreenshotCommand "%Y-%m-%d-%H-%M-%S.png" "";
         };
         modes = {
           resize = {
@@ -191,14 +191,14 @@
               command = "${dbus-update-activation-environment} --all";
               always = true;
             }
-            // lib.optionalAttrs (!osConfig.withWayland) { notification = false; }
+            // lib.optionalAttrs (osConfig.wm == "i3") { notification = false; }
           )
           (
             {
               command = "discord --start-minimized";
               always = false;
             }
-            // lib.optionalAttrs (!osConfig.withWayland) { notification = false; }
+            // lib.optionalAttrs (osConfig.wm == "i3") { notification = false; }
           )
         ];
         focus.followMouse = false;
@@ -233,7 +233,7 @@
               names = [ "monospace" ];
               size = 11.0;
             };
-            trayOutput = if osConfig.withWayland then "*" else "primary";
+            trayOutput = if osConfig.wm == "i3" then "primary" else "*";
             colors = {
               background = "#000000";
               statusline = "#ffffff";
@@ -274,8 +274,8 @@
       # For the player keys to properly work (maybe)
       services.playerctld.enable = true;
 
-      xsession.enable = !osConfig.withWayland;
-      xsession.numlock.enable = !osConfig.withWayland;
+      xsession.enable = osConfig.wm == "i3";
+      xsession.numlock.enable = osConfig.wm == "i3";
 
       programs.rofi = {
         enable = true;
@@ -283,7 +283,7 @@
         plugins = [ pkgs.rofi-calc ];
       };
 
-      wayland.windowManager.sway = lib.mkIf osConfig.withWayland {
+      wayland.windowManager.sway = lib.mkIf (osConfig.wm == "sway") {
         enable = true;
         config = myConfig // {
           input = {
@@ -301,7 +301,7 @@
         };
       };
 
-      xsession.windowManager.i3 = lib.mkIf (!osConfig.withWayland) {
+      xsession.windowManager.i3 = lib.mkIf (osConfig.wm == "i3") {
         enable = true;
         config = myConfig;
       };

@@ -6,7 +6,7 @@
       ...
     }:
     {
-      services.random-background = lib.mkIf (!osConfig.withWayland) {
+      services.random-background = lib.mkIf (osConfig.wm == "i3") {
         enable = true;
         enableXinerama = true;
         display = "fill";
@@ -14,7 +14,7 @@
         interval = "1h";
       };
 
-      wayland.windowManager.sway.config = lib.mkIf osConfig.withWayland {
+      wayland.windowManager.sway.config = lib.mkIf (osConfig.wm == "sway") {
         output."*" = {
           bg = "${./wallpapers/minimalistic-1.jpg} fill";
         };
