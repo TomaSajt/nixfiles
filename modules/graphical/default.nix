@@ -45,7 +45,7 @@
     }:
     {
       # Network Applet
-      services.network-manager-applet.enable = true;
+      # services.network-manager-applet.enable = true;
 
       # Audio Applet
       # services.pasystray.enable = true;
