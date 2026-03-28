@@ -15,6 +15,7 @@
             variant = "mocha";
           };
         };
+        gtk4.theme = null; # can be removed once stateVersion is 26.05+
         cursorTheme = {
           name = "volantes_cursors";
           package = pkgs.volantes-cursors;

@@ -4,6 +4,7 @@
     {
       xdg.userDirs = {
         enable = true;
+        setSessionVariables = true; # legacy behaviour, could probably be removed
         createDirectories = true;
         # note: directories are capitalized by default, but I like them lower-case
         documents = "${config.home.homeDirectory}/documents";

@@ -34,7 +34,7 @@
         ];
 
         programs.waybar = {
-          enable = true;
+          enable = false; # TODO: re-enable
           systemd.enable = true;
           settings = {
             mainBar = {
