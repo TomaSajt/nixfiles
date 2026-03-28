@@ -19,6 +19,7 @@ p: with p; [
   javascript
   jsdoc
   json
+  kdl
   latex
   lua
   luadoc
