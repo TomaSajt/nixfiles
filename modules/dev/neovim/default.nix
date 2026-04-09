@@ -29,6 +29,8 @@
 
       programs.neovim = {
         enable = true;
+        withRuby = false; # disables warning
+        withPython3 = false; # disables warning
 
         plugins = with pkgs.vimPlugins; [
           vim-nix
