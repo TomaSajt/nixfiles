@@ -126,8 +126,8 @@
           "${mod}+Shift+9" = "move container to workspace number 9";
 
           # mod2+KP_N are the numpad keys
-          "${mod}+${mkKP "1"}" = "exec ${firefox} --profile ~/.mozilla/firefox/main --new-window";
-          "${mod}+${mkKP "2"}" = "exec ${firefox} --profile ~/.mozilla/firefox/school --new-window";
+          "${mod}+${mkKP "1"}" = "exec ${firefox} --profile ${config.programs.firefox.configPath}/main --new-window";
+          "${mod}+${mkKP "2"}" = "exec ${firefox} --profile ${config.programs.firefox.configPath}/school --new-window";
           "${mod}+${mkKP "3"}" = "exec --no-startup-id ${rofi} -show calc -modi calc -no-show-match -no-sort";
 
           "${mod}+Shift+c" = "reload";

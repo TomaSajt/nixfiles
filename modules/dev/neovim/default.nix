@@ -85,4 +85,9 @@
 
       xdg.configFile."nvim/lua/config".source = ./config;
     };
+
+  nixpkgs.allowedUnfreePackages = [
+    "vim-hexokinase"
+    "omnisharp-extended-lsp.nvim"
+  ];
 }

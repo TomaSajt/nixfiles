@@ -12,6 +12,7 @@
         pictures = "${config.home.homeDirectory}/images";
         desktop = "${config.home.homeDirectory}/desktop";
         videos = "${config.home.homeDirectory}/videos";
+        projects = "${config.home.homeDirectory}/projects";
         music = null;
         publicShare = null;
         templates = null;

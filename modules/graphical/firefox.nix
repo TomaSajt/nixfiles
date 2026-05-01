@@ -1,7 +1,7 @@
 { inputs, ... }:
 {
   flake.modules.homeManager.graphical =
-    { pkgs, ... }:
+    { pkgs, config, ... }:
     let
       inherit (import inputs.rycee-nur { inherit pkgs; }) firefox-addons;
 
@@ -180,6 +180,7 @@
       programs.firefox = {
         enable = true;
         package = firefox-wrapped;
+        configPath = "${config.xdg.configHome}/mozilla/firefox"; # remove when bumping stateVersion above 26.05
         profiles = {
           main = shared // {
             id = 0;
