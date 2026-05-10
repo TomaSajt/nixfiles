@@ -7,7 +7,7 @@
 
       hardware.nvidia = {
         open = false;
-        package = config.boot.kernelPackages.nvidiaPackages.legacy_580; # 590 no longer supports my GPU
+        branch = "legacy_580";
         prime = {
           sync.enable = true;
           nvidiaBusId = "PCI:1:0:0";
