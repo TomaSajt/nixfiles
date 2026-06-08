@@ -67,18 +67,16 @@
         };
       */
 
-      /*
-        services.lanraragi = {
-          enable = true;
-          port = 3001;
-          passwordFile = pkgs.writeText "pass" "password";
-          package =
-            let
-              pkgs-lanraragi = import inputs.nixpkgs-lanraragi { system = pkgs.hostPlatform.system; };
-            in
-            pkgs-lanraragi.lanraragi.overrideAttrs (prev: { });
-          };
-      */
+      services.lanraragi = {
+        enable = true;
+        port = 3001;
+        passwordFile = pkgs.writeText "pass" "password";
+        package =
+          let
+            pkgs-lanraragi = import inputs.nixpkgs-llr { inherit (pkgs.stdenv.hostPlatform) system; };
+          in
+          pkgs-lanraragi.lanraragi.overrideAttrs (prev: { });
+      };
 
       services.speechd.enable = true;
 

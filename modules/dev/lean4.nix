@@ -12,7 +12,7 @@
     let
       cfg = config.modules.langs.lean4;
 
-      #pkgs-lean = import inputs.nixpkgs-lean { system = pkgs.hostPlatform.system; };
+      #pkgs-lean = import inputs.nixpkgs-lean {  inherit (pkgs.stdenv.hostPlatform) system;  };
     in
     {
       options.modules.langs.lean4 = {
