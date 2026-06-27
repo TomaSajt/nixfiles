@@ -24,7 +24,7 @@
         };
       };
 
-      services.udev.packages = [ pkgs.quark-goldleaf ];
+      #services.udev.packages = [ pkgs.quark-goldleaf ];
 
       /*
           disabledModules = [ "services/games/terraria.nix" ];
