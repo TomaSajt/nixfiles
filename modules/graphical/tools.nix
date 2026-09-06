@@ -30,6 +30,7 @@
 
   nixpkgs.allowedUnfreePackages = [
     "discord"
+    "discord-unwrapped"
     "obsidian"
   ];
 }
