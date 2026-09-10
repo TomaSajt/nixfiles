@@ -41,17 +41,11 @@
 
               remote."main" = {
                 auth = "pubkey";
-                id = "vpn.net.bme.hu";
                 cacerts = [ "/etc/ssl/certs/HARICA-TLS-Root-2021-RSA.cer" ];
               };
 
               children."bme" = {
-                # start_action = "start";
-                local_ts = [ "dynamic" ];
-                remote_ts = [
-                  "0.0.0.0/0"
-                  "::/0"
-                ];
+                remote_ts = [ "0.0.0.0/0" ];
               };
             };
           };
