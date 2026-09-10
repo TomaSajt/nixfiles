@@ -163,7 +163,6 @@
           bitwarden
           darkreader
           sponsorblock
-          tampermonkey
         ];
         settings = {
           "browser.aboutConfig.showWarning" = false; # Don't show warning when viewing about:config
@@ -193,8 +192,4 @@
         };
       };
     };
-
-  nixpkgs.allowedUnfreePackages = [
-    "tampermonkey"
-  ];
 }

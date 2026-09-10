@@ -23,7 +23,7 @@
           ];
         };
 
-        programs.vscode.profiles.default.extensions = with pkgs.vscode-extensions; [ ms-vscode.cpptools ];
+        programs.vscodium.profiles.default.extensions = with pkgs.vscode-extensions; [ ms-vscode.cpptools ];
       };
     };
 

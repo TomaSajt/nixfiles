@@ -24,7 +24,7 @@
           ];
         };
 
-        programs.vscode.profiles.default.extensions = with pkgs.vscode-extensions; [
+        programs.vscodium.profiles.default.extensions = with pkgs.vscode-extensions; [
           rust-lang.rust-analyzer
         ];
       };

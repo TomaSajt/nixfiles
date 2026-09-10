@@ -13,7 +13,8 @@
       danger = "2";
     in
     {
-      services.dunst.enable = true;
+      #services.dunst.enable = true;
+      services.mako.enable = true;
 
       services.batsignal = lib.mkIf config.custom.batterySupport {
         enable = true;

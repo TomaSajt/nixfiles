@@ -51,7 +51,7 @@
           enable = true;
         };
 
-        programs.vscode.profiles.default.userSettings = {
+        programs.vscodium.profiles.default.userSettings = {
           "git.autofetch" = true;
           "git.enableSmartCommit" = true;
           "git.confirmSync" = false;

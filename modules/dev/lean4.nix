@@ -25,7 +25,7 @@
           #pkgs-lean.lean4
         ];
 
-        programs.vscode.profiles.default.extensions = with pkgs.vscode-extensions; [
+        programs.vscodium.profiles.default.extensions = with pkgs.vscode-extensions; [
           tamasfe.even-better-toml
           (pkgs.vscode-utils.buildVscodeMarketplaceExtension {
             mktplcRef = {

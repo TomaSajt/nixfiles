@@ -18,7 +18,7 @@
       config = lib.mkIf cfg.enable {
         home.packages = with pkgs; [ uiua ];
 
-        programs.vscode.profiles.default.extensions = with pkgs.vscode-extensions; [
+        programs.vscodium.profiles.default.extensions = with pkgs.vscode-extensions; [
           uiua-lang.uiua-vscode
         ];
       };

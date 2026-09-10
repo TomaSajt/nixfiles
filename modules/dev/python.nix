@@ -18,7 +18,7 @@
       config = lib.mkIf cfg.enable {
         home.packages = with pkgs; [ python3 ];
 
-        programs.vscode.profiles.default = {
+        programs.vscodium.profiles.default = {
           extensions = with pkgs.vscode-extensions; [
             # ms-python.python
             batisteo.vscode-django
