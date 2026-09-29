@@ -20,6 +20,7 @@
       hardware.bluetooth.enable = true;
 
       virtualisation.vmware.host.enable = true;
+      virtualisation.virtualbox.host.enable = true;
 
       environment.etc."ipsec.secrets".text = ''
         include /etc/secrets/bmevpn-pass

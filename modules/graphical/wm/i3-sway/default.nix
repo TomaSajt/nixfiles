@@ -154,13 +154,15 @@
           "XF86MonBrightnessDown" = "exec --no-startup-id ${brightnessctl} set 5%-";
           "${mod}+XF86MonBrightnessUp" = "exec --no-startup-id ${brightnessctl} set 1%+";
           "${mod}+XF86MonBrightnessDown" = "exec --no-startup-id ${brightnessctl} set 1%-";
+
+          "${mod}+Shift+s" = "exec --no-startup-id ${lib.getExe pkgs.sway-contrib.grimshot} copy area";
         }
         // lib.optionalAttrs (osConfig.wm == "i3") {
           "--release ${mod}+p" =
             "exec --no-startup-id ${xcolor} -s clipboard && ${notify-send} 'The selected color was copied to the clipboard!'";
-          "--release ${mod}+Shift+s" = mkScreenshotCommand ''%Y-%m-%d-%H-%M-%S-crop-\$wx\$h.png'' "-s -f";
-          "--release ${mod}+Shift+Control+s" =
-            mkScreenshotCommand ''%Y-%m-%d-%H-%M-%S-crop-\$wx\$h.png'' "-s";
+          #"--release ${mod}+Shift+s" = mkScreenshotCommand ''%Y-%m-%d-%H-%M-%S-crop-\$wx\$h.png'' "-s -f";
+          #"--release ${mod}+Shift+Control+s" =
+          #  mkScreenshotCommand ''%Y-%m-%d-%H-%M-%S-crop-\$wx\$h.png'' "-s";
           "--release Print" = mkScreenshotCommand "%Y-%m-%d-%H-%M-%S.png" "";
         };
         modes = {

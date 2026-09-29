@@ -30,10 +30,10 @@
       services.swayidle = lib.mkIf (osConfig.wm == "sway") {
         enable = true;
         timeouts = [
-          {
+          /*{
             timeout = 600;
             command = config.myLockCmd;
-          }
+          }*
           /*
             {
               timeout = 10800; # 3 hours

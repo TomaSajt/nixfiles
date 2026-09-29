@@ -10,6 +10,7 @@
       imports = with config.flake.modules.nixos; [
         base
         graphical
+        docker
 
         tailscale
         games
