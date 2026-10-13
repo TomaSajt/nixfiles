@@ -168,6 +168,12 @@
           "browser.aboutConfig.showWarning" = false; # Don't show warning when viewing about:config
           "extensions.autoDisableScopes" = 0; # Automatically enable extensions (maybe unsafe, idc)
           "browser.translations.automaticallyPopup" = false;
+          "sidebar.verticalTabs" = true;
+
+          # not really needed, since we don't use shortcuts anyways
+          "browser.newtabpage.activity-stream.showSponsored" = false;
+          "browser.newtabpage.activity-stream.showSponsoredCheckboxes" = false;
+          "browser.newtabpage.activity-stream.showSponsoredTopSites" = false;
         };
       };
     in
@@ -179,7 +185,6 @@
       programs.firefox = {
         enable = true;
         package = firefox-wrapped;
-        configPath = "${config.xdg.configHome}/mozilla/firefox"; # remove when bumping stateVersion above 26.05
         profiles = {
           main = shared // {
             id = 0;

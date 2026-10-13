@@ -18,6 +18,7 @@
           trusted-public-keys = [
             "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
           ];
+          nix-path = [ "nixpkgs=flake:${inputs.nixpkgs}" ];
           flake-registry = emptyRegisty;
           auto-optimise-store = false;
           warn-dirty = false;
@@ -29,7 +30,6 @@
         };
         # point <nixpkgs> to our flake's path
         channel.enable = false;
-        nixPath = [ "nixpkgs=flake:${inputs.nixpkgs}" ];
       };
   };
 }

@@ -6,20 +6,21 @@
 
       gtk = {
         enable = true;
-        theme = {
-          name = "catppuccin-mocha-blue-compact+rimless";
-          package = pkgs.catppuccin-gtk.override {
-            accents = [ "blue" ];
-            size = "compact";
-            tweaks = [ "rimless" ];
-            variant = "mocha";
+        /*
+          theme = {
+            name = "catppuccin-mocha-blue-compact+rimless";
+            package = pkgs.catppuccin-gtk.override {
+              accents = [ "blue" ];
+              size = "compact";
+              tweaks = [ "rimless" ];
+              variant = "mocha";
+            };
           };
-        };
-        gtk4.theme = null; # can be removed once stateVersion is 26.05+
-        cursorTheme = {
-          name = "volantes_cursors";
-          package = pkgs.volantes-cursors;
-        };
+          cursorTheme = {
+            name = "volantes_cursors";
+            package = pkgs.volantes-cursors;
+          };
+        */
         gtk3.extraConfig = {
           gtk-application-prefer-dark-theme = 1;
         };

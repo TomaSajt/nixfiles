@@ -10,7 +10,7 @@
     let
       cfg = config.modules.langs.java;
 
-      jdk = pkgs.jdk;
+      jdk = pkgs.jdk.override { enableJavaFX = true; };
     in
     {
       options.modules.langs.java = {
