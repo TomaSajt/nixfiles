@@ -23,9 +23,9 @@ vim.lsp.config('*', {
 })
 
 
-require('lean').setup {
-  mappings = true
-}
+--require('lean').setup {
+--  mappings = true
+--}
 
 vim.lsp.enable('hls')
 vim.lsp.enable('bashls')
@@ -38,7 +38,7 @@ vim.lsp.enable('jsonls')
 vim.lsp.enable('svelte')
 vim.lsp.enable('uiua')
 vim.lsp.enable('jdtls')
-vim.lsp.enable('serve_d')
+--vim.lsp.enable('serve_d')
 vim.lsp.enable('tailwindcss')
 
 vim.lsp.enable('nil_ls')
@@ -63,15 +63,15 @@ vim.lsp.config('lua_ls', {
   }
 })
 
-vim.lsp.enable('omnisharp')
-vim.lsp.config('omnisharp', {
-  cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
-  handlers = {
-    ["textDocument/definition"] = require('omnisharp_extended').handler,
-  },
-  organize_imports_on_format = false,
-  enable_import_completion = false,
-})
+--vim.lsp.enable('omnisharp')
+--vim.lsp.config('omnisharp', {
+--  cmd = { "OmniSharp", "--languageserver", "--hostPID", tostring(vim.fn.getpid()) },
+--  handlers = {
+--    ["textDocument/definition"] = require('omnisharp_extended').handler,
+--  },
+--  organize_imports_on_format = false,
+--  enable_import_completion = false,
+--})
 
 
 --vim.lsp.enable('ccls')

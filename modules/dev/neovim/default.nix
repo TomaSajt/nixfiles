@@ -25,6 +25,7 @@
         svelte-language-server
         vscode-langservers-extracted
         prettier
+        luaPackages.tree-sitter-cli
       ];
 
       programs.neovim = {
@@ -69,7 +70,7 @@
           luasnip
 
           omnisharp-extended-lsp-nvim
-          lean-nvim
+          #lean-nvim
 
           conform-nvim
 
