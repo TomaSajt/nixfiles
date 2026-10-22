@@ -45,6 +45,7 @@ vim.lsp.enable('nil_ls')
 vim.lsp.config('nil_ls', {
   settings = {
     ['nil'] = {
+      nix = { flake = { autoArchive = false } },
       formatting = {
         command = { "nixfmt" },
       },
