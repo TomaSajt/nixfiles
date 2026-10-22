@@ -22,7 +22,7 @@
           graphical
           dev
 
-          fcitx5
+          # fcitx5
           games
         ];
       };
