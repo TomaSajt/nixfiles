@@ -9,6 +9,7 @@
       services.openssh.settings.KbdInteractiveAuthentication = false;
       users.users.toma.openssh.authorizedKeys.keys = [
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGt1fXoeID60m9v+mSwNmqaJ5IXdlOUeFG7YWTmnruN9 toma@toma-nixos-desktop-home"
+        "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICUQK+sgY+obxsmRlBOW+BdzjDpVN99c5QO9uj1V7RjQ toma@toma-nixos-probook"
         "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPAndu7CnQfqEwo/jck4I7QuK6bGAMeJkA1OGdvI5iY+ u0_a158@localhost" # termux
       ];
 
