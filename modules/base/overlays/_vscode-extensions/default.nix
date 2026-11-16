@@ -30,4 +30,19 @@
       sha256 = "sha256-NU0yv/+bwPcUpNaZICENEnraNDvJiAkBELeOgoMlBtc=";
     };
   };
+  ftsrg.transport-map-editor-free =
+    let
+      pname = "transport-map-editor-free";
+      publisher = "ftsrg";
+      version = "2026.4.4";
+
+      vsix = ./transport-map-editor-free-2026.4.4.vsix;
+    in
+    vscode-utils.buildVscodeExtension {
+      inherit version vsix pname;
+      src = vsix;
+      vscodeExtUniqueId = "${publisher}.${pname}";
+      vscodeExtPublisher = publisher;
+      vscodeExtName = pname;
+    };
 }

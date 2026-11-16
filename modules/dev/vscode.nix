@@ -19,7 +19,10 @@
           enable = true;
 
           profiles.default = {
-            extensions = with pkgs.vscode-extensions; [ pkief.material-icon-theme ];
+            extensions = with pkgs.vscode-extensions; [
+              pkief.material-icon-theme
+              ftsrg.transport-map-editor-free
+            ];
 
             userSettings = {
               "workbench.iconTheme" = "material-icon-theme";

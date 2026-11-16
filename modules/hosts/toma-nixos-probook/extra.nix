@@ -6,7 +6,41 @@
       config,
       ...
     }:
+
+    let
+      septabee =
+        with pkgs;
+        stdenv.mkDerivation {
+          pname = "septabee";
+          version = "0-B-T28";
+
+          src = fetchurl {
+            url = "https://downloads.septabee.com/SEPTABEE_DOWNLOADS/septabee_linux_B_T28_offline.7z";
+            hash = "sha256-J6oXQhoQkCs4UbrdWhiRjbO+PCDLdcLKmKVZ7fHuWHk=";
+          };
+
+          nativeBuildInputs = [ _7zz ];
+
+          installPhase = ''
+            runHook preInstall
+
+            install -Dt "$out/share/septabee" *
+
+            mkdir -p "$out/bin"
+            ln -s "$out/share/septabee/septabee" "$out/bin/septabee"
+
+            runHook postInstall
+          '';
+        };
+    in
     {
+      security.wrappers.septabee = {
+        owner = "root";
+        group = "root";
+        capabilities = "cap_sys_nice+ep";
+        source = "${lib.getExe septabee}";
+      };
+
       services.transmission = {
         enable = false;
         package = pkgs.transmission_4;
@@ -17,10 +51,12 @@
         };
       };
 
+      #services.timesyncd.enable = false;
+
       hardware.bluetooth.enable = true;
 
       #virtualisation.vmware.host.enable = true;
-      #virtualisation.virtualbox.host.enable = true;
+      virtualisation.virtualbox.host.enable = true;
 
       environment.etc."ipsec.secrets".text = ''
         include /etc/secrets/bmevpn-pass
